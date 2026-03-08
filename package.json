@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "snapshot": "node scripts/write-dashboard-snapshot.mjs",
     "start": "node server.js"
   }
 }

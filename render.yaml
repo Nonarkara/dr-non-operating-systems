@@ -1,12 +1,6 @@
 services:
-  - type: web
+  - type: static
     name: dr-non-operating-systems
-    runtime: node
-    plan: starter
-    buildCommand: npm install
-    startCommand: npm start
-    healthCheckPath: /api/dashboard
-    autoDeploy: true
-    envVars:
-      - key: NODE_VERSION
-        value: 22
+    buildCommand: echo "Static dashboard deploy"
+    staticPublishPath: public
+    pullRequestPreviewsEnabled: false

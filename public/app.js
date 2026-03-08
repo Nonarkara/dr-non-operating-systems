@@ -1,57 +1,61 @@
 const LOCAL_STORAGE_KEY = "operations-radar-local-targets";
-const PORTRAIT_DEFAULT_PATH = "/media/profile/portrait-main.jpg";
-const PORTRAIT_OVERRIDE_PATH = "/dr-non-photo.jpg";
+const PORTRAIT_DEFAULT_PATH = "./media/profile/portrait-main.jpg";
+const PORTRAIT_OVERRIDE_PATH = "./dr-non-photo.jpg";
+const SNAPSHOT_PATH = "./data/dashboard-snapshot.json";
+const MANUAL_SCAN_WORKFLOW_URL =
+  "https://github.com/Nonarkara/dr-non-operating-systems/actions/workflows/update-dashboard-snapshot.yml";
+const MODE_PARAM = new URLSearchParams(window.location.search).get("mode");
 
 const LAB_LOGOS = [
   {
     id: "smart-city-thailand-office",
     label: "Smart City Thailand Office",
-    src: "/Logos/Smart City Thailand Office Logo.jpg"
+    src: "./Logos/Smart City Thailand Office Logo.jpg"
   },
   {
     id: "depa",
     label: "Digital Economy Promotion Agency",
-    src: "/Logos/Digital Economy Promotion Agency logo.jpg"
+    src: "./Logos/Digital Economy Promotion Agency logo.jpg"
   },
   {
     id: "mdes",
     label: "Ministry of Digital Economy and Society",
-    src: "/Logos/Ministry of Digital Economy and Society logo.jpg"
+    src: "./Logos/Ministry of Digital Economy and Society logo.jpg"
   },
   {
     id: "slic",
     label: "SLIC",
-    src: "/Logos/SLIC logo.jpg"
+    src: "./Logos/SLIC logo.jpg"
   },
   {
     id: "axiom-ai",
     label: "AXIOM AI",
-    src: "/Logos/AXIOM AI logo.png"
+    src: "./Logos/AXIOM AI logo.png"
   },
   {
     id: "casean",
     label: "CASEAN",
-    src: "/media/logos/casean.png"
+    src: "./media/logos/casean.png"
   },
   {
     id: "pmu-a",
     label: "PMU-A",
-    src: "/media/logos/pmu-a.jpeg"
+    src: "./media/logos/pmu-a.jpeg"
   },
   {
     id: "depa-mark",
     label: "depa",
-    src: "/media/logos/depa.png"
+    src: "./media/logos/depa.png"
   },
   {
     id: "smart-city-thailand",
     label: "Smart City Thailand",
-    src: "/media/logos/smart-city-thailand.jpg"
+    src: "./media/logos/smart-city-thailand.jpg"
   },
   {
     id: "slic-thailand",
     label: "SLIC Thailand",
-    src: "/media/logos/slicthailand.jpg"
+    src: "./media/logos/slicthailand.jpg"
   }
 ];
 
@@ -124,22 +128,22 @@ const PROFILE = {
     {
       label: "CV (English)",
       meta: "Updated July 2018 PDF",
-      url: "/docs/cv-en.pdf"
+      url: "./docs/cv-en.pdf"
     },
     {
       label: "CV (Thai)",
       meta: "October 2023 PDF",
-      url: "/docs/cv-th.pdf"
+      url: "./docs/cv-th.pdf"
     },
     {
       label: "Non Profile",
       meta: "Profile PDF",
-      url: "/docs/non-profile.pdf"
+      url: "./docs/non-profile.pdf"
     },
     {
       label: "SLIC Company Profile",
       meta: "Organizational profile PDF",
-      url: "/docs/slic-company-profile.pdf"
+      url: "./docs/slic-company-profile.pdf"
     }
   ],
   publications: [
@@ -177,31 +181,31 @@ const PROFILE = {
   gallery: [
     {
       title: "Primary portrait",
-      src: "/media/profile/portrait-main.jpg"
+      src: "./media/profile/portrait-main.jpg"
     },
     {
       title: "Studio portrait",
-      src: "/media/profile/portrait-secondary.jpg"
+      src: "./media/profile/portrait-secondary.jpg"
     },
     {
       title: "Workshop keynote",
-      src: "/media/gallery/workshop-keynote.jpg"
+      src: "./media/gallery/workshop-keynote.jpg"
     },
     {
       title: "Award stage",
-      src: "/media/gallery/award-stage.jpg"
+      src: "./media/gallery/award-stage.jpg"
     },
     {
       title: "Johor Smart City Forum",
-      src: "/media/gallery/johor-forum.jpg"
+      src: "./media/gallery/johor-forum.jpg"
     },
     {
       title: "SCTCDP dashboard",
-      src: "/media/gallery/sctcdp-dashboard.png"
+      src: "./media/gallery/sctcdp-dashboard.png"
     },
     {
       title: "SLIC team",
-      src: "/media/gallery/slic-team.jpg"
+      src: "./media/gallery/slic-team.jpg"
     }
   ],
   footer: {
@@ -388,11 +392,50 @@ const STARTER_BLUEPRINTS = {
   }
 };
 
+function isLocalLikeHost(hostname) {
+  if (!hostname) {
+    return false;
+  }
+
+  if (hostname === "localhost" || hostname === "127.0.0.1" || hostname === "[::1]" || hostname.endsWith(".local")) {
+    return true;
+  }
+
+  if (/^10\./.test(hostname) || /^192\.168\./.test(hostname)) {
+    return true;
+  }
+
+  const match = hostname.match(/^172\.(\d{1,2})\./);
+
+  if (!match) {
+    return false;
+  }
+
+  const secondOctet = Number(match[1]);
+  return secondOctet >= 16 && secondOctet <= 31;
+}
+
+function resolveDataMode() {
+  if (MODE_PARAM === "live") {
+    return "live";
+  }
+
+  if (MODE_PARAM === "snapshot") {
+    return "snapshot";
+  }
+
+  return isLocalLikeHost(window.location.hostname) ? "live" : "snapshot";
+}
+
+const DATA_MODE = resolveDataMode();
+
 const state = {
-  autoRefreshMs: 30_000,
+  autoRefreshMs: DATA_MODE === "live" ? 30_000 : 0,
   dashboard: null,
+  lastLoadSource: null,
   localPreviewHistory: new Map(),
   localTargets: loadLocalTargets(),
+  mode: DATA_MODE,
   refreshTimer: null
 };
 
@@ -415,6 +458,8 @@ const elements = {
   localForm: document.querySelector("#localForm"),
   localGrid: document.querySelector("#localGrid"),
   metricsGrid: document.querySelector("#metricsGrid"),
+  manualScanLink: document.querySelector("#manualScanLink"),
+  modeNote: document.querySelector("#modeNote"),
   openAllButton: document.querySelector("#openAllButton"),
   platformList: document.querySelector("#platformList"),
   privacyStatement: document.querySelector("#privacyStatement"),
@@ -499,6 +544,31 @@ function loadLocalTargets() {
 
 function saveLocalTargets() {
   localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(state.localTargets));
+}
+
+function getSnapshotUrl(force = false) {
+  return force ? `${SNAPSHOT_PATH}?t=${Date.now()}` : SNAPSHOT_PATH;
+}
+
+function applyModeUI() {
+  const liveMode = state.mode === "live";
+  const fallbackMode = state.lastLoadSource === "snapshot-fallback";
+
+  elements.refreshButton.textContent = liveMode ? "Run live scan" : "Reload snapshot";
+  elements.manualScanLink.href = MANUAL_SCAN_WORKFLOW_URL;
+  elements.manualScanLink.textContent = liveMode ? "Open snapshot workflow" : "Run manual scan";
+  elements.refreshSelect.disabled = !liveMode;
+  elements.refreshSelect.value = String(state.autoRefreshMs);
+
+  let note = liveMode
+    ? "Local live mode scans all targets from this machine. Auto refresh is local-only."
+    : "Snapshot mode is active on the public web. A fresh server scan only happens when you run the GitHub workflow.";
+
+  if (fallbackMode) {
+    note = "Live API unavailable on this machine, so the page is showing the last committed snapshot instead.";
+  }
+
+  elements.modeNote.textContent = note;
 }
 
 function updateClock() {
@@ -1187,6 +1257,7 @@ function renderDashboard() {
   }
 
   const { generatedAt, github, summary, targets } = state.dashboard;
+  const snapshotBacked = state.lastLoadSource === "snapshot" || state.lastLoadSource === "snapshot-fallback";
   renderLabLogos();
   renderBrandStrip(targets);
   renderProfile(summary);
@@ -1198,9 +1269,16 @@ function renderDashboard() {
   renderApiInventory(targets, summary);
   renderRemoteSections(targets);
 
-  elements.lastChecked.textContent = `Last dashboard scan ${formatDate(generatedAt)}`;
-  elements.dashboardState.className = "status-pill status-pill-live";
-  elements.dashboardState.textContent = `${summary.liveCount}/${summary.monitoredPages} public pages healthy`;
+  elements.lastChecked.textContent = snapshotBacked
+    ? `Snapshot updated ${formatDate(generatedAt)}`
+    : `Last live scan ${formatDate(generatedAt)}`;
+  elements.dashboardState.className = snapshotBacked
+    ? "status-pill status-pill-neutral"
+    : "status-pill status-pill-live";
+  elements.dashboardState.textContent = snapshotBacked
+    ? `Snapshot • ${summary.liveCount}/${summary.monitoredPages} public pages healthy`
+    : `${summary.liveCount}/${summary.monitoredPages} public pages healthy`;
+  applyModeUI();
 
   if (window.location.hash) {
     const anchor = document.querySelector(window.location.hash);
@@ -1238,23 +1316,52 @@ function setupPortraitSlot() {
   probe.src = `${PORTRAIT_OVERRIDE_PATH}?t=${Date.now()}`;
 }
 
+async function fetchSnapshotDashboard(force = false) {
+  const response = await fetch(getSnapshotUrl(force), { cache: "no-store" });
+
+  if (!response.ok) {
+    throw new Error(`Snapshot returned ${response.status}`);
+  }
+
+  return response.json();
+}
+
+async function fetchLiveDashboard(force = false) {
+  const query = force ? "?force=1" : "";
+  const response = await fetch(`./api/dashboard${query}`, { cache: "no-store" });
+
+  if (!response.ok) {
+    throw new Error(`Live API returned ${response.status}`);
+  }
+
+  return response.json();
+}
+
 async function refreshDashboard(force = false) {
   elements.dashboardState.className = "status-pill status-pill-loading";
-  elements.dashboardState.textContent = "Refreshing dashboard";
+  elements.dashboardState.textContent =
+    state.mode === "live" ? "Running live scan" : "Loading snapshot";
 
   try {
-    const query = force ? "?force=1" : "";
-    const response = await fetch(`/api/dashboard${query}`, { cache: "no-store" });
-
-    if (!response.ok) {
-      throw new Error(`Dashboard API returned ${response.status}`);
+    if (state.mode === "live") {
+      try {
+        state.dashboard = await fetchLiveDashboard(force);
+        state.lastLoadSource = "live";
+      } catch (error) {
+        state.dashboard = await fetchSnapshotDashboard(true);
+        state.lastLoadSource = "snapshot-fallback";
+        renderDashboard();
+        return;
+      }
+    } else {
+      state.dashboard = await fetchSnapshotDashboard(force);
+      state.lastLoadSource = "snapshot";
     }
-
-    state.dashboard = await response.json();
     renderDashboard();
   } catch (error) {
     elements.dashboardState.className = "status-pill status-pill-error";
     elements.dashboardState.textContent = `Dashboard error: ${error.message}`;
+    applyModeUI();
   }
 }
 
@@ -1365,5 +1472,6 @@ renderProfile({ monitoredPages: 0 });
 renderFooter();
 startClock();
 renderLocalTargets();
+applyModeUI();
 scheduleRefresh();
 refreshDashboard(true);

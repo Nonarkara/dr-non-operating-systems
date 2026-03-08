@@ -6,6 +6,7 @@ import { fileURLToPath } from "node:url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const PUBLIC_DIR = join(__dirname, "public");
+const SNAPSHOT_FILE = join(PUBLIC_DIR, "data", "dashboard-snapshot.json");
 const HOST = process.env.HOST || (process.env.RENDER ? "0.0.0.0" : "127.0.0.1");
 const PORT = Number(process.env.PORT || 4178);
 
@@ -270,6 +271,42 @@ function safeFilePath(pathname) {
   return fullPath.startsWith(PUBLIC_DIR) ? fullPath : null;
 }
 
+function isLocalLikeHost(hostname) {
+  if (!hostname) {
+    return false;
+  }
+
+  const normalized = hostname.replace(/^\[/, "").replace(/\]$/, "");
+
+  if (
+    normalized === "localhost" ||
+    normalized === "127.0.0.1" ||
+    normalized === "::1" ||
+    normalized.endsWith(".local")
+  ) {
+    return true;
+  }
+
+  if (/^10\./.test(normalized) || /^192\.168\./.test(normalized)) {
+    return true;
+  }
+
+  const match = normalized.match(/^172\.(\d{1,2})\./);
+
+  if (!match) {
+    return false;
+  }
+
+  const secondOctet = Number(match[1]);
+  return secondOctet >= 16 && secondOctet <= 31;
+}
+
+function allowLiveScan(request) {
+  const hostHeader = request.headers.host || "";
+  const hostname = hostHeader.replace(/:\d+$/, "");
+  return isLocalLikeHost(hostname);
+}
+
 async function serveStatic(pathname, response) {
   const fullPath = safeFilePath(pathname);
 
@@ -292,6 +329,22 @@ async function serveStatic(pathname, response) {
     }
 
     sendText(response, 500, "Unable to load dashboard");
+  }
+}
+
+async function sendSnapshotJson(response) {
+  try {
+    const file = await readFile(SNAPSHOT_FILE);
+    response.writeHead(200, {
+      "cache-control": "no-store",
+      "content-type": "application/json; charset=utf-8"
+    });
+    response.end(file);
+  } catch (error) {
+    sendJson(response, 503, {
+      error: "Snapshot file unavailable",
+      status: "error"
+    });
   }
 }
 
@@ -392,11 +445,18 @@ function buildApiInventory(target, baseUrl) {
 }
 
 async function fetchJson(url) {
+  const headers = {
+    accept: "application/vnd.github+json",
+    "user-agent": "non-operations-radar"
+  };
+  const authToken = process.env.GITHUB_TOKEN || process.env.GH_TOKEN || process.env.GITHUB_API_TOKEN;
+
+  if (authToken) {
+    headers.authorization = `Bearer ${authToken}`;
+  }
+
   const response = await fetch(url, {
-    headers: {
-      accept: "application/vnd.github+json",
-      "user-agent": "non-operations-radar"
-    },
+    headers,
     signal: AbortSignal.timeout(12_000)
   });
 
@@ -772,6 +832,27 @@ function buildSummary(targets, github) {
   };
 }
 
+function hydrateHistoryFromSnapshot(snapshot) {
+  historyByTarget.clear();
+
+  for (const target of snapshot?.targets ?? []) {
+    if (!Array.isArray(target.history) || !target.id) {
+      continue;
+    }
+
+    historyByTarget.set(
+      target.id,
+      target.history.slice(-SAMPLE_LIMIT).map((point) => ({
+        at: point.at,
+        health: point.health,
+        ok: point.ok,
+        responseTimeMs: point.responseTimeMs,
+        statusCode: point.statusCode
+      }))
+    );
+  }
+}
+
 async function getDashboardData(force = false) {
   if (!force && dashboardCache.value && Date.now() - dashboardCache.fetchedAt < DASHBOARD_TTL_MS) {
     return dashboardCache.value;
@@ -822,6 +903,11 @@ const server = createServer(async (request, response) => {
   }
 
   if (url.pathname === "/api/dashboard") {
+    if (!allowLiveScan(request)) {
+      await sendSnapshotJson(response);
+      return;
+    }
+
     try {
       const payload = await getDashboardData(url.searchParams.get("force") === "1");
       sendJson(response, 200, payload);
@@ -837,7 +923,7 @@ const server = createServer(async (request, response) => {
   await serveStatic(url.pathname, response);
 });
 
-export { getDashboardData, server };
+export { getDashboardData, hydrateHistoryFromSnapshot, server };
 
 if (process.env.NO_LISTEN !== "1") {
   server.listen(PORT, HOST, () => {
