@@ -586,50 +586,22 @@ function renderBrandStrip(targets) {
   elements.brandStrip.innerHTML = targets
     .map((target) => {
       const branding = getBranding(target);
+      const surfaceLabel = target.surface === "active" ? "Active app" : "Static page";
 
       return `
-        <a class="brand-chip" href="${escapeHtml(target.url)}" rel="noreferrer" target="_blank" data-target-id="${escapeHtml(target.id)}">
-          <span class="brand-mark">
-            ${
-              branding.iconUrl
-                ? `<img class="brand-icon" data-brand-icon alt="${escapeHtml(target.label)} logo" src="${escapeHtml(branding.iconUrl)}" />`
-                : ""
-            }
-            <span class="brand-monogram">${escapeHtml(branding.monogram)}</span>
-          </span>
-          <span class="brand-chip-copy">
-            <strong>${escapeHtml(target.label)}</strong>
-            <span>${escapeHtml(target.platform)}</span>
-          </span>
+        <a class="surface-chip" href="${escapeHtml(target.url)}" rel="noreferrer" target="_blank" data-health="${escapeHtml(target.health.code)}" data-target-id="${escapeHtml(target.id)}">
+          <div class="surface-main">
+            <span class="surface-monogram">${escapeHtml(branding.monogram)}</span>
+            <span class="surface-copy">
+              <strong>${escapeHtml(target.label)}</strong>
+              <span>${escapeHtml(target.platform)} • ${escapeHtml(surfaceLabel)}</span>
+            </span>
+          </div>
+          <span class="surface-tail">${escapeHtml(target.health.label)}</span>
         </a>
       `;
     })
     .join("");
-
-  for (const chip of elements.brandStrip.querySelectorAll(".brand-chip")) {
-    const icon = chip.querySelector("[data-brand-icon]");
-
-    if (!icon) {
-      chip.classList.add("brand-chip-fallback");
-      continue;
-    }
-
-    icon.addEventListener(
-      "error",
-      () => {
-        chip.classList.add("brand-chip-fallback");
-      },
-      { once: true }
-    );
-
-    icon.addEventListener(
-      "load",
-      () => {
-        chip.classList.remove("brand-chip-fallback");
-      },
-      { once: true }
-    );
-  }
 }
 
 function renderLabLogos() {
