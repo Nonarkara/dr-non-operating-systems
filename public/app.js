@@ -232,6 +232,9 @@ const BRANDS = {
   "middle-east-monitor": {
     monogram: "ME"
   },
+  "mtt-smart-city-monitor": {
+    monogram: "MT"
+  },
   "phuket-smart-bus": {
     monogram: "PB"
   },
@@ -312,6 +315,16 @@ const STARTER_BLUEPRINTS = {
     },
     modules: ["layered map", "overview KPIs", "news feed", "projects", "resilience and pollution lenses"],
     notes: "Built for smart city analytics with map layers and operational data cards."
+  },
+  "mtt-smart-city-monitor": {
+    appClass: "campus-smart-city-operations-console",
+    stack: {
+      frontend: "React or Vite SPA",
+      backend: "Node API",
+      deploy: "Render"
+    },
+    modules: ["super dashboard", "domain and city views", "map layers", "media intelligence", "assistant tools"],
+    notes: "Use for district-scale or campus-scale smart city monitoring with multiple operational lenses and admin tooling."
   },
   "phuket-smart-bus": {
     appClass: "transit-rider-prototype",

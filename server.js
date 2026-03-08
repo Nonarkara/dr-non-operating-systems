@@ -51,6 +51,14 @@ const TARGETS = [
     surface: "active"
   },
   {
+    id: "mtt-smart-city-monitor",
+    label: "MTT Smart City Monitor",
+    url: "https://mtt-smart-city-monitor-web.onrender.com",
+    description: "IMPACT Muang Thong Thani super dashboard with live city signals, domains, media, and assistant tooling.",
+    category: "Monitoring",
+    surface: "active"
+  },
+  {
     id: "phuket-smart-bus",
     label: "Phuket Smart Bus",
     url: "https://phuket-smart-bus-y6tj.onrender.com",
@@ -135,6 +143,29 @@ const API_INVENTORY = {
     { label: "Social listening", url: "/api/social-listening", kind: "internal" },
     { label: "Media feeds", url: "/api/media/feeds", kind: "internal" },
     { label: "Assistant status", url: "/api/assistant/status", kind: "internal" }
+  ],
+  "mtt-smart-city-monitor": [
+    { label: "Overview", url: "/api/overview", kind: "internal" },
+    { label: "Pulse", url: "/api/pulse", kind: "internal" },
+    { label: "Projects", url: "/api/projects", kind: "internal" },
+    { label: "News", url: "/api/news", kind: "internal" },
+    { label: "Map layers", url: "/api/map/layers", kind: "internal" },
+    { label: "Map features", url: "/api/map/features", kind: "internal" },
+    { label: "Cities", url: "/api/cities", kind: "internal" },
+    { label: "Domains", url: "/api/domains", kind: "internal" },
+    { label: "Indicators", url: "/api/indicators", kind: "internal" },
+    { label: "Resilience", url: "/api/resilience", kind: "internal" },
+    { label: "Changes", url: "/api/changes", kind: "internal" },
+    { label: "Activity", url: "/api/activity", kind: "internal" },
+    { label: "Social listening", url: "/api/social-listening", kind: "internal" },
+    { label: "Impact", url: "/api/impact", kind: "internal" },
+    { label: "Markets", url: "/api/markets", kind: "internal" },
+    { label: "Sources", url: "/api/sources", kind: "internal" },
+    { label: "Latest briefing", url: "/api/briefings/latest", kind: "internal" },
+    { label: "Media feeds", url: "/api/media/feeds", kind: "internal" },
+    { label: "Media channels", url: "/api/media/channels", kind: "internal" },
+    { label: "Assistant status", url: "/api/assistant/status", kind: "internal" },
+    { label: "Assistant query", url: "/api/assistant/query", kind: "internal" }
   ],
   "phuket-smart-bus": [
     { label: "Health", url: "/api/health", kind: "internal" },
