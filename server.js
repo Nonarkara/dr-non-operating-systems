@@ -51,6 +51,14 @@ const TARGETS = [
     surface: "active"
   },
   {
+    id: "phuket-smart-bus",
+    label: "Phuket Smart Bus",
+    url: "https://phuket-smart-bus-y6tj.onrender.com",
+    description: "Phone-first rider prototype with live tracking, advisories, and leave-now guidance.",
+    category: "Transit",
+    surface: "active"
+  },
+  {
     id: "raat",
     label: "RAAT",
     url: "https://nonarkara.github.io/RAAT/index.html?lang=en",
@@ -127,6 +135,13 @@ const API_INVENTORY = {
     { label: "Social listening", url: "/api/social-listening", kind: "internal" },
     { label: "Media feeds", url: "/api/media/feeds", kind: "internal" },
     { label: "Assistant status", url: "/api/assistant/status", kind: "internal" }
+  ],
+  "phuket-smart-bus": [
+    { label: "Health", url: "/api/health", kind: "internal" },
+    { label: "Routes", url: "/api/routes", kind: "internal" },
+    { label: "Route stops", url: "/api/routes/:routeId/stops", kind: "internal" },
+    { label: "Service advisories", url: "/api/routes/:routeId/advisories", kind: "internal" },
+    { label: "Leave-now summary", url: "/api/decision-summary?routeId=:routeId&stopId=:stopId", kind: "internal" }
   ],
   "city-reporter-bot": [
     { label: "Reports", url: "/api/reports", kind: "internal" },

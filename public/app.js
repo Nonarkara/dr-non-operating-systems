@@ -232,6 +232,9 @@ const BRANDS = {
   "middle-east-monitor": {
     monogram: "ME"
   },
+  "phuket-smart-bus": {
+    monogram: "PB"
+  },
   raat: {
     monogram: "RA"
   },
@@ -309,6 +312,16 @@ const STARTER_BLUEPRINTS = {
     },
     modules: ["layered map", "overview KPIs", "news feed", "projects", "resilience and pollution lenses"],
     notes: "Built for smart city analytics with map layers and operational data cards."
+  },
+  "phuket-smart-bus": {
+    appClass: "transit-rider-prototype",
+    stack: {
+      frontend: "React or Vite SPA",
+      backend: "Node API",
+      deploy: "Render"
+    },
+    modules: ["route selector", "stop list", "service advisories", "leave-now guidance", "health endpoint"],
+    notes: "Use for rider-facing transit apps with route-specific guidance and operational advisories."
   },
   raat: {
     appClass: "multilingual-institutional-site",

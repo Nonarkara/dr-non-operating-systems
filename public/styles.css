@@ -95,7 +95,14 @@ body {
 .surface-strip {
   display: grid;
   gap: 0.7rem;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.logo-strip {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
+
+.surface-strip {
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
 }
 
 .logo-chip {
@@ -1164,11 +1171,6 @@ summary {
     grid-column: 1 / -1;
   }
 
-  .logo-strip,
-  .surface-strip {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
   .local-form {
     position: static;
   }
@@ -1199,9 +1201,12 @@ summary {
     align-items: start;
   }
 
-  .logo-strip,
-  .surface-strip {
+  .logo-strip {
     grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .surface-strip {
+    grid-template-columns: 1fr;
   }
 
   .metric-card,
@@ -1235,6 +1240,12 @@ summary {
 
   .history-bars {
     grid-template-columns: repeat(18, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  .logo-strip {
+    grid-template-columns: 1fr;
   }
 }
 
