@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dr. Non's Operating Systems</title>
+    <link rel="stylesheet" href="/styles.css?v=20260308-4" />
+  </head>
+  <body>
+    <div class="bg-orbit orbit-a"></div>
+    <div class="bg-orbit orbit-b"></div>
+    <div class="grid-glow"></div>
+
+    <main class="shell">
+      <header class="hero">
+        <div class="brand-rack">
+          <div class="brand-rack-head">
+            <p class="eyebrow">System logos</p>
+            <p class="brand-rack-copy">
+              Application marks and institutional logos for the operating stack.
+            </p>
+          </div>
+          <div id="labLogoStrip" class="logo-strip"></div>
+          <div id="brandStrip" class="brand-strip"></div>
+        </div>
+
+        <div class="hero-copy">
+          <p class="eyebrow">Non Project Summary</p>
+          <h1>Dr. Non's Operating Systems</h1>
+          <p class="lede">
+            A single operating wall for public pages, active services, GitHub
+            health, and Dr. Non's profile, publications, and implementation
+            record. Add machine-local targets when you need the same view to
+            cover localhost work.
+          </p>
+        </div>
+
+        <aside class="hero-portrait">
+          <div class="portrait-frame">
+            <img
+              id="portraitImage"
+              class="portrait-image"
+              alt="Dr. Non portrait"
+              src="/media/profile/portrait-main.jpg"
+            />
+            <div id="portraitFallback" class="portrait-fallback" hidden>
+              <strong>Portrait unavailable</strong>
+              <span>Place `/public/dr-non-photo.jpg` or restore the local profile asset.</span>
+            </div>
+          </div>
+        </aside>
+
+        <div class="hero-controls">
+          <button id="refreshButton" class="button button-primary" type="button">
+            Refresh now
+          </button>
+          <button id="openAllButton" class="button button-secondary" type="button">
+            Open all live pages
+          </button>
+          <label class="select-wrap">
+            <span>Auto refresh</span>
+            <select id="refreshSelect">
+              <option value="15000">15 sec</option>
+              <option value="30000" selected>30 sec</option>
+              <option value="60000">1 min</option>
+              <option value="120000">2 min</option>
+              <option value="0">Off</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="status-bar">
+          <div class="status-pill status-pill-neutral" id="dashboardState">
+            Waiting for first scan
+          </div>
+          <div class="minor-meta">
+            <span id="lastChecked">No checks yet</span>
+            <span id="clock">--:--:--</span>
+          </div>
+        </div>
+      </header>
+
+      <section class="metrics-grid" id="metricsGrid"></section>
+
+      <section id="profileDossier" class="section-head">
+        <div>
+          <p class="eyebrow">Profile dossier</p>
+          <h2>CV, research, and operating profile</h2>
+        </div>
+        <p class="section-copy">
+          Resume material merged from the landing pages into the same wall as the
+          live app fleet.
+        </p>
+      </section>
+
+      <section class="profile-layout">
+        <article class="panel profile-panel profile-panel-primary">
+          <div class="panel-head">
+            <p class="panel-kicker">Principal</p>
+            <h2>Dr. Non Arkaraprasertkul</h2>
+          </div>
+          <div id="profileSummary" class="profile-summary"></div>
+          <div id="profileCredentialTags" class="tag-cluster"></div>
+          <div id="profileMetricStrip" class="profile-metric-strip"></div>
+        </article>
+
+        <article class="panel profile-panel">
+          <div class="panel-head">
+            <p class="panel-kicker">Public profiles</p>
+            <h2>Channels and contact</h2>
+          </div>
+          <div id="profileLinks" class="document-list"></div>
+        </article>
+
+        <article class="panel profile-panel">
+          <div class="panel-head">
+            <p class="panel-kicker">CV library</p>
+            <h2>Downloads</h2>
+          </div>
+          <div id="profileDocs" class="document-list"></div>
+        </article>
+
+        <article class="panel profile-panel profile-panel-wide">
+          <div class="panel-head">
+            <p class="panel-kicker">Selected publications</p>
+            <h2>Research highlights</h2>
+          </div>
+          <div id="profilePublications" class="publication-list"></div>
+        </article>
+
+        <article class="panel profile-panel profile-panel-wide">
+          <div class="panel-head">
+            <p class="panel-kicker">Profile gallery</p>
+            <h2>Photos and working surfaces</h2>
+          </div>
+          <div id="profileGallery" class="photo-grid"></div>
+        </article>
+      </section>
+
+      <section class="insight-grid">
+        <article class="panel" id="platformPanel">
+          <div class="panel-head">
+            <p class="panel-kicker">Hosting mix</p>
+            <h2>Platforms in Use</h2>
+          </div>
+          <div id="platformList" class="tag-cluster"></div>
+          <p class="panel-note">Derived from live hostnames and response headers.</p>
+        </article>
+
+        <article class="panel" id="githubPanel">
+          <div class="panel-head">
+            <p class="panel-kicker">GitHub health</p>
+            <h2>GitHub Metadata</h2>
+          </div>
+          <div id="githubSummary" class="github-summary"></div>
+          <div id="languageList" class="tag-cluster"></div>
+          <div id="recentRepos" class="repo-list"></div>
+        </article>
+
+        <article class="panel" id="issuePanel">
+          <div class="panel-head">
+            <p class="panel-kicker">Attention</p>
+            <h2>Current Issues</h2>
+          </div>
+          <div id="issueList" class="issue-list"></div>
+          <p class="panel-note">Non-live targets stay visible here for quick triage.</p>
+        </article>
+      </section>
+
+      <section class="section-head">
+        <div>
+          <p class="eyebrow">Primary surface</p>
+          <h2>Middle East Monitor</h2>
+        </div>
+        <p class="section-copy">
+          Promoted as the main wall tile, with the rest of the fleet grouped below by
+          active apps and static pages.
+        </p>
+      </section>
+      <section id="featuredGrid" class="featured-grid"></section>
+
+      <section class="section-head">
+        <div>
+          <p class="eyebrow">Live systems</p>
+          <h2>Active Apps &amp; APIs</h2>
+        </div>
+        <p class="section-copy">
+          Server-checked live apps, monitors, bots, and interactive tools.
+        </p>
+      </section>
+      <section id="activeGrid" class="card-grid active-grid"></section>
+
+      <section class="section-head">
+        <div>
+          <p class="eyebrow">Static surfaces</p>
+          <h2>Static Pages</h2>
+        </div>
+        <p class="section-copy">
+          Lightweight brochure, landing, and GitHub Pages style deployments.
+        </p>
+      </section>
+      <section id="staticGrid" class="card-grid static-grid"></section>
+
+      <section id="ops-inventory" class="section-head">
+        <div>
+          <p class="eyebrow">Per machine</p>
+          <h2>Local Targets</h2>
+        </div>
+        <p class="section-copy">
+          Save localhost or LAN URLs in this browser. They are useful when the
+          dashboard runs on the same machine, or when those services are exposed
+          over HTTPS.
+        </p>
+      </section>
+
+      <section class="local-layout">
+        <form id="localForm" class="panel local-form">
+          <div class="panel-head">
+            <p class="panel-kicker">Add local page</p>
+            <h2>Machine-specific feed</h2>
+          </div>
+          <label>
+            <span>Label</span>
+            <input id="localLabel" name="label" placeholder="Bangkok API" required />
+          </label>
+          <label>
+            <span>URL</span>
+            <input
+              id="localUrl"
+              name="url"
+              placeholder="http://127.0.0.1:4000"
+              required
+              type="url"
+            />
+          </label>
+          <button class="button button-primary" type="submit">Add local target</button>
+          <p class="panel-note">
+            Browser-only preview mode is used here. HTTP status is not available for
+            cross-origin local pages unless you run the dashboard on the same machine
+            and protocol combination that the browser allows.
+          </p>
+        </form>
+
+        <div class="local-stack">
+          <article class="panel api-panel">
+            <div class="panel-head">
+              <p class="panel-kicker">Runtime inventory</p>
+              <h2>App APIs</h2>
+            </div>
+            <div id="apiSummary" class="panel-note"></div>
+            <div id="apiGrid" class="api-grid"></div>
+          </article>
+
+          <section id="localGrid" class="card-grid local-grid"></section>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-grid">
+          <article class="panel footer-panel">
+            <div class="panel-head">
+              <p class="panel-kicker">Authorship</p>
+              <h2>Created by Dr. Non</h2>
+            </div>
+            <div id="authorshipNote" class="footer-copy"></div>
+          </article>
+
+          <article class="panel footer-panel">
+            <div class="panel-head">
+              <p class="panel-kicker">Laboratory statement</p>
+              <h2>Smart City Thailand Laboratory</h2>
+            </div>
+            <div id="labStatement" class="footer-copy"></div>
+          </article>
+
+          <article class="panel footer-panel">
+            <div class="panel-head">
+              <p class="panel-kicker">Privacy statement</p>
+              <h2>Professional notice</h2>
+            </div>
+            <div id="privacyStatement" class="footer-copy"></div>
+          </article>
+        </div>
+        <div id="copyrightNote" class="footer-fineprint"></div>
+      </footer>
+    </main>
+
+    <script src="/app.js?v=20260308-4" type="module"></script>
+  </body>
+</html>
