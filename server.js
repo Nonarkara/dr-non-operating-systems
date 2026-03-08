@@ -85,6 +85,15 @@ const TARGETS = [
     surface: "static"
   },
   {
+    id: "ascn-smart-cities-network",
+    label: "ASCN Smart Cities Network",
+    url: "https://nonarkara.github.io/ascn-smart-cities-network/",
+    description: "ASEAN Smart Cities Network public-facing site and resource surface.",
+    repo: "Nonarkara/ascn-smart-cities-network",
+    category: "Network",
+    surface: "static"
+  },
+  {
     id: "airdnd-platform",
     label: "AirDnD Platform",
     url: "https://airdnd-platform.onrender.com",

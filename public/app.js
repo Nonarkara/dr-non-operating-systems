@@ -220,6 +220,9 @@ const BRANDS = {
   "airdnd-platform": {
     monogram: "AD"
   },
+  "ascn-smart-cities-network": {
+    monogram: "AS"
+  },
   "city-reporter-bot": {
     monogram: "CR"
   },
@@ -266,6 +269,16 @@ const STARTER_BLUEPRINTS = {
     },
     modules: ["hero narrative", "program overview", "partner logos", "call-to-action"],
     notes: "Use for public campaigns, launch pages, and institutional storytelling."
+  },
+  "ascn-smart-cities-network": {
+    appClass: "network-knowledge-site",
+    stack: {
+      frontend: "Static HTML/CSS/JavaScript",
+      backend: "None required",
+      deploy: "GitHub Pages"
+    },
+    modules: ["regional network overview", "member city sections", "resource links", "narrative landing blocks"],
+    notes: "Use for coalition, regional network, or institutional alliance websites."
   },
   "middle-east-monitor": {
     appClass: "regional-operations-monitor",
