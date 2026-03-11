@@ -224,6 +224,9 @@ const BRANDS = {
   "airdnd-platform": {
     monogram: "AD"
   },
+  "asean-csco-app": {
+    monogram: "AC"
+  },
   "ascn-smart-cities-network": {
     monogram: "AS"
   },
@@ -247,6 +250,9 @@ const BRANDS = {
   },
   "scl-landing-page": {
     monogram: "SL"
+  },
+  "slic-index-rankings": {
+    monogram: "SI"
   },
   "smart-city-monitor": {
     monogram: "SC"

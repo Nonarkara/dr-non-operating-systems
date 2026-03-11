@@ -93,6 +93,14 @@ const TARGETS = [
     surface: "active"
   },
   {
+    id: "slic-index-rankings",
+    label: "SLIC Index Rankings",
+    url: "https://slic-index.onrender.com/rankings",
+    description: "Render-hosted SLIC index rankings surface.",
+    category: "Index",
+    surface: "active"
+  },
+  {
     id: "techhuntthailand-viabus",
     label: "Tech Hunt Thailand / Viabus",
     url: "https://nonarkara.github.io/techhuntthailand/?id=mobility-cohort-001-viabus",
@@ -108,6 +116,14 @@ const TARGETS = [
     description: "ASEAN Smart Cities Network public-facing site and resource surface.",
     repo: "Nonarkara/ascn-smart-cities-network",
     category: "Network",
+    surface: "static"
+  },
+  {
+    id: "asean-csco-app",
+    label: "ASEAN CSCO App",
+    url: "https://nonarkara.github.io/asean-csco-app/#manifesto",
+    description: "ASEAN CSCO App manifesto page on GitHub Pages.",
+    category: "Manifesto",
     surface: "static"
   },
   {
