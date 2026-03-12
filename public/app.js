@@ -1,6 +1,4 @@
 const LOCAL_STORAGE_KEY = "operations-radar-local-targets";
-const PORTRAIT_DEFAULT_PATH = "./media/profile/portrait-main.jpg";
-const PORTRAIT_OVERRIDE_PATH = "./dr-non-photo.jpg";
 const SNAPSHOT_PATH = "./data/dashboard-snapshot.json";
 const MANUAL_SCAN_WORKFLOW_URL =
   "https://github.com/Nonarkara/dr-non-operating-systems/actions/workflows/update-dashboard-snapshot.yml";
@@ -156,32 +154,6 @@ const PROFILE = {
       title: "Infrastructural Urbanism in the Age of Climate Change",
       meta: "ResearchGate archive, 2019",
       url: "https://www.researchgate.net/publication/333502312_Infrastructural_Urbanism_in_the_Age_of_Climate_Change_The_Return_of_the_Social_Engineer"
-    }
-  ],
-  gallery: [
-    {
-      title: "Workshop keynote",
-      src: "./media/gallery/workshop-keynote.jpg"
-    },
-    {
-      title: "Award stage",
-      src: "./media/gallery/award-stage.jpg"
-    },
-    {
-      title: "Johor Smart City Forum",
-      src: "./media/gallery/johor-forum.jpg"
-    },
-    {
-      title: "SCTCDP dashboard",
-      src: "./media/gallery/sctcdp-dashboard.png"
-    },
-    {
-      title: "Studio portrait",
-      src: "./media/profile/portrait-secondary.jpg"
-    },
-    {
-      title: "SLIC team",
-      src: "./media/gallery/slic-team.jpg"
     }
   ],
   footer: {
@@ -447,13 +419,10 @@ const elements = {
   privacyStatement: document.querySelector("#privacyStatement"),
   profileCredentialTags: document.querySelector("#profileCredentialTags"),
   profileDocs: document.querySelector("#profileDocs"),
-  profileGallery: document.querySelector("#profileGallery"),
   profileLinks: document.querySelector("#profileLinks"),
   profileMetricStrip: document.querySelector("#profileMetricStrip"),
   profilePublications: document.querySelector("#profilePublications"),
   profileSummary: document.querySelector("#profileSummary"),
-  portraitFallback: document.querySelector("#portraitFallback"),
-  portraitImage: document.querySelector("#portraitImage"),
   recentRepos: document.querySelector("#recentRepos"),
   refreshButton: document.querySelector("#refreshButton"),
   refreshSelect: document.querySelector("#refreshSelect"),
@@ -780,17 +749,6 @@ function renderProfile(summary) {
           </span>
           <code>open</code>
         </a>
-      `
-    )
-    .join("");
-
-  elements.profileGallery.innerHTML = PROFILE.gallery
-    .map(
-      (item) => `
-        <figure class="photo-card">
-          <img alt="${escapeHtml(item.title)}" loading="lazy" src="${escapeHtml(item.src)}" />
-          <figcaption>${escapeHtml(item.title)}</figcaption>
-        </figure>
       `
     )
     .join("");
@@ -1273,31 +1231,6 @@ function renderDashboard() {
   }
 }
 
-function setupPortraitSlot() {
-  elements.portraitImage.src = PORTRAIT_DEFAULT_PATH;
-  elements.portraitImage.hidden = false;
-  elements.portraitFallback.hidden = true;
-
-  elements.portraitImage.addEventListener(
-    "error",
-    () => {
-      elements.portraitImage.hidden = true;
-      elements.portraitFallback.hidden = false;
-    },
-    { once: true }
-  );
-
-  const probe = new Image();
-
-  probe.addEventListener("load", () => {
-    elements.portraitImage.src = PORTRAIT_OVERRIDE_PATH;
-    elements.portraitImage.hidden = false;
-    elements.portraitFallback.hidden = true;
-  });
-
-  probe.src = `${PORTRAIT_OVERRIDE_PATH}?t=${Date.now()}`;
-}
-
 async function fetchSnapshotDashboard(force = false) {
   const response = await fetch(getSnapshotUrl(force), { cache: "no-store" });
 
@@ -1448,7 +1381,6 @@ function bindEvents() {
 }
 
 bindEvents();
-setupPortraitSlot();
 renderLabLogos();
 renderProfile({ monitoredPages: 0 });
 renderFooter();
