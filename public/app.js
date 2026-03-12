@@ -157,12 +157,12 @@ const PROFILE = {
     }
   ],
   footer: {
-    authorship:
-      "This operating system and the underlying page set were authored by Dr. Non and assembled with AI-assisted workflows, including Claude Code, Anthropic Claude, Google services, ChatGPT Codex, and supporting digital tools. Final editorial direction, selection, and publication intent remain under Dr. Non's control.",
+    system:
+      "Authored by Dr. Non and assembled through AI-assisted production with final editorial control retained by Dr. Non.",
     lab:
-      "This operation forms part of the Smart City Thailand Laboratory. We treat innovation as a service: useful systems are designed, tested, deployed, and shared as working infrastructure for civic, institutional, and collaborative use.",
+      "Part of the Smart City Thailand Laboratory: innovation is treated here as deployable public infrastructure.",
     privacy:
-      "This dashboard checks the status of listed public services, stores optional localhost targets only in the visitor's browser, and may process standard hosting and security logs for operational continuity. No sale of personal data is intended through this interface. Questions regarding access, correction, reuse, or removal should be directed to Dr. Non through the contact channels listed above.",
+      "Public mode monitors listed services; local targets stay browser-local and appear only in live mode.",
     copyright:
       "Copyright notice: Unless otherwise stated, original interface composition, written copy, curation, and locally hosted profile materials on this page are copyright Dr. Non and the Smart City Thailand Laboratory. Open-source stance: the preference is to collaborate, share, and give useful code away where practical. If you would like access to code, reuse permission, or a joint build, please make contact."
   }
@@ -397,35 +397,35 @@ const elements = {
   activeGrid: document.querySelector("#activeGrid"),
   apiGrid: document.querySelector("#apiGrid"),
   apiSummary: document.querySelector("#apiSummary"),
-  authorshipNote: document.querySelector("#authorshipNote"),
   brandStrip: document.querySelector("#brandStrip"),
   clock: document.querySelector("#clock"),
   copyrightNote: document.querySelector("#copyrightNote"),
   dashboardState: document.querySelector("#dashboardState"),
+  footerTerminal: document.querySelector("#footerTerminal"),
   featuredGrid: document.querySelector("#featuredGrid"),
+  githubPanel: document.querySelector("#githubPanel"),
   githubSummary: document.querySelector("#githubSummary"),
   issueList: document.querySelector("#issueList"),
+  issuePanel: document.querySelector("#issuePanel"),
   labLogoStrip: document.querySelector("#labLogoStrip"),
-  labStatement: document.querySelector("#labStatement"),
-  languageList: document.querySelector("#languageList"),
   lastChecked: document.querySelector("#lastChecked"),
   localForm: document.querySelector("#localForm"),
   localGrid: document.querySelector("#localGrid"),
+  localLayout: document.querySelector("#localLayout"),
   metricsGrid: document.querySelector("#metricsGrid"),
   manualScanLink: document.querySelector("#manualScanLink"),
   modeNote: document.querySelector("#modeNote"),
   openAllButton: document.querySelector("#openAllButton"),
-  platformList: document.querySelector("#platformList"),
-  privacyStatement: document.querySelector("#privacyStatement"),
+  opsInventory: document.querySelector("#ops-inventory"),
   profileCredentialTags: document.querySelector("#profileCredentialTags"),
   profileDocs: document.querySelector("#profileDocs"),
   profileLinks: document.querySelector("#profileLinks"),
   profileMetricStrip: document.querySelector("#profileMetricStrip"),
   profilePublications: document.querySelector("#profilePublications"),
   profileSummary: document.querySelector("#profileSummary"),
-  recentRepos: document.querySelector("#recentRepos"),
   refreshButton: document.querySelector("#refreshButton"),
   refreshSelect: document.querySelector("#refreshSelect"),
+  signalGrid: document.querySelector("#signalGrid"),
   staticGrid: document.querySelector("#staticGrid")
 };
 
@@ -520,6 +520,8 @@ function applyModeUI() {
   }
 
   elements.modeNote.textContent = note;
+  elements.opsInventory.hidden = !liveMode;
+  elements.localLayout.hidden = !liveMode;
 }
 
 function updateClock() {
@@ -755,84 +757,47 @@ function renderProfile(summary) {
 }
 
 function renderFooter() {
-  elements.authorshipNote.innerHTML = `<p>${escapeHtml(PROFILE.footer.authorship)}</p>`;
-  elements.labStatement.innerHTML = `<p>${escapeHtml(PROFILE.footer.lab)}</p>`;
-  elements.privacyStatement.innerHTML = `<p>${escapeHtml(PROFILE.footer.privacy)}</p>`;
+  elements.footerTerminal.innerHTML = `
+    <p class="terminal-line">${escapeHtml(PROFILE.footer.system)}</p>
+    <p class="terminal-line">${escapeHtml(PROFILE.footer.lab)}</p>
+    <p class="terminal-line">${escapeHtml(PROFILE.footer.privacy)}</p>
+  `;
   elements.copyrightNote.textContent = `${PROFILE.footer.copyright} ${new Date().getFullYear()}.`;
-}
-
-function renderPlatforms(summary) {
-  elements.platformList.innerHTML = summary.platformBreakdown
-    .map((item) => `<span class="tag">${escapeHtml(item.platform)} ${escapeHtml(item.count)}</span>`)
-    .join("");
 }
 
 function renderGitHub(github) {
   if (github.status !== "live" || !github.profile) {
+    elements.githubPanel.hidden = false;
     elements.githubSummary.innerHTML = `
-      <div class="stat-row">
-        <div class="stat-key">GitHub status</div>
-        <div class="stat-value">Unavailable</div>
-        <div>${escapeHtml(github.error || "GitHub metadata could not be loaded.")}</div>
+      <div class="github-strip">
+        ${makeStatusPill("GitHub unavailable", "error")}
+        <span class="terminal-inline">${escapeHtml(github.error || "Metadata could not be loaded.")}</span>
       </div>
     `;
-    elements.languageList.innerHTML = "";
-    elements.recentRepos.innerHTML = "";
     return;
   }
 
   elements.githubSummary.innerHTML = `
-    <div class="stat-grid">
-      <div class="stat-row">
-        <div class="stat-key">Profile</div>
-        <div class="stat-value">${escapeHtml(github.profile.login)}</div>
-        <a class="action-link" href="${escapeHtml(github.profile.url)}" rel="noreferrer" target="_blank">Open GitHub</a>
-      </div>
-      <div class="stat-row">
-        <div class="stat-key">Public repos</div>
-        <div class="stat-value">${escapeHtml(github.profile.publicRepos)}</div>
-        <div>Updated ${escapeHtml(formatDate(github.profile.updatedAt))}</div>
-      </div>
-      <div class="stat-row">
-        <div class="stat-key">GitHub Pages repos</div>
-        <div class="stat-value">${escapeHtml(github.stats.githubPagesRepos)}</div>
-        <div>Non-fork repos with Pages enabled</div>
-      </div>
-      <div class="stat-row">
-        <div class="stat-key">Active last 30 days</div>
-        <div class="stat-value">${escapeHtml(github.stats.activeLast30d)}</div>
-        <div>${escapeHtml(github.profile.location || "Location unavailable")}</div>
-      </div>
+    <div class="github-strip">
+      ${makeStatusPill(github.profile.login, "live")}
+      <span class="terminal-inline">${escapeHtml(formatNumber(github.profile.publicRepos))} public repos</span>
+      <span class="terminal-inline">${escapeHtml(formatNumber(github.stats.githubPagesRepos))} Pages-enabled</span>
+      <span class="terminal-inline">${escapeHtml(formatNumber(github.stats.activeLast30d))} active in 30d</span>
+      <span class="terminal-inline">Updated ${escapeHtml(formatDate(github.profile.updatedAt))}</span>
+      <a class="action-link" href="${escapeHtml(github.profile.url)}" rel="noreferrer" target="_blank">Open GitHub</a>
     </div>
   `;
-
-  elements.languageList.innerHTML = github.stats.topLanguages
-    .map((item) => `<span class="tag">${escapeHtml(item.name)} ${escapeHtml(item.count)}</span>`)
-    .join("");
-
-  elements.recentRepos.innerHTML = github.recentRepos
-    .map(
-      (repo) => `
-        <article class="repo-item">
-          <a href="${escapeHtml(repo.url)}" rel="noreferrer" target="_blank">${escapeHtml(repo.name)}</a>
-          <div>${escapeHtml(repo.description || "No description")}</div>
-          <div class="minor-meta">
-            <span>${escapeHtml(repo.language || "Unknown language")}</span>
-            <span>${repo.hasPages ? "Pages on" : "Pages off"}</span>
-            <span>Pushed ${escapeHtml(formatDate(repo.pushedAt))}</span>
-          </div>
-        </article>
-      `
-    )
-    .join("");
 }
 
 function renderIssues(summary) {
   if (!summary.issues.length) {
-    elements.issueList.innerHTML = `<div class="empty-state">No current issues detected across the monitored public pages.</div>`;
+    elements.issuePanel.hidden = true;
+    elements.signalGrid.hidden = elements.githubPanel.hidden;
     return;
   }
 
+  elements.issuePanel.hidden = false;
+  elements.signalGrid.hidden = false;
   elements.issueList.innerHTML = summary.issues
     .map(
       (issue) => `
@@ -1203,7 +1168,6 @@ function renderDashboard() {
   renderProfile(summary);
   renderFooter();
   renderMetrics(summary, github);
-  renderPlatforms(summary);
   renderGitHub(github);
   renderIssues(summary);
   renderApiInventory(targets, summary);

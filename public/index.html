@@ -4,7 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dr. Non's Operating Systems</title>
-    <link rel="stylesheet" href="./styles.css?v=20260312-05" />
+    <script>
+      window.__assetVersion = String(Date.parse(document.lastModified) || Date.now());
+      const stylesheet = document.createElement("link");
+      stylesheet.rel = "stylesheet";
+      stylesheet.href = `./styles.css?v=${encodeURIComponent(window.__assetVersion)}`;
+      document.head.append(stylesheet);
+    </script>
   </head>
   <body>
     <div class="bg-orbit orbit-a"></div>
@@ -34,11 +40,8 @@
           <p class="eyebrow">Non Project Summary</p>
           <h1>Dr. Non's Operating Systems</h1>
           <p class="lede">
-            A single operating wall for public pages, active services, GitHub
-            health, and Dr. Non's profile, publications, and implementation
-            record. The public web version reads the latest committed snapshot;
-            local live mode is available when you want real-time scans from your
-            own machine.
+            Public systems, current work, and operating record in one live wall.
+            Public mode stays snapshot-backed. Local mode runs the real scan.
           </p>
         </div>
 
@@ -90,8 +93,7 @@
           <h2>CV, research, and operating profile</h2>
         </div>
         <p class="section-copy">
-          A tighter dossier: current resume, channels, publications, and the operating profile
-          beside the live app fleet.
+          Current resume, direct channels, and selected research. Nothing extra.
         </p>
       </section>
 
@@ -131,24 +133,13 @@
         </article>
       </section>
 
-      <section class="insight-grid">
-        <article class="panel" id="platformPanel">
-          <div class="panel-head">
-            <p class="panel-kicker">Hosting mix</p>
-            <h2>Platforms in Use</h2>
-          </div>
-          <div id="platformList" class="tag-cluster"></div>
-          <p class="panel-note">Derived from live hostnames and response headers.</p>
-        </article>
-
+      <section class="insight-grid" id="signalGrid">
         <article class="panel" id="githubPanel">
           <div class="panel-head">
-            <p class="panel-kicker">GitHub health</p>
-            <h2>GitHub Metadata</h2>
+            <p class="panel-kicker">Repository signal</p>
+            <h2>GitHub</h2>
           </div>
           <div id="githubSummary" class="github-summary"></div>
-          <div id="languageList" class="tag-cluster"></div>
-          <div id="recentRepos" class="repo-list"></div>
         </article>
 
         <article class="panel" id="issuePanel">
@@ -207,7 +198,7 @@
         </p>
       </section>
 
-      <section class="local-layout">
+      <section id="localLayout" class="local-layout">
         <form id="localForm" class="panel local-form">
           <div class="panel-head">
             <p class="panel-kicker">Add local page</p>
@@ -250,35 +241,16 @@
       </section>
 
       <footer class="site-footer">
-        <div class="footer-grid">
-          <article class="panel footer-panel">
-            <div class="panel-head">
-              <p class="panel-kicker">Authorship</p>
-              <h2>Created by Dr. Non</h2>
-            </div>
-            <div id="authorshipNote" class="footer-copy"></div>
-          </article>
-
-          <article class="panel footer-panel">
-            <div class="panel-head">
-              <p class="panel-kicker">Laboratory statement</p>
-              <h2>Smart City Thailand Laboratory</h2>
-            </div>
-            <div id="labStatement" class="footer-copy"></div>
-          </article>
-
-          <article class="panel footer-panel">
-            <div class="panel-head">
-              <p class="panel-kicker">Privacy statement</p>
-              <h2>Professional notice</h2>
-            </div>
-            <div id="privacyStatement" class="footer-copy"></div>
-          </article>
-        </div>
+        <div id="footerTerminal" class="footer-terminal"></div>
         <div id="copyrightNote" class="footer-fineprint"></div>
       </footer>
     </main>
 
-    <script src="./app.js?v=20260312-05" type="module"></script>
+    <script>
+      const appScript = document.createElement("script");
+      appScript.type = "module";
+      appScript.src = `./app.js?v=${encodeURIComponent(window.__assetVersion)}`;
+      document.body.append(appScript);
+    </script>
   </body>
 </html>
