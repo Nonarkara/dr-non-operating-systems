@@ -3,6 +3,10 @@ const SNAPSHOT_PATH = "./data/dashboard-snapshot.json";
 const MANUAL_SCAN_WORKFLOW_URL =
   "https://github.com/Nonarkara/dr-non-operating-systems/actions/workflows/update-dashboard-snapshot.yml";
 const MODE_PARAM = new URLSearchParams(window.location.search).get("mode");
+const PREVIEW_VIEWPORT = {
+  width: 1600,
+  height: 900
+};
 
 const LAB_LOGOS = [
   {
@@ -392,6 +396,8 @@ const state = {
   mode: DATA_MODE,
   refreshTimer: null
 };
+
+let previewFrameSyncHandle = 0;
 
 const elements = {
   activeGrid: document.querySelector("#activeGrid"),
@@ -942,7 +948,14 @@ function buildRemoteCard(target, options = {}) {
         </div>
       </div>
 
-      <div class="preview-shell">
+      <div
+        class="preview-shell"
+        aria-label="Open ${escapeHtml(target.label)} live site"
+        data-open-url="${escapeHtml(target.url)}"
+        role="link"
+        style="--preview-width: ${PREVIEW_VIEWPORT.width}; --preview-height: ${PREVIEW_VIEWPORT.height};"
+        tabindex="0"
+      >
         <div class="preview-bar">
           <div class="preview-signal">${makeStatusPill("Preview loading", "loading")}</div>
           <div class="preview-http">${makeStatusPill(target.statusCode ? `HTTP ${target.statusCode}` : "No HTTP code", target.health.code)}</div>
@@ -1020,7 +1033,14 @@ function buildLocalCard(target, index) {
         </div>
       </div>
 
-      <div class="preview-shell">
+      <div
+        class="preview-shell"
+        aria-label="Open ${escapeHtml(target.label)} target"
+        data-open-url="${escapeHtml(target.url)}"
+        role="link"
+        style="--preview-width: ${PREVIEW_VIEWPORT.width}; --preview-height: ${PREVIEW_VIEWPORT.height};"
+        tabindex="0"
+      >
         <div class="preview-bar">
           <div class="preview-signal">${makeStatusPill("Connecting", "loading")}</div>
           <div class="preview-http">${makeStatusPill("Local", "neutral")}</div>
@@ -1044,6 +1064,62 @@ function buildLocalCard(target, index) {
 
 function renderSection(container, cards, emptyMessage) {
   container.innerHTML = cards.length ? cards.join("") : `<div class="empty-state">${escapeHtml(emptyMessage)}</div>`;
+}
+
+function openPreview(event) {
+  const shell = event.target.closest(".preview-shell[data-open-url]");
+
+  if (!shell) {
+    return;
+  }
+
+  const url = shell.dataset.openUrl;
+
+  if (!url) {
+    return;
+  }
+
+  window.open(url, "_blank", "noopener,noreferrer");
+}
+
+function handlePreviewKeydown(event) {
+  if (event.key !== "Enter" && event.key !== " ") {
+    return;
+  }
+
+  const shell = event.target.closest(".preview-shell[data-open-url]");
+
+  if (!shell) {
+    return;
+  }
+
+  event.preventDefault();
+  openPreview(event);
+}
+
+function syncPreviewFrames() {
+  for (const shell of document.querySelectorAll(".preview-shell")) {
+    const previewWidth = Number(shell.style.getPropertyValue("--preview-width")) || PREVIEW_VIEWPORT.width;
+    const shellWidth = shell.clientWidth;
+
+    if (!shellWidth) {
+      continue;
+    }
+
+    const scale = Math.min(1, shellWidth / previewWidth);
+    shell.style.setProperty("--preview-scale", scale.toFixed(4));
+  }
+}
+
+function requestPreviewFrameSync() {
+  if (previewFrameSyncHandle) {
+    return;
+  }
+
+  previewFrameSyncHandle = window.requestAnimationFrame(() => {
+    previewFrameSyncHandle = 0;
+    syncPreviewFrames();
+  });
 }
 
 function wirePreviewSignals(container, isLocal) {
@@ -1144,16 +1220,19 @@ function renderRemoteSections(targets) {
   wirePreviewSignals(elements.featuredGrid, false);
   wirePreviewSignals(elements.activeGrid, false);
   wirePreviewSignals(elements.staticGrid, false);
+  requestPreviewFrameSync();
 }
 
 function renderLocalTargets() {
   if (!state.localTargets.length) {
     elements.localGrid.innerHTML = `<div class="empty-state">No local targets saved on this machine yet.</div>`;
+    requestPreviewFrameSync();
     return;
   }
 
   elements.localGrid.innerHTML = state.localTargets.map(buildLocalCard).join("");
   wirePreviewSignals(elements.localGrid, true);
+  requestPreviewFrameSync();
 }
 
 function renderDashboard() {
@@ -1333,10 +1412,19 @@ function openAllTargets() {
 function bindEvents() {
   elements.refreshButton.addEventListener("click", () => refreshDashboard(true));
   elements.openAllButton.addEventListener("click", openAllTargets);
+  window.addEventListener("resize", requestPreviewFrameSync);
   elements.refreshSelect.addEventListener("change", (event) => {
     state.autoRefreshMs = Number(event.target.value);
     scheduleRefresh();
   });
+  elements.featuredGrid.addEventListener("click", openPreview);
+  elements.activeGrid.addEventListener("click", openPreview);
+  elements.staticGrid.addEventListener("click", openPreview);
+  elements.localGrid.addEventListener("click", openPreview);
+  elements.featuredGrid.addEventListener("keydown", handlePreviewKeydown);
+  elements.activeGrid.addEventListener("keydown", handlePreviewKeydown);
+  elements.staticGrid.addEventListener("keydown", handlePreviewKeydown);
+  elements.localGrid.addEventListener("keydown", handlePreviewKeydown);
   elements.featuredGrid.addEventListener("click", handleBlueprintCopy);
   elements.activeGrid.addEventListener("click", handleBlueprintCopy);
   elements.staticGrid.addEventListener("click", handleBlueprintCopy);
