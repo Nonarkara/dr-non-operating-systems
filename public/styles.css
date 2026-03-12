@@ -399,6 +399,38 @@ input {
   color: var(--muted-strong);
 }
 
+.utility-button {
+  position: relative;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.42rem 0.72rem;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(14, 20, 16, 0.9), rgba(9, 14, 11, 0.78));
+  color: var(--muted-strong);
+  line-height: 1;
+}
+
+.utility-button::before {
+  content: "";
+  width: 0.34rem;
+  height: 0.34rem;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 0.6rem rgba(138, 243, 155, 0.2);
+}
+
+.utility-button::after {
+  display: none;
+}
+
+.utility-button:hover {
+  color: var(--text);
+  border-color: rgba(138, 179, 155, 0.52);
+  background: linear-gradient(180deg, rgba(18, 26, 21, 0.95), rgba(10, 16, 13, 0.84));
+}
+
 .select-wrap {
   display: grid;
   gap: 0.15rem;
@@ -688,6 +720,153 @@ select:disabled {
   align-items: center;
 }
 
+.mention-zone {
+  margin-top: 0.55rem;
+}
+
+.mention-panel {
+  position: relative;
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.9rem 1rem 1rem;
+  border: 1px solid rgba(138, 179, 155, 0.28);
+  border-radius: 14px;
+  background:
+    linear-gradient(180deg, rgba(15, 22, 18, 0.95), rgba(8, 12, 10, 0.92)),
+    radial-gradient(circle at top right, rgba(138, 243, 155, 0.12), transparent 36%);
+  box-shadow:
+    inset 0 1px 0 rgba(191, 229, 200, 0.05),
+    0 18px 48px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.mention-panel > * {
+  position: relative;
+  z-index: 1;
+}
+
+.mention-panel::before {
+  content: "";
+  position: absolute;
+  top: 0.25rem;
+  right: -0.8rem;
+  width: 7.5rem;
+  height: 7.5rem;
+  border-radius: 50%;
+  z-index: 0;
+  background:
+    radial-gradient(circle, rgba(138, 243, 155, 0.28) 0%, rgba(138, 243, 155, 0.12) 32%, transparent 70%);
+  filter: blur(4px);
+  opacity: 0.9;
+  pointer-events: none;
+  animation: mentionPulse 2.8s ease-out infinite;
+}
+
+.mention-panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background:
+    linear-gradient(90deg, rgba(138, 243, 155, 0.08), transparent 14%),
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 18px;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.mention-panel-head,
+.mention-toolbar,
+.mention-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.75rem;
+}
+
+.mention-panel-head,
+.mention-toolbar {
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.mention-actions,
+.mention-status {
+  display: flex;
+  align-items: center;
+}
+
+.mention-list {
+  display: grid;
+  gap: 0.38rem;
+}
+
+.mention-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: 2.4rem minmax(0, 1fr) auto;
+  gap: 0.55rem;
+  align-items: start;
+  padding: 0.68rem 0.8rem;
+  border: 1px solid rgba(138, 179, 155, 0.14);
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(11, 16, 13, 0.88), rgba(8, 12, 10, 0.8));
+  color: var(--text);
+  text-decoration: none;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease,
+    background 160ms ease,
+    transform 160ms ease;
+}
+
+.mention-row:first-child {
+  border-color: rgba(138, 243, 155, 0.32);
+  background:
+    linear-gradient(180deg, rgba(15, 24, 18, 0.94), rgba(10, 16, 12, 0.84)),
+    radial-gradient(circle at left center, rgba(138, 243, 155, 0.08), transparent 36%);
+}
+
+.mention-row:hover {
+  color: var(--text);
+  border-color: rgba(138, 179, 155, 0.34);
+  background: linear-gradient(180deg, rgba(15, 22, 18, 0.94), rgba(10, 15, 12, 0.86));
+  transform: translateX(2px);
+}
+
+.mention-index {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.mention-main {
+  display: grid;
+  gap: 0.14rem;
+  min-width: 0;
+}
+
+.mention-main strong {
+  font-size: 0.8rem;
+  line-height: 1.1;
+}
+
+.mention-main small {
+  color: var(--muted);
+  font-size: 0.64rem;
+  line-height: 1.2;
+}
+
+.mention-row code {
+  justify-self: end;
+  color: var(--accent-cold);
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  text-transform: uppercase;
+}
+
 .terminal-inline,
 .terminal-line {
   color: var(--muted);
@@ -776,6 +955,11 @@ select:disabled {
   justify-content: space-between;
   gap: 0.35rem;
   align-items: start;
+}
+
+.card-actions {
+  padding-top: 0.3rem;
+  border-top: 1px solid var(--line);
 }
 
 .card-title {
@@ -1094,6 +1278,23 @@ summary {
   color: var(--muted);
 }
 
+@keyframes mentionPulse {
+  0% {
+    opacity: 0.25;
+    transform: scale(0.86);
+  }
+
+  55% {
+    opacity: 0.95;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 0.18;
+    transform: scale(1.18);
+  }
+}
+
 @media (min-width: 720px) {
   .metric-card {
     grid-column: span 7;
@@ -1155,6 +1356,10 @@ summary {
     min-width: 0;
   }
 
+  .utility-button {
+    justify-content: center;
+  }
+
   .status-bar {
     align-items: flex-start;
     flex-direction: column;
@@ -1200,7 +1405,10 @@ summary {
   .card-actions,
   .api-card-head,
   .starter-toolbar,
-  .github-strip {
+  .github-strip,
+  .mention-panel-head,
+  .mention-toolbar,
+  .mention-actions {
     align-items: flex-start;
     flex-direction: column;
   }
@@ -1225,5 +1433,17 @@ summary {
   .metric-card,
   .api-card {
     grid-column: span 12;
+  }
+
+  .mention-row {
+    grid-template-columns: 1fr;
+  }
+
+  .mention-row code {
+    justify-self: start;
+  }
+
+  .mention-panel {
+    padding: 0.82rem 0.82rem 0.9rem;
   }
 }

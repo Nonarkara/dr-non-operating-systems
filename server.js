@@ -13,8 +13,38 @@ const PORT = Number(process.env.PORT || 4178);
 const GITHUB_USERNAME = "Nonarkara";
 const DASHBOARD_TTL_MS = 20_000;
 const GITHUB_TTL_MS = 10 * 60_000;
+const MENTIONS_TTL_MS = 30 * 60_000;
 const REPO_TTL_MS = 10 * 60_000;
 const SAMPLE_LIMIT = 36;
+const MENTION_ITEM_LIMIT = 6;
+const MENTION_ALIASES = [
+  "Dr Non Arkaraprasertkul",
+  "นน อัครประเสริฐกุล",
+  "Non Arkara",
+  "นนท์ อัครประเสริฐกุล"
+];
+const MENTION_QUERY = MENTION_ALIASES.map((alias) => `"${alias}"`).join(" OR ");
+const MENTION_SOURCE = "Google News";
+const MENTION_FEEDS = [
+  {
+    id: "global",
+    label: "Global sweep",
+    locale: {
+      ceid: "US:en",
+      gl: "US",
+      hl: "en-US"
+    }
+  },
+  {
+    id: "thailand",
+    label: "Thailand sweep",
+    locale: {
+      ceid: "TH:th",
+      gl: "TH",
+      hl: "th"
+    }
+  }
+];
 
 const TARGETS = [
   {
@@ -246,6 +276,12 @@ let githubCache = {
   promise: null
 };
 
+let mentionsCache = {
+  value: null,
+  fetchedAt: 0,
+  promise: null
+};
+
 const MIME_TYPES = {
   ".css": "text/css; charset=utf-8",
   ".gif": "image/gif",
@@ -359,17 +395,33 @@ async function serveStatic(pathname, response) {
 
 async function sendSnapshotJson(response) {
   try {
-    const file = await readFile(SNAPSHOT_FILE);
-    response.writeHead(200, {
-      "cache-control": "no-store",
-      "content-type": "application/json; charset=utf-8"
-    });
-    response.end(file);
+    const snapshot = await readSnapshotPayload();
+    sendJson(response, 200, snapshot);
   } catch (error) {
     sendJson(response, 503, {
       error: "Snapshot file unavailable",
       status: "error"
     });
+  }
+}
+
+async function readSnapshotPayload() {
+  return JSON.parse(await readFile(SNAPSHOT_FILE, "utf8"));
+}
+
+async function sendSnapshotMentions(response) {
+  try {
+    const snapshot = await readSnapshotPayload();
+    sendJson(response, 200, snapshot.mentions ?? buildMentionsSnapshot({
+      checkedAt: snapshot.generatedAt ?? null,
+      error: "Mention snapshot unavailable.",
+      status: "offline"
+    }));
+  } catch (error) {
+    sendJson(response, 503, buildMentionsSnapshot({
+      error: "Snapshot file unavailable.",
+      status: "offline"
+    }));
   }
 }
 
@@ -403,9 +455,99 @@ function decodeHtmlEntities(value) {
   });
 }
 
+function stripHtmlTags(value) {
+  return decodeHtmlEntities(String(value || ""))
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function extractXmlTag(block, tagName) {
+  const pattern = new RegExp(`<${tagName}(?:\\s[^>]*)?>([\\s\\S]*?)<\\/${tagName}>`, "i");
+  return block.match(pattern)?.[1]?.trim() ?? null;
+}
+
 function extractTitle(html) {
   const match = html.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
   return match ? decodeHtmlEntities(match[1].trim()) : null;
+}
+
+function buildMentionSearchUrl(locale = MENTION_FEEDS[0].locale) {
+  const url = new URL("https://news.google.com/search");
+  url.searchParams.set("q", MENTION_QUERY);
+  url.searchParams.set("hl", locale.hl);
+  url.searchParams.set("gl", locale.gl);
+  url.searchParams.set("ceid", locale.ceid);
+  return url.toString();
+}
+
+function buildMentionFeedUrl(locale) {
+  const url = new URL("https://news.google.com/rss/search");
+  url.searchParams.set("q", MENTION_QUERY);
+  url.searchParams.set("hl", locale.hl);
+  url.searchParams.set("gl", locale.gl);
+  url.searchParams.set("ceid", locale.ceid);
+  return url.toString();
+}
+
+function buildMentionsSnapshot({
+  checkedAt = null,
+  error = null,
+  items = [],
+  status = "empty"
+} = {}) {
+  const latestAt = items[0]?.publishedAt ?? null;
+
+  return {
+    checkedAt,
+    error,
+    items,
+    latestAt,
+    scannedAliases: MENTION_ALIASES,
+    searchUrl: buildMentionSearchUrl(),
+    source: MENTION_SOURCE,
+    status
+  };
+}
+
+function normalizeMentionTitle(title, source) {
+  if (!title) {
+    return title;
+  }
+
+  const suffix = source ? ` - ${source}` : "";
+  return suffix && title.endsWith(suffix) ? title.slice(0, -suffix.length) : title;
+}
+
+function parseMentionFeed(xml, feedLabel) {
+  const itemBlocks = xml.match(/<item>([\s\S]*?)<\/item>/gi) ?? [];
+
+  return itemBlocks
+    .map((block) => {
+      const rawTitle = decodeHtmlEntities(extractXmlTag(block, "title") || "");
+      const link = decodeHtmlEntities(extractXmlTag(block, "link") || "");
+      const guid = decodeHtmlEntities(extractXmlTag(block, "guid") || "");
+      const source = decodeHtmlEntities(extractXmlTag(block, "source") || "");
+      const pubDate = decodeHtmlEntities(extractXmlTag(block, "pubDate") || "");
+      const summary = stripHtmlTags(extractXmlTag(block, "description") || "");
+      const publishedAtMs = pubDate ? Date.parse(pubDate) : Number.NaN;
+      const publishedAt = Number.isFinite(publishedAtMs) ? new Date(publishedAtMs).toISOString() : null;
+
+      if (!rawTitle || !link || !publishedAt) {
+        return null;
+      }
+
+      return {
+        feed: feedLabel,
+        id: guid || `${source}:${rawTitle}:${publishedAt}`,
+        link,
+        publishedAt,
+        source: source || "Unknown source",
+        summary,
+        title: normalizeMentionTitle(rawTitle, source)
+      };
+    })
+    .filter(Boolean);
 }
 
 function detectPlatform(urlString, headers = {}) {
@@ -490,6 +632,23 @@ async function fetchJson(url) {
   }
 
   return response.json();
+}
+
+async function fetchText(url, accept = "application/xml,text/xml;q=0.9,*/*;q=0.8") {
+  const response = await fetch(url, {
+    headers: {
+      accept,
+      "user-agent": "non-operations-radar"
+    },
+    redirect: "follow",
+    signal: AbortSignal.timeout(12_000)
+  });
+
+  if (!response.ok) {
+    throw new Error(`Request failed with ${response.status}`);
+  }
+
+  return response.text();
 }
 
 async function getRepoMetadata(repoSlug) {
@@ -810,6 +969,84 @@ async function getGitHubSnapshot() {
   return githubCache.promise;
 }
 
+async function getMentionsSnapshot(force = false) {
+  if (!force && mentionsCache.value && Date.now() - mentionsCache.fetchedAt < MENTIONS_TTL_MS) {
+    return mentionsCache.value;
+  }
+
+  if (mentionsCache.promise) {
+    return mentionsCache.promise;
+  }
+
+  mentionsCache.promise = (async () => {
+    try {
+      const results = await Promise.allSettled(
+        MENTION_FEEDS.map(async (feed) => {
+          const xml = await fetchText(buildMentionFeedUrl(feed.locale));
+          return parseMentionFeed(xml, feed.label);
+        })
+      );
+
+      const items = [];
+      const errors = [];
+
+      for (const result of results) {
+        if (result.status === "fulfilled") {
+          items.push(...result.value);
+        } else {
+          errors.push(result.reason?.message || "Mention feed unavailable");
+        }
+      }
+
+      const deduped = [...new Map(
+        items.map((item) => [
+          `${item.source.toLowerCase()}::${item.title.toLowerCase()}`,
+          item
+        ])
+      ).values()]
+        .sort((left, right) => new Date(right.publishedAt) - new Date(left.publishedAt))
+        .slice(0, MENTION_ITEM_LIMIT);
+
+      const snapshot = buildMentionsSnapshot({
+        checkedAt: new Date().toISOString(),
+        error: errors.length ? errors.join(" • ") : null,
+        items: deduped,
+        status: deduped.length
+          ? errors.length
+            ? "degraded"
+            : "live"
+          : errors.length
+            ? "offline"
+            : "empty"
+      });
+
+      mentionsCache = {
+        value: snapshot,
+        fetchedAt: Date.now(),
+        promise: null
+      };
+
+      return snapshot;
+    } catch (error) {
+      const snapshot = buildMentionsSnapshot({
+        checkedAt: new Date().toISOString(),
+        error: error.message,
+        status: "offline"
+      });
+
+      mentionsCache = {
+        value: snapshot,
+        fetchedAt: Date.now(),
+        promise: null
+      };
+
+      return snapshot;
+    }
+  })();
+
+  return mentionsCache.promise;
+}
+
 function buildSummary(targets, github) {
   const liveTargets = targets.filter((target) => target.health.code === "live");
   const activeTargets = targets.filter((target) => target.surface === "active");
@@ -888,14 +1125,16 @@ async function getDashboardData(force = false) {
   }
 
   dashboardCache.promise = (async () => {
-    const [targets, github] = await Promise.all([
+    const [targets, github, mentions] = await Promise.all([
       Promise.all(TARGETS.map((target) => checkTarget(target))),
-      getGitHubSnapshot()
+      getGitHubSnapshot(),
+      getMentionsSnapshot(force)
     ]);
 
     const payload = {
       generatedAt: new Date().toISOString(),
       github,
+      mentions,
       summary: buildSummary(targets, github),
       targets
     };
@@ -945,10 +1184,21 @@ const server = createServer(async (request, response) => {
     return;
   }
 
+  if (url.pathname === "/api/mentions") {
+    if (!allowLiveScan(request)) {
+      await sendSnapshotMentions(response);
+      return;
+    }
+
+    const payload = await getMentionsSnapshot(url.searchParams.get("force") === "1");
+    sendJson(response, 200, payload);
+    return;
+  }
+
   await serveStatic(url.pathname, response);
 });
 
-export { getDashboardData, hydrateHistoryFromSnapshot, server };
+export { getDashboardData, getMentionsSnapshot, hydrateHistoryFromSnapshot, server };
 
 if (process.env.NO_LISTEN !== "1") {
   server.listen(PORT, HOST, () => {

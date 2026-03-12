@@ -393,11 +393,13 @@ const state = {
   lastLoadSource: null,
   localPreviewHistory: new Map(),
   localTargets: loadLocalTargets(),
+  mentions: null,
   mode: DATA_MODE,
   refreshTimer: null
 };
 
 let previewFrameSyncHandle = 0;
+const previewLoadTokens = new WeakMap();
 
 const elements = {
   activeGrid: document.querySelector("#activeGrid"),
@@ -420,6 +422,12 @@ const elements = {
   localLayout: document.querySelector("#localLayout"),
   metricsGrid: document.querySelector("#metricsGrid"),
   manualScanLink: document.querySelector("#manualScanLink"),
+  mentionsList: document.querySelector("#mentionsList"),
+  mentionsMeta: document.querySelector("#mentionsMeta"),
+  mentionsPanel: document.querySelector("#mentionsPanel"),
+  mentionsRefreshButton: document.querySelector("#mentionsRefreshButton"),
+  mentionsSearchLink: document.querySelector("#mentionsSearchLink"),
+  mentionsStatus: document.querySelector("#mentionsStatus"),
   modeNote: document.querySelector("#modeNote"),
   openAllButton: document.querySelector("#openAllButton"),
   opsInventory: document.querySelector("#ops-inventory"),
@@ -475,8 +483,56 @@ function shortTime(value) {
   });
 }
 
+function formatRelativeTime(value) {
+  if (!value) {
+    return "n/a";
+  }
+
+  const deltaMs = new Date(value).getTime() - Date.now();
+
+  return new Intl.RelativeTimeFormat(undefined, { numeric: "auto" }).format(
+    Math.round(deltaMs / (24 * 60 * 60 * 1000)),
+    "day"
+  );
+}
+
 function makeStatusPill(label, code) {
   return `<span class="status-pill status-pill-${escapeHtml(code || "neutral")}">${escapeHtml(label)}</span>`;
+}
+
+function mentionStatusView(mentions) {
+  if (!mentions) {
+    return {
+      code: "loading",
+      label: "Awaiting sweep"
+    };
+  }
+
+  if (mentions.status === "live") {
+    return {
+      code: "live",
+      label: "Live sweep"
+    };
+  }
+
+  if (mentions.status === "degraded") {
+    return {
+      code: "degraded",
+      label: "Partial sweep"
+    };
+  }
+
+  if (mentions.status === "offline") {
+    return {
+      code: "error",
+      label: "Sweep offline"
+    };
+  }
+
+  return {
+    code: "neutral",
+    label: "No current hits"
+  };
 }
 
 function getBranding(target) {
@@ -771,6 +827,74 @@ function renderFooter() {
   elements.copyrightNote.textContent = `${PROFILE.footer.copyright} ${new Date().getFullYear()}.`;
 }
 
+function renderMentions(mentions = state.mentions) {
+  const snapshotBacked = state.lastLoadSource === "snapshot" || state.lastLoadSource === "snapshot-fallback";
+  const statusView = mentionStatusView(mentions);
+  const meta = [];
+
+  elements.mentionsStatus.innerHTML = makeStatusPill(statusView.label, statusView.code);
+
+  if (mentions?.latestAt) {
+    meta.push(`Latest indexed hit ${formatDate(mentions.latestAt)}`);
+  } else if (mentions?.status === "offline") {
+    meta.push("Mention sweep is currently unavailable.");
+  } else {
+    meta.push("Scanning for the most recent indexed mention across the configured names.");
+  }
+
+  if (mentions?.checkedAt) {
+    meta.push(`${snapshotBacked ? "Snapshot checked" : "Checked"} ${formatDate(mentions.checkedAt)}`);
+  }
+
+  meta.push("4 name variants");
+  meta.push("English + Thai search sweep");
+
+  if (snapshotBacked) {
+    meta.push("Snapshot-backed");
+  }
+
+  if (mentions?.error && !mentions?.items?.length) {
+    meta.push(mentions.error);
+  }
+
+  elements.mentionsMeta.textContent = meta.join(" • ");
+  elements.mentionsSearchLink.href = mentions?.searchUrl || "https://news.google.com/";
+  elements.mentionsSearchLink.hidden = !mentions?.searchUrl;
+
+  if (!mentions) {
+    elements.mentionsList.innerHTML = `<div class="empty-state">Loading mention sweep.</div>`;
+    return;
+  }
+
+  if (!mentions.items?.length) {
+    elements.mentionsList.innerHTML = `
+      <div class="empty-state">
+        ${escapeHtml(
+          mentions.error
+            ? `No mention cards are available right now. ${mentions.error}`
+            : "No indexed mentions were found yet for the configured names."
+        )}
+      </div>
+    `;
+    return;
+  }
+
+  elements.mentionsList.innerHTML = mentions.items
+    .map(
+      (item, index) => `
+        <a class="mention-row" href="${escapeHtml(item.link)}" rel="noreferrer" target="_blank">
+          <span class="mention-index">${escapeHtml(String(index + 1).padStart(2, "0"))}</span>
+          <span class="mention-main">
+            <strong>${escapeHtml(item.title)}</strong>
+            <small>${escapeHtml(item.source)} • ${escapeHtml(formatDate(item.publishedAt))} • ${escapeHtml(item.feed)}</small>
+          </span>
+          <code>${escapeHtml(formatRelativeTime(item.publishedAt))}</code>
+        </a>
+      `
+    )
+    .join("");
+}
+
 function renderGitHub(github) {
   if (github.status !== "live" || !github.profile) {
     elements.githubPanel.hidden = false;
@@ -986,6 +1110,9 @@ function buildRemoteCard(target, options = {}) {
       </details>
 
       <div class="card-actions">
+        <button class="button button-secondary utility-button" data-refresh-preview="remote" type="button">
+          Refresh page
+        </button>
         <a class="action-link" href="${escapeHtml(target.url)}" rel="noreferrer" target="_blank">Open live</a>
         ${
           target.repo?.url
@@ -1055,6 +1182,9 @@ function buildLocalCard(target, index) {
       </div>
 
       <div class="card-actions">
+        <button class="button button-secondary utility-button" data-refresh-preview="local" type="button">
+          Refresh page
+        </button>
         <a class="action-link" href="${escapeHtml(target.url)}" rel="noreferrer" target="_blank">Open target</a>
         <button class="button remove-button" data-remove-index="${index}" type="button">Remove</button>
       </div>
@@ -1122,78 +1252,121 @@ function requestPreviewFrameSync() {
   });
 }
 
-function wirePreviewSignals(container, isLocal) {
-  const cards = [...container.querySelectorAll(".site-card")];
+function startPreviewSignal(card, isLocal, options = {}) {
+  const previewId = card.dataset.previewId;
+  const signalSlot = card.querySelector(".preview-signal");
+  const statusSlot = card.querySelector(".card-status");
+  const iframe = card.querySelector("iframe");
+  const historyBars = isLocal ? card.querySelector(".history-bars") : null;
 
-  for (const card of cards) {
-    const previewId = card.dataset.previewId;
-    const signalSlot = card.querySelector(".preview-signal");
-    const statusSlot = card.querySelector(".card-status");
-    const iframe = card.querySelector("iframe");
-    const historyBars = isLocal ? card.querySelector(".history-bars") : null;
+  if (!previewId || !signalSlot || !iframe) {
+    return;
+  }
 
-    if (!signalSlot || !iframe) {
-      continue;
+  const token = crypto.randomUUID();
+  const timeoutMs = 12_000;
+  const initialLabel = options.reload ? "Refreshing preview" : isLocal ? "Connecting" : "Preview loading";
+  let historyRecorded = false;
+  let slowMark = false;
+  previewLoadTokens.set(card, token);
+
+  signalSlot.innerHTML = makeStatusPill(initialLabel, "loading");
+
+  if (isLocal && statusSlot) {
+    statusSlot.innerHTML = makeStatusPill(options.reload ? "Refreshing" : "Connecting", "loading");
+    card.dataset.health = "loading";
+  }
+
+  const pushHistory = (code) => {
+    if (!isLocal || historyRecorded) {
+      return;
     }
 
-    const timeoutMs = 12_000;
-    let resolved = false;
-    let slowMark = false;
-    let historyRecorded = false;
-    const startedAt = performance.now();
+    historyRecorded = true;
+    recordPreviewHistory(state.localPreviewHistory, previewId, code);
 
-    const pushHistory = (code) => {
-      if (!isLocal || historyRecorded) {
+    if (historyBars) {
+      historyBars.innerHTML = renderHistory(state.localPreviewHistory.get(previewId) || []);
+    }
+  };
+
+  const setSignal = (label, code) => {
+    if (previewLoadTokens.get(card) !== token) {
+      return;
+    }
+
+    signalSlot.innerHTML = makeStatusPill(label, code);
+
+    if (isLocal && statusSlot) {
+      statusSlot.innerHTML = makeStatusPill(label, code);
+      card.dataset.health = code;
+    }
+  };
+
+  const startedAt = performance.now();
+  const timer = window.setTimeout(() => {
+    if (previewLoadTokens.get(card) !== token) {
+      return;
+    }
+
+    slowMark = true;
+    setSignal("No frame signal", "slow");
+    pushHistory("slow");
+  }, timeoutMs);
+
+  iframe.addEventListener(
+    "load",
+    () => {
+      if (previewLoadTokens.get(card) !== token) {
         return;
       }
 
-      historyRecorded = true;
-      recordPreviewHistory(state.localPreviewHistory, previewId, code);
+      window.clearTimeout(timer);
 
-      if (historyBars) {
-        historyBars.innerHTML = renderHistory(state.localPreviewHistory.get(previewId) || []);
-      }
-    };
+      const duration = Math.round(performance.now() - startedAt);
+      const code = slowMark ? "slow" : "live";
+      const label = slowMark ? `Loaded slowly • ${duration} ms` : `Preview live • ${duration} ms`;
 
-    const setSignal = (label, code) => {
-      signalSlot.innerHTML = makeStatusPill(label, code);
+      setSignal(label, code);
+      pushHistory(code);
+    },
+    { once: true }
+  );
 
-      if (isLocal && statusSlot) {
-        statusSlot.innerHTML = makeStatusPill(label, code);
-        card.dataset.health = code;
-      }
-    };
-
-    const timer = window.setTimeout(() => {
-      if (resolved) {
-        return;
-      }
-
-      slowMark = true;
-      setSignal("No frame signal", "slow");
-      pushHistory("slow");
-    }, timeoutMs);
-
-    iframe.addEventListener(
-      "load",
-      () => {
-        if (resolved) {
-          return;
-        }
-
-        resolved = true;
-        window.clearTimeout(timer);
-
-        const duration = Math.round(performance.now() - startedAt);
-        const code = slowMark ? "slow" : "live";
-        const label = slowMark ? `Loaded slowly • ${duration} ms` : `Preview live • ${duration} ms`;
-
-        setSignal(label, code);
-        pushHistory(code);
-      },
-      { once: true }
-    );
+  if (options.reload) {
+    try {
+      iframe.contentWindow?.location.reload();
+    } catch {
+      iframe.src = iframe.src;
+    }
   }
+}
+
+function wirePreviewSignals(container, isLocal) {
+  for (const card of container.querySelectorAll(".site-card")) {
+    startPreviewSignal(card, isLocal);
+  }
+}
+
+function handlePreviewRefresh(event) {
+  const button = event.target.closest("[data-refresh-preview]");
+
+  if (!button) {
+    return;
+  }
+
+  event.preventDefault();
+  event.stopPropagation();
+
+  const card = button.closest(".site-card");
+
+  if (!card) {
+    return;
+  }
+
+  startPreviewSignal(card, button.dataset.refreshPreview === "local", {
+    reload: true
+  });
 }
 
 function renderRemoteSections(targets) {
@@ -1240,13 +1413,24 @@ function renderDashboard() {
     return;
   }
 
-  const { generatedAt, github, summary, targets } = state.dashboard;
+  const { generatedAt, github, mentions, summary, targets } = state.dashboard;
   const snapshotBacked = state.lastLoadSource === "snapshot" || state.lastLoadSource === "snapshot-fallback";
+  state.mentions = mentions || state.mentions || {
+    checkedAt: generatedAt || null,
+    error: "Mention snapshot unavailable.",
+    items: [],
+    latestAt: null,
+    scannedAliases: [],
+    searchUrl: "https://news.google.com/",
+    source: "Mention sweep",
+    status: "offline"
+  };
   renderLabLogos();
   renderBrandStrip(targets);
   renderProfile(summary);
   renderFooter();
   renderMetrics(summary, github);
+  renderMentions(state.mentions);
   renderGitHub(github);
   renderIssues(summary);
   renderApiInventory(targets, summary);
@@ -1295,6 +1479,17 @@ async function fetchLiveDashboard(force = false) {
   return response.json();
 }
 
+async function fetchMentions(force = false) {
+  const query = force ? "?force=1" : "";
+  const response = await fetch(`./api/mentions${query}`, { cache: "no-store" });
+
+  if (!response.ok) {
+    throw new Error(`Mentions API returned ${response.status}`);
+  }
+
+  return response.json();
+}
+
 async function refreshDashboard(force = false) {
   elements.dashboardState.className = "status-pill status-pill-loading";
   elements.dashboardState.textContent =
@@ -1320,6 +1515,39 @@ async function refreshDashboard(force = false) {
     elements.dashboardState.className = "status-pill status-pill-error";
     elements.dashboardState.textContent = `Dashboard error: ${error.message}`;
     applyModeUI();
+  }
+}
+
+async function refreshMentions(force = false) {
+  elements.mentionsStatus.innerHTML = makeStatusPill("Refreshing", "loading");
+  elements.mentionsMeta.textContent =
+    state.mode === "live" ? "Running a fresh mention sweep." : "Reloading snapshot mentions.";
+
+  try {
+    const mentions = await fetchMentions(force);
+    state.mentions = mentions;
+
+    if (state.dashboard) {
+      state.dashboard.mentions = mentions;
+    }
+
+    renderMentions(state.mentions);
+  } catch (error) {
+    if (!state.mentions) {
+      state.mentions = {
+        checkedAt: null,
+        error: error.message,
+        items: [],
+        latestAt: null,
+        scannedAliases: [],
+        searchUrl: null,
+        source: "Mention sweep",
+        status: "offline"
+      };
+    }
+
+    renderMentions(state.mentions);
+    elements.mentionsMeta.textContent = `Mention refresh failed. ${error.message}`;
   }
 }
 
@@ -1411,12 +1639,17 @@ function openAllTargets() {
 
 function bindEvents() {
   elements.refreshButton.addEventListener("click", () => refreshDashboard(true));
+  elements.mentionsRefreshButton.addEventListener("click", () => refreshMentions(true));
   elements.openAllButton.addEventListener("click", openAllTargets);
   window.addEventListener("resize", requestPreviewFrameSync);
   elements.refreshSelect.addEventListener("change", (event) => {
     state.autoRefreshMs = Number(event.target.value);
     scheduleRefresh();
   });
+  elements.featuredGrid.addEventListener("click", handlePreviewRefresh);
+  elements.activeGrid.addEventListener("click", handlePreviewRefresh);
+  elements.staticGrid.addEventListener("click", handlePreviewRefresh);
+  elements.localGrid.addEventListener("click", handlePreviewRefresh);
   elements.featuredGrid.addEventListener("click", openPreview);
   elements.activeGrid.addEventListener("click", openPreview);
   elements.staticGrid.addEventListener("click", openPreview);
@@ -1436,6 +1669,7 @@ bindEvents();
 renderLabLogos();
 renderProfile({ monitoredPages: 0 });
 renderFooter();
+renderMentions();
 startClock();
 renderLocalTargets();
 applyModeUI();
