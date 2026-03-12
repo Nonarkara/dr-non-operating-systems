@@ -36,6 +36,14 @@ const TARGETS = [
     surface: "active"
   },
   {
+    id: "geopolitics-dashboard",
+    label: "Geopolitics Dashboard",
+    url: "https://geopolitics-dashboard.onrender.com",
+    description: "Geopolitical dashboard deployed on Render.",
+    category: "Monitoring",
+    surface: "active"
+  },
+  {
     id: "city-reporter-bot",
     label: "City Reporter Bot",
     url: "https://city-reporter-bot.onrender.com",
@@ -137,6 +145,7 @@ const TARGETS = [
 ];
 
 const API_INVENTORY = {
+  "geopolitics-dashboard": [],
   "middle-east-monitor": [
     { label: "Regional briefing", url: "/api/briefings/iran", kind: "internal" },
     { label: "Markets snapshot", url: "/api/markets", kind: "internal" },

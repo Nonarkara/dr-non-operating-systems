@@ -64,7 +64,7 @@ const PROFILE = {
   summary:
     "Dr. Non Arkaraprasertkul designs and delivers city systems under real pressure. The work combines anthropology, policy architecture, implementation strategy, and AI-assisted software production into one operating practice.",
   mission:
-    "This wall now serves as both live operations dashboard and CV surface: apps, deployments, publications, credentials, working photos, and downloadable profile material in one place.",
+    "This wall now serves as both live operations dashboard and operating profile: apps, deployments, publications, credentials, and a current resume in one place.",
   credentials: [
     "Harvard PhD",
     "Oxford MPhil",
@@ -99,11 +99,6 @@ const PROFILE = {
       url: "https://arkaraprasertkul.socialpsychology.org/"
     },
     {
-      label: "LinkedIn",
-      meta: "Professional profile",
-      url: "https://www.linkedin.com/in/drnon"
-    },
-    {
       label: "Substack",
       meta: "Essays and serialized writing",
       url: "https://nonarkara.substack.com/"
@@ -126,24 +121,9 @@ const PROFILE = {
   ],
   documents: [
     {
-      label: "CV (English)",
-      meta: "Updated July 2018 PDF",
-      url: "./docs/cv-en.pdf"
-    },
-    {
-      label: "CV (Thai)",
-      meta: "October 2023 PDF",
-      url: "./docs/cv-th.pdf"
-    },
-    {
-      label: "Non Profile",
-      meta: "Profile PDF",
-      url: "./docs/non-profile.pdf"
-    },
-    {
-      label: "SLIC Company Profile",
-      meta: "Organizational profile PDF",
-      url: "./docs/slic-company-profile.pdf"
+      label: "Non Resume 3-Page",
+      meta: "March 2026 PDF",
+      url: "./public/Non Resume 3-Page (March 2026).docx.pdf"
     }
   ],
   publications: [
@@ -180,14 +160,6 @@ const PROFILE = {
   ],
   gallery: [
     {
-      title: "Primary portrait",
-      src: "./media/profile/portrait-main.jpg"
-    },
-    {
-      title: "Studio portrait",
-      src: "./media/profile/portrait-secondary.jpg"
-    },
-    {
       title: "Workshop keynote",
       src: "./media/gallery/workshop-keynote.jpg"
     },
@@ -202,6 +174,10 @@ const PROFILE = {
     {
       title: "SCTCDP dashboard",
       src: "./media/gallery/sctcdp-dashboard.png"
+    },
+    {
+      title: "Studio portrait",
+      src: "./media/profile/portrait-secondary.jpg"
     },
     {
       title: "SLIC team",

@@ -742,11 +742,22 @@ select:disabled {
   grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
+.photo-ribbon {
+  display: grid;
+  gap: 0.3rem;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  margin-top: 0.45rem;
+}
+
 .photo-card {
   grid-column: span 12;
   margin: 0;
   display: grid;
   gap: 0.22rem;
+}
+
+.photo-ribbon .photo-card {
+  overflow: hidden;
 }
 
 .photo-card img {
@@ -757,6 +768,18 @@ select:disabled {
   border: none;
   border-radius: var(--radius);
   background: #0c120e;
+}
+
+.photo-ribbon .photo-card img {
+  aspect-ratio: 5 / 4;
+  filter: saturate(0.92) contrast(1.04);
+}
+
+.photo-ribbon .photo-card figcaption {
+  color: var(--muted);
+  font-size: 0.58rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .stat-row,
@@ -1133,6 +1156,29 @@ summary {
   .photo-card {
     grid-column: span 6;
   }
+
+  .photo-ribbon .photo-card {
+    grid-column: span 4;
+  }
+
+  .photo-ribbon .photo-card:nth-child(2),
+  .photo-ribbon .photo-card:nth-child(5) {
+    margin-top: 0.6rem;
+  }
+
+  .photo-ribbon .photo-card:nth-child(1) img,
+  .photo-ribbon .photo-card:nth-child(4) img {
+    aspect-ratio: 4 / 5;
+  }
+
+  .photo-ribbon .photo-card:nth-child(2) img,
+  .photo-ribbon .photo-card:nth-child(5) img {
+    aspect-ratio: 3 / 2;
+  }
+
+  .photo-ribbon .photo-card:nth-child(3) img {
+    aspect-ratio: 16 / 10;
+  }
 }
 
 @media (min-width: 980px) {
@@ -1149,7 +1195,7 @@ summary {
   }
 
   .profile-panel-wide {
-    grid-column: span 6;
+    grid-column: span 12;
   }
 
   .card-grid > * {
@@ -1162,6 +1208,33 @@ summary {
 
   .api-card {
     grid-column: span 6;
+  }
+
+  .photo-ribbon {
+    gap: 0.35rem;
+  }
+
+  .photo-ribbon .photo-card:nth-child(1) {
+    grid-column: span 2;
+  }
+
+  .photo-ribbon .photo-card:nth-child(2) {
+    grid-column: span 3;
+    margin-top: 0.7rem;
+  }
+
+  .photo-ribbon .photo-card:nth-child(3) {
+    grid-column: span 4;
+  }
+
+  .photo-ribbon .photo-card:nth-child(4) {
+    grid-column: span 3;
+    margin-top: 0.9rem;
+  }
+
+  .photo-ribbon .photo-card:nth-child(5) {
+    grid-column: 5 / span 4;
+    margin-top: -0.2rem;
   }
 }
 
