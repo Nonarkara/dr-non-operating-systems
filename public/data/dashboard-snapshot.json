@@ -155,21 +155,21 @@
     "status": "live"
   },
   "summary": {
-    "activeCount": 10,
+    "activeCount": 11,
     "attentionCount": 0,
-    "apiCount": 65,
-    "appsWithApis": 7,
+    "apiCount": 89,
+    "appsWithApis": 8,
     "fastest": {
       "label": "ASEAN CSCO App",
       "responseTimeMs": 66
     },
     "issues": [],
-    "liveCount": 15,
+    "liveCount": 16,
     "medianResponseMs": 165,
-    "monitoredPages": 15,
+    "monitoredPages": 16,
     "platformBreakdown": [
       {
-        "count": 9,
+        "count": 10,
         "platform": "Render"
       },
       {
@@ -197,6 +197,7 @@
       "description": "depa Smart City Leadership launch page.",
       "finalUrl": "https://nonarkara.github.io/scl-landing-page/",
       "featured": false,
+      "addedAt": "2024-11-15",
       "health": {
         "code": "live",
         "label": "Live",
@@ -298,6 +299,7 @@
       "description": "Regional monitoring dashboard deployed on Render.",
       "finalUrl": "https://middle-east-monitor.onrender.com/",
       "featured": true,
+      "addedAt": "2025-01-10",
       "health": {
         "code": "live",
         "label": "Live",
@@ -359,6 +361,7 @@
       "description": "Geopolitical dashboard deployed on Render.",
       "finalUrl": "https://geopolitics-dashboard.onrender.com/",
       "featured": false,
+      "addedAt": "2025-02-15",
       "health": {
         "code": "live",
         "label": "Live",
@@ -457,6 +460,7 @@
       "description": "Command center and reporting bot interface.",
       "finalUrl": "https://city-reporter-bot.onrender.com/",
       "featured": false,
+      "addedAt": "2025-03-01",
       "health": {
         "code": "live",
         "label": "Live",
@@ -589,6 +593,7 @@
       "description": "Bangkok-focused smart city monitor with layered geospatial filters.",
       "finalUrl": "https://smart-city-monitor-web.onrender.com/?lang=en&view=city&timeRange=7d&city=bangkok&layers=smart-city-thailand%2Cbangkok-passages%2Cprojects%2Cnews%2Cresilience%2Ceconomy%2Cweather%2Cpollution",
       "featured": false,
+      "addedAt": "2025-03-05",
       "health": {
         "code": "live",
         "label": "Live",
@@ -756,6 +761,7 @@
       "description": "IMPACT Muang Thong Thani super dashboard with live city signals, domains, media, and assistant tooling.",
       "finalUrl": "https://mtt-smart-city-monitor-web.onrender.com/",
       "featured": false,
+      "addedAt": "2025-03-08",
       "health": {
         "code": "live",
         "label": "Live",
@@ -843,6 +849,7 @@
       "description": "Phone-first rider prototype with live tracking, advisories, and leave-now guidance.",
       "finalUrl": "https://phuket-smart-bus-y6tj.onrender.com/",
       "featured": false,
+      "addedAt": "2025-03-10",
       "health": {
         "code": "live",
         "label": "Live",
@@ -904,6 +911,7 @@
       "description": "Royal Automobile Association of Thailand public site.",
       "finalUrl": "https://nonarkara.github.io/RAAT/index.html?lang=en",
       "featured": false,
+      "addedAt": "2025-03-11",
       "health": {
         "code": "live",
         "label": "Live",
@@ -1005,6 +1013,7 @@
       "description": "Technology monitoring deployment on Render.",
       "finalUrl": "https://tech-monitor.onrender.com/",
       "featured": false,
+      "addedAt": "2025-03-12",
       "health": {
         "code": "live",
         "label": "Live",
@@ -1066,6 +1075,7 @@
       "description": "Lovable-hosted smart city solution atlas.",
       "finalUrl": "https://citytechatlas.lovable.app/",
       "featured": false,
+      "addedAt": "2025-03-12",
       "health": {
         "code": "live",
         "label": "Live",
@@ -1444,6 +1454,72 @@
       "statusCode": 200,
       "surface": "active",
       "url": "https://airdnd-platform.onrender.com"
+    },
+    {
+      "apis": [
+        { "kind": "internal", "label": "News Aggregator", "url": "https://phuket-dashboard.onrender.com/api/news" },
+        { "kind": "internal", "label": "Environment Status", "url": "https://phuket-dashboard.onrender.com/api/environment" },
+        { "kind": "internal", "label": "Intelligence Convergence", "url": "https://phuket-dashboard.onrender.com/api/intelligence/convergence" },
+        { "kind": "internal", "label": "ASEAN Profile", "url": "https://phuket-dashboard.onrender.com/api/asean/profile?country=THA" },
+        { "kind": "internal", "label": "Incident Feed", "url": "https://phuket-dashboard.onrender.com/api/incidents" },
+        { "kind": "internal", "label": "Fire Alerts", "url": "https://phuket-dashboard.onrender.com/api/fires" },
+        { "kind": "internal", "label": "Movement Data", "url": "https://phuket-dashboard.onrender.com/api/movements" },
+        { "kind": "internal", "label": "Rainfall Status", "url": "https://phuket-dashboard.onrender.com/api/rainfall" },
+        { "kind": "internal", "label": "Air Quality Info", "url": "https://phuket-dashboard.onrender.com/api/air-quality" },
+        { "kind": "internal", "label": "Live Flight Data", "url": "https://phuket-dashboard.onrender.com/api/flights" },
+        { "kind": "internal", "label": "Market Radar", "url": "https://phuket-dashboard.onrender.com/api/markets" },
+        { "kind": "internal", "label": "Conflict Trends", "url": "https://phuket-dashboard.onrender.com/api/conflict-trends" },
+        { "kind": "internal", "label": "Ticker Feed", "url": "https://phuket-dashboard.onrender.com/api/ticker" },
+        { "kind": "internal", "label": "Intelligence Packages", "url": "https://phuket-dashboard.onrender.com/api/intelligence/packages" },
+        { "kind": "internal", "label": "Trending Keywords", "url": "https://phuket-dashboard.onrender.com/api/trends" },
+        { "kind": "internal", "label": "Data Source Inventory", "url": "https://phuket-dashboard.onrender.com/api/sources" },
+        { "kind": "internal", "label": "Map Layer Config", "url": "https://phuket-dashboard.onrender.com/api/map/overlays" },
+        { "kind": "external", "label": "NASA EONET", "url": "https://eonet.gsfc.nasa.gov/api/v3/events?status=open&days=30" },
+        { "kind": "external", "label": "ReliefWeb disasters", "url": "https://api.reliefweb.int/v1/disasters?appname=techmonitor" },
+        { "kind": "external", "label": "Open-Meteo forecast", "url": "https://api.open-meteo.com/v1/forecast" },
+        { "kind": "external", "label": "Open-Meteo air quality", "url": "https://air-quality-api.open-meteo.com/v1/air-quality" },
+        { "kind": "external", "label": "GDACS event feed", "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH" },
+        { "kind": "external", "label": "FX rates", "url": "https://open.er-api.com/v6/latest/USD" },
+        { "kind": "external", "label": "Binance ticker", "url": "https://api.binance.com/api/v3/ticker/24hr" }
+      ],
+      "category": "Monitoring",
+      "checkedAt": "2026-03-13T18:46:31.000Z",
+      "description": "Coastal operations dashboard for Phuket and surrounding provinces.",
+      "finalUrl": "https://phuket-dashboard.onrender.com/",
+      "featured": true,
+      "addedAt": "2026-03-13",
+      "health": {
+        "code": "live",
+        "label": "Live",
+        "reason": "Healthy response."
+      },
+      "history": [
+        {
+          "at": "2026-03-13T18:46:31.000Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 150,
+          "statusCode": 200
+        }
+      ],
+      "hostname": "phuket-dashboard.onrender.com",
+      "id": "phuket-dashboard",
+      "label": "Phuket Dashboard",
+      "metadata": {
+        "cache": "DYNAMIC",
+        "contentType": "text/html; charset=utf-8",
+        "etag": null,
+        "lastModified": null,
+        "server": "cloudflare",
+        "title": "Phuket Dashboard | Coastal Operations",
+        "xPoweredBy": "Next.js"
+      },
+      "platform": "Render",
+      "repo": null,
+      "responseTimeMs": 150,
+      "statusCode": 200,
+      "surface": "active",
+      "url": "https://phuket-dashboard.onrender.com"
     }
   ],
   "snapshotMeta": {

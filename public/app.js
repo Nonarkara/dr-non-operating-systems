@@ -197,6 +197,9 @@ const BRANDS = {
   "phuket-smart-bus": {
     monogram: "PB"
   },
+  "phuket-dashboard": {
+    monogram: "PD"
+  },
   raat: {
     monogram: "RA"
   },
@@ -297,6 +300,16 @@ const STARTER_BLUEPRINTS = {
     },
     modules: ["route selector", "stop list", "service advisories", "leave-now guidance", "health endpoint"],
     notes: "Use for rider-facing transit apps with route-specific guidance and operational advisories."
+  },
+  "phuket-dashboard": {
+    appClass: "regional-operations-monitor",
+    stack: {
+      frontend: "Vite or static SPA",
+      backend: "Node API proxy",
+      deploy: "Render"
+    },
+    modules: ["live map", "regional briefings", "source panels", "market radar", "status ticker"],
+    notes: "Coastal operations dashboard for Phuket and surrounding provinces."
   },
   raat: {
     appClass: "multilingual-institutional-site",
@@ -440,7 +453,9 @@ const elements = {
   refreshButton: document.querySelector("#refreshButton"),
   refreshSelect: document.querySelector("#refreshSelect"),
   signalGrid: document.querySelector("#signalGrid"),
-  staticGrid: document.querySelector("#staticGrid")
+  staticGrid: document.querySelector("#staticGrid"),
+  recentProjectsList: document.querySelector("#recentProjectsList"),
+  publishingGraph: document.querySelector("#publishingGraph")
 };
 
 function escapeHtml(value) {
@@ -1348,6 +1363,56 @@ function wirePreviewSignals(container, isLocal) {
   }
 }
 
+function renderRecentProjects(targets) {
+  const sorted = [...targets].sort((a, b) => new Date(b.addedAt || 0) - new Date(a.addedAt || 0));
+  const recent = sorted.slice(0, 3);
+
+  elements.recentProjectsList.innerHTML = recent
+    .map(
+      (target, index) => `
+        <div class="document-row">
+          <span>
+            <strong>${escapeHtml(target.label)}</strong>
+            <small>Added ${escapeHtml(formatDate(target.addedAt))}</small>
+          </span>
+          <code>${escapeHtml(target.category)}</code>
+        </div>
+      `
+    )
+    .join("");
+}
+
+function renderPublishingSpeed(targets) {
+  // Count projects by month to show "speed" over time
+  const points = new Map();
+  targets.forEach((t) => {
+    if (!t.addedAt) return;
+    const date = new Date(t.addedAt);
+    const key = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
+    points.set(key, (points.get(key) || 0) + 1);
+  });
+
+  const sortedKeys = Array.from(points.keys()).sort();
+  const max = Math.max(...points.values(), 1);
+
+  elements.publishingGraph.innerHTML = `
+    <div class="graph-container" style="display: flex; align-items: flex-end; gap: 8px; height: 100px; padding-top: 20px;">
+      ${sortedKeys
+        .map((key) => {
+          const count = points.get(key);
+          const height = (count / max) * 100;
+          return `
+          <div class="graph-bar-wrap" style="flex: 1; display: flex; flex-direction: column; align-items: center; gap: 4px;">
+            <div class="graph-bar" style="width: 100%; height: ${height}px; background: var(--accent); border-radius: 2px; opacity: 0.8;" title="${key}: ${count} apps"></div>
+            <span style="font-size: 8px; opacity: 0.5;">${key.split("-")[1]}</span>
+          </div>
+        `;
+        })
+        .join("")}
+    </div>
+  `;
+}
+
 function handlePreviewRefresh(event) {
   const button = event.target.closest("[data-refresh-preview]");
 
@@ -1434,6 +1499,8 @@ function renderDashboard() {
   renderGitHub(github);
   renderIssues(summary);
   renderApiInventory(targets, summary);
+  renderRecentProjects(targets);
+  renderPublishingSpeed(targets);
   renderRemoteSections(targets);
 
   elements.lastChecked.textContent = snapshotBacked

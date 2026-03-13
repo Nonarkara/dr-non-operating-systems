@@ -54,7 +54,8 @@ const TARGETS = [
     description: "depa Smart City Leadership launch page.",
     repo: "Nonarkara/scl-landing-page",
     category: "Landing page",
-    surface: "static"
+    surface: "static",
+    addedAt: "2024-11-15"
   },
   {
     id: "middle-east-monitor",
@@ -63,7 +64,8 @@ const TARGETS = [
     description: "Regional monitoring dashboard deployed on Render.",
     category: "Monitoring",
     featured: true,
-    surface: "active"
+    surface: "active",
+    addedAt: "2025-01-10"
   },
   {
     id: "geopolitics-dashboard",
@@ -71,7 +73,8 @@ const TARGETS = [
     url: "https://geopolitics-dashboard.onrender.com",
     description: "Geopolitical dashboard deployed on Render.",
     category: "Monitoring",
-    surface: "active"
+    surface: "active",
+    addedAt: "2025-02-15"
   },
   {
     id: "city-reporter-bot",
@@ -79,7 +82,8 @@ const TARGETS = [
     url: "https://city-reporter-bot.onrender.com",
     description: "Command center and reporting bot interface.",
     category: "Bot",
-    surface: "active"
+    surface: "active",
+    addedAt: "2025-03-01"
   },
   {
     id: "smart-city-monitor",
@@ -87,7 +91,8 @@ const TARGETS = [
     url: "https://smart-city-monitor-web.onrender.com/?lang=en&view=city&timeRange=7d&city=bangkok&layers=smart-city-thailand%2Cbangkok-passages%2Cprojects%2Cnews%2Cresilience%2Ceconomy%2Cweather%2Cpollution",
     description: "Bangkok-focused smart city monitor with layered geospatial filters.",
     category: "Monitoring",
-    surface: "active"
+    surface: "active",
+    addedAt: "2025-03-05"
   },
   {
     id: "mtt-smart-city-monitor",
@@ -95,7 +100,8 @@ const TARGETS = [
     url: "https://mtt-smart-city-monitor-web.onrender.com",
     description: "IMPACT Muang Thong Thani super dashboard with live city signals, domains, media, and assistant tooling.",
     category: "Monitoring",
-    surface: "active"
+    surface: "active",
+    addedAt: "2025-03-08"
   },
   {
     id: "phuket-smart-bus",
@@ -103,7 +109,8 @@ const TARGETS = [
     url: "https://phuket-smart-bus-y6tj.onrender.com",
     description: "Phone-first rider prototype with live tracking, advisories, and leave-now guidance.",
     category: "Transit",
-    surface: "active"
+    surface: "active",
+    addedAt: "2025-03-10"
   },
   {
     id: "raat",
@@ -112,7 +119,8 @@ const TARGETS = [
     description: "Royal Automobile Association of Thailand public site.",
     repo: "Nonarkara/RAAT",
     category: "Website",
-    surface: "static"
+    surface: "static",
+    addedAt: "2025-03-11"
   },
   {
     id: "tech-monitor",
@@ -120,7 +128,8 @@ const TARGETS = [
     url: "https://tech-monitor.onrender.com",
     description: "Technology monitoring deployment on Render.",
     category: "Monitoring",
-    surface: "active"
+    surface: "active",
+    addedAt: "2025-03-12"
   },
   {
     id: "city-tech-atlas",
@@ -128,7 +137,8 @@ const TARGETS = [
     url: "https://citytechatlas.lovable.app",
     description: "Lovable-hosted smart city solution atlas.",
     category: "Directory",
-    surface: "active"
+    surface: "active",
+    addedAt: "2025-03-12"
   },
   {
     id: "slic-index-rankings",
@@ -136,7 +146,8 @@ const TARGETS = [
     url: "https://slic-index.onrender.com/rankings",
     description: "Render-hosted SLIC index rankings surface.",
     category: "Index",
-    surface: "active"
+    surface: "active",
+    addedAt: "2025-03-13"
   },
   {
     id: "techhuntthailand-viabus",
@@ -145,7 +156,8 @@ const TARGETS = [
     description: "Tech Hunt Thailand mobility solution detail page for Viabus.",
     repo: "Nonarkara/techhuntthailand",
     category: "Directory",
-    surface: "static"
+    surface: "static",
+    addedAt: "2025-03-13"
   },
   {
     id: "ascn-smart-cities-network",
@@ -154,7 +166,8 @@ const TARGETS = [
     description: "ASEAN Smart Cities Network public-facing site and resource surface.",
     repo: "Nonarkara/ascn-smart-cities-network",
     category: "Network",
-    surface: "static"
+    surface: "static",
+    addedAt: "2025-03-13"
   },
   {
     id: "asean-csco-app",
@@ -162,7 +175,8 @@ const TARGETS = [
     url: "https://nonarkara.github.io/asean-csco-app/#manifesto",
     description: "ASEAN CSCO App manifesto page on GitHub Pages.",
     category: "Manifesto",
-    surface: "static"
+    surface: "static",
+    addedAt: "2025-03-13"
   },
   {
     id: "airdnd-platform",
@@ -170,7 +184,18 @@ const TARGETS = [
     url: "https://airdnd-platform.onrender.com",
     description: "AirDnD public platform deployment.",
     category: "Platform",
-    surface: "active"
+    surface: "active",
+    addedAt: "2025-03-13"
+  },
+  {
+    id: "phuket-dashboard",
+    label: "Phuket Dashboard",
+    url: "https://phuket-dashboard.onrender.com",
+    description: "Coastal operations dashboard for Phuket and surrounding provinces.",
+    category: "Monitoring",
+    featured: true,
+    surface: "active",
+    addedAt: "2026-03-13"
   }
 ];
 
@@ -255,6 +280,32 @@ const API_INVENTORY = {
     { label: "Broadcast feed", url: "/api/broadcast", kind: "internal" },
     { label: "Supabase backend", url: "https://fehdtfncbutesgadjsxp.supabase.co", kind: "external" },
     { label: "Open-Meteo air quality", url: "https://air-quality-api.open-meteo.com/v1/air-quality", kind: "external" }
+  ],
+  "phuket-dashboard": [
+    { label: "News Aggregator", url: "/api/news", kind: "internal" },
+    { label: "Environment Status", url: "/api/environment", kind: "internal" },
+    { label: "Intelligence Convergence", url: "/api/intelligence/convergence", kind: "internal" },
+    { label: "ASEAN Profile", url: "/api/asean/profile?country=THA", kind: "internal" },
+    { label: "Incident Feed", url: "/api/incidents", kind: "internal" },
+    { label: "Fire Alerts", url: "/api/fires", kind: "internal" },
+    { label: "Movement Data", url: "/api/movements", kind: "internal" },
+    { label: "Rainfall Status", url: "/api/rainfall", kind: "internal" },
+    { label: "Air Quality Info", url: "/api/air-quality", kind: "internal" },
+    { label: "Live Flight Data", url: "/api/flights", kind: "internal" },
+    { label: "Market Radar", url: "/api/markets", kind: "internal" },
+    { label: "Conflict Trends", url: "/api/conflict-trends", kind: "internal" },
+    { label: "Ticker Feed", url: "/api/ticker", kind: "internal" },
+    { label: "Intelligence Packages", url: "/api/intelligence/packages", kind: "internal" },
+    { label: "Trending Keywords", url: "/api/trends", kind: "internal" },
+    { label: "Data Source Inventory", url: "/api/sources", kind: "internal" },
+    { label: "Map Layer Config", url: "/api/map/overlays", kind: "internal" },
+    { label: "NASA EONET", url: "https://eonet.gsfc.nasa.gov/api/v3/events?status=open&days=30", kind: "external" },
+    { label: "ReliefWeb disasters", url: "https://api.reliefweb.int/v1/disasters?appname=techmonitor", kind: "external" },
+    { label: "Open-Meteo forecast", url: "https://api.open-meteo.com/v1/forecast", kind: "external" },
+    { label: "Open-Meteo air quality", url: "https://air-quality-api.open-meteo.com/v1/air-quality", kind: "external" },
+    { label: "GDACS event feed", url: "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH", kind: "external" },
+    { label: "FX rates", url: "https://open.er-api.com/v6/latest/USD", kind: "external" },
+    { label: "Binance ticker", url: "https://api.binance.com/api/v3/ticker/24hr", kind: "external" }
   ],
   "scl-landing-page": [],
   raat: [],
