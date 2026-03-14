@@ -185,6 +185,9 @@ const BRANDS = {
   "city-reporter-bot": {
     monogram: "CR"
   },
+  "city-reporter-bot-v2": {
+    monogram: "CR"
+  },
   "city-tech-atlas": {
     monogram: "CA"
   },
@@ -207,6 +210,9 @@ const BRANDS = {
     monogram: "SL"
   },
   "slic-index-rankings": {
+    monogram: "SI"
+  },
+  "slic-index-v2": {
     monogram: "SI"
   },
   "smart-city-monitor": {
@@ -262,6 +268,16 @@ const STARTER_BLUEPRINTS = {
     notes: "Designed for high-density geopolitical monitoring with live external feeds."
   },
   "city-reporter-bot": {
+    appClass: "reporting-bot-console",
+    stack: {
+      frontend: "Node or Vite dashboard",
+      backend: "Node service",
+      deploy: "Render"
+    },
+    modules: ["report intake", "uploads", "GeoJSON export", "early warnings", "intelligence generation"],
+    notes: "Use for citizen reporting, bot-assisted workflows, and field intelligence."
+  },
+  "city-reporter-bot-v2": {
     appClass: "reporting-bot-console",
     stack: {
       frontend: "Node or Vite dashboard",
@@ -340,6 +356,16 @@ const STARTER_BLUEPRINTS = {
     },
     modules: ["searchable atlas", "solution cards", "filters", "detail pages"],
     notes: "Use for ecosystems, vendor landscapes, or policy technology directories."
+  },
+  "slic-index-v2": {
+    appClass: "narrative-city-index",
+    stack: {
+      frontend: "React or Vite SPA",
+      backend: "Optional data/analytics service",
+      deploy: "Render"
+    },
+    modules: ["landing narrative", "rankings view", "methodology page", "city match exercise", "country spotlight"],
+    notes: "Use for index or benchmark experiences that combine storytelling, rankings, and guided exploration."
   },
   "techhuntthailand-viabus": {
     appClass: "case-study-directory-page",

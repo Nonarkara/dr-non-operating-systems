@@ -86,6 +86,15 @@ const TARGETS = [
     addedAt: "2025-03-01"
   },
   {
+    id: "city-reporter-bot-v2",
+    label: "City Reporter Bot Version 2",
+    url: "https://city-reporter-line-bot.onrender.com",
+    description: "Version 2 of the command center and reporting bot interface.",
+    category: "Bot",
+    surface: "active",
+    addedAt: "2026-03-14"
+  },
+  {
     id: "smart-city-monitor",
     label: "Smart City Monitor",
     url: "https://smart-city-monitor-web.onrender.com/?lang=en&view=city&timeRange=7d&city=bangkok&layers=smart-city-thailand%2Cbangkok-passages%2Cprojects%2Cnews%2Cresilience%2Ceconomy%2Cweather%2Cpollution",
@@ -148,6 +157,15 @@ const TARGETS = [
     category: "Index",
     surface: "active",
     addedAt: "2025-03-13"
+  },
+  {
+    id: "slic-index-v2",
+    label: "SLIC Index Version 2",
+    url: "https://slic-index-v2.onrender.com",
+    description: "Second-generation Smart and Liveable Cities Index experience.",
+    category: "Index",
+    surface: "active",
+    addedAt: "2026-03-14"
   },
   {
     id: "techhuntthailand-viabus",
@@ -266,6 +284,23 @@ const API_INVENTORY = {
     { label: "News", url: "/api/news", kind: "internal" },
     { label: "Open-Meteo forecast", url: "https://api.open-meteo.com/v1/forecast", kind: "external" },
     { label: "Bangkok open data", url: "https://data.bangkok.go.th/api/3/action/datastore_search", kind: "external" }
+  ],
+  "city-reporter-bot-v2": [
+    { label: "Reports", url: "/api/reports", kind: "internal" },
+    { label: "Report GeoJSON", url: "/api/reports/geojson", kind: "internal" },
+    { label: "Early warnings", url: "/api/early-warnings", kind: "internal" },
+    { label: "Upload", url: "/api/upload", kind: "internal" },
+    { label: "Social analytics", url: "/api/analytics/social", kind: "internal" },
+    { label: "Latest intelligence", url: "/api/intelligence/latest", kind: "internal" },
+    { label: "Generate intelligence", url: "/api/intelligence/generate", kind: "internal" },
+    { label: "News", url: "/api/news", kind: "internal" },
+    { label: "Flood map WMS", url: "/api/2.0/resources/maps/flood/7days/wms", kind: "internal" },
+    { label: "Phuket ports", url: "/api/marine/phuket-ports", kind: "internal" },
+    {
+      label: "Bangkok datastore proxy",
+      url: "/api/3/action/datastore_search?resource_id=8f1102d5-52a2-4494-9131-403e4f87a242&limit=100",
+      kind: "internal"
+    }
   ],
   "tech-monitor": [
     { label: "NASA EONET", url: "https://eonet.gsfc.nasa.gov/api/v3/events?status=open&days=30", kind: "external" },
@@ -847,6 +882,7 @@ async function checkTarget(target) {
 
     return {
       apis: buildApiInventory(target, finalUrl),
+      addedAt: target.addedAt,
       category: target.category,
       checkedAt,
       description: target.description,
@@ -887,6 +923,7 @@ async function checkTarget(target) {
 
     return {
       apis: buildApiInventory(target, target.url),
+      addedAt: target.addedAt,
       category: target.category,
       checkedAt,
       description: target.description,
