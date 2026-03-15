@@ -62,18 +62,89 @@ const LAB_LOGOS = [
 ];
 
 const ARCHIVE_IMAGES = [
+  "1773133828362.png",
   "1773377092111.jpg",
   "1773570166448.jpg",
   "1773570182857.jpg",
+  "1773570204010.jpg",
+  "1773570212485.jpg",
   "1773570231976.jpg",
   "1773570244976.jpg",
   "Screenshot 2569-02-04 at 00.06.38.png",
   "Screenshot 2569-02-04 at 00.25.43.png",
+  "Screenshot 2569-02-06 at 11.56.50.png",
+  "Screenshot 2569-02-06 at 11.58.59.png",
+  "Screenshot 2569-02-07 at 18.06.29.png",
+  "Screenshot 2569-02-12 at 16.00.30.png",
+  "Screenshot 2569-02-20 at 00.42.10.png",
+  "Screenshot 2569-02-23 at 23.39.00.png",
+  "Screenshot 2569-02-23 at 23.40.48.png",
+  "Screenshot 2569-02-24 at 23.33.01.png",
+  "Screenshot 2569-02-25 at 14.00.11.png",
+  "Screenshot 2569-02-25 at 16.47.50.png",
   "Screenshot 2569-03-10 at 16.12.05.png",
   "Screenshot 2569-03-10 at 16.15.00.png",
   "Screenshot 2569-03-10 at 16.16.22.png",
+  "Screenshot 2569-03-10 at 16.28.33.png",
+  "Screenshot 2569-03-10 at 16.29.58.png",
+  "Screenshot 2569-03-11 at 12.10.19.png",
+  "Screenshot 2569-03-11 at 13.59.34.png",
+  "Screenshot 2569-03-11 at 14.56.54.png",
+  "Screenshot 2569-03-11 at 15.04.33.png",
   "WhatsApp Image 2025-11-23 at 12.07.37 PM.jpeg"
 ];
+
+const PORTRAITS = [
+  { file: "1773314596245 (1).jpg", caption: "depa HQ, Bangkok" },
+  { file: "IMG_20250925_140828_004~2.jpg", caption: "Formal profile" }
+];
+
+const ORIGIN_STORY = {
+  title: "The Origin Story",
+  subtitle: "How one man decided to mass-produce the future by talking to machines",
+  portrait: {
+    operator: "./Portraits/1773314596245 (1).jpg",
+    formal: "./Portraits/IMG_20250925_140828_004~2.jpg"
+  },
+  acts: [
+    {
+      number: "ACT I",
+      title: "THE CREDENTIALS",
+      body: "MIT. Harvard. Oxford. A Bangkok kid with round glasses collected degrees like weapons from elite dungeons. Architecture at KMITL. Urban studies at MIT. A PhD at Harvard on how actual humans live in actual cities. An MPhil at Oxford because why not. Years of publishing in journals that maybe twelve people read. The system was supposed to reward this. It didn't. The system rewarded PowerPoints, committees, and people who could smile through four-hour meetings about nothing. Non took notes. Non built rage.",
+      image: "./Portraits/IMG_20250925_140828_004~2.jpg",
+      imageCaption: "The formal weapon. Every credential earned the hard way."
+    },
+    {
+      number: "ACT II",
+      title: "THE DISCOVERY",
+      body: "Then the world changed overnight and nobody noticed. Large language models arrived. Everyone saw a chatbot. Non saw a factory. He realized something that most people still haven't grasped: you don't need to code anymore. You don't need a team of fifty engineers. You don't need venture capital. You don't need permission. You just need to know what to build and how to describe it precisely. An anthropologist who spent a decade studying how systems actually work turned out to be the perfect person to command machines that build systems. The irony was biblical.",
+      image: "./Old projects from archives/1773133828362.png",
+      imageCaption: "The moment. Natural Language Coding. Not vibecoding. Building."
+    },
+    {
+      number: "ACT III",
+      title: "THE ARSENAL",
+      body: "What followed was not normal. In months, not years, Non produced what entire agencies struggle to prototype: a Smart City Super Dashboard tracking sensors, transit, air quality, and EV loops across entire metropolitan zones. A GlobeWatch system monitoring satellite fires, military movements, market radar, and diplomatic sanctions in real time. A City Reporter Bot that processes thousands of civic tickets and surfaces the patterns. A city ranking algorithm that scored Bangkok at 84. A geopolitics monitor covering the Middle East. And this page you're reading right now. Every single one built by one person talking to AI.",
+      image: "./Old projects from archives/Screenshot 2569-03-11 at 12.10.19.png",
+      imageCaption: "Dr. Non's GlobeWatch System. One person. Global coverage."
+    },
+    {
+      number: "ACT IV",
+      title: "THE THESIS",
+      body: "Here's the part that makes bureaucrats nervous: if one person can build what used to require an entire department, what exactly is the department for? If a city dashboard that would cost ten million baht in procurement can be spoken into existence in a weekend, what is money for? The old world charges for scarcity. Code was scarce. Engineers were scarce. Understanding what cities need was scarce. Now code is free. Engineers are optional. And understanding? That was always the bottleneck, and Non has a PhD in exactly that. The machines do the typing. The human does the thinking. Everything else is overhead.",
+      image: "./Old projects from archives/1773570204010.jpg",
+      imageCaption: "The Super Dashboard. Entire city intelligence layer. Built by speaking."
+    },
+    {
+      number: "ACT V",
+      title: "THE DEPLOYMENT",
+      body: "This is not a portfolio. This is a proof of concept for a new economy. Every card on this page is a live system. Every green light is a server responding. Every endpoint is an API that works. The old game was: get funding, hire team, build slowly, launch quietly, maintain painfully. The new game is: understand the problem, describe the solution, deploy immediately, iterate in real time. Money doesn't buy speed anymore. Clarity does. And this entire wall — every monitor, every dashboard, every bot — is one person's clarity made operational. The future isn't expensive. It's articulate.",
+      image: "./Old projects from archives/Screenshot 2569-03-11 at 15.04.33.png",
+      imageCaption: "Render deployment log. Services spinning up. The machines obey."
+    }
+  ],
+  coda: "120+ projects. 77 provinces. 5,000+ officials trained. 100+ global forums. One laptop. One voice. Zero permission asked."
+};
 
 
 const PROFILE = {
@@ -507,6 +578,7 @@ const elements = {
   recentProjectsList: document.querySelector("#recentProjectsList"),
   publishingGraph: document.querySelector("#publishingGraph"),
   historyGallery: document.querySelector("#historyGallery"),
+  originStory: document.querySelector("#originStory"),
   copyBlueprintButton: document.querySelector("#copyBlueprintButton"),
   blueprintCode: document.querySelector("#blueprintCode")
 };
@@ -1491,6 +1563,60 @@ function renderHistoryGallery() {
   ).join("");
 }
 
+function renderOriginStory() {
+  if (!elements.originStory) return;
+
+  const actsHTML = ORIGIN_STORY.acts.map((act, i) => {
+    const isEven = i % 2 === 1;
+    return `
+      <article class="origin-act ${isEven ? "origin-act-reverse" : ""}">
+        <div class="origin-act-image-wrap">
+          <img
+            class="origin-act-image"
+            src="${escapeHtml(act.image)}"
+            alt="${escapeHtml(act.imageCaption)}"
+            loading="lazy"
+          />
+          <span class="origin-act-caption">${escapeHtml(act.imageCaption)}</span>
+        </div>
+        <div class="origin-act-text">
+          <div class="origin-act-number">${escapeHtml(act.number)}</div>
+          <h3 class="origin-act-title">${escapeHtml(act.title)}</h3>
+          <p class="origin-act-body">${escapeHtml(act.body)}</p>
+        </div>
+      </article>
+    `;
+  }).join("");
+
+  const portraitHTML = `
+    <div class="origin-hero">
+      <div class="origin-portraits">
+        <div class="origin-portrait-wrap">
+          <img class="origin-portrait" src="${escapeHtml(ORIGIN_STORY.portrait.operator)}" alt="The operator" loading="lazy" />
+          <span class="origin-portrait-label">THE OPERATOR</span>
+        </div>
+        <div class="origin-portrait-wrap">
+          <img class="origin-portrait" src="${escapeHtml(ORIGIN_STORY.portrait.formal)}" alt="The credential" loading="lazy" />
+          <span class="origin-portrait-label">THE CREDENTIAL</span>
+        </div>
+      </div>
+      <div class="origin-hero-text">
+        <p class="origin-subtitle">${escapeHtml(ORIGIN_STORY.subtitle)}</p>
+      </div>
+    </div>
+  `;
+
+  elements.originStory.innerHTML = `
+    ${portraitHTML}
+    <div class="origin-timeline">
+      <div class="origin-timeline-line"></div>
+      ${actsHTML}
+    </div>
+    <div class="origin-coda">
+      <p class="origin-coda-text">${escapeHtml(ORIGIN_STORY.coda)}</p>
+    </div>
+  `;
+}
 
 const API_REGISTRY_GROUPS = [
   {
@@ -2107,6 +2233,7 @@ renderFooter();
 renderMentions();
 renderApiRegistry();
 renderHistoryGallery();
+renderOriginStory();
 renderUniversalBlueprint();
 renderNovelSection();
 startClock();
