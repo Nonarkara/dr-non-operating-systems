@@ -61,6 +61,21 @@ const LAB_LOGOS = [
   }
 ];
 
+const ARCHIVE_IMAGES = [
+  "1773377092111.jpg",
+  "1773570166448.jpg",
+  "1773570182857.jpg",
+  "1773570231976.jpg",
+  "1773570244976.jpg",
+  "Screenshot 2569-02-04 at 00.06.38.png",
+  "Screenshot 2569-02-04 at 00.25.43.png",
+  "Screenshot 2569-03-10 at 16.12.05.png",
+  "Screenshot 2569-03-10 at 16.15.00.png",
+  "Screenshot 2569-03-10 at 16.16.22.png",
+  "WhatsApp Image 2025-11-23 at 12.07.37 PM.jpeg"
+];
+
+
 const PROFILE = {
   byline: "City systems strategist, anthropologist, writer, and builder.",
   summary:
@@ -481,8 +496,13 @@ const elements = {
   signalGrid: document.querySelector("#signalGrid"),
   staticGrid: document.querySelector("#staticGrid"),
   recentProjectsList: document.querySelector("#recentProjectsList"),
-  publishingGraph: document.querySelector("#publishingGraph")
+  publishingGraph: document.querySelector("#publishingGraph"),
+  historyGallery: document.querySelector("#historyGallery"),
+  copyBlueprintButton: document.querySelector("#copyBlueprintButton"),
+  blueprintCode: document.querySelector("#blueprintCode")
 };
+
+
 
 function escapeHtml(value) {
   return String(value ?? "")
@@ -1439,6 +1459,289 @@ function renderPublishingSpeed(targets) {
   `;
 }
 
+function renderHistoryGallery() {
+  if (!elements.historyGallery) return;
+
+  elements.historyGallery.innerHTML = ARCHIVE_IMAGES.map(
+    (filename) => `
+      <article class="history-card">
+        <div class="history-mark">
+          <img 
+            class="history-image" 
+            alt="Historical project snapshot: ${escapeHtml(filename)}" 
+            loading="lazy" 
+            src="./Old projects from archives/${encodeURIComponent(filename)}" 
+          />
+        </div>
+        <div class="history-info">
+          <p class="eyebrow">Project Archive</p>
+          <span class="history-filename">${escapeHtml(filename)}</span>
+        </div>
+      </article>
+    `
+  ).join("");
+}
+
+
+const API_REGISTRY_GROUPS = [
+  {
+    id: "weather-climate",
+    title: "Weather & Climate",
+    why: "Real-time meteorological data drives advisories, transit guidance, and environmental overlays across city monitors and coastal dashboards.",
+    apis: [
+      { label: "Open-Meteo Forecast", provider: "Open-Meteo", kind: "external", usedBy: ["Middle East Monitor", "City Reporter Bot", "Tech Monitor", "Phuket Dashboard"] },
+      { label: "Open-Meteo Air Quality", provider: "Open-Meteo", kind: "external", usedBy: ["Tech Monitor", "AirDnD Platform", "Phuket Dashboard"] },
+      { label: "Air Quality Info", provider: "Internal", kind: "internal", usedBy: ["Phuket Dashboard"] },
+      { label: "Rainfall Status", provider: "Internal", kind: "internal", usedBy: ["Phuket Dashboard"] },
+      { label: "Environment Status", provider: "Internal", kind: "internal", usedBy: ["Phuket Dashboard"] }
+    ]
+  },
+  {
+    id: "disaster-resilience",
+    title: "Disaster & Resilience",
+    why: "Continuous disaster feeds allow early warning and situational awareness for regions exposed to earthquakes, floods, and extreme weather.",
+    apis: [
+      { label: "NASA EONET Events", provider: "NASA", kind: "external", usedBy: ["Tech Monitor", "Phuket Dashboard"] },
+      { label: "ReliefWeb Disasters", provider: "UN OCHA", kind: "external", usedBy: ["Tech Monitor", "Phuket Dashboard"] },
+      { label: "GDACS Event Feed", provider: "GDACS (UN/EC)", kind: "external", usedBy: ["Middle East Monitor", "Phuket Dashboard"] },
+      { label: "Copernicus Preview", provider: "Copernicus/ESA", kind: "internal", usedBy: ["Middle East Monitor"] },
+      { label: "Early Warnings", provider: "Internal", kind: "internal", usedBy: ["City Reporter Bot", "City Reporter Bot v2"] },
+      { label: "Resilience", provider: "Internal", kind: "internal", usedBy: ["Smart City Monitor", "MTT Smart City Monitor"] },
+      { label: "Flood Map WMS", provider: "Internal", kind: "internal", usedBy: ["City Reporter Bot v2"] },
+      { label: "Fire Alerts", provider: "Internal", kind: "internal", usedBy: ["Phuket Dashboard"] },
+      { label: "Incident Feed", provider: "Internal", kind: "internal", usedBy: ["Phuket Dashboard"] }
+    ]
+  },
+  {
+    id: "markets-economy",
+    title: "Markets & Economy",
+    why: "Financial feeds provide context for economic monitoring, policy dashboards, and regional stability assessment.",
+    apis: [
+      { label: "FX Rates (USD base)", provider: "ExchangeRate-API", kind: "external", usedBy: ["Tech Monitor", "Phuket Dashboard"] },
+      { label: "Binance 24h Ticker", provider: "Binance", kind: "external", usedBy: ["Tech Monitor", "Phuket Dashboard"] },
+      { label: "Markets Snapshot", provider: "Internal", kind: "internal", usedBy: ["Middle East Monitor", "Smart City Monitor", "MTT Smart City Monitor", "Phuket Dashboard"] },
+      { label: "Ticker Feed", provider: "Internal", kind: "internal", usedBy: ["Middle East Monitor", "Phuket Dashboard"] },
+      { label: "Conflict Trends", provider: "Internal", kind: "internal", usedBy: ["Phuket Dashboard"] }
+    ]
+  },
+  {
+    id: "geospatial-mapping",
+    title: "Geospatial & Mapping",
+    why: "Layered map APIs are the backbone of smart city monitors, rendering projects, infrastructure, and live urban data on interactive maps.",
+    apis: [
+      { label: "Map Layers", provider: "Internal", kind: "internal", usedBy: ["Smart City Monitor", "MTT Smart City Monitor"] },
+      { label: "Map Features", provider: "Internal", kind: "internal", usedBy: ["Smart City Monitor", "MTT Smart City Monitor"] },
+      { label: "Map Layer Config", provider: "Internal", kind: "internal", usedBy: ["Phuket Dashboard"] },
+      { label: "Report GeoJSON", provider: "Internal", kind: "internal", usedBy: ["City Reporter Bot", "City Reporter Bot v2"] }
+    ]
+  },
+  {
+    id: "intelligence-briefings",
+    title: "Intelligence & Briefings",
+    why: "AI-generated intelligence packages and regional briefings synthesize multiple data streams into actionable summaries for decision-makers.",
+    apis: [
+      { label: "Regional Briefing", provider: "Internal", kind: "internal", usedBy: ["Middle East Monitor"] },
+      { label: "Latest Briefing", provider: "Internal", kind: "internal", usedBy: ["MTT Smart City Monitor"] },
+      { label: "Latest Intelligence", provider: "Internal", kind: "internal", usedBy: ["City Reporter Bot", "City Reporter Bot v2"] },
+      { label: "Generate Intelligence", provider: "Internal", kind: "internal", usedBy: ["City Reporter Bot", "City Reporter Bot v2"] },
+      { label: "Intelligence Convergence", provider: "Internal", kind: "internal", usedBy: ["Phuket Dashboard"] },
+      { label: "Intelligence Packages", provider: "Internal", kind: "internal", usedBy: ["Phuket Dashboard"] }
+    ]
+  },
+  {
+    id: "news-media",
+    title: "News & Media Monitoring",
+    why: "Aggregated news, social listening, and media channel feeds keep operators informed of public sentiment and breaking developments.",
+    apis: [
+      { label: "Google News RSS", provider: "Google", kind: "external", usedBy: ["Dashboard (Mentions)"] },
+      { label: "News Feed", provider: "Internal", kind: "internal", usedBy: ["Smart City Monitor", "MTT Smart City Monitor", "City Reporter Bot", "City Reporter Bot v2", "Phuket Dashboard"] },
+      { label: "Media Feeds", provider: "Internal", kind: "internal", usedBy: ["Smart City Monitor", "MTT Smart City Monitor"] },
+      { label: "Media Channels", provider: "Internal", kind: "internal", usedBy: ["MTT Smart City Monitor"] },
+      { label: "Social Listening", provider: "Internal", kind: "internal", usedBy: ["Smart City Monitor", "MTT Smart City Monitor"] },
+      { label: "Social Analytics", provider: "Internal", kind: "internal", usedBy: ["City Reporter Bot", "City Reporter Bot v2"] },
+      { label: "Trending Keywords", provider: "Internal", kind: "internal", usedBy: ["Phuket Dashboard"] }
+    ]
+  },
+  {
+    id: "city-operations",
+    title: "City Operations & Analytics",
+    why: "Core operational endpoints drive the smart city monitoring consoles, delivering overview KPIs, activity logs, impact metrics, and domain-level analytics.",
+    apis: [
+      { label: "Overview", provider: "Internal", kind: "internal", usedBy: ["Smart City Monitor", "MTT Smart City Monitor"] },
+      { label: "Pulse", provider: "Internal", kind: "internal", usedBy: ["Smart City Monitor", "MTT Smart City Monitor"] },
+      { label: "Projects", provider: "Internal", kind: "internal", usedBy: ["Smart City Monitor", "MTT Smart City Monitor"] },
+      { label: "Activity", provider: "Internal", kind: "internal", usedBy: ["Smart City Monitor", "MTT Smart City Monitor"] },
+      { label: "Impact", provider: "Internal", kind: "internal", usedBy: ["Smart City Monitor", "MTT Smart City Monitor"] },
+      { label: "Changes", provider: "Internal", kind: "internal", usedBy: ["MTT Smart City Monitor"] },
+      { label: "Cities", provider: "Internal", kind: "internal", usedBy: ["MTT Smart City Monitor"] },
+      { label: "Domains", provider: "Internal", kind: "internal", usedBy: ["MTT Smart City Monitor"] },
+      { label: "Indicators", provider: "Internal", kind: "internal", usedBy: ["MTT Smart City Monitor"] },
+      { label: "Sources", provider: "Internal", kind: "internal", usedBy: ["Smart City Monitor", "MTT Smart City Monitor", "Phuket Dashboard"] },
+      { label: "Data Source Inventory", provider: "Internal", kind: "internal", usedBy: ["Phuket Dashboard"] }
+    ]
+  },
+  {
+    id: "transit-mobility",
+    title: "Transit & Mobility",
+    why: "Transit APIs support rider-facing apps with route data, stop sequences, service advisories, and real-time departure guidance.",
+    apis: [
+      { label: "Routes", provider: "Internal", kind: "internal", usedBy: ["Phuket Smart Bus"] },
+      { label: "Route Stops", provider: "Internal", kind: "internal", usedBy: ["Phuket Smart Bus"] },
+      { label: "Service Advisories", provider: "Internal", kind: "internal", usedBy: ["Phuket Smart Bus"] },
+      { label: "Leave-now Summary", provider: "Internal", kind: "internal", usedBy: ["Phuket Smart Bus"] },
+      { label: "Movement Data", provider: "Internal", kind: "internal", usedBy: ["Phuket Dashboard"] },
+      { label: "Live Flight Data", provider: "Internal", kind: "internal", usedBy: ["Phuket Dashboard"] },
+      { label: "Phuket Ports", provider: "Internal", kind: "internal", usedBy: ["City Reporter Bot v2"] }
+    ]
+  },
+  {
+    id: "reporting-upload",
+    title: "Reporting & Field Data",
+    why: "Citizen reporting and field upload endpoints allow ground-level data collection, which feeds into early warning and intelligence systems.",
+    apis: [
+      { label: "Reports", provider: "Internal", kind: "internal", usedBy: ["City Reporter Bot", "City Reporter Bot v2"] },
+      { label: "Upload", provider: "Internal", kind: "internal", usedBy: ["City Reporter Bot", "City Reporter Bot v2"] },
+      { label: "Bangkok Open Data", provider: "Bangkok Metropolitan", kind: "external", usedBy: ["City Reporter Bot"] },
+      { label: "Bangkok Datastore Proxy", provider: "Internal", kind: "internal", usedBy: ["City Reporter Bot v2"] }
+    ]
+  },
+  {
+    id: "ai-assistant",
+    title: "AI Assistant",
+    why: "Built-in AI assistant endpoints let operators query the system in natural language for instant analysis and decision support.",
+    apis: [
+      { label: "Assistant Status", provider: "Internal", kind: "internal", usedBy: ["Smart City Monitor", "MTT Smart City Monitor"] },
+      { label: "Assistant Query", provider: "Internal", kind: "internal", usedBy: ["MTT Smart City Monitor"] }
+    ]
+  },
+  {
+    id: "platform-infra",
+    title: "Platform & Infrastructure",
+    why: "Backend services, health checks, and third-party platform integrations keep the fleet running and observable.",
+    apis: [
+      { label: "Health Check", provider: "Internal", kind: "internal", usedBy: ["Phuket Smart Bus", "Dashboard"] },
+      { label: "Broadcast Feed", provider: "Internal", kind: "internal", usedBy: ["AirDnD Platform"] },
+      { label: "Supabase Backend", provider: "Supabase", kind: "external", usedBy: ["AirDnD Platform"] },
+      { label: "ASEAN Profile", provider: "Internal", kind: "internal", usedBy: ["Phuket Dashboard"] }
+    ]
+  },
+  {
+    id: "github-devops",
+    title: "GitHub & DevOps",
+    why: "GitHub API powers the dashboard itself, pulling repository metadata, Pages status, and activity signals to monitor the entire codebase fleet.",
+    apis: [
+      { label: "GitHub Users API", provider: "GitHub", kind: "external", usedBy: ["Dashboard"] },
+      { label: "GitHub Repos API", provider: "GitHub", kind: "external", usedBy: ["Dashboard"] },
+      { label: "GitHub Repo Metadata", provider: "GitHub", kind: "external", usedBy: ["Dashboard"] },
+      { label: "Dashboard API", provider: "Internal", kind: "internal", usedBy: ["Dashboard"] },
+      { label: "Mentions API", provider: "Internal", kind: "internal", usedBy: ["Dashboard"] }
+    ]
+  }
+];
+
+function renderApiRegistry() {
+  const registry = document.querySelector("#apiRegistry");
+  if (!registry) return;
+
+  let totalCount = 0;
+  API_REGISTRY_GROUPS.forEach((g) => {
+    g.apis.forEach((api) => {
+      if (api.kind === "external" || api.kind === "internal") {
+        totalCount++;
+      }
+    });
+  });
+
+  const groupsHtml = API_REGISTRY_GROUPS.map((group) => `
+      <article class="registry-group" id="reg-${escapeHtml(group.id)}">
+        <div class="registry-group-head">
+          <div class="registry-group-title">
+            <h3>${escapeHtml(group.title)}</h3>
+            <span class="registry-count">${group.apis.length}</span>
+          </div>
+          <p class="registry-why">${escapeHtml(group.why)}</p>
+        </div>
+        <div class="registry-table">
+          ${group.apis.map((api) => `
+            <div class="registry-row">
+              <span class="registry-api-name">${escapeHtml(api.label)}</span>
+              <span class="registry-provider">${escapeHtml(api.provider)}</span>
+              <code class="registry-kind">${escapeHtml(api.kind)}</code>
+              <span class="registry-used-by">${api.usedBy.map((app) => `<span class="registry-app-tag">${escapeHtml(app)}</span>`).join("")}</span>
+            </div>
+          `).join("")}
+        </div>
+      </article>
+    `).join("");
+
+  registry.innerHTML = `
+    <div class="registry-summary">
+      <span class="registry-total">Targeting ${escapeHtml(totalCount)} live and external endpoints across the system.</span>
+    </div>
+    ${groupsHtml}
+  `;
+}
+
+function renderUniversalBlueprint() {
+  if (!elements.blueprintCode) return;
+
+  const blueprint = {
+    system: "Dr. Non's Operating Systems",
+    owner: "Dr. Non Arkaraprasertkul",
+    generatedAt: new Date().toISOString(),
+    apiCatalog: API_REGISTRY_GROUPS.map((group) => ({
+      category: group.title,
+      description: group.why,
+      endpoints: group.apis.map((api) => {
+        let quality = "Standard";
+        let limitation = "General system constraints apply.";
+
+        if (api.kind === "external") {
+          quality = "External Service (High Uptime)";
+          limitation = "Rate-limited by provider; subject to upstream changes.";
+        } else if (api.kind === "internal") {
+          quality = "Core System API (Performance Optimized)";
+          limitation = "Hosted on Render; initial cold start possible.";
+        }
+
+        return {
+          label: api.label,
+          provider: api.provider,
+          kind: api.kind,
+          quality,
+          limitation,
+          usedBy: api.usedBy
+        };
+      })
+    }))
+  };
+
+  elements.blueprintCode.textContent = JSON.stringify(blueprint, null, 2);
+}
+
+async function handleBlueprintCopy() {
+  const code = elements.blueprintCode.textContent;
+  if (!code) return;
+
+  const button = elements.copyBlueprintButton;
+  const previousLabel = button.textContent;
+
+  try {
+    await navigator.clipboard.writeText(code);
+    button.textContent = "Copied to Clipboard";
+    window.setTimeout(() => {
+      button.textContent = previousLabel;
+    }, 2000);
+  } catch (err) {
+    button.textContent = "Copy failed";
+    window.setTimeout(() => {
+      button.textContent = previousLabel;
+    }, 2000);
+  }
+}
+
+
+
 function handlePreviewRefresh(event) {
   const button = event.target.closest("[data-refresh-preview]");
 
@@ -1527,6 +1830,7 @@ function renderDashboard() {
   renderApiInventory(targets, summary);
   renderRecentProjects(targets);
   renderPublishingSpeed(targets);
+  renderApiRegistry();
   renderRemoteSections(targets);
 
   elements.lastChecked.textContent = snapshotBacked
@@ -1691,7 +1995,7 @@ function handleLocalClick(event) {
   renderLocalTargets();
 }
 
-async function handleBlueprintCopy(event) {
+async function handleTargetBlueprintCopy(event) {
   const button = event.target.closest("[data-copy-blueprint]");
 
   if (!button || !state.dashboard) {
@@ -1751,20 +2055,29 @@ function bindEvents() {
   elements.activeGrid.addEventListener("keydown", handlePreviewKeydown);
   elements.staticGrid.addEventListener("keydown", handlePreviewKeydown);
   elements.localGrid.addEventListener("keydown", handlePreviewKeydown);
-  elements.featuredGrid.addEventListener("click", handleBlueprintCopy);
-  elements.activeGrid.addEventListener("click", handleBlueprintCopy);
-  elements.staticGrid.addEventListener("click", handleBlueprintCopy);
+  elements.featuredGrid.addEventListener("click", handleTargetBlueprintCopy);
+  elements.activeGrid.addEventListener("click", handleTargetBlueprintCopy);
+  elements.staticGrid.addEventListener("click", handleTargetBlueprintCopy);
   elements.localForm.addEventListener("submit", handleLocalSubmit);
   elements.localGrid.addEventListener("click", handleLocalClick);
 }
+
 
 bindEvents();
 renderLabLogos();
 renderProfile({ monitoredPages: 0 });
 renderFooter();
 renderMentions();
+renderApiRegistry();
+renderHistoryGallery();
+renderUniversalBlueprint();
 startClock();
 renderLocalTargets();
 applyModeUI();
 scheduleRefresh();
 refreshDashboard(true);
+
+if (elements.copyBlueprintButton) {
+  elements.copyBlueprintButton.addEventListener("click", handleBlueprintCopy);
+}
+

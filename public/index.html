@@ -208,6 +208,28 @@
         </article>
       </section>
 
+      <section id="apiRegistryHead" class="section-head">
+        <div>
+          <p class="eyebrow">Full inventory</p>
+          <h2>API Registry</h2>
+        </div>
+        <p class="section-copy">
+          Every external and internal API powering the fleet, grouped by function.
+        </p>
+      </section>
+      <section id="apiRegistry" class="api-registry"></section>
+
+      <section id="historySectionHead" class="section-head">
+        <div>
+          <p class="eyebrow">Operating record</p>
+          <h2>History of Development</h2>
+        </div>
+        <p class="section-copy">
+          Archive of project snapshots and evolutionary steps before current upgrades.
+        </p>
+      </section>
+      <section id="historyGallery" class="history-gallery"></section>
+
       <section class="section-head">
         <div>
           <p class="eyebrow">Primary surface</p>
@@ -293,6 +315,20 @@
           </article>
 
           <section id="localGrid" class="card-grid local-grid"></section>
+
+          <article class="panel blueprint-panel" id="universalBlueprintPanel">
+            <div class="panel-head">
+              <p class="panel-kicker">Machine-to-machine reference</p>
+              <h2>Universal API Blueprint</h2>
+            </div>
+            <p class="panel-note">
+              Comprehensive JSON manifest of all system endpoints, including quality scoring and operational constraints.
+            </p>
+            <div class="blueprint-actions">
+              <button id="copyBlueprintButton" class="button button-primary">Copy Master Blueprint JSON</button>
+            </div>
+            <pre id="blueprintCode" class="blueprint-code"></pre>
+          </article>
         </div>
       </section>
 
