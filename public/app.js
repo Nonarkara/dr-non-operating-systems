@@ -187,6 +187,15 @@ const PROFILE = {
   }
 };
 
+const NOVEL_DATA = {
+  title: "Designated Survivor: Bangkok",
+  tagline: "When the system collapses, build a new one.",
+  summary: "A speculative thriller set in 2026. Protagonist Dr. Non discovers a breach in a dormant emergency system via his smart glasses, signaling the beginning of a systemic collapse that only he can decode.",
+  url: "https://substack.com/@nonarkara?utm_source=top-search",
+  coverImage: "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7868b669-5217-4207-a393-43d582fc3628_2528x1696.png",
+  chapters: ["Chapter 1: Champagne Supernova", "Chapter 2: Protocols in the Mist", "Chapter 3: The Bangkok Perimeter"]
+};
+
 const BRANDS = {
   "airdnd-platform": {
     monogram: "AD"
@@ -2063,6 +2072,34 @@ function bindEvents() {
 }
 
 
+function renderNovelSection() {
+  const container = document.querySelector("#novelContent");
+  if (!container) return;
+
+  container.innerHTML = `
+    <div class="novel-grid">
+      <div class="novel-cover-wrap">
+        <img src="${escapeHtml(NOVEL_DATA.coverImage)}" alt="${escapeHtml(NOVEL_DATA.title)}" class="novel-cover" />
+        <div class="novel-badge">CLASSIFIED</div>
+      </div>
+      <div class="novel-details">
+        <p class="novel-tagline">“${escapeHtml(NOVEL_DATA.tagline)}”</p>
+        <p class="novel-summary">${escapeHtml(NOVEL_DATA.summary)}</p>
+        <div class="novel-meta">
+          <div class="novel-meta-item">
+            <span class="meta-label">STATUS:</span>
+            <span class="meta-value">DEPLOYING (CHAPTERS 1-3)</span>
+          </div>
+          <div id="novelChapters" class="novel-chapters">
+            ${NOVEL_DATA.chapters.map(ch => `<div class="novel-chapter-tag">${escapeHtml(ch)}</div>`).join("")}
+          </div>
+        </div>
+        <a href="${escapeHtml(NOVEL_DATA.url)}" target="_blank" class="button button-primary novel-cta">READ ON SUBSTACK</a>
+      </div>
+    </div>
+  `;
+}
+
 bindEvents();
 renderLabLogos();
 renderProfile({ monitoredPages: 0 });
@@ -2071,11 +2108,13 @@ renderMentions();
 renderApiRegistry();
 renderHistoryGallery();
 renderUniversalBlueprint();
+renderNovelSection();
 startClock();
 renderLocalTargets();
 applyModeUI();
 scheduleRefresh();
 refreshDashboard(true);
+
 
 if (elements.copyBlueprintButton) {
   elements.copyBlueprintButton.addEventListener("click", handleBlueprintCopy);

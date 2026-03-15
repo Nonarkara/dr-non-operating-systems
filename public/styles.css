@@ -1740,3 +1740,123 @@ summary {
     grid-column: span 3;
   }
 }
+
+/* Novel Section Styling */
+.novel-section {
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+.novel-panel {
+  padding: 1.5rem;
+  border: 1px solid var(--accent);
+  box-shadow: 0 0 15px rgba(0, 255, 65, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.novel-panel::after {
+  content: "TOP SECRET";
+  position: absolute;
+  top: 10%;
+  right: -5%;
+  font-size: 4rem;
+  font-weight: 900;
+  color: rgba(0, 255, 65, 0.03);
+  transform: rotate(20deg);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.novel-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.novel-cover-wrap {
+  position: relative;
+}
+
+.novel-cover {
+  width: 100%;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  border: 1px solid var(--line);
+  filter: sepia(0.5) hue-rotate(80deg) contrast(1.2);
+}
+
+.novel-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: var(--bg);
+  border: 1px solid red;
+  color: red;
+  font-size: 0.7rem;
+  padding: 0.2rem 0.5rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.novel-tagline {
+  font-size: 1.2rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  font-weight: bold;
+  text-shadow: 0 0 5px var(--accent);
+}
+
+.novel-summary {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  opacity: 0.9;
+}
+
+.novel-meta {
+  border-top: 1px dashed var(--line);
+  padding-top: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.novel-meta-item {
+  margin-bottom: 0.5rem;
+}
+
+.meta-label {
+  color: var(--text-dim);
+  font-size: 0.8rem;
+}
+
+.meta-value {
+  color: var(--accent);
+  font-weight: bold;
+}
+
+.novel-chapters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.novel-chapter-tag {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.6rem;
+  border: 1px solid var(--line);
+  color: var(--text-dim);
+}
+
+.novel-cta {
+  display: inline-block;
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .novel-grid {
+    grid-template-columns: 1fr;
+  }
+}
