@@ -1,9 +1,10 @@
 {
   "name": "non-operations-radar",
-  "version": "1.0.0",
+  "version": "3.0.0",
   "private": true,
   "type": "module",
   "scripts": {
+    "smoke": "node scripts/smoke-check.mjs",
     "snapshot": "node scripts/write-dashboard-snapshot.mjs",
     "start": "node server.js"
   }

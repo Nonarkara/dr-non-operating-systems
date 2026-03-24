@@ -710,6 +710,7 @@ function applyModeUI() {
   const fallbackMode = state.lastLoadSource === "snapshot-fallback";
 
   elements.refreshButton.textContent = liveMode ? "Run live scan" : "Reload snapshot";
+  elements.mentionsRefreshButton.textContent = liveMode ? "Refresh mentions" : "Reload mention snapshot";
   elements.manualScanLink.href = MANUAL_SCAN_WORKFLOW_URL;
   elements.manualScanLink.textContent = liveMode ? "Open snapshot workflow" : "Run manual scan";
   elements.refreshSelect.disabled = !liveMode;
@@ -2011,7 +2012,26 @@ async function fetchLiveDashboard(force = false) {
   return response.json();
 }
 
+async function fetchSnapshotMentions(force = false) {
+  const snapshot = await fetchSnapshotDashboard(force);
+
+  return snapshot.mentions ?? {
+    checkedAt: snapshot.generatedAt ?? null,
+    error: "Mention snapshot unavailable.",
+    items: [],
+    latestAt: null,
+    scannedAliases: [],
+    searchUrl: "https://news.google.com/",
+    source: "Mention sweep",
+    status: "offline"
+  };
+}
+
 async function fetchMentions(force = false) {
+  if (state.mode !== "live") {
+    return fetchSnapshotMentions(force);
+  }
+
   const query = force ? "?force=1" : "";
   const response = await fetch(`./api/mentions${query}`, { cache: "no-store" });
 
@@ -2246,4 +2266,3 @@ refreshDashboard(true);
 if (elements.copyBlueprintButton) {
   elements.copyBlueprintButton.addEventListener("click", handleBlueprintCopy);
 }
-

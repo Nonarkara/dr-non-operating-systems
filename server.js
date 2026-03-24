@@ -15,6 +15,7 @@ const DASHBOARD_TTL_MS = 20_000;
 const GITHUB_TTL_MS = 10 * 60_000;
 const MENTIONS_TTL_MS = 30 * 60_000;
 const REPO_TTL_MS = 10 * 60_000;
+const STALE_SNAPSHOT_MS = 24 * 60 * 60_000;
 const SAMPLE_LIMIT = 36;
 const MENTION_ITEM_LIMIT = 6;
 const MENTION_ALIASES = [
@@ -509,6 +510,39 @@ async function sendSnapshotMentions(response) {
       status: "offline"
     }));
   }
+}
+
+function buildHealthPayload(payload, mode) {
+  const issues = payload?.summary?.issues ?? [];
+  const generatedAtMs = payload?.generatedAt ? Date.parse(payload.generatedAt) : Number.NaN;
+  const snapshotAgeMs = Number.isFinite(generatedAtMs) ? Date.now() - generatedAtMs : null;
+  const snapshotStale = mode === "snapshot" && (snapshotAgeMs === null || snapshotAgeMs > STALE_SNAPSHOT_MS);
+  const githubStatus = payload?.github?.status ?? "unknown";
+  const mentionsStatus = payload?.mentions?.status ?? "unknown";
+  const status = snapshotStale || issues.length || githubStatus === "offline" || mentionsStatus === "offline"
+    ? "degraded"
+    : "ok";
+
+  return {
+    service: "non-operations-radar",
+    status,
+    mode,
+    time: new Date().toISOString(),
+    generatedAt: payload?.generatedAt ?? null,
+    snapshotAgeMs: mode === "snapshot" ? snapshotAgeMs : null,
+    summary: payload?.summary
+      ? {
+          attentionCount: payload.summary.attentionCount,
+          liveCount: payload.summary.liveCount,
+          monitoredPages: payload.summary.monitoredPages
+        }
+      : null,
+    dependencies: {
+      github: githubStatus,
+      mentions: mentionsStatus
+    },
+    issues: issues.slice(0, 5)
+  };
 }
 
 function decodeHtmlEntities(value) {
@@ -1246,11 +1280,21 @@ const server = createServer(async (request, response) => {
   const url = new URL(request.url, `http://${request.headers.host || "127.0.0.1"}`);
 
   if (url.pathname === "/api/health") {
-    sendJson(response, 200, {
-      service: "non-operations-radar",
-      status: "ok",
-      time: new Date().toISOString()
-    });
+    const liveMode = allowLiveScan(request);
+
+    try {
+      const payload = liveMode ? await getDashboardData(false) : await readSnapshotPayload();
+      const health = buildHealthPayload(payload, liveMode ? "live" : "snapshot");
+      sendJson(response, 200, health);
+    } catch (error) {
+      sendJson(response, 503, {
+        service: "non-operations-radar",
+        status: "error",
+        mode: liveMode ? "live" : "snapshot",
+        time: new Date().toISOString(),
+        error: error.message
+      });
+    }
     return;
   }
 
