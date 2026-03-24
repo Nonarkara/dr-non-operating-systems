@@ -727,14 +727,29 @@ function applyModeUI() {
   elements.modeNote.textContent = note;
   elements.opsInventory.hidden = !liveMode;
   elements.localLayout.hidden = !liveMode;
+
+  const navStatus = document.querySelector("#navStatus");
+  if (navStatus) {
+    navStatus.innerHTML = makeStatusPill(liveMode ? "live" : "snapshot", liveMode ? "live" : "neutral");
+  }
+
+  const navOpsLink = document.querySelector("#navOpsLink");
+  if (navOpsLink) {
+    navOpsLink.hidden = !liveMode;
+  }
 }
 
 function updateClock() {
-  elements.clock.textContent = new Date().toLocaleTimeString([], {
+  const time = new Date().toLocaleTimeString([], {
     hour: "2-digit",
     minute: "2-digit",
     second: "2-digit"
   });
+  elements.clock.textContent = time;
+  const navClock = document.querySelector("#navClock");
+  if (navClock) {
+    navClock.textContent = time;
+  }
 }
 
 function startClock() {

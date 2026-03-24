@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dr. Non's Operating Systems v3</title>
+    <title>Dr. Non's Operating Systems v4</title>
     <script>
       window.__assetVersion = String(Date.parse(document.lastModified) || Date.now());
       const stylesheet = document.createElement("link");
@@ -16,6 +16,22 @@
     <div class="bg-orbit orbit-a"></div>
     <div class="bg-orbit orbit-b"></div>
     <div class="grid-glow"></div>
+
+    <nav class="top-nav" aria-label="Section navigation">
+      <div class="top-nav-inner">
+        <span class="top-nav-brand">NON.OS <span class="top-nav-version">v4</span></span>
+        <div class="top-nav-links">
+          <a href="#profileDossier" class="top-nav-link">Profile</a>
+          <a href="#originStoryHead" class="top-nav-link">Origin</a>
+          <a href="#novelSection" class="top-nav-link">Novel</a>
+          <a href="#historySectionHead" class="top-nav-link">Archive</a>
+          <a href="#apiRegistryHead" class="top-nav-link">APIs</a>
+          <a href="#ops-inventory" class="top-nav-link top-nav-link-live" id="navOpsLink">Ops</a>
+        </div>
+        <div class="top-nav-clock" id="navClock"></div>
+        <div class="top-nav-status" id="navStatus"></div>
+      </div>
+    </nav>
 
     <main class="shell">
       <header class="hero">
@@ -37,8 +53,8 @@
         </div>
 
         <div class="hero-copy">
-          <p class="eyebrow">Non Project Summary v3</p>
-          <h1>Dr. Non's Operating Systems v3</h1>
+          <p class="eyebrow">Non Project Summary v4</p>
+          <h1>Dr. Non's Operating Systems</h1>
           <p class="lede">
             Public systems, current work, and operating record in one live wall.
             Public mode stays snapshot-backed. Local mode runs the real scan.
@@ -46,19 +62,19 @@
         </div>
 
         <div class="hero-controls">
-          <button id="refreshButton" class="button button-primary" type="button">
-            Reload snapshot
+          <button id="refreshButton" class="button button-primary utility-button" type="button">
+            Run live scan
           </button>
           <a
             id="manualScanLink"
-            class="button button-secondary"
+            class="button button-secondary utility-button"
             href="https://github.com/Nonarkara/dr-non-operating-systems/actions/workflows/update-dashboard-snapshot.yml"
             rel="noreferrer"
             target="_blank"
           >
-            Run manual scan
+            Open snapshot workflow
           </a>
-          <button id="openAllButton" class="button button-secondary" type="button">
+          <button id="openAllButton" class="button button-secondary utility-button" type="button">
             Open all live pages
           </button>
           <label class="select-wrap">
