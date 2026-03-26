@@ -256,7 +256,7 @@ const TARGETS = [
     id: "dngws-monitor",
     label: "DNGWS Monitor",
     url: "https://dngws-monitor.vercel.app/",
-    description: "Dr Non's GlobeWatch System monitor on Vercel.",
+    description: "Vercel backup of the Middle East Monitor (Dr Non's GlobeWatch System).",
     category: "Monitoring",
     surface: "active",
     addedAt: "2026-03-26"
