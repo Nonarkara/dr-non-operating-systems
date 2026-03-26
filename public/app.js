@@ -91,8 +91,80 @@ const ARCHIVE_IMAGES = [
   "Screenshot 2569-03-11 at 13.59.34.png",
   "Screenshot 2569-03-11 at 14.56.54.png",
   "Screenshot 2569-03-11 at 15.04.33.png",
-  "WhatsApp Image 2025-11-23 at 12.07.37 PM.jpeg"
+  "WhatsApp Image 2025-11-23 at 12.07.37 PM.jpeg",
+  "Thailand Tri-Border Command v4.jpg",
+  "SLIC Index 2026 V2.jpg",
+  "GlobeWatch System Middle East.jpg",
+  "Muang Thong Thani Monitor.jpg",
+  "Phuket Island Command.jpg"
 ];
+
+const FIELD_PHOTOS = [
+  "0811bc15-651f-4dde-81af-46580fa9a795.jpg",
+  "290811441_5153495211364296_8102218306877593840_n.jpeg",
+  "2b398e91-e7cd-48bd-abbd-7d0e093e2c28(1).jpg",
+  "403599058_1797525000701507_153970454313690316_n.jpg",
+  "459288254_924132223081934_9217219278417242092_n.jpg",
+  "CQW03907.jpg",
+  "DAY1_0368.jpg",
+  "DSC_2572.jpg",
+  "E81F03FB-1399-4820-87A3-17C837902545.jpeg",
+  "FFC74093-8656-4C1A-904C-EF1B5461267D.jpeg",
+  "IMG_2457.JPG",
+  "IMG_3687.JPG",
+  "IMG_4446.JPG",
+  "IMG_4505.JPG",
+  "IMG_6359.JPG",
+  "IMG_6651.JPG",
+  "LINE_ALBUM_Mini MBA 18 NOV 2023_231120_11.jpg",
+  "Screenshot 2569-03-08 at 10.24.44.png",
+  "Screenshot 2569-03-09 at 04.43.16.png",
+  "Screenshot 2569-03-09 at 13.16.17.png",
+  "Screenshot 2569-03-09 at 18.09.52.png",
+  "Screenshot 2569-03-09 at 18.28.46.png",
+  "Screenshot 2569-03-09 at 23.09.13.png",
+  "Screenshot 2569-03-18 at 13.43.58.png",
+  "Screenshot 2569-03-18 at 13.52.42.png",
+  "Screenshot 2569-03-18 at 13.53.35.png",
+  "Smart Cities _ Nex Big Tech Event Cam B_1144.jpg",
+  "Smart Cities _ Nex Big Tech Event Cam B_1184.jpg",
+  "Timeline photos(1).jpg",
+  "Timeline photos(2).jpg",
+  "Timeline photos.jpg",
+  "WhatsApp Image 2023-03-17 at 05.20.05 (1).jpeg"
+];
+
+const FIELD_RECORD = {
+  stats: [
+    { value: "200+", label: "Workshops" },
+    { value: "77", label: "Provinces" },
+    { value: "5,000+", label: "Officials" },
+    { value: "Pre-AI", label: "Documentation" },
+    { value: "100+", label: "Global Forums" }
+  ],
+  acts: [
+    {
+      number: "PHASE I",
+      title: "The Listening Protocol",
+      body: "Before any index, before any dashboard, there were rooms full of people. Over several years Dr. Non designed and ran more than 200 decision-making workshops across Thailand — structured sessions built to surface what city officials, residents, and planners actually needed, not what technologists assumed they needed."
+    },
+    {
+      number: "PHASE II",
+      title: "Pre-AI Documentation",
+      body: "This work began before large language models existed to help transcribe, summarize, or synthesize. Every session was documented by hand — notes, photos, diagrams, recordings. The discipline of capturing human intelligence before machine intelligence became the methodology that now powers the Index."
+    },
+    {
+      number: "PHASE III",
+      title: "77 Provinces, One Index",
+      body: "Coverage extended across all 77 Thai provinces, reaching officials at every administrative tier. The diversity of contexts — from dense urban cores to remote rural districts — forced the index framework to remain flexible, human-readable, and grounded in lived experience rather than top-down theory."
+    },
+    {
+      number: "PHASE IV",
+      title: "Data From Real People",
+      body: "Every metric in the SLIC Index traces back to this field record. The dashboards are fast, the APIs are live, the AI is deployed — but the intelligence underneath it all came from listening, systematically, to real people, in real rooms, over real years."
+    }
+  ]
+};
 
 const PORTRAITS = [
   { file: "1773314596245 (1).jpg", caption: "depa HQ, Bangkok" },
@@ -263,8 +335,19 @@ const NOVEL_DATA = {
   tagline: "When the system collapses, build a new one.",
   summary: "A speculative thriller set in 2026. Protagonist Dr. Non discovers a breach in a dormant emergency system via his smart glasses, signaling the beginning of a systemic collapse that only he can decode.",
   url: "https://substack.com/@nonarkara?utm_source=top-search",
-  coverImage: "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7868b669-5217-4207-a393-43d582fc3628_2528x1696.png",
-  chapters: ["Chapter 1: Champagne Supernova", "Chapter 2: Protocols in the Mist", "Chapter 3: The Bangkok Perimeter"]
+  coverImage: "./Designated Survivor/ChatGPT Image Mar 7, 2026, 10_42_04 AM.png",
+  coverFallback: "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7868b669-5217-4207-a393-43d582fc3628_2528x1696.png",
+  chapters: ["Chapter 1: Champagne Supernova", "Chapter 2: Protocols in the Mist", "Chapter 3: The Bangkok Perimeter"],
+  gallery: [
+    "./Designated Survivor/ChatGPT Image Feb 23, 2026, 05_51_48 AM.png",
+    "./Designated Survivor/ChatGPT Image Feb 23, 2026, 05_51_58 AM.png",
+    "./Designated Survivor/ChatGPT Image Feb 23, 2026, 06_06_25 AM.png",
+    "./Designated Survivor/Gemini_Generated_Image_2y478l2y478l2y47.png",
+    "./Designated Survivor/Gemini_Generated_Image_5lfeas5lfeas5lfe.png",
+    "./Designated Survivor/Gemini_Generated_Image_6dse5e6dse5e6dse.png",
+    "./Designated Survivor/Gemini_Generated_Image_hptkqrhptkqrhptk.png",
+    "./Designated Survivor/Gemini_Generated_Image_kofnrnkofnrnkofn.png"
+  ]
 };
 
 const BRANDS = {
@@ -1556,6 +1639,49 @@ function renderPublishingSpeed(targets) {
   `;
 }
 
+function renderFieldRecord() {
+  const container = document.querySelector("#fieldRecord");
+  if (!container) return;
+
+  const statsHtml = `
+    <div class="field-stats-bar">
+      ${FIELD_RECORD.stats.map((s) => `
+        <div class="field-stat-item">
+          <span class="field-stat-value">${escapeHtml(s.value)}</span>
+          <span class="field-stat-label">${escapeHtml(s.label)}</span>
+        </div>
+      `).join("")}
+    </div>`;
+
+  const photosHtml = `
+    <div class="field-photo-grid">
+      ${FIELD_PHOTOS.map((filename) => `
+        <div class="field-photo-card">
+          <img
+            class="field-photo-img"
+            src="./Development History/${encodeURIComponent(filename)}"
+            alt="Field workshop: ${escapeHtml(filename)}"
+            loading="lazy"
+            onerror="this.closest('.field-photo-card').style.display='none'"
+          />
+        </div>
+      `).join("")}
+    </div>`;
+
+  const actsHtml = `
+    <div class="field-acts">
+      ${FIELD_RECORD.acts.map((act) => `
+        <div class="field-act">
+          <span class="field-act-number">${escapeHtml(act.number)}</span>
+          <h3 class="field-act-title">${escapeHtml(act.title)}</h3>
+          <p class="field-act-body">${escapeHtml(act.body)}</p>
+        </div>
+      `).join("")}
+    </div>`;
+
+  container.innerHTML = statsHtml + photosHtml + actsHtml;
+}
+
 function renderHistoryGallery() {
   if (!elements.historyGallery) return;
 
@@ -1563,11 +1689,12 @@ function renderHistoryGallery() {
     (filename) => `
       <article class="history-card">
         <div class="history-mark">
-          <img 
-            class="history-image" 
-            alt="Historical project snapshot: ${escapeHtml(filename)}" 
-            loading="lazy" 
-            src="./Old projects from archives/${encodeURIComponent(filename)}" 
+          <img
+            class="history-image"
+            alt="Historical project snapshot: ${escapeHtml(filename)}"
+            loading="lazy"
+            src="./Old projects from archives/${encodeURIComponent(filename)}"
+            onerror="this.closest('.history-card').style.display='none'"
           />
         </div>
         <div class="history-info">
@@ -2237,27 +2364,51 @@ function renderNovelSection() {
   const container = document.querySelector("#novelContent");
   if (!container) return;
 
+  const galleryHtml = NOVEL_DATA.gallery.length ? `
+    <div class="novel-gallery">
+      ${NOVEL_DATA.gallery.map((src) => `
+        <img
+          class="novel-gallery-image"
+          src="${escapeHtml(src)}"
+          alt="Designated Survivor: Bangkok — scene illustration"
+          loading="lazy"
+          onerror="this.style.display='none'"
+        />
+      `).join("")}
+    </div>
+  ` : "";
+
   container.innerHTML = `
     <div class="novel-grid">
       <div class="novel-cover-wrap">
-        <img src="${escapeHtml(NOVEL_DATA.coverImage)}" alt="${escapeHtml(NOVEL_DATA.title)}" class="novel-cover" />
+        <img
+          src="${escapeHtml(NOVEL_DATA.coverImage)}"
+          alt="${escapeHtml(NOVEL_DATA.title)}"
+          class="novel-cover"
+          onerror="this.src='${escapeHtml(NOVEL_DATA.coverFallback)}'"
+        />
         <div class="novel-badge">CLASSIFIED</div>
       </div>
       <div class="novel-details">
-        <p class="novel-tagline">“${escapeHtml(NOVEL_DATA.tagline)}”</p>
+        <p class="novel-tagline">"${escapeHtml(NOVEL_DATA.tagline)}"</p>
         <p class="novel-summary">${escapeHtml(NOVEL_DATA.summary)}</p>
         <div class="novel-meta">
           <div class="novel-meta-item">
             <span class="meta-label">STATUS:</span>
-            <span class="meta-value">DEPLOYING (CHAPTERS 1-3)</span>
+            <span class="meta-value">DEPLOYING — CHAPTERS 1–3</span>
+          </div>
+          <div class="novel-meta-item">
+            <span class="meta-label">AUTHOR:</span>
+            <span class="meta-value">Dr. Non Arkaraprasertkul</span>
           </div>
           <div id="novelChapters" class="novel-chapters">
-            ${NOVEL_DATA.chapters.map(ch => `<div class="novel-chapter-tag">${escapeHtml(ch)}</div>`).join("")}
+            ${NOVEL_DATA.chapters.map((ch) => `<div class="novel-chapter-tag">${escapeHtml(ch)}</div>`).join("")}
           </div>
         </div>
-        <a href="${escapeHtml(NOVEL_DATA.url)}" target="_blank" class="button button-primary novel-cta">READ ON SUBSTACK</a>
+        <a href="${escapeHtml(NOVEL_DATA.url)}" target="_blank" rel="noreferrer" class="button button-primary utility-button novel-cta">Read on Substack</a>
       </div>
     </div>
+    ${galleryHtml}
   `;
 }
 
@@ -2267,6 +2418,7 @@ renderProfile({ monitoredPages: 0 });
 renderFooter();
 renderMentions();
 renderApiRegistry();
+renderFieldRecord();
 renderHistoryGallery();
 renderOriginStory();
 renderUniversalBlueprint();
