@@ -50,8 +50,8 @@
   --font-serif: "Inter", system-ui, sans-serif;
 
   /* Geometry */
-  --radius:      12px;
-  --radius-sm:   7px;
+  --radius:      8px;
+  --radius-sm:   4px;
   --radius-pill: 999px;
 
   /* Transitions */
@@ -230,6 +230,7 @@ img {
    ============================================================ */
 
 .shell {
+  counter-reset: section-counter;
   position: relative;
   z-index: 1;
   width: min(1280px, calc(100% - 2rem));
@@ -492,7 +493,7 @@ img {
 
 .hero-copy h1 {
   max-width: 12ch;
-  font-size: clamp(2rem, 4.2vw, 3.8rem);
+  font-size: clamp(2.8rem, 5.5vw, 5.2rem);
   font-weight: 800;
   background: linear-gradient(135deg, var(--text-bright) 0%, var(--accent) 100%);
   -webkit-background-clip: text;
@@ -501,8 +502,10 @@ img {
 }
 
 .section-head h2 {
-  font-size: clamp(1.3rem, 2.2vw, 2.1rem);
-  font-weight: 700;
+  font-size: clamp(1.8rem, 3.5vw, 3rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
 }
 
 .panel h2 {
@@ -534,9 +537,10 @@ label span,
 .lede,
 .section-copy {
   margin: 0;
-  max-width: 46ch;
-  font-size: 0.82rem;
-  line-height: 1.4;
+  max-width: 56ch;
+  font-size: 0.875rem;
+  line-height: 1.55;
+  color: var(--muted-strong);
 }
 
 .eyebrow,
@@ -548,7 +552,7 @@ label span,
   color: var(--muted-mid);
   font-family: var(--font-mono);
   font-size: 0.54rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
 }
 
@@ -768,13 +772,32 @@ select:disabled {
    ============================================================ */
 
 .section-head {
+  position: relative;
+  overflow: hidden;
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
   gap: 0.6rem;
-  margin-top: 2rem;
-  padding-top: 0.6rem;
+  margin-top: 4rem;
+  padding-top: 2rem;
   border-top: 1px solid var(--line-strong);
+  margin-bottom: 1.75rem;
+}
+
+.section-head::before {
+  counter-increment: section-counter;
+  content: counter(section-counter, decimal-leading-zero);
+  font-family: var(--font-mono);
+  font-size: clamp(5rem, 14vw, 11rem);
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.025);
+  line-height: 1;
+  letter-spacing: -0.08em;
+  position: absolute;
+  top: -0.1em;
+  right: -0.05em;
+  pointer-events: none;
+  user-select: none;
 }
 
 .section-head > div {
@@ -857,9 +880,10 @@ select:disabled {
 }
 
 .profile-stat-value {
-  font-family: var(--font-sans);
-  font-size: clamp(1rem, 1.5vw, 1.3rem);
+  font-family: var(--font-mono);
+  font-size: clamp(1.6rem, 2.8vw, 2.4rem);
   font-weight: 700;
+  letter-spacing: -0.03em;
   line-height: 0.9;
   letter-spacing: -0.03em;
   color: var(--text-bright);
@@ -1239,8 +1263,6 @@ select:disabled {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--bg-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
   transition: all var(--t);
   overflow: visible;
 }
@@ -1248,8 +1270,7 @@ select:disabled {
 .site-card:hover {
   border-color: var(--line-strong);
   background: rgba(14, 26, 42, 0.95);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(0, 191, 255, 0.15), var(--glow);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(0, 191, 255, 0.13);
 }
 
 .site-card::after {
@@ -1846,8 +1867,22 @@ summary:hover {
 
 .history-card:hover {
   border-color: var(--line-strong);
-  transform: translateY(-1px);
   box-shadow: var(--glow-card);
+}
+
+.history-card--live {
+  grid-column: span 6;
+  border-color: var(--line-strong);
+  background: rgba(0, 191, 255, 0.02);
+}
+
+.history-card--live .history-mark {
+  aspect-ratio: 16 / 9;
+}
+
+.history-card--live .history-filename {
+  font-size: 0.68rem;
+  color: var(--text-bright);
 }
 
 .history-mark {
@@ -1894,9 +1929,9 @@ summary:hover {
 .field-stats-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem 2.5rem;
-  padding: 1.25rem 0;
-  border-top: 1px solid var(--line);
+  gap: 2rem 4rem;
+  padding: 2.5rem 0 2rem;
+  border-top: 1px solid var(--line-strong);
   border-bottom: 1px solid var(--line);
 }
 
@@ -1907,19 +1942,19 @@ summary:hover {
 
 .field-stat-value {
   font-family: var(--font-mono);
-  font-size: clamp(1.4rem, 2.5vw, 2rem);
+  font-size: clamp(2.8rem, 5vw, 4.5rem);
   font-weight: 700;
   color: var(--accent);
-  letter-spacing: -0.03em;
+  letter-spacing: -0.04em;
   line-height: 1;
   transition: color var(--t);
 }
 
 .field-stat-label {
   font-family: var(--font-mono);
-  font-size: 0.52rem;
+  font-size: 0.54rem;
   font-weight: 600;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--muted-mid);
 }
@@ -2336,9 +2371,9 @@ summary:hover {
 
 .origin-act-number {
   font-family: var(--font-mono);
-  font-size: 0.54rem;
-  font-weight: 600;
-  letter-spacing: 0.18em;
+  font-size: clamp(0.68rem, 1.2vw, 0.9rem);
+  font-weight: 700;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
   color: var(--accent);
 }

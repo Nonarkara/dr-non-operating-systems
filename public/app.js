@@ -1704,7 +1704,7 @@ function renderHistoryGallery() {
   if (!elements.historyGallery) return;
 
   elements.historyGallery.innerHTML = ARCHIVE_IMAGES.map((item) => `
-    <article class="history-card">
+    <article class="history-card${item.tag === "live" ? " history-card--live" : ""}">
       <div class="history-mark">
         <img
           class="history-image"
