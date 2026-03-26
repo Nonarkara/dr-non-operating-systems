@@ -235,7 +235,7 @@ img {
   z-index: 1;
   width: min(1280px, calc(100% - 2rem));
   margin: 0 auto;
-  padding: 1.4rem 0 2.5rem;
+  padding: 1rem 0 2rem;
 }
 
 /* ============================================================
@@ -245,8 +245,8 @@ img {
 .hero {
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 0.5rem 0.8rem;
-  padding-bottom: 1.2rem;
+  gap: 0.4rem 0.7rem;
+  padding-bottom: 0.9rem;
   border-bottom: 1px solid var(--line-strong);
 }
 
@@ -538,8 +538,8 @@ label span,
 .section-copy {
   margin: 0;
   max-width: 56ch;
-  font-size: 0.875rem;
-  line-height: 1.55;
+  font-size: 0.82rem;
+  line-height: 1.45;
   color: var(--muted-strong);
 }
 
@@ -777,18 +777,18 @@ select:disabled {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 0.6rem;
-  margin-top: 4rem;
-  padding-top: 2rem;
+  gap: 0.5rem;
+  margin-top: 2.8rem;
+  padding-top: 1.4rem;
   border-top: 1px solid var(--line-strong);
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.2rem;
 }
 
 .section-head::before {
   counter-increment: section-counter;
   content: counter(section-counter, decimal-leading-zero);
   font-family: var(--font-mono);
-  font-size: clamp(5rem, 14vw, 11rem);
+  font-size: clamp(4rem, 11vw, 8rem);
   font-weight: 700;
   color: rgba(255, 255, 255, 0.025);
   line-height: 1;
@@ -802,7 +802,7 @@ select:disabled {
 
 .section-head > div {
   display: grid;
-  gap: 0.3rem;
+  gap: 0.2rem;
 }
 
 /* ============================================================
@@ -813,7 +813,7 @@ select:disabled {
 .profile-layout,
 .card-grid,
 .featured-grid {
-  gap: 0.55rem 0.65rem;
+  gap: 0.45rem 0.55rem;
 }
 
 .insight-grid,
@@ -1258,8 +1258,8 @@ select:disabled {
   position: relative;
   display: grid;
   grid-template-rows: auto auto auto 1fr auto auto auto;
-  gap: 0.75rem;
-  padding: 1rem 1.1rem;
+  gap: 0.6rem;
+  padding: 0.85rem 1rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--bg-card);
@@ -1857,8 +1857,8 @@ summary:hover {
   grid-column: span 12;
   display: flex;
   flex-direction: column;
-  gap: 0.4rem;
-  padding: 0.8rem;
+  gap: 0.3rem;
+  padding: 0.6rem;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--bg-card);
@@ -1922,15 +1922,15 @@ summary:hover {
 
 .field-record {
   display: grid;
-  gap: 2.5rem;
+  gap: 1.8rem;
 }
 
 /* Stats bar with count-up */
 .field-stats-bar {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem 4rem;
-  padding: 2.5rem 0 2rem;
+  gap: 1.5rem 3rem;
+  padding: 1.8rem 0 1.4rem;
   border-top: 1px solid var(--line-strong);
   border-bottom: 1px solid var(--line);
 }
@@ -2027,8 +2027,8 @@ summary:hover {
 
 .field-act {
   display: grid;
-  gap: 0.5rem;
-  padding: 1.5rem 0;
+  gap: 0.35rem;
+  padding: 1.1rem 0;
   border-bottom: 1px solid var(--line);
   max-width: 68ch;
 }
@@ -2323,7 +2323,7 @@ summary:hover {
 .origin-act {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 2rem;
+  gap: 1.4rem;
   align-items: center;
   padding: 2rem 0;
   border-bottom: 1px solid var(--line);
@@ -2366,7 +2366,7 @@ summary:hover {
 
 .origin-act-text {
   display: grid;
-  gap: 0.6rem;
+  gap: 0.4rem;
 }
 
 .origin-act-number {
