@@ -1,6 +1,10 @@
 services:
-  - type: static
+  - type: web
     name: dr-non-operating-systems
-    buildCommand: echo "Static dashboard deploy"
-    staticPublishPath: public
+    runtime: node
+    buildCommand: echo "No build step"
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
     pullRequestPreviewsEnabled: false
