@@ -215,6 +215,60 @@ const TARGETS = [
     featured: true,
     surface: "active",
     addedAt: "2026-03-13"
+  },
+  {
+    id: "slic-index-v2-vercel",
+    label: "SLIC Index V2 (Vercel)",
+    url: "https://slic-index-v2.vercel.app",
+    description: "Vercel backup of the SLIC Index Version 2.",
+    category: "Index",
+    surface: "active",
+    addedAt: "2026-03-26"
+  },
+  {
+    id: "sabai-sabai",
+    label: "Sabai Sabai",
+    url: "https://sabai-sabai-kohl.vercel.app",
+    description: "Sabai Sabai platform on Vercel.",
+    category: "Platform",
+    surface: "active",
+    addedAt: "2026-03-26"
+  },
+  {
+    id: "axiom",
+    label: "Axiom AI",
+    url: "https://axiom-mu-six.vercel.app",
+    description: "Axiom — Innovation as a Service. AI consultancy landing page on Vercel.",
+    category: "Landing page",
+    surface: "active",
+    addedAt: "2026-03-26"
+  },
+  {
+    id: "geopolitics-dashboard-vercel",
+    label: "Geopolitics Dashboard (Vercel)",
+    url: "https://geopolitics-dashboard-sage.vercel.app",
+    description: "Vercel backup of the Geopolitics Dashboard.",
+    category: "Monitoring",
+    surface: "active",
+    addedAt: "2026-03-26"
+  },
+  {
+    id: "dngws-monitor",
+    label: "DNGWS Monitor",
+    url: "https://dngws-monitor.vercel.app/",
+    description: "Dr Non's GlobeWatch System monitor on Vercel.",
+    category: "Monitoring",
+    surface: "active",
+    addedAt: "2026-03-26"
+  },
+  {
+    id: "phuket-dashboard-vercel",
+    label: "Phuket Dashboard (Vercel)",
+    url: "https://phuket-dashboard.vercel.app",
+    description: "Vercel backup of the Phuket coastal operations dashboard.",
+    category: "Monitoring",
+    surface: "active",
+    addedAt: "2026-03-26"
   }
 ];
 

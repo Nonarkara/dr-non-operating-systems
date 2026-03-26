@@ -403,6 +403,27 @@ const BRANDS = {
   },
   "techhuntthailand-viabus": {
     monogram: "TH"
+  },
+  "slic-index-v2-vercel": {
+    monogram: "SI"
+  },
+  "sabai-sabai": {
+    monogram: "SS"
+  },
+  "axiom": {
+    monogram: "AX"
+  },
+  "geopolitics-dashboard": {
+    monogram: "GD"
+  },
+  "geopolitics-dashboard-vercel": {
+    monogram: "GD"
+  },
+  "dngws-monitor": {
+    monogram: "DN"
+  },
+  "phuket-dashboard-vercel": {
+    monogram: "PD"
   }
 };
 
