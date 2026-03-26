@@ -62,76 +62,76 @@ const LAB_LOGOS = [
 ];
 
 const ARCHIVE_IMAGES = [
-  "1773133828362.png",
-  "1773377092111.jpg",
-  "1773570166448.jpg",
-  "1773570182857.jpg",
-  "1773570204010.jpg",
-  "1773570212485.jpg",
-  "1773570231976.jpg",
-  "1773570244976.jpg",
-  "Screenshot 2569-02-04 at 00.06.38.png",
-  "Screenshot 2569-02-04 at 00.25.43.png",
-  "Screenshot 2569-02-06 at 11.56.50.png",
-  "Screenshot 2569-02-06 at 11.58.59.png",
-  "Screenshot 2569-02-07 at 18.06.29.png",
-  "Screenshot 2569-02-12 at 16.00.30.png",
-  "Screenshot 2569-02-20 at 00.42.10.png",
-  "Screenshot 2569-02-23 at 23.39.00.png",
-  "Screenshot 2569-02-23 at 23.40.48.png",
-  "Screenshot 2569-02-24 at 23.33.01.png",
-  "Screenshot 2569-02-25 at 14.00.11.png",
-  "Screenshot 2569-02-25 at 16.47.50.png",
-  "Screenshot 2569-03-10 at 16.12.05.png",
-  "Screenshot 2569-03-10 at 16.15.00.png",
-  "Screenshot 2569-03-10 at 16.16.22.png",
-  "Screenshot 2569-03-10 at 16.28.33.png",
-  "Screenshot 2569-03-10 at 16.29.58.png",
-  "Screenshot 2569-03-11 at 12.10.19.png",
-  "Screenshot 2569-03-11 at 13.59.34.png",
-  "Screenshot 2569-03-11 at 14.56.54.png",
-  "Screenshot 2569-03-11 at 15.04.33.png",
-  "WhatsApp Image 2025-11-23 at 12.07.37 PM.jpeg",
-  "Thailand Tri-Border Command v4.jpg",
-  "SLIC Index 2026 V2.jpg",
-  "GlobeWatch System Middle East.jpg",
-  "Muang Thong Thani Monitor.jpg",
-  "Phuket Island Command.jpg"
+  { file: "1773133828362.png",                                  label: "Natural Language Coding — the discovery moment",   tag: "prototype" },
+  { file: "1773377092111.jpg",                                  label: "Dashboard prototype v1",                           tag: "prototype" },
+  { file: "1773570166448.jpg",                                  label: "City monitoring system — early build",             tag: "prototype" },
+  { file: "1773570182857.jpg",                                  label: "Data visualization prototype",                     tag: "prototype" },
+  { file: "1773570204010.jpg",                                  label: "Super Dashboard — city intelligence layer",        tag: "prototype" },
+  { file: "1773570212485.jpg",                                  label: "Smart city interface",                             tag: "prototype" },
+  { file: "1773570231976.jpg",                                  label: "Analytics prototype",                              tag: "prototype" },
+  { file: "1773570244976.jpg",                                  label: "Operations dashboard",                             tag: "prototype" },
+  { file: "Screenshot 2569-02-04 at 00.06.38.png",             label: "Early build — Feb 2026",                          tag: "build" },
+  { file: "Screenshot 2569-02-04 at 00.25.43.png",             label: "Prototype session — Feb 2026",                    tag: "build" },
+  { file: "Screenshot 2569-02-06 at 11.56.50.png",             label: "Interface iteration — Feb 2026",                  tag: "build" },
+  { file: "Screenshot 2569-02-06 at 11.58.59.png",             label: "Dashboard build — Feb 2026",                      tag: "build" },
+  { file: "Screenshot 2569-02-07 at 18.06.29.png",             label: "System prototype — Feb 2026",                     tag: "build" },
+  { file: "Screenshot 2569-02-12 at 16.00.30.png",             label: "Data layer integration — Feb 2026",               tag: "build" },
+  { file: "Screenshot 2569-02-20 at 00.42.10.png",             label: "API integration test — Feb 2026",                 tag: "build" },
+  { file: "Screenshot 2569-02-23 at 23.39.00.png",             label: "Live system test — Feb 2026",                     tag: "build" },
+  { file: "Screenshot 2569-02-23 at 23.40.48.png",             label: "Deployment test — Feb 2026",                      tag: "build" },
+  { file: "Screenshot 2569-02-24 at 23.33.01.png",             label: "Production check — Feb 2026",                     tag: "build" },
+  { file: "Screenshot 2569-02-25 at 14.00.11.png",             label: "System audit — Feb 2026",                         tag: "build" },
+  { file: "Screenshot 2569-02-25 at 16.47.50.png",             label: "Build verification — Feb 2026",                   tag: "build" },
+  { file: "Screenshot 2569-03-10 at 16.12.05.png",             label: "Fleet overview — Mar 2026",                       tag: "build" },
+  { file: "Screenshot 2569-03-10 at 16.15.00.png",             label: "Dashboard state — Mar 2026",                      tag: "build" },
+  { file: "Screenshot 2569-03-10 at 16.16.22.png",             label: "Operations review — Mar 2026",                    tag: "build" },
+  { file: "Screenshot 2569-03-10 at 16.28.33.png",             label: "System snapshot — Mar 2026",                      tag: "build" },
+  { file: "Screenshot 2569-03-10 at 16.29.58.png",             label: "Status check — Mar 2026",                         tag: "build" },
+  { file: "Screenshot 2569-03-11 at 12.10.19.png",             label: "GlobeWatch — global coverage view",               tag: "build" },
+  { file: "Screenshot 2569-03-11 at 13.59.34.png",             label: "Fleet status — Mar 2026",                         tag: "build" },
+  { file: "Screenshot 2569-03-11 at 14.56.54.png",             label: "Full system audit — Mar 2026",                    tag: "build" },
+  { file: "Screenshot 2569-03-11 at 15.04.33.png",             label: "Render deployment — machines obey",               tag: "build" },
+  { file: "WhatsApp Image 2025-11-23 at 12.07.37 PM.jpeg",     label: "Field session — Nov 2025",                        tag: "field" },
+  { file: "Thailand Tri-Border Command v4.jpg",                 label: "Thailand Tri-Border Command v4.3.9",              tag: "live" },
+  { file: "SLIC Index 2026 V2.jpg",                            label: "SLIC Index 2026 V2",                              tag: "live" },
+  { file: "GlobeWatch System Middle East.jpg",                  label: "GlobeWatch System: Middle East Theater",          tag: "live" },
+  { file: "Muang Thong Thani Monitor.jpg",                      label: "Muang Thong Thani Smart City Monitor",            tag: "live" },
+  { file: "Phuket Island Command.jpg",                          label: "Phuket Island Command Center",                    tag: "live" }
 ];
 
 const FIELD_PHOTOS = [
-  "0811bc15-651f-4dde-81af-46580fa9a795.jpg",
-  "290811441_5153495211364296_8102218306877593840_n.jpeg",
-  "2b398e91-e7cd-48bd-abbd-7d0e093e2c28(1).jpg",
-  "403599058_1797525000701507_153970454313690316_n.jpg",
-  "459288254_924132223081934_9217219278417242092_n.jpg",
-  "CQW03907.jpg",
-  "DAY1_0368.jpg",
-  "DSC_2572.jpg",
-  "E81F03FB-1399-4820-87A3-17C837902545.jpeg",
-  "FFC74093-8656-4C1A-904C-EF1B5461267D.jpeg",
-  "IMG_2457.JPG",
-  "IMG_3687.JPG",
-  "IMG_4446.JPG",
-  "IMG_4505.JPG",
-  "IMG_6359.JPG",
-  "IMG_6651.JPG",
-  "LINE_ALBUM_Mini MBA 18 NOV 2023_231120_11.jpg",
-  "Screenshot 2569-03-08 at 10.24.44.png",
-  "Screenshot 2569-03-09 at 04.43.16.png",
-  "Screenshot 2569-03-09 at 13.16.17.png",
-  "Screenshot 2569-03-09 at 18.09.52.png",
-  "Screenshot 2569-03-09 at 18.28.46.png",
-  "Screenshot 2569-03-09 at 23.09.13.png",
-  "Screenshot 2569-03-18 at 13.43.58.png",
-  "Screenshot 2569-03-18 at 13.52.42.png",
-  "Screenshot 2569-03-18 at 13.53.35.png",
-  "Smart Cities _ Nex Big Tech Event Cam B_1144.jpg",
-  "Smart Cities _ Nex Big Tech Event Cam B_1184.jpg",
-  "Timeline photos(1).jpg",
-  "Timeline photos(2).jpg",
-  "Timeline photos.jpg",
-  "WhatsApp Image 2023-03-17 at 05.20.05 (1).jpeg"
+  { file: "0811bc15-651f-4dde-81af-46580fa9a795.jpg",                     caption: "Stakeholder session",                        location: "Thailand" },
+  { file: "290811441_5153495211364296_8102218306877593840_n.jpeg",         caption: "Community engagement forum",                 location: "Thailand" },
+  { file: "2b398e91-e7cd-48bd-abbd-7d0e093e2c28(1).jpg",                  caption: "Workshop documentation",                     location: "Thailand" },
+  { file: "403599058_1797525000701507_153970454313690316_n.jpg",           caption: "Officials briefing session",                 location: "Thailand" },
+  { file: "459288254_924132223081934_9217219278417242092_n.jpg",           caption: "Stakeholder alignment meeting",               location: "Thailand" },
+  { file: "CQW03907.jpg",                                                  caption: "Conference plenary",                         location: "Thailand" },
+  { file: "DAY1_0368.jpg",                                                 caption: "Workshop Day 1 — opening session",           location: "Thailand" },
+  { file: "DSC_2572.jpg",                                                  caption: "Field documentation",                        location: "Thailand" },
+  { file: "E81F03FB-1399-4820-87A3-17C837902545.jpeg",                    caption: "Decision-making workshop",                   location: "Thailand" },
+  { file: "FFC74093-8656-4C1A-904C-EF1B5461267D.jpeg",                    caption: "Stakeholder briefing",                       location: "Thailand" },
+  { file: "IMG_2457.JPG",                                                  caption: "Field session",                              location: "Thailand" },
+  { file: "IMG_3687.JPG",                                                  caption: "Province-level workshop",                    location: "Thailand" },
+  { file: "IMG_4446.JPG",                                                  caption: "Stakeholder forum",                          location: "Thailand" },
+  { file: "IMG_4505.JPG",                                                  caption: "Community workshop",                         location: "Thailand" },
+  { file: "IMG_6359.JPG",                                                  caption: "Field session",                              location: "Thailand" },
+  { file: "IMG_6651.JPG",                                                  caption: "Workshop engagement",                        location: "Thailand" },
+  { file: "LINE_ALBUM_Mini MBA 18 NOV 2023_231120_11.jpg",                caption: "Mini MBA Workshop",                          location: "Nov 2023" },
+  { file: "Screenshot 2569-03-08 at 10.24.44.png",                        caption: "Workshop data capture",                      location: "Mar 2026" },
+  { file: "Screenshot 2569-03-09 at 04.43.16.png",                        caption: "Session documentation",                      location: "Mar 2026" },
+  { file: "Screenshot 2569-03-09 at 13.16.17.png",                        caption: "Field records",                              location: "Mar 2026" },
+  { file: "Screenshot 2569-03-09 at 18.09.52.png",                        caption: "Stakeholder analysis",                       location: "Mar 2026" },
+  { file: "Screenshot 2569-03-09 at 18.28.46.png",                        caption: "Workshop output",                            location: "Mar 2026" },
+  { file: "Screenshot 2569-03-09 at 23.09.13.png",                        caption: "Data synthesis",                             location: "Mar 2026" },
+  { file: "Screenshot 2569-03-18 at 13.43.58.png",                        caption: "Workshop output",                            location: "Mar 2026" },
+  { file: "Screenshot 2569-03-18 at 13.52.42.png",                        caption: "Session summary",                            location: "Mar 2026" },
+  { file: "Screenshot 2569-03-18 at 13.53.35.png",                        caption: "Field intelligence record",                  location: "Mar 2026" },
+  { file: "Smart Cities _ Nex Big Tech Event Cam B_1144.jpg",             caption: "Smart Cities Next Big Tech Event",           location: "Bangkok" },
+  { file: "Smart Cities _ Nex Big Tech Event Cam B_1184.jpg",             caption: "Smart Cities Next Big Tech Event",           location: "Bangkok" },
+  { file: "Timeline photos(1).jpg",                                        caption: "Project timeline documentation",             location: "Thailand" },
+  { file: "Timeline photos(2).jpg",                                        caption: "Development history record",                 location: "Thailand" },
+  { file: "Timeline photos.jpg",                                           caption: "Field research overview",                    location: "Thailand" },
+  { file: "WhatsApp Image 2023-03-17 at 05.20.05 (1).jpeg",              caption: "Field session",                              location: "Mar 2023" }
 ];
 
 const FIELD_RECORD = {
@@ -337,6 +337,8 @@ const NOVEL_DATA = {
   url: "https://substack.com/@nonarkara?utm_source=top-search",
   coverImage: "./Designated Survivor/ChatGPT Image Mar 7, 2026, 10_42_04 AM.png",
   coverFallback: "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7868b669-5217-4207-a393-43d582fc3628_2528x1696.png",
+  latestChapter: "Chapter 3: The Bangkok Perimeter",
+  latestDate: "Mar 2026",
   chapters: ["Chapter 1: Champagne Supernova", "Chapter 2: Protocols in the Mist", "Chapter 3: The Bangkok Perimeter"],
   gallery: [
     "./Designated Survivor/ChatGPT Image Feb 23, 2026, 05_51_48 AM.png",
@@ -1645,25 +1647,40 @@ function renderFieldRecord() {
 
   const statsHtml = `
     <div class="field-stats-bar">
-      ${FIELD_RECORD.stats.map((s) => `
-        <div class="field-stat-item">
-          <span class="field-stat-value">${escapeHtml(s.value)}</span>
-          <span class="field-stat-label">${escapeHtml(s.label)}</span>
-        </div>
-      `).join("")}
+      ${FIELD_RECORD.stats.map((s) => {
+        const numMatch = s.value.match(/^(\d[\d,]*)(.*)/);
+        if (numMatch) {
+          const num = parseInt(numMatch[1].replace(/,/g, ""), 10);
+          const suffix = numMatch[2];
+          return `
+            <div class="field-stat-item">
+              <span class="field-stat-value" data-target="${num}" data-suffix="${escapeHtml(suffix)}">0${escapeHtml(suffix)}</span>
+              <span class="field-stat-label">${escapeHtml(s.label)}</span>
+            </div>`;
+        }
+        return `
+          <div class="field-stat-item">
+            <span class="field-stat-value">${escapeHtml(s.value)}</span>
+            <span class="field-stat-label">${escapeHtml(s.label)}</span>
+          </div>`;
+      }).join("")}
     </div>`;
 
   const photosHtml = `
     <div class="field-photo-grid">
-      ${FIELD_PHOTOS.map((filename) => `
-        <div class="field-photo-card">
+      ${FIELD_PHOTOS.map((photo, idx) => `
+        <div class="field-photo-card" data-index="${idx}" data-caption="${escapeHtml(photo.caption)}" data-location="${escapeHtml(photo.location)}">
           <img
             class="field-photo-img"
-            src="./Development History/${encodeURIComponent(filename)}"
-            alt="Field workshop: ${escapeHtml(filename)}"
+            src="./Development History/${encodeURIComponent(photo.file)}"
+            alt="${escapeHtml(photo.caption)}"
             loading="lazy"
             onerror="this.closest('.field-photo-card').style.display='none'"
           />
+          <div class="field-photo-caption-overlay">
+            <span class="field-photo-caption-text">${escapeHtml(photo.caption)}</span>
+            <span class="field-photo-caption-loc">${escapeHtml(photo.location)}</span>
+          </div>
         </div>
       `).join("")}
     </div>`;
@@ -1680,30 +1697,29 @@ function renderFieldRecord() {
     </div>`;
 
   container.innerHTML = statsHtml + photosHtml + actsHtml;
+  initCountUp();
 }
 
 function renderHistoryGallery() {
   if (!elements.historyGallery) return;
 
-  elements.historyGallery.innerHTML = ARCHIVE_IMAGES.map(
-    (filename) => `
-      <article class="history-card">
-        <div class="history-mark">
-          <img
-            class="history-image"
-            alt="Historical project snapshot: ${escapeHtml(filename)}"
-            loading="lazy"
-            src="./Old projects from archives/${encodeURIComponent(filename)}"
-            onerror="this.closest('.history-card').style.display='none'"
-          />
-        </div>
-        <div class="history-info">
-          <p class="eyebrow">Project Archive</p>
-          <span class="history-filename">${escapeHtml(filename)}</span>
-        </div>
-      </article>
-    `
-  ).join("");
+  elements.historyGallery.innerHTML = ARCHIVE_IMAGES.map((item) => `
+    <article class="history-card">
+      <div class="history-mark">
+        <img
+          class="history-image"
+          alt="${escapeHtml(item.label)}"
+          loading="lazy"
+          src="./Old projects from archives/${encodeURIComponent(item.file)}"
+          onerror="this.closest('.history-card').style.display='none'"
+        />
+      </div>
+      <div class="history-info">
+        <span class="history-tag history-tag--${escapeHtml(item.tag)}">${escapeHtml(item.tag)}</span>
+        <span class="history-filename">${escapeHtml(item.label)}</span>
+      </div>
+    </article>
+  `).join("");
 }
 
 function renderOriginStory() {
@@ -2331,6 +2347,104 @@ function openAllTargets() {
   }
 }
 
+function initLightbox() {
+  const overlay = document.createElement("div");
+  overlay.id = "lb";
+  overlay.className = "lb-overlay";
+  overlay.setAttribute("aria-modal", "true");
+  overlay.setAttribute("role", "dialog");
+  overlay.style.display = "none";
+  overlay.innerHTML = [
+    '<button class="lb-close" aria-label="Close">&times;</button>',
+    '<button class="lb-prev" aria-label="Previous">&#8249;</button>',
+    '<button class="lb-next" aria-label="Next">&#8250;</button>',
+    '<div class="lb-content">',
+    '  <img class="lb-img" src="" alt="" />',
+    '  <div class="lb-caption">',
+    '    <span class="lb-caption-text"></span>',
+    '    <span class="lb-caption-loc"></span>',
+    '  </div>',
+    '</div>'
+  ].join("");
+  document.body.appendChild(overlay);
+
+  let current = 0;
+
+  function visibleCards() {
+    return [...document.querySelectorAll(".field-photo-card")].filter(
+      (c) => c.style.display !== "none"
+    );
+  }
+
+  function openAt(idx) {
+    const cards = visibleCards();
+    if (!cards.length) return;
+    current = ((idx % cards.length) + cards.length) % cards.length;
+    const card = cards[current];
+    const img = card.querySelector(".field-photo-img");
+    const caption = card.dataset.caption || "";
+    const location = card.dataset.location || "";
+    overlay.querySelector(".lb-img").src = img ? img.src : "";
+    overlay.querySelector(".lb-img").alt = caption;
+    overlay.querySelector(".lb-caption-text").textContent = caption;
+    overlay.querySelector(".lb-caption-loc").textContent = location;
+    overlay.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeLb() {
+    overlay.style.display = "none";
+    document.body.style.overflow = "";
+  }
+
+  overlay.querySelector(".lb-close").addEventListener("click", closeLb);
+  overlay.querySelector(".lb-prev").addEventListener("click", () => openAt(current - 1));
+  overlay.querySelector(".lb-next").addEventListener("click", () => openAt(current + 1));
+  overlay.addEventListener("click", (e) => { if (e.target === overlay) closeLb(); });
+
+  document.addEventListener("keydown", (e) => {
+    if (overlay.style.display === "none") return;
+    if (e.key === "Escape") closeLb();
+    if (e.key === "ArrowLeft") openAt(current - 1);
+    if (e.key === "ArrowRight") openAt(current + 1);
+  });
+
+  document.addEventListener("click", (e) => {
+    const card = e.target.closest(".field-photo-card");
+    if (!card) return;
+    const idx = visibleCards().indexOf(card);
+    if (idx !== -1) openAt(idx);
+  });
+}
+
+function initCountUp() {
+  const targets = document.querySelectorAll(".field-stat-value[data-target]");
+  if (!targets.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.target, 10);
+      const suffix = el.dataset.suffix || "";
+      const duration = 1400;
+      const t0 = performance.now();
+
+      function tick(now) {
+        const p = Math.min((now - t0) / duration, 1);
+        const ease = 1 - Math.pow(1 - p, 3);
+        el.textContent = Math.round(ease * target).toLocaleString() + suffix;
+        if (p < 1) requestAnimationFrame(tick);
+      }
+
+      requestAnimationFrame(tick);
+      observer.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+
+  targets.forEach((el) => observer.observe(el));
+}
+
 function bindEvents() {
   elements.refreshButton.addEventListener("click", () => refreshDashboard(true));
   elements.mentionsRefreshButton.addEventListener("click", () => refreshMentions(true));
@@ -2395,14 +2509,23 @@ function renderNovelSection() {
         <div class="novel-meta">
           <div class="novel-meta-item">
             <span class="meta-label">STATUS:</span>
-            <span class="meta-value">DEPLOYING — CHAPTERS 1–3</span>
+            <span class="meta-value">DEPLOYING — CHAPTERS 1-3</span>
+          </div>
+          <div class="novel-meta-item">
+            <span class="meta-label">LATEST:</span>
+            <span class="meta-value">${escapeHtml(NOVEL_DATA.latestDate)}</span>
           </div>
           <div class="novel-meta-item">
             <span class="meta-label">AUTHOR:</span>
             <span class="meta-value">Dr. Non Arkaraprasertkul</span>
           </div>
           <div id="novelChapters" class="novel-chapters">
-            ${NOVEL_DATA.chapters.map((ch) => `<div class="novel-chapter-tag">${escapeHtml(ch)}</div>`).join("")}
+            ${NOVEL_DATA.chapters.map((ch) => {
+              const isLatest = ch === NOVEL_DATA.latestChapter;
+              return `<div class="novel-chapter-tag${isLatest ? " novel-chapter-tag--latest" : ""}">
+                ${escapeHtml(ch)}${isLatest ? '<span class="novel-chapter-badge">NEW</span>' : ""}
+              </div>`;
+            }).join("")}
           </div>
         </div>
         <a href="${escapeHtml(NOVEL_DATA.url)}" target="_blank" rel="noreferrer" class="button button-primary utility-button novel-cta">Read on Substack</a>
@@ -2412,6 +2535,7 @@ function renderNovelSection() {
   `;
 }
 
+initLightbox();
 bindEvents();
 renderLabLogos();
 renderProfile({ monitoredPages: 0 });
