@@ -1297,9 +1297,9 @@ function buildRemoteCard(target, options = {}) {
     ["Platform", target.platform],
     ["HTTP", target.statusCode ?? "n/a"],
     ["Response", target.responseTimeMs ? `${target.responseTimeMs} ms` : "n/a"],
-    ["Last modified", formatDate(target.metadata.lastModified)],
-    ["Server", target.metadata.server || target.metadata.xPoweredBy || "n/a"],
-    ["Final host", target.hostname]
+    ["Last modified", target.metadata ? formatDate(target.metadata.lastModified) : "n/a"],
+    ["Server", target.metadata ? (target.metadata.server || target.metadata.xPoweredBy || "n/a") : "n/a"],
+    ["Final host", target.hostname || "n/a"]
   ];
 
   if (target.repo?.fullName) {
