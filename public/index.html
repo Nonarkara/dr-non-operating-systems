@@ -102,7 +102,58 @@
         </div>
       </header>
 
+      <!-- Alert banner (Phase 4) -->
+      <section id="alertBanner" class="alert-banner" hidden></section>
+
       <section class="metrics-grid" id="metricsGrid"></section>
+
+      <!-- Fleet Uptime Overview (Phase 1) -->
+      <section id="fleetUptimeHead" class="section-head">
+        <div>
+          <p class="eyebrow">System health</p>
+          <h2>Fleet Uptime</h2>
+        </div>
+        <p class="section-copy">
+          Hourly health heatmap across all monitored targets. Green means healthy, amber means degraded, red means down.
+        </p>
+      </section>
+      <section id="fleetUptime" class="fleet-uptime"></section>
+
+      <!-- Visitor Intelligence (Phase 3) -->
+      <section id="visitorIntelHead" class="section-head">
+        <div>
+          <p class="eyebrow">Traffic signal</p>
+          <h2>Visitor Intelligence</h2>
+        </div>
+        <p class="section-copy">
+          Who is using the systems, where they are from, and how systems respond.
+        </p>
+      </section>
+      <section id="visitorIntel" class="visitor-intel"></section>
+
+      <!-- Alert Timeline (Phase 4) -->
+      <section id="alertTimelineHead" class="section-head">
+        <div>
+          <p class="eyebrow">Incident log</p>
+          <h2>Alert Timeline</h2>
+        </div>
+        <p class="section-copy">
+          Health state transitions, downtime events, and recovery records.
+        </p>
+      </section>
+      <section id="alertTimeline" class="alert-timeline"></section>
+
+      <!-- Debug Triggers (Phase 5) -->
+      <section id="triggerPanelHead" class="section-head">
+        <div>
+          <p class="eyebrow">Auto-debug</p>
+          <h2>Debug Triggers</h2>
+        </div>
+        <p class="section-copy">
+          Open triggers for external tools (Claude Code, VS Code, Ollama) to claim and auto-fix.
+        </p>
+      </section>
+      <section id="triggerPanel" class="trigger-panel"></section>
 
       <section class="insight-grid">
         <article class="panel" id="recentProjectsPanel">

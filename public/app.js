@@ -686,7 +686,13 @@ const elements = {
   historyGallery: document.querySelector("#historyGallery"),
   originStory: document.querySelector("#originStory"),
   copyBlueprintButton: document.querySelector("#copyBlueprintButton"),
-  blueprintCode: document.querySelector("#blueprintCode")
+  blueprintCode: document.querySelector("#blueprintCode"),
+  /* Phase 1-5 new elements */
+  alertBanner: document.querySelector("#alertBanner"),
+  fleetUptime: document.querySelector("#fleetUptime"),
+  visitorIntel: document.querySelector("#visitorIntel"),
+  alertTimeline: document.querySelector("#alertTimeline"),
+  triggerPanel: document.querySelector("#triggerPanel")
 };
 
 
@@ -1798,6 +1804,305 @@ function renderOriginStory() {
   `;
 }
 
+/* ============================================================
+   Phase 1 — Fleet Uptime Heatmap (GitHub-style)
+   ============================================================ */
+
+function uptimeColor(ups, checks) {
+  if (!checks) return "var(--bg-card)";
+  const pct = ups / checks;
+  if (pct >= 1) return "rgba(0, 212, 154, 0.82)";
+  if (pct >= 0.9) return "rgba(0, 212, 154, 0.55)";
+  if (pct >= 0.5) return "rgba(255, 170, 26, 0.7)";
+  return "rgba(255, 45, 94, 0.7)";
+}
+
+function uptimePctClass(pct) {
+  if (pct === null || pct === undefined) return "uptime-pct--none";
+  if (pct >= 99) return "uptime-pct--great";
+  if (pct >= 90) return "uptime-pct--good";
+  if (pct >= 50) return "uptime-pct--warn";
+  return "uptime-pct--bad";
+}
+
+function renderUptimeHeatmap(buckets, hours = 168) {
+  if (!buckets || !buckets.length) {
+    return '<div class="uptime-empty">No history data yet</div>';
+  }
+
+  const bucketMap = new Map(buckets.map((b) => [b.hour, b]));
+  const now = new Date();
+  const cells = [];
+
+  for (let i = hours - 1; i >= 0; i--) {
+    const d = new Date(now.getTime() - i * 3600_000);
+    const key = d.toISOString().slice(0, 13);
+    const b = bucketMap.get(key);
+    const bg = b ? uptimeColor(b.ups, b.checks) : "var(--bg-card)";
+    const pct = b && b.checks ? Math.round((b.ups / b.checks) * 100) : null;
+    const avgMs = b && b.checks ? Math.round(b.totalMs / b.checks) : null;
+    const avg = b ? (b.avgMs != null ? b.avgMs : avgMs) : null;
+    const title = b
+      ? `${key}:00 — ${pct}% up, ${avg ?? "?"}ms avg (${b.checks} checks)`
+      : `${key}:00 — no data`;
+
+    cells.push(`<span class="heatmap-cell" style="background:${bg}" title="${escapeHtml(title)}"></span>`);
+  }
+
+  const cols = Math.min(hours, 168);
+  const rows = Math.ceil(hours / 24);
+
+  return `<div class="heatmap-grid" style="grid-template-columns:repeat(${Math.min(cols, 24)},1fr)">${cells.join("")}</div>`;
+}
+
+function renderFleetUptime(targets) {
+  const container = elements.fleetUptime;
+  if (!container) return;
+
+  const sorted = [...targets].sort((a, b) => {
+    const aUp = a.uptime?.h24 ?? 101;
+    const bUp = b.uptime?.h24 ?? 101;
+    return aUp - bUp;
+  });
+
+  const fleetBuckets = [];
+  const now = new Date();
+
+  for (let i = 167; i >= 0; i--) {
+    const d = new Date(now.getTime() - i * 3600_000);
+    const key = d.toISOString().slice(0, 13);
+    let totalChecks = 0;
+    let totalUps = 0;
+
+    for (const t of targets) {
+      const b = (t.historyBuckets || []).find((b) => b.hour === key);
+      if (b) {
+        totalChecks += b.checks;
+        totalUps += b.ups;
+      }
+    }
+
+    fleetBuckets.push({ hour: key, checks: totalChecks, ups: totalUps });
+  }
+
+  const summaryUps = targets.map((t) => t.uptime);
+  const avg24 = summaryUps.filter((u) => u?.h24 != null).length
+    ? Math.round(summaryUps.reduce((s, u) => s + (u?.h24 ?? 0), 0) / summaryUps.filter((u) => u?.h24 != null).length * 100) / 100
+    : null;
+  const avg7d = summaryUps.filter((u) => u?.d7 != null).length
+    ? Math.round(summaryUps.reduce((s, u) => s + (u?.d7 ?? 0), 0) / summaryUps.filter((u) => u?.d7 != null).length * 100) / 100
+    : null;
+  const avg30d = summaryUps.filter((u) => u?.d30 != null).length
+    ? Math.round(summaryUps.reduce((s, u) => s + (u?.d30 ?? 0), 0) / summaryUps.filter((u) => u?.d30 != null).length * 100) / 100
+    : null;
+
+  container.innerHTML = `
+    <div class="fleet-summary-bar">
+      <div class="fleet-stat">
+        <span class="fleet-stat-label">Fleet 24h</span>
+        <span class="fleet-stat-value ${uptimePctClass(avg24)}">${avg24 != null ? avg24 + "%" : "—"}</span>
+      </div>
+      <div class="fleet-stat">
+        <span class="fleet-stat-label">Fleet 7d</span>
+        <span class="fleet-stat-value ${uptimePctClass(avg7d)}">${avg7d != null ? avg7d + "%" : "—"}</span>
+      </div>
+      <div class="fleet-stat">
+        <span class="fleet-stat-label">Fleet 30d</span>
+        <span class="fleet-stat-value ${uptimePctClass(avg30d)}">${avg30d != null ? avg30d + "%" : "—"}</span>
+      </div>
+    </div>
+    <div class="fleet-heatmap-section">
+      <p class="eyebrow">Fleet-wide (7 days)</p>
+      ${renderUptimeHeatmap(fleetBuckets, 168)}
+    </div>
+    <div class="fleet-target-rows">
+      ${sorted.map((t) => {
+        const u = t.uptime || {};
+        return `
+          <div class="fleet-row" data-health="${escapeHtml(t.health?.code || "offline")}">
+            <span class="fleet-row-name">${escapeHtml(t.label)}</span>
+            <span class="fleet-row-status">${makeStatusPill(t.health?.label || "Unknown", t.health?.code || "offline")}</span>
+            <div class="fleet-row-heatmap">${renderUptimeHeatmap(t.historyBuckets || [], 168)}</div>
+            <span class="fleet-row-pct ${uptimePctClass(u.h24)}">${u.h24 != null ? u.h24 + "%" : "—"}</span>
+            <span class="fleet-row-pct ${uptimePctClass(u.d7)}">${u.d7 != null ? u.d7 + "%" : "—"}</span>
+            <span class="fleet-row-pct ${uptimePctClass(u.d30)}">${u.d30 != null ? u.d30 + "%" : "—"}</span>
+          </div>`;
+      }).join("")}
+    </div>
+  `;
+}
+
+/* ============================================================
+   Phase 3 — Visitor Intelligence
+   ============================================================ */
+
+function renderVisitorIntel(analytics) {
+  const container = elements.visitorIntel;
+  if (!container || !analytics) return;
+
+  const fleet = analytics.fleet || {};
+  const countries = fleet.countries || [];
+  const maxCount = countries[0]?.count || 1;
+
+  const countryBars = countries.length
+    ? countries.map((c) => {
+        const width = Math.max(4, Math.round((c.count / maxCount) * 100));
+        return `
+          <div class="country-row">
+            <span class="country-name">${escapeHtml(c.country)}</span>
+            <div class="country-bar-track">
+              <div class="country-bar-fill" style="width:${width}%"></div>
+            </div>
+            <span class="country-count">${c.count}</span>
+          </div>`;
+      }).join("")
+    : '<div class="uptime-empty">No visitor data yet</div>';
+
+  const projectRows = Object.entries(analytics.projects || {})
+    .sort((a, b) => (b[1].week || 0) - (a[1].week || 0))
+    .slice(0, 15)
+    .map(([id, p]) => `
+      <div class="visitor-project-row">
+        <span class="visitor-project-name">${escapeHtml(id)}</span>
+        <span class="visitor-project-today">${p.today || 0}</span>
+        <span class="visitor-project-week">${p.week || 0}</span>
+        <span class="visitor-project-unique">${p.todayUnique || 0}</span>
+        <span class="visitor-project-ms">${p.avgMs != null ? p.avgMs + "ms" : "—"}</span>
+      </div>
+    `)
+    .join("");
+
+  container.innerHTML = `
+    <div class="visitor-summary-bar">
+      <div class="fleet-stat">
+        <span class="fleet-stat-label">Today</span>
+        <span class="fleet-stat-value">${fleet.todayVisitors || 0}</span>
+      </div>
+      <div class="fleet-stat">
+        <span class="fleet-stat-label">7-day total</span>
+        <span class="fleet-stat-value">${fleet.weekVisitors || 0}</span>
+      </div>
+    </div>
+    <div class="visitor-grid">
+      <div class="visitor-countries">
+        <p class="eyebrow">Top countries (7d)</p>
+        ${countryBars}
+      </div>
+      <div class="visitor-projects">
+        <p class="eyebrow">Traffic by project</p>
+        <div class="visitor-project-header">
+          <span>Project</span><span>Today</span><span>7d</span><span>Unique</span><span>Avg ms</span>
+        </div>
+        ${projectRows || '<div class="uptime-empty">No project data yet</div>'}
+      </div>
+    </div>
+  `;
+}
+
+/* ============================================================
+   Phase 4 — Alert Banner & Timeline
+   ============================================================ */
+
+function renderAlertBanner(alerts) {
+  const banner = elements.alertBanner;
+  if (!banner) return;
+
+  const active = alerts?.active || [];
+
+  if (!active.length) {
+    banner.hidden = true;
+    return;
+  }
+
+  banner.hidden = false;
+  banner.innerHTML = `
+    <div class="alert-banner-inner">
+      <span class="alert-banner-icon">&#9888;</span>
+      <span class="alert-banner-text">
+        <strong>${active.length} active incident${active.length > 1 ? "s" : ""}</strong>:
+        ${active.slice(0, 3).map((a) => escapeHtml(a.targetLabel)).join(", ")}${active.length > 3 ? ` +${active.length - 3} more` : ""}
+      </span>
+    </div>
+  `;
+}
+
+function alertSeverityClass(severity) {
+  if (severity === "critical") return "alert-severity--critical";
+  if (severity === "warning") return "alert-severity--warning";
+  return "alert-severity--info";
+}
+
+function renderAlertTimeline(alerts) {
+  const container = elements.alertTimeline;
+  if (!container) return;
+
+  const recent = alerts?.recent || [];
+
+  if (!recent.length) {
+    container.innerHTML = '<div class="uptime-empty">No alerts recorded yet. Alerts fire when systems change health state.</div>';
+    return;
+  }
+
+  container.innerHTML = recent.map((a) => `
+    <div class="alert-row ${alertSeverityClass(a.severity)}${a.resolvedAt ? " alert-resolved" : ""}">
+      <span class="alert-time">${escapeHtml(shortTime(a.timestamp))}</span>
+      <span class="alert-severity-badge">${escapeHtml(a.severity)}</span>
+      <span class="alert-type-badge">${escapeHtml(a.type)}</span>
+      <span class="alert-message">${escapeHtml(a.message)}</span>
+      ${a.resolvedAt ? `<span class="alert-resolved-badge">Resolved ${escapeHtml(shortTime(a.resolvedAt))}</span>` : ""}
+    </div>
+  `).join("");
+}
+
+/* ============================================================
+   Phase 5 — Debug Triggers Panel
+   ============================================================ */
+
+function triggerStatusClass(status) {
+  if (status === "open") return "trigger-status--open";
+  if (status === "claimed") return "trigger-status--claimed";
+  return "trigger-status--resolved";
+}
+
+function renderTriggerPanel(triggers) {
+  const container = elements.triggerPanel;
+  if (!container) return;
+
+  const items = triggers || [];
+
+  if (!items.length) {
+    container.innerHTML = '<div class="uptime-empty">No active triggers. Triggers are created when critical systems stay down for 5+ minutes.</div>';
+    return;
+  }
+
+  container.innerHTML = items.map((t) => `
+    <article class="trigger-card ${triggerStatusClass(t.status)}">
+      <div class="trigger-header">
+        <span class="trigger-target">${escapeHtml(t.targetLabel)}</span>
+        <span class="trigger-status-badge">${escapeHtml(t.status)}</span>
+        <span class="trigger-time">${escapeHtml(shortTime(t.createdAt))}</span>
+      </div>
+      <div class="trigger-context">
+        <div class="trigger-detail"><span>URL</span><code>${escapeHtml(t.context?.url || "—")}</code></div>
+        <div class="trigger-detail"><span>Error</span><code>${escapeHtml(t.context?.error || "—")}</code></div>
+        <div class="trigger-detail"><span>Platform</span><code>${escapeHtml(t.context?.platform || "—")}</code></div>
+        <div class="trigger-detail"><span>Down since</span><code>${escapeHtml(t.context?.downtimeSince ? shortTime(t.context.downtimeSince) : "—")}</code></div>
+        ${t.claimedBy ? `<div class="trigger-detail"><span>Claimed by</span><code>${escapeHtml(t.claimedBy)}</code></div>` : ""}
+      </div>
+      ${t.context?.suggestedActions?.length ? `
+        <div class="trigger-actions">
+          <p class="eyebrow">Suggested actions</p>
+          <ul>${t.context.suggestedActions.map((a) => `<li>${escapeHtml(a)}</li>`).join("")}</ul>
+        </div>
+      ` : ""}
+      <div class="trigger-api-ref">
+        <code>POST /api/triggers/${escapeHtml(t.id)}/claim</code>
+        <code>POST /api/triggers/${escapeHtml(t.id)}/resolve</code>
+      </div>
+    </article>
+  `).join("");
+}
+
 const API_REGISTRY_GROUPS = [
   {
     id: "weather-climate",
@@ -2122,7 +2427,7 @@ function renderDashboard() {
     return;
   }
 
-  const { generatedAt, github, mentions, summary, targets } = state.dashboard;
+  const { generatedAt, github, mentions, summary, targets, analytics, alerts, triggers } = state.dashboard;
   const snapshotBacked = state.lastLoadSource === "snapshot" || state.lastLoadSource === "snapshot-fallback";
   state.mentions = mentions || state.mentions || {
     checkedAt: generatedAt || null,
@@ -2139,6 +2444,11 @@ function renderDashboard() {
   renderProfile(summary);
   renderFooter();
   renderMetrics(summary, github);
+  renderFleetUptime(targets);
+  renderVisitorIntel(analytics);
+  renderAlertBanner(alerts);
+  renderAlertTimeline(alerts);
+  renderTriggerPanel(triggers);
   renderMentions(state.mentions);
   renderGitHub(github);
   renderIssues(summary);

@@ -7,4 +7,10 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: ALERT_WEBHOOK_URL
+        sync: false
     pullRequestPreviewsEnabled: false

@@ -1,0 +1,293 @@
+{
+  "targets": {
+    "middle-east-monitor": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 30815,
+          "minMs": 77,
+          "maxMs": 10514
+        }
+      ]
+    },
+    "mtt-smart-city-monitor": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 31735,
+          "minMs": 75,
+          "maxMs": 10516
+        }
+      ]
+    },
+    "city-reporter-bot": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 32811,
+          "minMs": 171,
+          "maxMs": 10519
+        }
+      ]
+    },
+    "smart-city-monitor": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 31521,
+          "minMs": 75,
+          "maxMs": 10517
+        }
+      ]
+    },
+    "geopolitics-dashboard": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 0,
+          "totalMs": 34287,
+          "minMs": 249,
+          "maxMs": 10519
+        }
+      ]
+    },
+    "city-reporter-bot-v2": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 0,
+          "totalMs": 36028,
+          "minMs": 249,
+          "maxMs": 10518
+        }
+      ]
+    },
+    "phuket-smart-bus": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 0,
+          "totalMs": 36125,
+          "minMs": 242,
+          "maxMs": 10516
+        }
+      ]
+    },
+    "slic-index-rankings": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 32303,
+          "minMs": 72,
+          "maxMs": 10514
+        }
+      ]
+    },
+    "asean-csco-app": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 59850,
+          "minMs": 162,
+          "maxMs": 10811
+        }
+      ]
+    },
+    "scl-landing-page": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 61132,
+          "minMs": 52,
+          "maxMs": 10783
+        }
+      ]
+    },
+    "tech-monitor": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 0,
+          "totalMs": 35606,
+          "minMs": 236,
+          "maxMs": 10515
+        }
+      ]
+    },
+    "slic-index-v2-vercel": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 49920,
+          "minMs": 63,
+          "maxMs": 10510
+        }
+      ]
+    },
+    "sabai-sabai": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 50067,
+          "minMs": 73,
+          "maxMs": 10509
+        }
+      ]
+    },
+    "geopolitics-dashboard-vercel": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 50405,
+          "minMs": 73,
+          "maxMs": 10507
+        }
+      ]
+    },
+    "slic-index-v2": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 37112,
+          "minMs": 218,
+          "maxMs": 10514
+        }
+      ]
+    },
+    "dngws-monitor": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 49674,
+          "minMs": 55,
+          "maxMs": 10507
+        }
+      ]
+    },
+    "phuket-dashboard": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 38713,
+          "minMs": 245,
+          "maxMs": 10510
+        }
+      ]
+    },
+    "city-tech-atlas": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 70947,
+          "minMs": 165,
+          "maxMs": 10804
+        }
+      ]
+    },
+    "airdnd-platform": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 38557,
+          "minMs": 254,
+          "maxMs": 10513
+        }
+      ]
+    },
+    "phuket-dashboard-vercel": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 20,
+          "totalMs": 50593,
+          "minMs": 170,
+          "maxMs": 10505
+        }
+      ]
+    },
+    "raat": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 61396,
+          "minMs": 66,
+          "maxMs": 10777
+        }
+      ]
+    },
+    "axiom": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 51174,
+          "minMs": 147,
+          "maxMs": 10509
+        }
+      ]
+    },
+    "techhuntthailand-viabus": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 61281,
+          "minMs": 72,
+          "maxMs": 10788
+        }
+      ]
+    },
+    "ascn-smart-cities-network": {
+      "buckets": [
+        {
+          "hour": "2026-03-30T07",
+          "checks": 22,
+          "ups": 21,
+          "totalMs": 61441,
+          "minMs": 74,
+          "maxMs": 10789
+        }
+      ]
+    }
+  },
+  "updatedAt": "2026-03-30T07:56:13.028Z"
+}

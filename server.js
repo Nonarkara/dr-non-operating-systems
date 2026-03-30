@@ -1,14 +1,23 @@
 import { createServer } from "node:http";
-import { readFile } from "node:fs/promises";
+import { readFile, rename, writeFile } from "node:fs/promises";
 import { dirname, extname, join, normalize } from "node:path";
 import { fileURLToPath } from "node:url";
+import { randomUUID } from "node:crypto";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const PUBLIC_DIR = join(__dirname, "public");
-const SNAPSHOT_FILE = join(PUBLIC_DIR, "data", "dashboard-snapshot.json");
+const DATA_DIR = join(PUBLIC_DIR, "data");
+const SNAPSHOT_FILE = join(DATA_DIR, "dashboard-snapshot.json");
+const HEALTH_HISTORY_FILE = join(DATA_DIR, "health-history.json");
+const ANALYTICS_FILE = join(DATA_DIR, "analytics.json");
+const ALERTS_FILE = join(DATA_DIR, "alerts.json");
+const TRIGGERS_FILE = join(DATA_DIR, "triggers.json");
 const HOST = process.env.HOST || (process.env.RENDER ? "0.0.0.0" : "127.0.0.1");
 const PORT = Number(process.env.PORT || 4178);
+const ALERT_WEBHOOK_URL = process.env.ALERT_WEBHOOK_URL || "";
+const SUPABASE_URL = process.env.SUPABASE_URL || "";
+const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY || "";
 
 const GITHUB_USERNAME = "Nonarkara";
 const DASHBOARD_TTL_MS = 20_000;
@@ -18,6 +27,31 @@ const REPO_TTL_MS = 10 * 60_000;
 const STALE_SNAPSHOT_MS = 24 * 60 * 60_000;
 const SAMPLE_LIMIT = 36;
 const MENTION_ITEM_LIMIT = 6;
+
+/* Phase 1 — Persistent history */
+const HISTORY_BUCKET_LIMIT = 720;
+const HISTORY_FLUSH_MS = 5 * 60_000;
+
+/* Phase 2 — Scheduler */
+const SCHEDULER_BUSINESS_INTERVAL_MS = 10 * 60_000;
+const SCHEDULER_QUIET_INTERVAL_MS = 60 * 60_000;
+const SCHEDULER_TIMEZONE = "Asia/Bangkok";
+const SCHEDULER_BUSINESS_START = 8;
+const SCHEDULER_BUSINESS_END = 20;
+
+/* Phase 3 — Analytics */
+const ANALYTICS_FLUSH_MS = 5 * 60_000;
+const ANALYTICS_RETENTION_DAYS = 90;
+const GEO_CACHE_TTL_MS = 24 * 60 * 60_000;
+const GEO_BATCH_DELAY_MS = 1500;
+
+/* Phase 4 — Alerts */
+const ALERT_COOLDOWN_MS = 30 * 60_000;
+const ALERT_LIMIT = 500;
+
+/* Phase 5 — Triggers */
+const TRIGGER_DELAY_MS = 5 * 60_000;
+const TRIGGER_LIMIT = 100;
 const MENTION_ALIASES = [
   "Dr Non Arkaraprasertkul",
   "นน อัครประเสริฐกุล",
@@ -423,6 +457,33 @@ let mentionsCache = {
   promise: null
 };
 
+/* Phase 1 — Persistent health history (hourly buckets per target) */
+const healthHistory = { targets: {}, updatedAt: null };
+
+/* Phase 2 — Scheduler state */
+const scheduler = {
+  enabled: true,
+  timer: null,
+  lastCheckAt: null,
+  nextCheckAt: null,
+  checksToday: 0,
+  lastDay: null
+};
+
+/* Phase 3 — Visitor analytics */
+const analyticsData = { projects: {} };
+const geoCache = new Map();
+const geoPending = new Set();
+
+/* Phase 4 — Alerts */
+const alertsData = { alerts: [] };
+const previousHealthByTarget = new Map();
+const alertCooldowns = new Map();
+
+/* Phase 5 — Triggers */
+const triggersData = { triggers: [] };
+const downSince = new Map();
+
 const MIME_TYPES = {
   ".css": "text/css; charset=utf-8",
   ".gif": "image/gif",
@@ -588,9 +649,11 @@ function buildHealthPayload(payload, mode) {
       ? {
           attentionCount: payload.summary.attentionCount,
           liveCount: payload.summary.liveCount,
-          monitoredPages: payload.summary.monitoredPages
+          monitoredPages: payload.summary.monitoredPages,
+          fleetUptime24h: payload.summary.fleetUptime24h ?? null
         }
       : null,
+    activeIncidents: getActiveIncidents().length,
     dependencies: {
       github: githubStatus,
       mentions: mentionsStatus
@@ -785,6 +848,858 @@ function buildApiInventory(target, baseUrl) {
   }));
 }
 
+/* ============================================================
+   Phase 1 — Persistent Health History
+   ============================================================ */
+
+function getHourKey(date = new Date()) {
+  return date.toISOString().slice(0, 13);
+}
+
+function recordHistoryBucket(targetId, ok, responseTimeMs) {
+  if (!healthHistory.targets[targetId]) {
+    healthHistory.targets[targetId] = { buckets: [] };
+  }
+
+  const buckets = healthHistory.targets[targetId].buckets;
+  const hour = getHourKey();
+  let current = buckets[buckets.length - 1];
+
+  if (!current || current.hour !== hour) {
+    current = { hour, checks: 0, ups: 0, totalMs: 0, minMs: null, maxMs: null };
+    buckets.push(current);
+  }
+
+  current.checks++;
+
+  if (ok) {
+    current.ups++;
+  }
+
+  if (responseTimeMs != null) {
+    current.totalMs += responseTimeMs;
+
+    if (current.minMs === null || responseTimeMs < current.minMs) {
+      current.minMs = responseTimeMs;
+    }
+
+    if (current.maxMs === null || responseTimeMs > current.maxMs) {
+      current.maxMs = responseTimeMs;
+    }
+  }
+
+  while (buckets.length > HISTORY_BUCKET_LIMIT) {
+    buckets.shift();
+  }
+}
+
+function computeUptime(buckets, hours) {
+  const cutoff = new Date(Date.now() - hours * 3600_000).toISOString().slice(0, 13);
+  const relevant = buckets.filter((b) => b.hour >= cutoff);
+
+  if (!relevant.length) {
+    return null;
+  }
+
+  const totalChecks = relevant.reduce((s, b) => s + b.checks, 0);
+  const totalUps = relevant.reduce((s, b) => s + b.ups, 0);
+  return totalChecks > 0 ? Math.round((totalUps / totalChecks) * 10000) / 100 : null;
+}
+
+function getTargetUptime(targetId) {
+  const entry = healthHistory.targets[targetId];
+
+  if (!entry) {
+    return { h24: null, d7: null, d30: null };
+  }
+
+  return {
+    h24: computeUptime(entry.buckets, 24),
+    d7: computeUptime(entry.buckets, 168),
+    d30: computeUptime(entry.buckets, 720)
+  };
+}
+
+function getTargetBuckets(targetId, hours = 168) {
+  const entry = healthHistory.targets[targetId];
+
+  if (!entry) {
+    return [];
+  }
+
+  const cutoff = new Date(Date.now() - hours * 3600_000).toISOString().slice(0, 13);
+  return entry.buckets
+    .filter((b) => b.hour >= cutoff)
+    .map((b) => ({
+      hour: b.hour,
+      checks: b.checks,
+      ups: b.ups,
+      avgMs: b.checks > 0 ? Math.round(b.totalMs / b.checks) : null,
+      minMs: b.minMs,
+      maxMs: b.maxMs
+    }));
+}
+
+async function atomicWrite(filePath, data) {
+  const tmp = filePath + ".tmp";
+
+  try {
+    await writeFile(tmp, JSON.stringify(data, null, 2) + "\n", "utf8");
+    await rename(tmp, filePath);
+  } catch (error) {
+    try {
+      const { unlink } = await import("node:fs/promises");
+      await unlink(tmp).catch(() => {});
+    } catch {}
+
+    console.error(`Failed to write ${filePath}: ${error.message}`);
+  }
+}
+
+async function loadHealthHistory() {
+  try {
+    const raw = JSON.parse(await readFile(HEALTH_HISTORY_FILE, "utf8"));
+
+    if (raw?.targets) {
+      Object.assign(healthHistory.targets, raw.targets);
+      healthHistory.updatedAt = raw.updatedAt || null;
+    }
+  } catch {}
+}
+
+async function flushHealthHistory() {
+  healthHistory.updatedAt = new Date().toISOString();
+  await atomicWrite(HEALTH_HISTORY_FILE, healthHistory);
+}
+
+function startHealthHistoryFlush() {
+  if (process.env.NO_LISTEN === "1") {
+    return;
+  }
+
+  const loop = async () => {
+    await flushHealthHistory();
+    setTimeout(loop, HISTORY_FLUSH_MS);
+  };
+
+  setTimeout(loop, HISTORY_FLUSH_MS);
+}
+
+/* ============================================================
+   Phase 2 — Scheduled Health Checks
+   ============================================================ */
+
+function getBangkokHour() {
+  const hour = Number(
+    new Date().toLocaleString("en-US", {
+      timeZone: SCHEDULER_TIMEZONE,
+      hour: "numeric",
+      hour12: false
+    })
+  );
+
+  return hour;
+}
+
+function isBusinessHours() {
+  const hour = getBangkokHour();
+  return hour >= SCHEDULER_BUSINESS_START && hour < SCHEDULER_BUSINESS_END;
+}
+
+function getSchedulerInterval() {
+  return isBusinessHours() ? SCHEDULER_BUSINESS_INTERVAL_MS : SCHEDULER_QUIET_INTERVAL_MS;
+}
+
+async function runScheduledCheck() {
+  if (!scheduler.enabled) {
+    return;
+  }
+
+  const today = new Date().toISOString().slice(0, 10);
+
+  if (scheduler.lastDay !== today) {
+    scheduler.checksToday = 0;
+    scheduler.lastDay = today;
+  }
+
+  try {
+    console.log(`[scheduler] Running ${isBusinessHours() ? "business" : "quiet"}-hours check`);
+    const data = await getDashboardData(true);
+    scheduler.lastCheckAt = new Date().toISOString();
+    scheduler.checksToday++;
+    await flushHealthHistory();
+    await flushAnalytics();
+    await flushAlerts();
+    await flushTriggers();
+
+    if (data?.targets) {
+      supabaseFlushAllDailyUptime(data.targets).catch(() => {});
+      supabaseFlushVisitorDaily().catch(() => {});
+    }
+  } catch (error) {
+    console.error(`[scheduler] Check failed: ${error.message}`);
+  }
+
+  scheduleNextCheck();
+}
+
+function scheduleNextCheck() {
+  if (scheduler.timer) {
+    clearTimeout(scheduler.timer);
+  }
+
+  if (!scheduler.enabled) {
+    scheduler.nextCheckAt = null;
+    return;
+  }
+
+  const interval = getSchedulerInterval();
+  scheduler.nextCheckAt = new Date(Date.now() + interval).toISOString();
+  scheduler.timer = setTimeout(runScheduledCheck, interval);
+}
+
+function startScheduler() {
+  if (process.env.NO_LISTEN === "1") {
+    return;
+  }
+
+  scheduleNextCheck();
+}
+
+function getSchedulerState() {
+  return {
+    enabled: scheduler.enabled,
+    intervalMinutes: Math.round(getSchedulerInterval() / 60_000),
+    nextCheckAt: scheduler.nextCheckAt,
+    lastCheckAt: scheduler.lastCheckAt,
+    checksToday: scheduler.checksToday,
+    mode: isBusinessHours() ? "business" : "quiet"
+  };
+}
+
+/* ============================================================
+   Phase 3 — Visitor Analytics
+   ============================================================ */
+
+function getToday() {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function recordVisit(projectId, ip, path, userAgent, responseMs) {
+  if (!analyticsData.projects[projectId]) {
+    analyticsData.projects[projectId] = { days: {} };
+  }
+
+  const today = getToday();
+  const proj = analyticsData.projects[projectId];
+
+  if (!proj.days[today]) {
+    proj.days[today] = { visitors: 0, uniqueIps: [], countries: {}, totalMs: 0, requests: 0 };
+  }
+
+  const day = proj.days[today];
+  day.visitors++;
+  day.requests++;
+
+  if (ip && !day.uniqueIps.includes(ip)) {
+    day.uniqueIps.push(ip);
+  }
+
+  if (responseMs != null) {
+    day.totalMs += responseMs;
+  }
+}
+
+function recordVisitorCountry(projectId, date, country) {
+  const proj = analyticsData.projects[projectId];
+
+  if (!proj?.days?.[date]) {
+    return;
+  }
+
+  const day = proj.days[date];
+
+  if (!day.countries[country]) {
+    day.countries[country] = 0;
+  }
+
+  day.countries[country]++;
+}
+
+async function resolveGeoIp(ip) {
+  if (!ip || ip === "127.0.0.1" || ip === "::1" || ip.startsWith("192.168.") || ip.startsWith("10.")) {
+    return "Local";
+  }
+
+  const cached = geoCache.get(ip);
+
+  if (cached && Date.now() - cached.at < GEO_CACHE_TTL_MS) {
+    return cached.country;
+  }
+
+  if (geoPending.has(ip)) {
+    return "Resolving";
+  }
+
+  geoPending.add(ip);
+
+  try {
+    const response = await fetch(`http://ip-api.com/json/${encodeURIComponent(ip)}?fields=country`, {
+      signal: AbortSignal.timeout(5000)
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      const country = data.country || "Unknown";
+      geoCache.set(ip, { country, at: Date.now() });
+      return country;
+    }
+  } catch {}
+
+  geoCache.set(ip, { country: "Unknown", at: Date.now() });
+  return "Unknown";
+}
+
+function getClientIp(request) {
+  const forwarded = request.headers["x-forwarded-for"];
+
+  if (forwarded) {
+    return forwarded.split(",")[0].trim();
+  }
+
+  return request.socket?.remoteAddress || null;
+}
+
+function isAnalyticsExcluded(pathname, userAgent) {
+  if (pathname.startsWith("/api/") || pathname.includes(".")) {
+    return true;
+  }
+
+  if (/bot|crawl|spider|slurp|curl|wget|python|node-fetch|non-operations-radar/i.test(userAgent || "")) {
+    return true;
+  }
+
+  return false;
+}
+
+function pruneAnalytics() {
+  const cutoff = new Date(Date.now() - ANALYTICS_RETENTION_DAYS * 86400_000).toISOString().slice(0, 10);
+
+  for (const proj of Object.values(analyticsData.projects)) {
+    for (const date of Object.keys(proj.days)) {
+      if (date < cutoff) {
+        delete proj.days[date];
+      }
+    }
+  }
+}
+
+function getAnalyticsSummary() {
+  const today = getToday();
+  const weekAgo = new Date(Date.now() - 7 * 86400_000).toISOString().slice(0, 10);
+  const projects = {};
+  let fleetTodayVisitors = 0;
+  let fleetWeekVisitors = 0;
+  const fleetCountries = {};
+
+  for (const [id, proj] of Object.entries(analyticsData.projects)) {
+    const todayData = proj.days[today];
+    let weekVisitors = 0;
+    const projCountries = {};
+
+    for (const [date, day] of Object.entries(proj.days)) {
+      if (date >= weekAgo) {
+        weekVisitors += day.visitors;
+
+        for (const [country, count] of Object.entries(day.countries)) {
+          projCountries[country] = (projCountries[country] || 0) + count;
+          fleetCountries[country] = (fleetCountries[country] || 0) + count;
+        }
+      }
+    }
+
+    fleetTodayVisitors += (todayData?.visitors || 0);
+    fleetWeekVisitors += weekVisitors;
+
+    projects[id] = {
+      today: todayData?.visitors || 0,
+      todayUnique: todayData?.uniqueIps?.length || 0,
+      week: weekVisitors,
+      avgMs: todayData?.requests ? Math.round(todayData.totalMs / todayData.requests) : null,
+      countries: projCountries
+    };
+  }
+
+  return {
+    fleet: {
+      todayVisitors: fleetTodayVisitors,
+      weekVisitors: fleetWeekVisitors,
+      countries: Object.entries(fleetCountries)
+        .sort((a, b) => b[1] - a[1])
+        .slice(0, 10)
+        .map(([country, count]) => ({ country, count }))
+    },
+    projects
+  };
+}
+
+async function loadAnalytics() {
+  try {
+    const raw = JSON.parse(await readFile(ANALYTICS_FILE, "utf8"));
+
+    if (raw?.projects) {
+      Object.assign(analyticsData.projects, raw.projects);
+    }
+  } catch {}
+}
+
+async function flushAnalytics() {
+  pruneAnalytics();
+  await atomicWrite(ANALYTICS_FILE, analyticsData);
+}
+
+function startAnalyticsFlush() {
+  if (process.env.NO_LISTEN === "1") {
+    return;
+  }
+
+  const loop = async () => {
+    await flushAnalytics();
+    setTimeout(loop, ANALYTICS_FLUSH_MS);
+  };
+
+  setTimeout(loop, ANALYTICS_FLUSH_MS);
+}
+
+/* ============================================================
+   Phase 4 — Alerting & Notifications
+   ============================================================ */
+
+function detectHealthTransition(targetId, targetLabel, newHealth, featured) {
+  const previous = previousHealthByTarget.get(targetId);
+  previousHealthByTarget.set(targetId, newHealth);
+
+  if (!previous) {
+    return null;
+  }
+
+  const wasUp = previous === "live";
+  const isUp = newHealth === "live";
+
+  if (wasUp && !isUp) {
+    return {
+      type: "down",
+      severity: featured ? "critical" : "warning",
+      message: `${targetLabel} went down (${newHealth})`
+    };
+  }
+
+  if (!wasUp && isUp) {
+    return {
+      type: "recovery",
+      severity: "info",
+      message: `${targetLabel} recovered`
+    };
+  }
+
+  if (wasUp && newHealth === "degraded") {
+    return {
+      type: "degraded",
+      severity: "warning",
+      message: `${targetLabel} is degraded`
+    };
+  }
+
+  return null;
+}
+
+function fireAlert(targetId, targetLabel, transition) {
+  const cooldownKey = `${targetId}:${transition.type}`;
+  const lastFired = alertCooldowns.get(cooldownKey);
+
+  if (lastFired && Date.now() - lastFired < ALERT_COOLDOWN_MS) {
+    return null;
+  }
+
+  alertCooldowns.set(cooldownKey, Date.now());
+
+  const alert = {
+    id: randomUUID(),
+    targetId,
+    targetLabel,
+    type: transition.type,
+    severity: transition.severity,
+    message: transition.message,
+    timestamp: new Date().toISOString(),
+    resolvedAt: transition.type === "recovery" ? new Date().toISOString() : null
+  };
+
+  alertsData.alerts.push(alert);
+
+  while (alertsData.alerts.length > ALERT_LIMIT) {
+    alertsData.alerts.shift();
+  }
+
+  if (transition.type === "recovery") {
+    for (const a of alertsData.alerts) {
+      if (a.targetId === targetId && !a.resolvedAt && (a.type === "down" || a.type === "degraded")) {
+        a.resolvedAt = alert.timestamp;
+      }
+    }
+  }
+
+  console.log(`[alert] ${transition.severity.toUpperCase()}: ${transition.message}`);
+  sendWebhook(alert);
+
+  if (transition.type === "recovery") {
+    supabaseResolveIncidents(targetId, alert.timestamp).catch(() => {});
+  }
+
+  return alert;
+}
+
+async function sendWebhook(alert) {
+  if (!ALERT_WEBHOOK_URL) {
+    return;
+  }
+
+  try {
+    const color = alert.severity === "critical" ? 16711680 : alert.severity === "warning" ? 16753920 : 65280;
+
+    await fetch(ALERT_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        content: `**[${alert.severity.toUpperCase()}]** ${alert.message}`,
+        embeds: [{
+          title: alert.message,
+          color,
+          fields: [
+            { name: "Target", value: alert.targetLabel, inline: true },
+            { name: "Type", value: alert.type, inline: true },
+            { name: "Time", value: alert.timestamp, inline: true }
+          ]
+        }]
+      }),
+      signal: AbortSignal.timeout(5000)
+    });
+  } catch (error) {
+    console.error(`[alert] Webhook failed: ${error.message}`);
+  }
+}
+
+function getActiveIncidents() {
+  return alertsData.alerts.filter(
+    (a) => (a.type === "down" || a.type === "degraded") && !a.resolvedAt
+  );
+}
+
+function getRecentAlerts(limit = 50) {
+  return alertsData.alerts.slice(-limit).reverse();
+}
+
+async function loadAlerts() {
+  try {
+    const raw = JSON.parse(await readFile(ALERTS_FILE, "utf8"));
+
+    if (Array.isArray(raw?.alerts)) {
+      alertsData.alerts = raw.alerts.slice(-ALERT_LIMIT);
+    }
+  } catch {}
+}
+
+async function flushAlerts() {
+  await atomicWrite(ALERTS_FILE, alertsData);
+}
+
+/* ============================================================
+   Phase 5 — Auto-Debug Triggers
+   ============================================================ */
+
+function getSuggestedActions(target) {
+  const platform = target.platform || "Unknown";
+  const health = target.health?.code || "offline";
+  const actions = [];
+
+  if (platform === "Render") {
+    actions.push("Check Render dashboard for service status");
+    actions.push("Review recent deploy logs on Render");
+
+    if (health === "error") {
+      actions.push("Check application logs for uncaught exceptions");
+    }
+  }
+
+  if (platform === "GitHub Pages") {
+    actions.push("Verify GitHub Pages is enabled in repo settings");
+    actions.push("Check if recent push broke the build");
+  }
+
+  if (health === "offline") {
+    actions.push("Check if the service process is running");
+    actions.push("Verify DNS resolution and network connectivity");
+  }
+
+  if (health === "error") {
+    actions.push("Check application error logs");
+    actions.push("Review most recent deployment or code change");
+  }
+
+  if (health === "degraded") {
+    actions.push("Check resource utilization (CPU, memory)");
+    actions.push("Review rate limits on external dependencies");
+  }
+
+  actions.push("Run smoke test against the service URL");
+  return actions;
+}
+
+function maybeCreateTrigger(target, alert) {
+  if (alert.type !== "down" || alert.severity !== "critical") {
+    return;
+  }
+
+  const sinceMs = downSince.get(target.id);
+  const now = Date.now();
+
+  if (!sinceMs) {
+    downSince.set(target.id, now);
+    return;
+  }
+
+  if (now - sinceMs < TRIGGER_DELAY_MS) {
+    return;
+  }
+
+  const existing = triggersData.triggers.find(
+    (t) => t.targetId === target.id && t.status === "open"
+  );
+
+  if (existing) {
+    return;
+  }
+
+  const trigger = {
+    id: randomUUID(),
+    targetId: target.id,
+    targetLabel: target.label,
+    type: "system-down",
+    severity: alert.severity,
+    context: {
+      url: target.url,
+      error: target.health?.reason || "Unknown",
+      platform: target.platform,
+      repo: target.repo?.fullName || null,
+      downtimeSince: new Date(sinceMs).toISOString(),
+      responseMs: target.responseTimeMs,
+      suggestedActions: getSuggestedActions(target)
+    },
+    status: "open",
+    createdAt: new Date().toISOString(),
+    claimedBy: null,
+    resolvedAt: null
+  };
+
+  triggersData.triggers.push(trigger);
+
+  while (triggersData.triggers.length > TRIGGER_LIMIT) {
+    triggersData.triggers.shift();
+  }
+
+  console.log(`[trigger] Created trigger for ${target.label}: ${trigger.id}`);
+}
+
+function resolveTriggersForTarget(targetId) {
+  for (const trigger of triggersData.triggers) {
+    if (trigger.targetId === targetId && trigger.status !== "resolved") {
+      trigger.status = "resolved";
+      trigger.resolvedAt = new Date().toISOString();
+    }
+  }
+
+  downSince.delete(targetId);
+}
+
+async function loadTriggers() {
+  try {
+    const raw = JSON.parse(await readFile(TRIGGERS_FILE, "utf8"));
+
+    if (Array.isArray(raw?.triggers)) {
+      triggersData.triggers = raw.triggers.slice(-TRIGGER_LIMIT);
+    }
+  } catch {}
+}
+
+async function flushTriggers() {
+  await atomicWrite(TRIGGERS_FILE, triggersData);
+}
+
+/* ============================================================
+   Post-check hook — wires phases 1, 4, 5 together
+   ============================================================ */
+
+function postCheckHook(target) {
+  const ok = target.health.code === "live";
+
+  recordHistoryBucket(target.id, ok, target.responseTimeMs);
+
+  const transition = detectHealthTransition(
+    target.id,
+    target.label,
+    target.health.code,
+    target.featured
+  );
+
+  if (transition) {
+    const alert = fireAlert(target.id, target.label, transition);
+
+    if (alert && transition.type === "down") {
+      maybeCreateTrigger(target, alert);
+      supabaseInsertIncident(alert, target).catch(() => {});
+    }
+
+    if (alert && transition.type === "degraded") {
+      supabaseInsertIncident(alert, target).catch(() => {});
+    }
+
+    if (transition.type === "recovery") {
+      resolveTriggersForTarget(target.id);
+    }
+  }
+}
+
+/* ============================================================
+   Supabase — Long-term persistent monitoring database
+   Zero dependencies: uses native fetch to Supabase REST API.
+   Falls back silently if SUPABASE_URL is not set.
+   ============================================================ */
+
+function supabaseEnabled() {
+  return Boolean(SUPABASE_URL && SUPABASE_KEY);
+}
+
+async function supabaseRequest(table, method, body, query = "") {
+  if (!supabaseEnabled()) {
+    return null;
+  }
+
+  const url = `${SUPABASE_URL}/rest/v1/${table}${query}`;
+
+  try {
+    const response = await fetch(url, {
+      method,
+      headers: {
+        apikey: SUPABASE_KEY,
+        authorization: `Bearer ${SUPABASE_KEY}`,
+        "content-type": "application/json",
+        prefer: method === "POST" ? "resolution=merge-duplicates,return=minimal" : "return=minimal"
+      },
+      body: body ? JSON.stringify(body) : undefined,
+      signal: AbortSignal.timeout(8000)
+    });
+
+    if (!response.ok) {
+      const text = await response.text().catch(() => "");
+      console.error(`[supabase] ${method} ${table} failed: ${response.status} ${text.slice(0, 200)}`);
+    }
+
+    return response;
+  } catch (error) {
+    console.error(`[supabase] ${method} ${table} error: ${error.message}`);
+    return null;
+  }
+}
+
+async function supabaseUpsertDailyUptime(target) {
+  const today = new Date().toISOString().slice(0, 10);
+  const ok = target.health?.code === "live";
+  const entry = healthHistory.targets[target.id];
+  const todayBuckets = entry?.buckets?.filter((b) => b.hour.startsWith(today)) ?? [];
+  const checks = todayBuckets.reduce((s, b) => s + b.checks, 0) || (ok ? 1 : 1);
+  const ups = todayBuckets.reduce((s, b) => s + b.ups, 0) || (ok ? 1 : 0);
+  const totalMs = todayBuckets.reduce((s, b) => s + b.totalMs, 0);
+  const minMs = todayBuckets.reduce((m, b) => b.minMs != null && (m === null || b.minMs < m) ? b.minMs : m, null);
+  const maxMs = todayBuckets.reduce((m, b) => b.maxMs != null && (m === null || b.maxMs > m) ? b.maxMs : m, null);
+
+  await supabaseRequest("daily_uptime", "POST", {
+    target_id: target.id,
+    target_label: target.label,
+    date: today,
+    checks,
+    ups,
+    avg_response_ms: checks > 0 ? Math.round(totalMs / checks) : null,
+    min_response_ms: minMs,
+    max_response_ms: maxMs,
+    platform: target.platform || null,
+    surface: target.surface || null,
+    category: target.category || null
+  }, "?on_conflict=target_id,date");
+}
+
+async function supabaseInsertIncident(alert, target) {
+  await supabaseRequest("incidents", "POST", {
+    target_id: alert.targetId,
+    target_label: alert.targetLabel,
+    severity: alert.severity,
+    type: alert.type,
+    message: alert.message,
+    platform: target?.platform || null,
+    error_reason: target?.health?.reason || null,
+    started_at: alert.timestamp,
+    resolved_at: alert.resolvedAt || null
+  });
+}
+
+async function supabaseResolveIncidents(targetId, resolvedAt) {
+  await supabaseRequest(
+    "incidents",
+    "PATCH",
+    { resolved_at: resolvedAt },
+    `?target_id=eq.${encodeURIComponent(targetId)}&resolved_at=is.null`
+  );
+}
+
+async function supabaseUpsertVisitorDaily(projectId) {
+  const today = new Date().toISOString().slice(0, 10);
+  const proj = analyticsData.projects[projectId];
+  const dayData = proj?.days?.[today];
+
+  if (!dayData) {
+    return;
+  }
+
+  await supabaseRequest("visitor_daily", "POST", {
+    project_id: projectId,
+    date: today,
+    visitors: dayData.visitors || 0,
+    unique_ips: dayData.uniqueIps?.length || 0,
+    top_countries: dayData.countries || {},
+    avg_response_ms: dayData.requests ? Math.round(dayData.totalMs / dayData.requests) : null
+  }, "?on_conflict=project_id,date");
+}
+
+async function supabaseFlushAllDailyUptime(targets) {
+  if (!supabaseEnabled()) {
+    return;
+  }
+
+  for (const target of targets) {
+    await supabaseUpsertDailyUptime(target);
+  }
+
+  console.log(`[supabase] Flushed daily uptime for ${targets.length} targets`);
+}
+
+async function supabaseFlushVisitorDaily() {
+  if (!supabaseEnabled()) {
+    return;
+  }
+
+  for (const projectId of Object.keys(analyticsData.projects)) {
+    await supabaseUpsertVisitorDaily(projectId);
+  }
+}
+
 async function fetchJson(url) {
   const headers = {
     accept: "application/vnd.github+json",
@@ -968,7 +1883,7 @@ async function checkTarget(target) {
       statusCode: response.status
     });
 
-    return {
+    const result = {
       apis: buildApiInventory(target, finalUrl),
       addedAt: target.addedAt,
       category: target.category,
@@ -997,6 +1912,9 @@ async function checkTarget(target) {
       surface: target.surface,
       url: target.url
     };
+
+    postCheckHook(result);
+    return result;
   } catch (error) {
     const checkedAt = new Date().toISOString();
     const responseTimeMs = Date.now() - startedAt;
@@ -1009,7 +1927,7 @@ async function checkTarget(target) {
       statusCode: null
     });
 
-    return {
+    const result = {
       apis: buildApiInventory(target, target.url),
       addedAt: target.addedAt,
       category: target.category,
@@ -1042,6 +1960,9 @@ async function checkTarget(target) {
       surface: target.surface,
       url: target.url
     };
+
+    postCheckHook(result);
+    return result;
   }
 }
 
@@ -1307,12 +2228,31 @@ async function getDashboardData(force = false) {
       getMentionsSnapshot(force)
     ]);
 
+    for (const t of targets) {
+      t.uptime = getTargetUptime(t.id);
+      t.historyBuckets = getTargetBuckets(t.id, 168);
+    }
+
+    const summary = buildSummary(targets, github);
+
+    const uptimeBuckets = targets.map((t) => t.uptime?.h24).filter((v) => v != null);
+    summary.fleetUptime24h = uptimeBuckets.length
+      ? Math.round(uptimeBuckets.reduce((a, b) => a + b, 0) / uptimeBuckets.length * 100) / 100
+      : null;
+
     const payload = {
       generatedAt: new Date().toISOString(),
       github,
       mentions,
-      summary: buildSummary(targets, github),
-      targets
+      summary,
+      targets,
+      analytics: getAnalyticsSummary(),
+      alerts: {
+        active: getActiveIncidents(),
+        recent: getRecentAlerts(20)
+      },
+      triggers: triggersData.triggers.filter((t) => t.status !== "resolved").slice(-20),
+      scheduler: getSchedulerState()
     };
 
     dashboardCache = {
@@ -1381,13 +2321,197 @@ const server = createServer(async (request, response) => {
     return;
   }
 
+  /* Phase 2 — Scheduler endpoints */
+  if (url.pathname === "/api/scheduler") {
+    if (request.method === "POST") {
+      let body = "";
+
+      for await (const chunk of request) {
+        body += chunk;
+      }
+
+      try {
+        const data = JSON.parse(body);
+
+        if (typeof data.enabled === "boolean") {
+          scheduler.enabled = data.enabled;
+
+          if (data.enabled) {
+            scheduleNextCheck();
+          } else if (scheduler.timer) {
+            clearTimeout(scheduler.timer);
+            scheduler.nextCheckAt = null;
+          }
+        }
+      } catch {}
+
+      sendJson(response, 200, getSchedulerState());
+      return;
+    }
+
+    sendJson(response, 200, getSchedulerState());
+    return;
+  }
+
+  /* Phase 3 — Analytics endpoints */
+  if (url.pathname === "/api/analytics") {
+    sendJson(response, 200, getAnalyticsSummary());
+    return;
+  }
+
+  if (url.pathname === "/api/beacon" && request.method === "POST") {
+    let body = "";
+
+    for await (const chunk of request) {
+      body += chunk;
+    }
+
+    try {
+      const data = JSON.parse(body);
+      const projectId = data.projectId || "unknown";
+      const ip = data.ip || getClientIp(request);
+      const path = data.path || "/";
+      const userAgent = data.userAgent || request.headers["user-agent"] || "";
+      const responseMs = data.responseMs ?? null;
+      const country = data.country || null;
+
+      recordVisit(projectId, ip, path, userAgent, responseMs);
+
+      if (country) {
+        recordVisitorCountry(projectId, getToday(), country);
+      } else if (ip) {
+        resolveGeoIp(ip).then((resolvedCountry) => {
+          recordVisitorCountry(projectId, getToday(), resolvedCountry);
+        }).catch(() => {});
+      }
+
+      sendJson(response, 200, { status: "ok" });
+    } catch {
+      sendJson(response, 400, { error: "Invalid beacon payload" });
+    }
+    return;
+  }
+
+  /* Phase 4 — Alerts endpoint */
+  if (url.pathname === "/api/alerts") {
+    sendJson(response, 200, {
+      active: getActiveIncidents(),
+      recent: getRecentAlerts(50)
+    });
+    return;
+  }
+
+  /* Phase 5 — Triggers endpoints */
+  if (url.pathname === "/api/triggers" && request.method === "GET") {
+    const statusFilter = url.searchParams.get("status") || "open";
+    const filtered = triggersData.triggers.filter((t) => t.status === statusFilter);
+    sendJson(response, 200, { triggers: filtered });
+    return;
+  }
+
+  const triggerClaimMatch = url.pathname.match(/^\/api\/triggers\/([^/]+)\/claim$/);
+
+  if (triggerClaimMatch && request.method === "POST") {
+    const triggerId = triggerClaimMatch[1];
+    const trigger = triggersData.triggers.find((t) => t.id === triggerId);
+
+    if (!trigger) {
+      sendJson(response, 404, { error: "Trigger not found" });
+      return;
+    }
+
+    let body = "";
+
+    for await (const chunk of request) {
+      body += chunk;
+    }
+
+    try {
+      const data = JSON.parse(body);
+      trigger.status = "claimed";
+      trigger.claimedBy = data.claimedBy || "unknown";
+      await flushTriggers();
+      sendJson(response, 200, trigger);
+    } catch {
+      sendJson(response, 400, { error: "Invalid payload" });
+    }
+    return;
+  }
+
+  const triggerResolveMatch = url.pathname.match(/^\/api\/triggers\/([^/]+)\/resolve$/);
+
+  if (triggerResolveMatch && request.method === "POST") {
+    const triggerId = triggerResolveMatch[1];
+    const trigger = triggersData.triggers.find((t) => t.id === triggerId);
+
+    if (!trigger) {
+      sendJson(response, 404, { error: "Trigger not found" });
+      return;
+    }
+
+    let body = "";
+
+    for await (const chunk of request) {
+      body += chunk;
+    }
+
+    try {
+      const data = JSON.parse(body);
+      trigger.status = "resolved";
+      trigger.resolvedAt = new Date().toISOString();
+      trigger.resolution = data.resolution || null;
+      await flushTriggers();
+      sendJson(response, 200, trigger);
+    } catch {
+      sendJson(response, 400, { error: "Invalid payload" });
+    }
+    return;
+  }
+
+  /* Analytics middleware — track visits to the dashboard itself */
+  if (!isAnalyticsExcluded(url.pathname, request.headers["user-agent"])) {
+    const ip = getClientIp(request);
+    recordVisit("operations-radar", ip, url.pathname, request.headers["user-agent"], null);
+
+    if (ip) {
+      resolveGeoIp(ip).then((country) => {
+        recordVisitorCountry("operations-radar", getToday(), country);
+      }).catch(() => {});
+    }
+  }
+
   await serveStatic(url.pathname, response);
 });
 
-export { getDashboardData, getMentionsSnapshot, hydrateHistoryFromSnapshot, server };
+export {
+  getDashboardData,
+  getMentionsSnapshot,
+  healthHistory,
+  hydrateHistoryFromSnapshot,
+  analyticsData,
+  alertsData,
+  triggersData,
+  flushHealthHistory,
+  flushAnalytics,
+  flushAlerts,
+  flushTriggers,
+  supabaseFlushAllDailyUptime,
+  supabaseFlushVisitorDaily,
+  server
+};
+
+/* Load persistent data and start background loops */
+await loadHealthHistory();
+await loadAnalytics();
+await loadAlerts();
+await loadTriggers();
 
 if (process.env.NO_LISTEN !== "1") {
+  startHealthHistoryFlush();
+  startAnalyticsFlush();
+  startScheduler();
   server.listen(PORT, HOST, () => {
     console.log(`Operations radar listening on http://${HOST}:${PORT}`);
+    console.log(`[scheduler] ${scheduler.enabled ? "Active" : "Disabled"}, mode: ${isBusinessHours() ? "business" : "quiet"}`);
   });
 }

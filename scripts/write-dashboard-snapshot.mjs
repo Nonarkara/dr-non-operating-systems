@@ -7,11 +7,25 @@ process.env.NO_LISTEN = "1";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const repoRoot = dirname(__dirname);
-const snapshotPath = join(repoRoot, "public", "data", "dashboard-snapshot.json");
+const dataDir = join(repoRoot, "public", "data");
+const snapshotPath = join(dataDir, "dashboard-snapshot.json");
 const WORKFLOW_URL =
   "https://github.com/Nonarkara/dr-non-operating-systems/actions/workflows/update-dashboard-snapshot.yml";
 
-const { getDashboardData, hydrateHistoryFromSnapshot } = await import("../server.js");
+const {
+  getDashboardData,
+  hydrateHistoryFromSnapshot,
+  healthHistory,
+  analyticsData,
+  alertsData,
+  triggersData,
+  flushHealthHistory,
+  flushAnalytics,
+  flushAlerts,
+  flushTriggers,
+  supabaseFlushAllDailyUptime,
+  supabaseFlushVisitorDaily
+} = await import("../server.js");
 
 async function loadPreviousSnapshot() {
   try {
@@ -60,7 +74,7 @@ function buildSnapshotMeta(overrides = {}) {
   };
 }
 
-await mkdir(dirname(snapshotPath), { recursive: true });
+await mkdir(dataDir, { recursive: true });
 const previousSnapshot = await loadPreviousSnapshot();
 
 const payload = await getDashboardData(true);
@@ -77,4 +91,24 @@ if (preservePreviousSnapshot) {
 
   await writeFile(snapshotPath, `${JSON.stringify(snapshot, null, 2)}\n`, "utf8");
   console.log(`Wrote snapshot to ${snapshotPath}`);
+}
+
+/* Flush all persistent data files */
+await flushHealthHistory();
+console.log("Flushed health-history.json");
+await flushAnalytics();
+console.log("Flushed analytics.json");
+await flushAlerts();
+console.log("Flushed alerts.json");
+await flushTriggers();
+console.log("Flushed triggers.json");
+
+/* Flush to Supabase (if configured) */
+if (process.env.SUPABASE_URL) {
+  const targets = payload?.targets ?? [];
+  await supabaseFlushAllDailyUptime(targets);
+  await supabaseFlushVisitorDaily();
+  console.log("Flushed to Supabase");
+} else {
+  console.log("Supabase not configured — skipped");
 }
