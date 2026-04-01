@@ -17,6 +17,17 @@
     <div class="bg-orbit orbit-b"></div>
     <div class="grid-glow"></div>
 
+    <!-- Time Travel Bar (v4) -->
+    <div id="timeTravelBar" class="time-travel-bar" hidden>
+      <div class="time-travel-inner">
+        <span class="time-travel-icon">&#9202;</span>
+        <span class="time-travel-label" id="timeTravelLabel">Select a snapshot</span>
+        <input type="range" id="timeTravelSlider" class="time-travel-slider" min="0" max="0" value="0" />
+        <span class="time-travel-date" id="timeTravelDate">—</span>
+        <button id="timeTravelReturn" class="button button-primary time-travel-return" type="button">Return to live</button>
+      </div>
+    </div>
+
     <nav class="top-nav" aria-label="Section navigation">
       <div class="top-nav-inner">
         <span class="top-nav-brand">NON.OS <span class="top-nav-version">v4</span></span>
@@ -78,6 +89,9 @@
           <button id="openAllButton" class="button button-secondary utility-button" type="button">
             Open all live pages
           </button>
+          <button id="timeTravelToggle" class="button button-secondary utility-button" type="button">
+            History
+          </button>
           <label class="select-wrap">
             <span>Auto refresh</span>
             <select id="refreshSelect">
@@ -106,6 +120,9 @@
       <section id="alertBanner" class="alert-banner" hidden></section>
 
       <section class="metrics-grid" id="metricsGrid"></section>
+
+      <!-- Distribution Charts (v4) -->
+      <section id="distributionCharts" class="distribution-grid"></section>
 
       <!-- Fleet Uptime Overview (Phase 1) -->
       <section id="fleetUptimeHead" class="section-head">

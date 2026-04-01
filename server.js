@@ -20,6 +20,8 @@ const SUPABASE_URL = process.env.SUPABASE_URL || "";
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY || "";
 
 const GITHUB_USERNAME = "Nonarkara";
+const GITHUB_REPO = "Nonarkara/dr-non-operating-systems";
+const SNAPSHOT_COMMITS_PATH = "public/data/dashboard-snapshot.json";
 const DASHBOARD_TTL_MS = 20_000;
 const GITHUB_TTL_MS = 10 * 60_000;
 const MENTIONS_TTL_MS = 30 * 60_000;
@@ -456,6 +458,10 @@ let mentionsCache = {
   fetchedAt: 0,
   promise: null
 };
+
+/* v4 — Time travel caches */
+let snapshotCommitsCache = { value: null, fetchedAt: 0 };
+const historicalSnapshotCache = new Map();
 
 /* Phase 1 — Persistent health history (hourly buckets per target) */
 const healthHistory = { targets: {}, updatedAt: null };
@@ -2318,6 +2324,64 @@ const server = createServer(async (request, response) => {
 
     const payload = await getMentionsSnapshot(url.searchParams.get("force") === "1");
     sendJson(response, 200, payload);
+    return;
+  }
+
+  /* v4 — Time Travel: list snapshot commits */
+  if (url.pathname === "/api/snapshots") {
+    try {
+      if (snapshotCommitsCache.value && Date.now() - snapshotCommitsCache.fetchedAt < 10 * 60_000) {
+        sendJson(response, 200, snapshotCommitsCache.value);
+        return;
+      }
+
+      const commits = await fetchJson(
+        `https://api.github.com/repos/${GITHUB_REPO}/commits?path=${SNAPSHOT_COMMITS_PATH}&per_page=30`
+      );
+
+      const result = commits.map((c) => ({
+        sha: c.sha,
+        date: c.commit?.committer?.date || c.commit?.author?.date,
+        message: c.commit?.message?.split("\n")[0] || ""
+      }));
+
+      snapshotCommitsCache = { value: result, fetchedAt: Date.now() };
+      sendJson(response, 200, result);
+    } catch (error) {
+      sendJson(response, 503, { error: "Could not fetch snapshot history", detail: error.message });
+    }
+    return;
+  }
+
+  /* v4 — Time Travel: fetch a historical snapshot by SHA */
+  const snapshotShaMatch = url.pathname.match(/^\/api\/snapshots\/([a-f0-9]{7,40})$/);
+
+  if (snapshotShaMatch) {
+    const sha = snapshotShaMatch[1];
+
+    try {
+      if (historicalSnapshotCache.has(sha)) {
+        sendJson(response, 200, historicalSnapshotCache.get(sha));
+        return;
+      }
+
+      const raw = await fetchText(
+        `https://raw.githubusercontent.com/${GITHUB_REPO}/${sha}/${SNAPSHOT_COMMITS_PATH}`,
+        "application/json"
+      );
+
+      const data = JSON.parse(raw);
+      historicalSnapshotCache.set(sha, data);
+
+      if (historicalSnapshotCache.size > 15) {
+        const oldest = historicalSnapshotCache.keys().next().value;
+        historicalSnapshotCache.delete(oldest);
+      }
+
+      sendJson(response, 200, data);
+    } catch (error) {
+      sendJson(response, 503, { error: "Could not fetch historical snapshot", detail: error.message });
+    }
     return;
   }
 

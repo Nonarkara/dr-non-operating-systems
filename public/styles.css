@@ -3462,3 +3462,352 @@ summary:hover {
     flex-wrap: wrap;
   }
 }
+
+/* ============================================================
+   v4 — SVG Primitives
+   ============================================================ */
+
+.svg-gauge {
+  display: block;
+}
+
+.svg-gauge-arc {
+  transition: stroke-dasharray 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.svg-donut {
+  display: block;
+}
+
+.donut-wrap {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.donut-legend {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.donut-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.56rem;
+  color: var(--text);
+}
+
+.donut-legend-item strong {
+  color: var(--text-bright);
+  font-family: var(--font-mono);
+}
+
+.donut-legend-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+.svg-sparkline {
+  display: block;
+}
+
+.svg-ring {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.mini-ring-empty {
+  display: inline-block;
+  border-radius: 50%;
+  border: 2px solid var(--line);
+  opacity: 0.3;
+}
+
+.svg-stacked-bar {
+  display: block;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+/* ============================================================
+   v4 — Metric Gauge Cards
+   ============================================================ */
+
+.metric-card--gauge {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.6rem 0.85rem;
+}
+
+.metric-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+/* ============================================================
+   v4 — Distribution Charts
+   ============================================================ */
+
+.distribution-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  max-width: 1400px;
+  margin: 0 auto 1.5rem;
+  padding: 0 1rem;
+}
+
+.distribution-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.health-split-labels {
+  display: flex;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding-top: 0.3rem;
+}
+
+/* ============================================================
+   v4 — Fleet Gauge Summary
+   ============================================================ */
+
+.fleet-stat--gauge {
+  flex-direction: row;
+  align-items: center;
+}
+
+.fleet-row-ring {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fleet-row {
+  grid-template-columns: 180px 80px 1fr 28px 28px 28px;
+}
+
+/* ============================================================
+   v4 — Card Sparkline + Uptime Ring
+   ============================================================ */
+
+.history-visual {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding-bottom: 0.3rem;
+}
+
+.history-sparkline {
+  flex: 1;
+  min-width: 0;
+}
+
+.history-sparkline .svg-sparkline {
+  width: 100%;
+  height: 28px;
+}
+
+.history-uptime-ring {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+/* ============================================================
+   v4 — GitHub Visual
+   ============================================================ */
+
+.github-visual {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.github-visual-gauges {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.github-visual-stats {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.github-visual-langs {
+  flex: 1;
+  min-width: 100px;
+}
+
+/* ============================================================
+   v4 — Alert Severity Header
+   ============================================================ */
+
+.alert-severity-header {
+  display: flex;
+  align-items: center;
+  padding: 0.4rem 0.7rem;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.severity-ring-group {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.severity-ring-label {
+  font-family: var(--font-mono);
+  font-size: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted-strong);
+  margin-right: 0.4rem;
+}
+
+/* ============================================================
+   v4 — Time Travel Bar
+   ============================================================ */
+
+.time-travel-bar {
+  position: sticky;
+  top: 0;
+  z-index: 210;
+  width: 100%;
+  background: rgba(30, 20, 6, 0.92);
+  backdrop-filter: blur(16px) saturate(1.3);
+  -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  border-bottom: 1px solid rgba(255, 170, 26, 0.3);
+  box-shadow: 0 2px 16px rgba(255, 170, 26, 0.1);
+}
+
+.time-travel-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0.4rem 1rem;
+}
+
+.time-travel-icon {
+  font-size: 1rem;
+  color: var(--warning);
+}
+
+.time-travel-label {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  color: var(--warning);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.time-travel-slider {
+  flex: 1;
+  height: 4px;
+  -webkit-appearance: none;
+  appearance: none;
+  background: rgba(255, 170, 26, 0.2);
+  border-radius: 2px;
+  outline: none;
+  cursor: pointer;
+}
+
+.time-travel-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--warning);
+  cursor: pointer;
+  box-shadow: 0 0 8px rgba(255, 170, 26, 0.5);
+}
+
+.time-travel-slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--warning);
+  border: none;
+  cursor: pointer;
+}
+
+.time-travel-date {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-bright);
+  white-space: nowrap;
+  min-width: 100px;
+  text-align: right;
+}
+
+.time-travel-return {
+  font-size: 0.52rem;
+  padding: 0.25rem 0.6rem;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   v4 — Responsive overrides
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .distribution-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .metric-card--gauge {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .fleet-row {
+    grid-template-columns: 120px 60px 1fr 22px 22px 22px;
+  }
+
+  .time-travel-inner {
+    flex-wrap: wrap;
+  }
+
+  .time-travel-slider {
+    order: 10;
+    width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .distribution-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .donut-wrap {
+    flex-direction: column;
+  }
+
+  .github-visual {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

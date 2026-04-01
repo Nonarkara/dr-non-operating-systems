@@ -8,6 +8,121 @@ const PREVIEW_VIEWPORT = {
   height: 900
 };
 
+const GITHUB_REPO = "Nonarkara/dr-non-operating-systems";
+const SNAPSHOT_COMMITS_PATH = "public/data/dashboard-snapshot.json";
+
+/* ============================================================
+   SVG Primitive Library — all inline, zero dependencies
+   ============================================================ */
+
+const SVG = {
+  arcGauge(value, max, size = 120, opts = {}) {
+    const pct = max > 0 ? Math.min(value / max, 1) : 0;
+    const r = (size - 12) / 2;
+    const cx = size / 2;
+    const cy = size / 2;
+    const circ = 2 * Math.PI * r;
+    const dash = circ * pct;
+    const gap = circ - dash;
+    const color = opts.color || (pct >= 0.9 ? "var(--success)" : pct >= 0.5 ? "var(--warning)" : "var(--danger)");
+    const invert = opts.invert;
+    const displayPct = invert ? (max > 0 ? Math.round((1 - value / max) * 100) : 0) : Math.round(pct * 100);
+    const label = opts.label || "";
+    const displayValue = opts.displayValue || String(Math.round(value));
+
+    return `<svg class="svg-gauge" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--line)" stroke-width="6" opacity="0.3"/>
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="6"
+        stroke-dasharray="${dash} ${gap}" stroke-linecap="round"
+        transform="rotate(-90 ${cx} ${cy})" class="svg-gauge-arc"/>
+      <text x="${cx}" y="${cy - 4}" text-anchor="middle" fill="var(--text-bright)" font-size="${size * 0.22}px" font-weight="700" font-family="var(--font-mono)">${escapeHtml(displayValue)}</text>
+      <text x="${cx}" y="${cy + size * 0.14}" text-anchor="middle" fill="var(--muted-strong)" font-size="${size * 0.1}px" font-family="var(--font-mono)" text-transform="uppercase">${escapeHtml(label)}</text>
+    </svg>`;
+  },
+
+  donut(segments, size = 160, opts = {}) {
+    const total = segments.reduce((s, seg) => s + seg.value, 0);
+    if (!total) return `<svg viewBox="0 0 ${size} ${size}" width="${size}" height="${size}"><circle cx="${size/2}" cy="${size/2}" r="${(size-16)/2}" fill="none" stroke="var(--line)" stroke-width="10" opacity="0.2"/></svg>`;
+    const r = (size - 16) / 2;
+    const cx = size / 2;
+    const cy = size / 2;
+    const circ = 2 * Math.PI * r;
+    let offset = 0;
+    const arcs = segments.map((seg) => {
+      const pct = seg.value / total;
+      const dash = circ * pct;
+      const gap = circ - dash;
+      const arc = `<circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${seg.color}" stroke-width="10"
+        stroke-dasharray="${dash} ${gap}" stroke-dashoffset="${-offset}"
+        transform="rotate(-90 ${cx} ${cy})" opacity="0.85"/>`;
+      offset += dash;
+      return arc;
+    });
+    const centerLabel = opts.centerLabel || String(total);
+    const legend = segments.filter((s) => s.value > 0).map((s) => `
+      <span class="donut-legend-item"><span class="donut-legend-dot" style="background:${s.color}"></span>${escapeHtml(s.label)} <strong>${s.value}</strong></span>
+    `).join("");
+
+    return `<div class="donut-wrap">
+      <svg class="svg-donut" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">
+        ${arcs.join("")}
+        <text x="${cx}" y="${cy + 2}" text-anchor="middle" fill="var(--text-bright)" font-size="${size * 0.16}px" font-weight="700" font-family="var(--font-mono)">${escapeHtml(centerLabel)}</text>
+      </svg>
+      <div class="donut-legend">${legend}</div>
+    </div>`;
+  },
+
+  sparkline(points, width = 120, height = 28, opts = {}) {
+    if (!points.length) return "";
+    const max = Math.max(...points, 1);
+    const min = Math.min(...points, 0);
+    const range = max - min || 1;
+    const step = width / Math.max(points.length - 1, 1);
+    const coords = points.map((v, i) => `${(i * step).toFixed(1)},${(height - 2 - ((v - min) / range) * (height - 4)).toFixed(1)}`).join(" ");
+    const color = opts.color || "var(--accent)";
+    const fillCoords = `0,${height} ${coords} ${width},${height}`;
+
+    return `<svg class="svg-sparkline" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" preserveAspectRatio="none">
+      <polygon points="${fillCoords}" fill="${color}" opacity="0.1"/>
+      <polyline points="${coords}" fill="none" stroke="${color}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
+    </svg>`;
+  },
+
+  miniRing(pct, size = 20, opts = {}) {
+    if (pct == null) return `<span class="mini-ring-empty" style="width:${size}px;height:${size}px"></span>`;
+    const r = (size - 4) / 2;
+    const cx = size / 2;
+    const cy = size / 2;
+    const circ = 2 * Math.PI * r;
+    const dash = circ * (pct / 100);
+    const gap = circ - dash;
+    const color = opts.color || (pct >= 99 ? "var(--success)" : pct >= 90 ? "var(--accent-green)" : pct >= 50 ? "var(--warning)" : "var(--danger)");
+
+    return `<svg class="svg-ring" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" title="${Math.round(pct)}%">
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--line)" stroke-width="2.5" opacity="0.25"/>
+      <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="2.5"
+        stroke-dasharray="${dash} ${gap}" stroke-linecap="round"
+        transform="rotate(-90 ${cx} ${cy})"/>
+    </svg>`;
+  },
+
+  stackedBar(segments, width = 200, height = 12) {
+    const total = segments.reduce((s, seg) => s + seg.value, 0);
+    if (!total) return "";
+    let x = 0;
+    const rects = segments.filter((s) => s.value > 0).map((seg) => {
+      const w = (seg.value / total) * width;
+      const rect = `<rect x="${x.toFixed(1)}" y="0" width="${Math.max(w, 1).toFixed(1)}" height="${height}" fill="${seg.color}" rx="1" opacity="0.8">
+        <title>${escapeHtml(seg.label)}: ${seg.value} (${Math.round(seg.value / total * 100)}%)</title>
+      </rect>`;
+      x += w;
+      return rect;
+    });
+
+    return `<svg class="svg-stacked-bar" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}">${rects.join("")}</svg>`;
+  }
+};
+
 const LAB_LOGOS = [
   {
     id: "smart-city-thailand-office",
@@ -635,7 +750,12 @@ const state = {
   localTargets: loadLocalTargets(),
   mentions: null,
   mode: DATA_MODE,
-  refreshTimer: null
+  refreshTimer: null,
+  /* v4 — Time travel */
+  timeTravel: false,
+  timeTravelCommits: [],
+  timeTravelCache: new Map(),
+  timeTravelIndex: 0
 };
 
 let previewFrameSyncHandle = 0;
@@ -687,7 +807,14 @@ const elements = {
   originStory: document.querySelector("#originStory"),
   copyBlueprintButton: document.querySelector("#copyBlueprintButton"),
   blueprintCode: document.querySelector("#blueprintCode"),
-  /* Phase 1-5 new elements */
+  /* v4 new elements */
+  distributionCharts: document.querySelector("#distributionCharts"),
+  timeTravelBar: document.querySelector("#timeTravelBar"),
+  timeTravelSlider: document.querySelector("#timeTravelSlider"),
+  timeTravelDate: document.querySelector("#timeTravelDate"),
+  timeTravelLabel: document.querySelector("#timeTravelLabel"),
+  timeTravelReturn: document.querySelector("#timeTravelReturn"),
+  timeTravelToggle: document.querySelector("#timeTravelToggle"),
   alertBanner: document.querySelector("#alertBanner"),
   fleetUptime: document.querySelector("#fleetUptime"),
   visitorIntel: document.querySelector("#visitorIntel"),
@@ -908,59 +1035,78 @@ function renderHistory(history = []) {
 }
 
 function renderMetrics(summary, github) {
-  const metrics = [
-    {
-      label: "Public pages",
-      value: formatNumber(summary.monitoredPages),
-      subtext: "Everything currently monitored on the wall"
-    },
-    {
-      label: "Active apps",
-      value: formatNumber(summary.activeCount),
-      subtext: `${formatNumber(summary.staticCount)} static pages beside them`
-    },
-    {
-      label: "Healthy now",
-      value: formatNumber(summary.liveCount),
-      subtext: `${formatNumber(summary.attentionCount)} items need attention`
-    },
-    {
-      label: "Mapped APIs",
-      value: formatNumber(summary.apiCount),
-      subtext: `${formatNumber(summary.appsWithApis)} apps with runtime endpoints`
-    },
-    {
-      label: "Median response",
-      value: formatNumber(summary.medianResponseMs, " ms"),
-      subtext: summary.fastest
-        ? `Fastest: ${summary.fastest.label} at ${summary.fastest.responseTimeMs} ms`
-        : "No successful responses yet"
-    },
-    {
-      label: "Platforms",
-      value: formatNumber(summary.platformsInUse),
-      subtext: summary.platformBreakdown.map((item) => `${item.platform} ${item.count}`).join(" • ")
-    },
-    {
-      label: "GitHub public repos",
-      value: formatNumber(summary.publicRepos),
-      subtext: github.stats.githubPagesRepos !== null
-        ? `${github.stats.githubPagesRepos} repos with Pages enabled`
-        : "GitHub metadata unavailable"
-    }
-  ];
+  const healthPct = summary.monitoredPages > 0 ? (summary.liveCount / summary.monitoredPages) * 100 : 0;
+  const uptimePct = summary.fleetUptime24h ?? 0;
+  const responseCapped = Math.min(summary.medianResponseMs || 0, 2000);
 
-  elements.metricsGrid.innerHTML = metrics
-    .map(
-      (metric) => `
-        <article class="metric-card">
-          <p class="metric-label">${escapeHtml(metric.label)}</p>
-          <div class="metric-value">${escapeHtml(metric.value)}</div>
-          <div class="metric-subtext">${escapeHtml(metric.subtext)}</div>
-        </article>
-      `
-    )
-    .join("");
+  elements.metricsGrid.innerHTML = `
+    <article class="metric-card metric-card--gauge">
+      ${SVG.arcGauge(summary.liveCount, summary.monitoredPages, 110, { label: "Health", displayValue: `${summary.liveCount}/${summary.monitoredPages}`, color: healthPct >= 90 ? "var(--success)" : healthPct >= 50 ? "var(--warning)" : "var(--danger)" })}
+      <div class="metric-detail">
+        <p class="metric-label">System Health</p>
+        <div class="metric-subtext">${escapeHtml(formatNumber(summary.attentionCount))} need attention</div>
+      </div>
+    </article>
+    <article class="metric-card metric-card--gauge">
+      ${SVG.arcGauge(uptimePct, 100, 110, { label: "24h", displayValue: uptimePct ? uptimePct.toFixed(1) + "%" : "—", color: uptimePct >= 95 ? "var(--success)" : uptimePct >= 80 ? "var(--warning)" : "var(--danger)" })}
+      <div class="metric-detail">
+        <p class="metric-label">Fleet Uptime</p>
+        <div class="metric-subtext">Average across all targets</div>
+      </div>
+    </article>
+    <article class="metric-card metric-card--gauge">
+      ${SVG.arcGauge(summary.apiCount, 200, 110, { label: "APIs", displayValue: String(summary.apiCount), color: "var(--accent)" })}
+      <div class="metric-detail">
+        <p class="metric-label">Mapped APIs</p>
+        <div class="metric-subtext">${escapeHtml(formatNumber(summary.appsWithApis))} apps with endpoints</div>
+      </div>
+    </article>
+    <article class="metric-card metric-card--gauge">
+      ${SVG.arcGauge(2000 - responseCapped, 2000, 110, { label: "Speed", displayValue: (summary.medianResponseMs || 0) + "ms", color: responseCapped < 500 ? "var(--success)" : responseCapped < 1000 ? "var(--warning)" : "var(--danger)" })}
+      <div class="metric-detail">
+        <p class="metric-label">Median Response</p>
+        <div class="metric-subtext">${summary.fastest ? `Fastest: ${escapeHtml(summary.fastest.label)}` : "No data"}</div>
+      </div>
+    </article>
+  `;
+}
+
+const PLATFORM_COLORS = { Render: "var(--accent)", Web: "var(--accent-warm)", "GitHub Pages": "var(--accent-green)", Lovable: "var(--warning)", Local: "var(--muted-strong)" };
+const LANG_COLORS = { JavaScript: "#f0db4f", TypeScript: "#3178c6", HTML: "#e34c26", CSS: "#563d7c", Python: "#3572A5", Shell: "#89e051" };
+
+function renderDistributionCharts(summary, github) {
+  const container = elements.distributionCharts;
+  if (!container) return;
+
+  const platformSegs = (summary.platformBreakdown || []).map((p) => ({
+    label: p.platform, value: p.count, color: PLATFORM_COLORS[p.platform] || "var(--muted)"
+  }));
+
+  const langSegs = (github?.stats?.topLanguages || []).map((l) => ({
+    label: l.name, value: l.count, color: LANG_COLORS[l.name] || "var(--muted-strong)"
+  }));
+
+  container.innerHTML = `
+    <article class="panel distribution-card">
+      <div class="panel-head"><p class="panel-kicker">Infrastructure</p><h2>Platform Mix</h2></div>
+      ${SVG.donut(platformSegs, 150, { centerLabel: String(summary.monitoredPages) })}
+    </article>
+    <article class="panel distribution-card">
+      <div class="panel-head"><p class="panel-kicker">Codebase</p><h2>Languages</h2></div>
+      ${SVG.donut(langSegs, 150, { centerLabel: String(github?.profile?.publicRepos || 0) })}
+    </article>
+    <article class="panel distribution-card">
+      <div class="panel-head"><p class="panel-kicker">Fleet status</p><h2>Health Split</h2></div>
+      ${SVG.stackedBar([
+        { label: "Live", value: summary.liveCount || 0, color: "var(--success)" },
+        { label: "Degraded", value: (summary.attentionCount || 0), color: "var(--warning)" }
+      ], 280, 16)}
+      <div class="health-split-labels">
+        <span style="color:var(--success)">${summary.liveCount || 0} live</span>
+        <span style="color:var(--warning)">${summary.attentionCount || 0} attention</span>
+      </div>
+    </article>
+  `;
 }
 
 function renderBrandStrip(targets) {
@@ -1177,13 +1323,26 @@ function renderGitHub(github) {
     return;
   }
 
+  const activityPct = github.profile.publicRepos > 0 ? (github.stats.activeLast30d / github.profile.publicRepos) * 100 : 0;
+  const langSegs = (github.stats.topLanguages || []).map((l) => ({
+    label: l.name, value: l.count, color: LANG_COLORS[l.name] || "var(--muted-strong)"
+  }));
+
   elements.githubSummary.innerHTML = `
-    <div class="github-strip">
-      ${makeStatusPill(github.profile.login, "live")}
-      <span class="terminal-inline">${escapeHtml(formatNumber(github.profile.publicRepos))} public repos</span>
-      <span class="terminal-inline">${escapeHtml(formatNumber(github.stats.githubPagesRepos))} Pages-enabled</span>
-      <span class="terminal-inline">${escapeHtml(formatNumber(github.stats.activeLast30d))} active in 30d</span>
-      <span class="terminal-inline">Updated ${escapeHtml(formatDate(github.profile.updatedAt))}</span>
+    <div class="github-visual">
+      <div class="github-visual-gauges">
+        ${SVG.arcGauge(github.stats.activeLast30d, github.profile.publicRepos, 56, { label: "Active", displayValue: String(github.stats.activeLast30d) })}
+        ${SVG.miniRing(activityPct, 28)}
+      </div>
+      <div class="github-visual-stats">
+        ${makeStatusPill(github.profile.login, "live")}
+        <span class="terminal-inline">${escapeHtml(formatNumber(github.profile.publicRepos))} repos</span>
+        <span class="terminal-inline">${escapeHtml(formatNumber(github.stats.githubPagesRepos))} Pages</span>
+        <span class="terminal-inline">Updated ${escapeHtml(formatDate(github.profile.updatedAt))}</span>
+      </div>
+      <div class="github-visual-langs">
+        ${SVG.stackedBar(langSegs, 180, 10)}
+      </div>
       <a class="action-link" href="${escapeHtml(github.profile.url)}" rel="noreferrer" target="_blank">Open GitHub</a>
     </div>
   `;
@@ -1359,7 +1518,16 @@ function buildRemoteCard(target, options = {}) {
       </div>
 
       <div class="history">
-        <p class="eyebrow">Recent server checks</p>
+        <div class="history-visual">
+          <div class="history-sparkline">
+            <p class="eyebrow">Response time</p>
+            ${SVG.sparkline((target.historyBuckets || []).map((b) => b.avgMs || 0), 140, 28)}
+          </div>
+          <div class="history-uptime-ring">
+            <p class="eyebrow">24h up</p>
+            ${SVG.miniRing(target.uptime?.h24, 28)}
+          </div>
+        </div>
         <div class="history-bars">${renderHistory(target.history)}</div>
       </div>
 
@@ -1898,17 +2066,14 @@ function renderFleetUptime(targets) {
 
   container.innerHTML = `
     <div class="fleet-summary-bar">
-      <div class="fleet-stat">
-        <span class="fleet-stat-label">Fleet 24h</span>
-        <span class="fleet-stat-value ${uptimePctClass(avg24)}">${avg24 != null ? avg24 + "%" : "—"}</span>
+      <div class="fleet-stat fleet-stat--gauge">
+        ${SVG.arcGauge(avg24 ?? 0, 100, 64, { label: "24h", displayValue: avg24 != null ? avg24.toFixed(1) + "%" : "—" })}
       </div>
-      <div class="fleet-stat">
-        <span class="fleet-stat-label">Fleet 7d</span>
-        <span class="fleet-stat-value ${uptimePctClass(avg7d)}">${avg7d != null ? avg7d + "%" : "—"}</span>
+      <div class="fleet-stat fleet-stat--gauge">
+        ${SVG.arcGauge(avg7d ?? 0, 100, 64, { label: "7d", displayValue: avg7d != null ? avg7d.toFixed(1) + "%" : "—" })}
       </div>
-      <div class="fleet-stat">
-        <span class="fleet-stat-label">Fleet 30d</span>
-        <span class="fleet-stat-value ${uptimePctClass(avg30d)}">${avg30d != null ? avg30d + "%" : "—"}</span>
+      <div class="fleet-stat fleet-stat--gauge">
+        ${SVG.arcGauge(avg30d ?? 0, 100, 64, { label: "30d", displayValue: avg30d != null ? avg30d.toFixed(1) + "%" : "—" })}
       </div>
     </div>
     <div class="fleet-heatmap-section">
@@ -1923,9 +2088,9 @@ function renderFleetUptime(targets) {
             <span class="fleet-row-name">${escapeHtml(t.label)}</span>
             <span class="fleet-row-status">${makeStatusPill(t.health?.label || "Unknown", t.health?.code || "offline")}</span>
             <div class="fleet-row-heatmap">${renderUptimeHeatmap(t.historyBuckets || [], 168)}</div>
-            <span class="fleet-row-pct ${uptimePctClass(u.h24)}">${u.h24 != null ? u.h24 + "%" : "—"}</span>
-            <span class="fleet-row-pct ${uptimePctClass(u.d7)}">${u.d7 != null ? u.d7 + "%" : "—"}</span>
-            <span class="fleet-row-pct ${uptimePctClass(u.d30)}">${u.d30 != null ? u.d30 + "%" : "—"}</span>
+            <span class="fleet-row-ring" title="24h: ${u.h24 != null ? u.h24 + "%" : "—"}">${SVG.miniRing(u.h24, 22)}</span>
+            <span class="fleet-row-ring" title="7d: ${u.d7 != null ? u.d7 + "%" : "—"}">${SVG.miniRing(u.d7, 22)}</span>
+            <span class="fleet-row-ring" title="30d: ${u.d30 != null ? u.d30 + "%" : "—"}">${SVG.miniRing(u.d30, 22)}</span>
           </div>`;
       }).join("")}
     </div>
@@ -2043,7 +2208,20 @@ function renderAlertTimeline(alerts) {
     return;
   }
 
-  container.innerHTML = recent.map((a) => `
+  const critCount = recent.filter((a) => a.severity === "critical").length;
+  const warnCount = recent.filter((a) => a.severity === "warning").length;
+  const infoCount = recent.filter((a) => a.severity === "info").length;
+
+  const severityHeader = `
+    <div class="alert-severity-header">
+      <div class="severity-ring-group">
+        ${SVG.miniRing(critCount > 0 ? 100 : 0, 18, { color: "var(--danger)" })}<span class="severity-ring-label">${critCount} critical</span>
+        ${SVG.miniRing(warnCount > 0 ? 100 : 0, 18, { color: "var(--warning)" })}<span class="severity-ring-label">${warnCount} warning</span>
+        ${SVG.miniRing(infoCount > 0 ? 100 : 0, 18, { color: "var(--success)" })}<span class="severity-ring-label">${infoCount} recovery</span>
+      </div>
+    </div>`;
+
+  container.innerHTML = severityHeader + recent.map((a) => `
     <div class="alert-row ${alertSeverityClass(a.severity)}${a.resolvedAt ? " alert-resolved" : ""}">
       <span class="alert-time">${escapeHtml(shortTime(a.timestamp))}</span>
       <span class="alert-severity-badge">${escapeHtml(a.severity)}</span>
@@ -2444,6 +2622,7 @@ function renderDashboard() {
   renderProfile(summary);
   renderFooter();
   renderMetrics(summary, github);
+  renderDistributionCharts(summary, github);
   renderFleetUptime(targets);
   renderVisitorIntel(analytics);
   renderAlertBanner(alerts);
@@ -2458,15 +2637,21 @@ function renderDashboard() {
   renderApiRegistry();
   renderRemoteSections(targets);
 
-  elements.lastChecked.textContent = snapshotBacked
-    ? `Snapshot updated ${formatDate(generatedAt)}`
-    : `Last live scan ${formatDate(generatedAt)}`;
-  elements.dashboardState.className = snapshotBacked
-    ? "status-pill status-pill-neutral"
-    : "status-pill status-pill-live";
-  elements.dashboardState.textContent = snapshotBacked
-    ? `Snapshot • ${summary.liveCount}/${summary.monitoredPages} public pages healthy`
-    : `${summary.liveCount}/${summary.monitoredPages} public pages healthy`;
+  if (state.timeTravel) {
+    elements.lastChecked.textContent = `Historical snapshot from ${formatDate(generatedAt)}`;
+    elements.dashboardState.className = "status-pill status-pill-degraded";
+    elements.dashboardState.textContent = `Time travel • ${summary.liveCount}/${summary.monitoredPages} were healthy`;
+  } else {
+    elements.lastChecked.textContent = snapshotBacked
+      ? `Snapshot updated ${formatDate(generatedAt)}`
+      : `Last live scan ${formatDate(generatedAt)}`;
+    elements.dashboardState.className = snapshotBacked
+      ? "status-pill status-pill-neutral"
+      : "status-pill status-pill-live";
+    elements.dashboardState.textContent = snapshotBacked
+      ? `Snapshot • ${summary.liveCount}/${summary.monitoredPages} public pages healthy`
+      : `${summary.liveCount}/${summary.monitoredPages} public pages healthy`;
+  }
   applyModeUI();
 
   if (window.location.hash) {
@@ -2776,6 +2961,96 @@ function initCountUp() {
   targets.forEach((el) => observer.observe(el));
 }
 
+/* ============================================================
+   v4 — Time Travel
+   ============================================================ */
+
+async function openTimeTravel() {
+  if (!elements.timeTravelBar) return;
+
+  elements.timeTravelLabel.textContent = "Loading snapshots...";
+  elements.timeTravelBar.hidden = false;
+
+  try {
+    let commits;
+    if (state.mode === "live") {
+      const resp = await fetch("./api/snapshots", { cache: "no-store" });
+      commits = resp.ok ? await resp.json() : [];
+    } else {
+      commits = [];
+    }
+
+    if (!commits.length) {
+      elements.timeTravelLabel.textContent = "No snapshots available";
+      return;
+    }
+
+    state.timeTravelCommits = commits;
+    elements.timeTravelSlider.max = String(commits.length - 1);
+    elements.timeTravelSlider.value = "0";
+    state.timeTravelIndex = 0;
+    updateTimeTravelDate(0);
+    elements.timeTravelLabel.textContent = `${commits.length} snapshots available`;
+  } catch (error) {
+    elements.timeTravelLabel.textContent = "Could not load snapshot history";
+  }
+}
+
+function updateTimeTravelDate(index) {
+  const commit = state.timeTravelCommits[index];
+  if (!commit) return;
+  elements.timeTravelDate.textContent = formatDate(commit.date);
+}
+
+async function loadHistoricalSnapshot(index) {
+  const commit = state.timeTravelCommits[index];
+  if (!commit) return;
+
+  state.timeTravelIndex = index;
+  updateTimeTravelDate(index);
+
+  if (state.timeTravelCache.has(commit.sha)) {
+    state.dashboard = state.timeTravelCache.get(commit.sha);
+    state.timeTravel = true;
+    state.lastLoadSource = "time-travel";
+    renderDashboard();
+    return;
+  }
+
+  elements.timeTravelLabel.textContent = "Loading snapshot...";
+
+  try {
+    let data;
+    if (state.mode === "live") {
+      const resp = await fetch(`./api/snapshots/${commit.sha}`, { cache: "no-store" });
+      data = resp.ok ? await resp.json() : null;
+    } else {
+      const resp = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/${commit.sha}/${SNAPSHOT_COMMITS_PATH}`);
+      data = resp.ok ? await resp.json() : null;
+    }
+
+    if (!data) {
+      elements.timeTravelLabel.textContent = "Could not load this snapshot";
+      return;
+    }
+
+    state.timeTravelCache.set(commit.sha, data);
+    state.dashboard = data;
+    state.timeTravel = true;
+    state.lastLoadSource = "time-travel";
+    elements.timeTravelLabel.textContent = `Viewing: ${formatDate(commit.date)}`;
+    renderDashboard();
+  } catch (error) {
+    elements.timeTravelLabel.textContent = "Snapshot load failed";
+  }
+}
+
+function closeTimeTravel() {
+  state.timeTravel = false;
+  elements.timeTravelBar.hidden = true;
+  refreshDashboard(true);
+}
+
 function bindEvents() {
   elements.refreshButton.addEventListener("click", () => refreshDashboard(true));
   elements.mentionsRefreshButton.addEventListener("click", () => refreshMentions(true));
@@ -2802,6 +3077,22 @@ function bindEvents() {
   elements.staticGrid.addEventListener("click", handleTargetBlueprintCopy);
   elements.localForm.addEventListener("submit", handleLocalSubmit);
   elements.localGrid.addEventListener("click", handleLocalClick);
+
+  /* v4 — Time travel bindings */
+  if (elements.timeTravelToggle) {
+    elements.timeTravelToggle.addEventListener("click", openTimeTravel);
+  }
+  if (elements.timeTravelSlider) {
+    elements.timeTravelSlider.addEventListener("input", (e) => {
+      updateTimeTravelDate(Number(e.target.value));
+    });
+    elements.timeTravelSlider.addEventListener("change", (e) => {
+      loadHistoricalSnapshot(Number(e.target.value));
+    });
+  }
+  if (elements.timeTravelReturn) {
+    elements.timeTravelReturn.addEventListener("click", closeTimeTravel);
+  }
 }
 
 
