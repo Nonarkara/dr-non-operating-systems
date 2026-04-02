@@ -305,6 +305,15 @@ const TARGETS = [
     category: "Monitoring",
     surface: "active",
     addedAt: "2026-03-26"
+  },
+  {
+    id: "smart-city-thailand-index",
+    label: "Smart City Thailand Index",
+    url: "https://smart-city-thailand-index-mq0oj23o5-nonarkaras-projects.vercel.app",
+    description: "Smart City Thailand Index — city ranking and benchmarking platform on Vercel.",
+    category: "Index",
+    surface: "active",
+    addedAt: "2026-04-02"
   }
 ];
 
