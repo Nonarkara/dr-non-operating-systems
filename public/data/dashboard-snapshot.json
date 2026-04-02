@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-02T03:24:46.860Z",
+  "generatedAt": "2026-04-02T05:48:51.790Z",
   "github": {
-    "checkedAt": "2026-04-02T03:24:46.817Z",
+    "checkedAt": "2026-04-02T05:48:51.231Z",
     "profile": {
       "createdAt": "2024-10-18T14:36:57Z",
       "followers": 0,
@@ -18,8 +18,8 @@
         "hasPages": false,
         "language": "TypeScript",
         "name": "smart-city-thailand-index",
-        "pushedAt": "2026-04-02T03:22:25Z",
-        "updatedAt": "2026-04-02T03:22:29Z",
+        "pushedAt": "2026-04-02T05:32:38Z",
+        "updatedAt": "2026-04-02T05:32:41Z",
         "url": "https://github.com/Nonarkara/smart-city-thailand-index"
       },
       {
@@ -27,8 +27,8 @@
         "hasPages": true,
         "language": "JavaScript",
         "name": "dr-non-operating-systems",
-        "pushedAt": "2026-04-02T01:50:13Z",
-        "updatedAt": "2026-04-02T01:50:16Z",
+        "pushedAt": "2026-04-02T03:24:56Z",
+        "updatedAt": "2026-04-02T03:25:00Z",
         "url": "https://github.com/Nonarkara/dr-non-operating-systems"
       },
       {
@@ -62,7 +62,7 @@
     "stats": {
       "activeLast30d": 23,
       "githubPagesRepos": 13,
-      "latestPushAt": "2026-04-02T03:22:25Z",
+      "latestPushAt": "2026-04-02T05:32:38Z",
       "topLanguages": [
         {
           "count": 11,
@@ -89,7 +89,7 @@
     "status": "live"
   },
   "mentions": {
-    "checkedAt": "2026-04-02T03:24:46.858Z",
+    "checkedAt": "2026-04-02T05:48:51.257Z",
     "error": null,
     "items": [
       {
@@ -165,7 +165,7 @@
     "appsWithApis": 9,
     "fastest": {
       "label": "Middle East Monitor",
-      "responseTimeMs": 264
+      "responseTimeMs": 156
     },
     "issues": [
       {
@@ -195,7 +195,7 @@
       }
     ],
     "liveCount": 20,
-    "medianResponseMs": 469,
+    "medianResponseMs": 437,
     "monitoredPages": 25,
     "platformBreakdown": [
       {
@@ -218,8 +218,8 @@
     "platformsInUse": 4,
     "publicRepos": 30,
     "slowest": {
-      "label": "City Tech Atlas",
-      "responseTimeMs": 635
+      "label": "City Reporter Bot",
+      "responseTimeMs": 1184
     },
     "staticCount": 5,
     "fleetUptime24h": 78
@@ -229,7 +229,7 @@
       "apis": [],
       "addedAt": "2024-11-15",
       "category": "Landing page",
-      "checkedAt": "2026-04-02T03:24:46.670Z",
+      "checkedAt": "2026-04-02T05:48:51.073Z",
       "description": "depa Smart City Leadership launch page.",
       "finalUrl": "https://nonarkara.github.io/scl-landing-page/",
       "featured": false,
@@ -239,13 +239,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-03-25T13:49:43.142Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 486,
-          "statusCode": 200
-        },
         {
           "at": "2026-03-25T19:11:23.564Z",
           "health": "live",
@@ -490,6 +483,13 @@
           "ok": true,
           "responseTimeMs": 613,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:51.073Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 486,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -515,14 +515,14 @@
         "updatedAt": "2026-03-12T15:35:00Z",
         "url": "https://github.com/Nonarkara/scl-landing-page"
       },
-      "responseTimeMs": 613,
+      "responseTimeMs": 486,
       "statusCode": 200,
       "surface": "static",
       "url": "https://nonarkara.github.io/scl-landing-page/",
       "uptime": {
         "h24": 100,
-        "d7": 98.04,
-        "d30": 98.04
+        "d7": 98.08,
+        "d30": 98.08
       },
       "historyBuckets": [
         {
@@ -764,6 +764,14 @@
           "avgMs": 613,
           "minMs": 613,
           "maxMs": 613
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 486,
+          "minMs": 486,
+          "maxMs": 486
         }
       ]
     },
@@ -802,7 +810,7 @@
       ],
       "addedAt": "2025-01-10",
       "category": "Monitoring",
-      "checkedAt": "2026-04-02T03:24:46.335Z",
+      "checkedAt": "2026-04-02T05:48:50.758Z",
       "description": "Regional monitoring dashboard deployed on Render.",
       "finalUrl": "https://middle-east-monitor.onrender.com/",
       "featured": true,
@@ -812,13 +820,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-03-25T13:49:42.947Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 247,
-          "statusCode": 200
-        },
         {
           "at": "2026-03-25T19:11:23.406Z",
           "health": "live",
@@ -1063,6 +1064,13 @@
           "ok": true,
           "responseTimeMs": 264,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:50.758Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 156,
+          "statusCode": 200
         }
       ],
       "hostname": "middle-east-monitor.onrender.com",
@@ -1079,14 +1087,14 @@
       },
       "platform": "Render",
       "repo": null,
-      "responseTimeMs": 264,
+      "responseTimeMs": 156,
       "statusCode": 200,
       "surface": "active",
       "url": "https://middle-east-monitor.onrender.com",
       "uptime": {
         "h24": 100,
-        "d7": 98.04,
-        "d30": 98.04
+        "d7": 98.08,
+        "d30": 98.08
       },
       "historyBuckets": [
         {
@@ -1328,6 +1336,14 @@
           "avgMs": 264,
           "minMs": 264,
           "maxMs": 264
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 156,
+          "minMs": 156,
+          "maxMs": 156
         }
       ]
     },
@@ -1335,7 +1351,7 @@
       "apis": [],
       "addedAt": "2025-02-15",
       "category": "Monitoring",
-      "checkedAt": "2026-04-02T03:24:46.303Z",
+      "checkedAt": "2026-04-02T05:48:50.818Z",
       "description": "Geopolitical dashboard deployed on Render.",
       "finalUrl": "https://geopolitics-dashboard.onrender.com/",
       "featured": false,
@@ -1345,13 +1361,6 @@
         "reason": "The deployment returned 404."
       },
       "history": [
-        {
-          "at": "2026-03-25T13:49:42.932Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 231,
-          "statusCode": 200
-        },
         {
           "at": "2026-03-25T19:11:23.502Z",
           "health": "live",
@@ -1596,6 +1605,13 @@
           "ok": false,
           "responseTimeMs": 231,
           "statusCode": 404
+        },
+        {
+          "at": "2026-04-02T05:48:50.818Z",
+          "health": "missing",
+          "ok": false,
+          "responseTimeMs": 215,
+          "statusCode": 404
         }
       ],
       "hostname": "geopolitics-dashboard.onrender.com",
@@ -1612,7 +1628,7 @@
       },
       "platform": "Render",
       "repo": null,
-      "responseTimeMs": 231,
+      "responseTimeMs": 215,
       "statusCode": 404,
       "surface": "active",
       "url": "https://geopolitics-dashboard.onrender.com",
@@ -1861,6 +1877,14 @@
           "avgMs": 231,
           "minMs": 231,
           "maxMs": 231
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 0,
+          "avgMs": 215,
+          "minMs": 215,
+          "maxMs": 215
         }
       ]
     },
@@ -1919,7 +1943,7 @@
       ],
       "addedAt": "2025-03-01",
       "category": "Bot",
-      "checkedAt": "2026-04-02T03:24:46.557Z",
+      "checkedAt": "2026-04-02T05:48:51.788Z",
       "description": "Command center and reporting bot interface.",
       "finalUrl": "https://city-reporter-bot.onrender.com/",
       "featured": false,
@@ -1929,13 +1953,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-03-25T13:49:43.842Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 1139,
-          "statusCode": 200
-        },
         {
           "at": "2026-03-25T19:11:23.586Z",
           "health": "live",
@@ -2180,6 +2197,13 @@
           "ok": true,
           "responseTimeMs": 484,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:51.788Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 1184,
+          "statusCode": 200
         }
       ],
       "hostname": "city-reporter-bot.onrender.com",
@@ -2196,14 +2220,14 @@
       },
       "platform": "Render",
       "repo": null,
-      "responseTimeMs": 484,
+      "responseTimeMs": 1184,
       "statusCode": 200,
       "surface": "active",
       "url": "https://city-reporter-bot.onrender.com",
       "uptime": {
         "h24": 100,
-        "d7": 98.04,
-        "d30": 98.04
+        "d7": 98.08,
+        "d30": 98.08
       },
       "historyBuckets": [
         {
@@ -2445,6 +2469,14 @@
           "avgMs": 484,
           "minMs": 484,
           "maxMs": 484
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 1184,
+          "minMs": 1184,
+          "maxMs": 1184
         }
       ]
     },
@@ -2508,7 +2540,7 @@
       ],
       "addedAt": "2026-03-14",
       "category": "Bot",
-      "checkedAt": "2026-04-02T03:24:46.381Z",
+      "checkedAt": "2026-04-02T05:48:50.795Z",
       "description": "Version 2 of the command center and reporting bot interface.",
       "finalUrl": "https://city-reporter-line-bot.onrender.com/",
       "featured": false,
@@ -2518,13 +2550,6 @@
         "reason": "The deployment returned 404."
       },
       "history": [
-        {
-          "at": "2026-03-25T13:49:43.354Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 650,
-          "statusCode": 200
-        },
         {
           "at": "2026-03-25T19:11:23.697Z",
           "health": "live",
@@ -2769,6 +2794,13 @@
           "ok": false,
           "responseTimeMs": 307,
           "statusCode": 404
+        },
+        {
+          "at": "2026-04-02T05:48:50.795Z",
+          "health": "missing",
+          "ok": false,
+          "responseTimeMs": 189,
+          "statusCode": 404
         }
       ],
       "hostname": "city-reporter-line-bot.onrender.com",
@@ -2785,7 +2817,7 @@
       },
       "platform": "Render",
       "repo": null,
-      "responseTimeMs": 307,
+      "responseTimeMs": 189,
       "statusCode": 404,
       "surface": "active",
       "url": "https://city-reporter-line-bot.onrender.com",
@@ -3034,6 +3066,14 @@
           "avgMs": 307,
           "minMs": 307,
           "maxMs": 307
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 0,
+          "avgMs": 189,
+          "minMs": 189,
+          "maxMs": 189
         }
       ]
     },
@@ -3112,7 +3152,7 @@
       ],
       "addedAt": "2025-03-05",
       "category": "Monitoring",
-      "checkedAt": "2026-04-02T03:24:46.555Z",
+      "checkedAt": "2026-04-02T05:48:50.850Z",
       "description": "Bangkok-focused smart city monitor with layered geospatial filters.",
       "finalUrl": "https://smart-city-monitor-web.onrender.com/?lang=en&view=city&timeRange=7d&city=bangkok&layers=smart-city-thailand%2Cbangkok-passages%2Cprojects%2Cnews%2Cresilience%2Ceconomy%2Cweather%2Cpollution",
       "featured": false,
@@ -3122,13 +3162,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-03-25T13:49:42.994Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 288,
-          "statusCode": 200
-        },
         {
           "at": "2026-03-25T19:11:23.423Z",
           "health": "live",
@@ -3373,6 +3406,13 @@
           "ok": true,
           "responseTimeMs": 479,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:50.850Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 243,
+          "statusCode": 200
         }
       ],
       "hostname": "smart-city-monitor-web.onrender.com",
@@ -3389,14 +3429,14 @@
       },
       "platform": "Render",
       "repo": null,
-      "responseTimeMs": 479,
+      "responseTimeMs": 243,
       "statusCode": 200,
       "surface": "active",
       "url": "https://smart-city-monitor-web.onrender.com/?lang=en&view=city&timeRange=7d&city=bangkok&layers=smart-city-thailand%2Cbangkok-passages%2Cprojects%2Cnews%2Cresilience%2Ceconomy%2Cweather%2Cpollution",
       "uptime": {
         "h24": 100,
-        "d7": 98.04,
-        "d30": 98.04
+        "d7": 98.08,
+        "d30": 98.08
       },
       "historyBuckets": [
         {
@@ -3638,6 +3678,14 @@
           "avgMs": 479,
           "minMs": 479,
           "maxMs": 479
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 243,
+          "minMs": 243,
+          "maxMs": 243
         }
       ]
     },
@@ -3751,7 +3799,7 @@
       ],
       "addedAt": "2025-03-08",
       "category": "Monitoring",
-      "checkedAt": "2026-04-02T03:24:46.525Z",
+      "checkedAt": "2026-04-02T05:48:50.894Z",
       "description": "IMPACT Muang Thong Thani super dashboard with live city signals, domains, media, and assistant tooling.",
       "finalUrl": "https://mtt-smart-city-monitor-web.onrender.com/",
       "featured": false,
@@ -3761,13 +3809,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-03-25T13:49:43.026Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 319,
-          "statusCode": 200
-        },
         {
           "at": "2026-03-25T19:11:23.444Z",
           "health": "live",
@@ -4012,6 +4053,13 @@
           "ok": true,
           "responseTimeMs": 449,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:50.894Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 286,
+          "statusCode": 200
         }
       ],
       "hostname": "mtt-smart-city-monitor-web.onrender.com",
@@ -4028,14 +4076,14 @@
       },
       "platform": "Render",
       "repo": null,
-      "responseTimeMs": 449,
+      "responseTimeMs": 286,
       "statusCode": 200,
       "surface": "active",
       "url": "https://mtt-smart-city-monitor-web.onrender.com",
       "uptime": {
         "h24": 100,
-        "d7": 98.04,
-        "d30": 98.04
+        "d7": 98.08,
+        "d30": 98.08
       },
       "historyBuckets": [
         {
@@ -4277,6 +4325,14 @@
           "avgMs": 449,
           "minMs": 449,
           "maxMs": 449
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 286,
+          "minMs": 286,
+          "maxMs": 286
         }
       ]
     },
@@ -4310,7 +4366,7 @@
       ],
       "addedAt": "2025-03-10",
       "category": "Transit",
-      "checkedAt": "2026-04-02T03:24:46.403Z",
+      "checkedAt": "2026-04-02T05:48:50.842Z",
       "description": "Phone-first rider prototype with live tracking, advisories, and leave-now guidance.",
       "finalUrl": "https://phuket-smart-bus-y6tj.onrender.com/",
       "featured": false,
@@ -4320,13 +4376,6 @@
         "reason": "The deployment returned 404."
       },
       "history": [
-        {
-          "at": "2026-03-25T13:49:42.982Z",
-          "health": "error",
-          "ok": false,
-          "responseTimeMs": 273,
-          "statusCode": 503
-        },
         {
           "at": "2026-03-25T19:11:23.569Z",
           "health": "error",
@@ -4571,6 +4620,13 @@
           "ok": false,
           "responseTimeMs": 326,
           "statusCode": 404
+        },
+        {
+          "at": "2026-04-02T05:48:50.842Z",
+          "health": "missing",
+          "ok": false,
+          "responseTimeMs": 233,
+          "statusCode": 404
         }
       ],
       "hostname": "phuket-smart-bus-y6tj.onrender.com",
@@ -4587,7 +4643,7 @@
       },
       "platform": "Render",
       "repo": null,
-      "responseTimeMs": 326,
+      "responseTimeMs": 233,
       "statusCode": 404,
       "surface": "active",
       "url": "https://phuket-smart-bus-y6tj.onrender.com",
@@ -4836,6 +4892,14 @@
           "avgMs": 326,
           "minMs": 326,
           "maxMs": 326
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 0,
+          "avgMs": 233,
+          "minMs": 233,
+          "maxMs": 233
         }
       ]
     },
@@ -4843,7 +4907,7 @@
       "apis": [],
       "addedAt": "2025-03-11",
       "category": "Website",
-      "checkedAt": "2026-04-02T03:24:46.453Z",
+      "checkedAt": "2026-04-02T05:48:51.068Z",
       "description": "Royal Automobile Association of Thailand public site.",
       "finalUrl": "https://nonarkara.github.io/RAAT/index.html?lang=en",
       "featured": false,
@@ -4853,13 +4917,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-03-25T13:49:43.236Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 526,
-          "statusCode": 200
-        },
         {
           "at": "2026-03-25T19:11:23.571Z",
           "health": "live",
@@ -5104,6 +5161,13 @@
           "ok": true,
           "responseTimeMs": 375,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:51.068Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 458,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -5129,14 +5193,14 @@
         "updatedAt": "2026-03-11T19:26:28Z",
         "url": "https://github.com/Nonarkara/RAAT"
       },
-      "responseTimeMs": 375,
+      "responseTimeMs": 458,
       "statusCode": 200,
       "surface": "static",
       "url": "https://nonarkara.github.io/RAAT/index.html?lang=en",
       "uptime": {
         "h24": 100,
-        "d7": 98.04,
-        "d30": 98.04
+        "d7": 98.08,
+        "d30": 98.08
       },
       "historyBuckets": [
         {
@@ -5378,6 +5442,14 @@
           "avgMs": 375,
           "minMs": 375,
           "maxMs": 375
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 458,
+          "minMs": 458,
+          "maxMs": 458
         }
       ]
     },
@@ -5416,7 +5488,7 @@
       ],
       "addedAt": "2025-03-12",
       "category": "Monitoring",
-      "checkedAt": "2026-04-02T03:24:46.454Z",
+      "checkedAt": "2026-04-02T05:48:50.861Z",
       "description": "Technology monitoring deployment on Render.",
       "finalUrl": "https://tech-monitor.onrender.com/",
       "featured": false,
@@ -5426,13 +5498,6 @@
         "reason": "The deployment returned 404."
       },
       "history": [
-        {
-          "at": "2026-03-25T13:49:43.068Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 355,
-          "statusCode": 200
-        },
         {
           "at": "2026-03-25T19:11:23.501Z",
           "health": "live",
@@ -5677,6 +5742,13 @@
           "ok": false,
           "responseTimeMs": 374,
           "statusCode": 404
+        },
+        {
+          "at": "2026-04-02T05:48:50.861Z",
+          "health": "missing",
+          "ok": false,
+          "responseTimeMs": 249,
+          "statusCode": 404
         }
       ],
       "hostname": "tech-monitor.onrender.com",
@@ -5693,7 +5765,7 @@
       },
       "platform": "Render",
       "repo": null,
-      "responseTimeMs": 374,
+      "responseTimeMs": 249,
       "statusCode": 404,
       "surface": "active",
       "url": "https://tech-monitor.onrender.com",
@@ -5942,6 +6014,14 @@
           "avgMs": 374,
           "minMs": 374,
           "maxMs": 374
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 0,
+          "avgMs": 249,
+          "minMs": 249,
+          "maxMs": 249
         }
       ]
     },
@@ -5949,7 +6029,7 @@
       "apis": [],
       "addedAt": "2025-03-12",
       "category": "Directory",
-      "checkedAt": "2026-04-02T03:24:46.716Z",
+      "checkedAt": "2026-04-02T05:48:51.693Z",
       "description": "Lovable-hosted smart city solution atlas.",
       "finalUrl": "https://citytechatlas.lovable.app/",
       "featured": false,
@@ -5959,13 +6039,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-03-25T13:49:43.539Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 825,
-          "statusCode": 200
-        },
         {
           "at": "2026-03-25T19:11:23.936Z",
           "health": "live",
@@ -6210,6 +6283,13 @@
           "ok": true,
           "responseTimeMs": 635,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:51.693Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 1080,
+          "statusCode": 200
         }
       ],
       "hostname": "citytechatlas.lovable.app",
@@ -6226,14 +6306,14 @@
       },
       "platform": "Lovable",
       "repo": null,
-      "responseTimeMs": 635,
+      "responseTimeMs": 1080,
       "statusCode": 200,
       "surface": "active",
       "url": "https://citytechatlas.lovable.app",
       "uptime": {
         "h24": 100,
-        "d7": 98.04,
-        "d30": 98.04
+        "d7": 98.08,
+        "d30": 98.08
       },
       "historyBuckets": [
         {
@@ -6475,6 +6555,14 @@
           "avgMs": 635,
           "minMs": 635,
           "maxMs": 635
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 1080,
+          "minMs": 1080,
+          "maxMs": 1080
         }
       ]
     },
@@ -6482,7 +6570,7 @@
       "apis": [],
       "addedAt": "2025-03-13",
       "category": "Index",
-      "checkedAt": "2026-04-02T03:24:46.594Z",
+      "checkedAt": "2026-04-02T05:48:50.946Z",
       "description": "Render-hosted SLIC index rankings surface.",
       "finalUrl": "https://slic-index.onrender.com/rankings",
       "featured": false,
@@ -6492,13 +6580,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-03-25T13:49:43.095Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 380,
-          "statusCode": 200
-        },
         {
           "at": "2026-03-25T19:11:23.557Z",
           "health": "live",
@@ -6743,6 +6824,13 @@
           "ok": true,
           "responseTimeMs": 512,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:50.946Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 333,
+          "statusCode": 200
         }
       ],
       "hostname": "slic-index.onrender.com",
@@ -6759,14 +6847,14 @@
       },
       "platform": "Render",
       "repo": null,
-      "responseTimeMs": 512,
+      "responseTimeMs": 333,
       "statusCode": 200,
       "surface": "active",
       "url": "https://slic-index.onrender.com/rankings",
       "uptime": {
         "h24": 100,
-        "d7": 98.04,
-        "d30": 98.04
+        "d7": 98.08,
+        "d30": 98.08
       },
       "historyBuckets": [
         {
@@ -7008,6 +7096,14 @@
           "avgMs": 512,
           "minMs": 512,
           "maxMs": 512
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 333,
+          "minMs": 333,
+          "maxMs": 333
         }
       ]
     },
@@ -7015,7 +7111,7 @@
       "apis": [],
       "addedAt": "2026-03-14",
       "category": "Index",
-      "checkedAt": "2026-04-02T03:24:46.513Z",
+      "checkedAt": "2026-04-02T05:48:50.925Z",
       "description": "Second-generation Smart and Liveable Cities Index experience.",
       "finalUrl": "https://slic-index-v2.onrender.com/",
       "featured": false,
@@ -7025,13 +7121,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-03-25T13:49:43.141Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 425,
-          "statusCode": 200
-        },
         {
           "at": "2026-03-25T19:11:23.476Z",
           "health": "live",
@@ -7276,6 +7365,13 @@
           "ok": true,
           "responseTimeMs": 431,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:50.925Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 311,
+          "statusCode": 200
         }
       ],
       "hostname": "slic-index-v2.onrender.com",
@@ -7292,14 +7388,14 @@
       },
       "platform": "Render",
       "repo": null,
-      "responseTimeMs": 431,
+      "responseTimeMs": 311,
       "statusCode": 200,
       "surface": "active",
       "url": "https://slic-index-v2.onrender.com",
       "uptime": {
         "h24": 100,
-        "d7": 98.04,
-        "d30": 98.04
+        "d7": 98.08,
+        "d30": 98.08
       },
       "historyBuckets": [
         {
@@ -7541,6 +7637,14 @@
           "avgMs": 431,
           "minMs": 431,
           "maxMs": 431
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 311,
+          "minMs": 311,
+          "maxMs": 311
         }
       ]
     },
@@ -7548,7 +7652,7 @@
       "apis": [],
       "addedAt": "2025-03-13",
       "category": "Directory",
-      "checkedAt": "2026-04-02T03:24:46.573Z",
+      "checkedAt": "2026-04-02T05:48:51.034Z",
       "description": "Tech Hunt Thailand mobility solution detail page for Viabus.",
       "finalUrl": "https://nonarkara.github.io/techhuntthailand/?id=mobility-cohort-001-viabus",
       "featured": false,
@@ -7558,13 +7662,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-03-25T13:49:43.309Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 592,
-          "statusCode": 200
-        },
         {
           "at": "2026-03-25T19:11:23.693Z",
           "health": "live",
@@ -7809,6 +7906,13 @@
           "ok": true,
           "responseTimeMs": 490,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:51.034Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 419,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -7834,14 +7938,14 @@
         "updatedAt": "2026-03-12T08:16:21Z",
         "url": "https://github.com/Nonarkara/techhuntthailand"
       },
-      "responseTimeMs": 490,
+      "responseTimeMs": 419,
       "statusCode": 200,
       "surface": "static",
       "url": "https://nonarkara.github.io/techhuntthailand/?id=mobility-cohort-001-viabus",
       "uptime": {
         "h24": 100,
-        "d7": 98.04,
-        "d30": 98.04
+        "d7": 98.08,
+        "d30": 98.08
       },
       "historyBuckets": [
         {
@@ -8083,6 +8187,14 @@
           "avgMs": 490,
           "minMs": 490,
           "maxMs": 490
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 419,
+          "minMs": 419,
+          "maxMs": 419
         }
       ]
     },
@@ -8090,7 +8202,7 @@
       "apis": [],
       "addedAt": "2025-03-13",
       "category": "Network",
-      "checkedAt": "2026-04-02T03:24:46.525Z",
+      "checkedAt": "2026-04-02T05:48:51.046Z",
       "description": "ASEAN Smart Cities Network public-facing site and resource surface.",
       "finalUrl": "https://nonarkara.github.io/ascn-smart-cities-network/",
       "featured": false,
@@ -8100,13 +8212,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-03-25T13:49:43.277Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 560,
-          "statusCode": 200
-        },
         {
           "at": "2026-03-25T19:11:23.677Z",
           "health": "live",
@@ -8351,6 +8456,13 @@
           "ok": true,
           "responseTimeMs": 442,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:51.046Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 431,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -8376,14 +8488,14 @@
         "updatedAt": "2026-04-01T08:14:20Z",
         "url": "https://github.com/Nonarkara/ascn-smart-cities-network"
       },
-      "responseTimeMs": 442,
+      "responseTimeMs": 431,
       "statusCode": 200,
       "surface": "static",
       "url": "https://nonarkara.github.io/ascn-smart-cities-network/",
       "uptime": {
         "h24": 100,
-        "d7": 98.04,
-        "d30": 98.04
+        "d7": 98.08,
+        "d30": 98.08
       },
       "historyBuckets": [
         {
@@ -8625,6 +8737,14 @@
           "avgMs": 442,
           "minMs": 442,
           "maxMs": 442
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 431,
+          "minMs": 431,
+          "maxMs": 431
         }
       ]
     },
@@ -8632,7 +8752,7 @@
       "apis": [],
       "addedAt": "2025-03-13",
       "category": "Manifesto",
-      "checkedAt": "2026-04-02T03:24:46.422Z",
+      "checkedAt": "2026-04-02T05:48:50.982Z",
       "description": "ASEAN CSCO App manifesto page on GitHub Pages.",
       "finalUrl": "https://nonarkara.github.io/asean-csco-app/",
       "featured": false,
@@ -8642,13 +8762,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-03-25T13:49:43.060Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 342,
-          "statusCode": 200
-        },
         {
           "at": "2026-03-25T19:11:24.140Z",
           "health": "live",
@@ -8893,6 +9006,13 @@
           "ok": true,
           "responseTimeMs": 337,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:50.982Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 365,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -8909,14 +9029,14 @@
       },
       "platform": "GitHub Pages",
       "repo": null,
-      "responseTimeMs": 337,
+      "responseTimeMs": 365,
       "statusCode": 200,
       "surface": "static",
       "url": "https://nonarkara.github.io/asean-csco-app/#manifesto",
       "uptime": {
         "h24": 100,
-        "d7": 98.04,
-        "d30": 98.04
+        "d7": 98.08,
+        "d30": 98.08
       },
       "historyBuckets": [
         {
@@ -9158,6 +9278,14 @@
           "avgMs": 337,
           "minMs": 337,
           "maxMs": 337
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 365,
+          "minMs": 365,
+          "maxMs": 365
         }
       ]
     },
@@ -9181,7 +9309,7 @@
       ],
       "addedAt": "2025-03-13",
       "category": "Platform",
-      "checkedAt": "2026-04-02T03:24:46.653Z",
+      "checkedAt": "2026-04-02T05:48:50.952Z",
       "description": "AirDnD public platform deployment.",
       "finalUrl": "https://airdnd-platform.onrender.com/",
       "featured": false,
@@ -9191,13 +9319,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-03-25T13:49:43.106Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 388,
-          "statusCode": 200
-        },
         {
           "at": "2026-03-25T19:11:23.495Z",
           "health": "live",
@@ -9442,6 +9563,13 @@
           "ok": true,
           "responseTimeMs": 568,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:50.952Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 335,
+          "statusCode": 200
         }
       ],
       "hostname": "airdnd-platform.onrender.com",
@@ -9458,14 +9586,14 @@
       },
       "platform": "Render",
       "repo": null,
-      "responseTimeMs": 568,
+      "responseTimeMs": 335,
       "statusCode": 200,
       "surface": "active",
       "url": "https://airdnd-platform.onrender.com",
       "uptime": {
         "h24": 100,
-        "d7": 98.04,
-        "d30": 98.04
+        "d7": 98.08,
+        "d30": 98.08
       },
       "historyBuckets": [
         {
@@ -9707,6 +9835,14 @@
           "avgMs": 568,
           "minMs": 568,
           "maxMs": 568
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 335,
+          "minMs": 335,
+          "maxMs": 335
         }
       ]
     },
@@ -9835,7 +9971,7 @@
       ],
       "addedAt": "2026-03-13",
       "category": "Monitoring",
-      "checkedAt": "2026-04-02T03:24:46.541Z",
+      "checkedAt": "2026-04-02T05:48:51.061Z",
       "description": "Coastal operations dashboard for Phuket and surrounding provinces.",
       "finalUrl": "https://phuket-dashboard.onrender.com/",
       "featured": true,
@@ -9845,13 +9981,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-03-25T13:49:43.203Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 484,
-          "statusCode": 200
-        },
         {
           "at": "2026-03-25T19:11:23.614Z",
           "health": "live",
@@ -10096,6 +10225,13 @@
           "ok": true,
           "responseTimeMs": 455,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:51.061Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 443,
+          "statusCode": 200
         }
       ],
       "hostname": "phuket-dashboard.onrender.com",
@@ -10112,14 +10248,14 @@
       },
       "platform": "Render",
       "repo": null,
-      "responseTimeMs": 455,
+      "responseTimeMs": 443,
       "statusCode": 200,
       "surface": "active",
       "url": "https://phuket-dashboard.onrender.com",
       "uptime": {
         "h24": 100,
-        "d7": 98.04,
-        "d30": 98.04
+        "d7": 98.08,
+        "d30": 98.08
       },
       "historyBuckets": [
         {
@@ -10361,6 +10497,14 @@
           "avgMs": 455,
           "minMs": 455,
           "maxMs": 455
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 443,
+          "minMs": 443,
+          "maxMs": 443
         }
       ]
     },
@@ -10368,7 +10512,7 @@
       "apis": [],
       "addedAt": "2026-03-26",
       "category": "Index",
-      "checkedAt": "2026-04-02T03:24:46.527Z",
+      "checkedAt": "2026-04-02T05:48:51.062Z",
       "description": "Vercel backup of the SLIC Index Version 2.",
       "finalUrl": "https://slic-index-v2.vercel.app/",
       "featured": false,
@@ -10594,6 +10738,13 @@
           "ok": true,
           "responseTimeMs": 441,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:51.062Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 444,
+          "statusCode": 200
         }
       ],
       "hostname": "slic-index-v2.vercel.app",
@@ -10602,22 +10753,22 @@
       "metadata": {
         "cache": null,
         "contentType": "text/html; charset=utf-8",
-        "etag": "\"48c1f9491a5daf05118cdcb33e080ffd\"",
-        "lastModified": "Wed, 01 Apr 2026 21:00:20 GMT",
+        "etag": "\"2815aadf05fceab8972c7509eaa05988\"",
+        "lastModified": "Thu, 02 Apr 2026 05:48:51 GMT",
         "server": "Vercel",
         "title": "SLIC V3 — Smart and Liveable Cities Index",
         "xPoweredBy": null
       },
       "platform": "Web",
       "repo": null,
-      "responseTimeMs": 441,
+      "responseTimeMs": 444,
       "statusCode": 200,
       "surface": "active",
       "url": "https://slic-index-v2.vercel.app",
       "uptime": {
         "h24": 91.67,
-        "d7": 96.08,
-        "d30": 96.08
+        "d7": 96.15,
+        "d30": 96.15
       },
       "historyBuckets": [
         {
@@ -10859,6 +11010,14 @@
           "avgMs": 441,
           "minMs": 441,
           "maxMs": 441
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 444,
+          "minMs": 444,
+          "maxMs": 444
         }
       ]
     },
@@ -10866,7 +11025,7 @@
       "apis": [],
       "addedAt": "2026-03-26",
       "category": "Platform",
-      "checkedAt": "2026-04-02T03:24:46.611Z",
+      "checkedAt": "2026-04-02T05:48:51.099Z",
       "description": "Sabai Sabai platform on Vercel.",
       "finalUrl": "https://sabai-sabai-kohl.vercel.app/",
       "featured": false,
@@ -11092,6 +11251,13 @@
           "ok": true,
           "responseTimeMs": 524,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:51.099Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 480,
+          "statusCode": 200
         }
       ],
       "hostname": "sabai-sabai-kohl.vercel.app",
@@ -11101,21 +11267,21 @@
         "cache": null,
         "contentType": "text/html; charset=utf-8",
         "etag": "W/\"2361daf8791962a779b4a8f0f4a1858f\"",
-        "lastModified": "Thu, 02 Apr 2026 03:24:46 GMT",
+        "lastModified": "Thu, 02 Apr 2026 05:48:51 GMT",
         "server": "Vercel",
         "title": "Sabai Sabai | Thailand Massage & Spa Directory",
         "xPoweredBy": null
       },
       "platform": "Web",
       "repo": null,
-      "responseTimeMs": 524,
+      "responseTimeMs": 480,
       "statusCode": 200,
       "surface": "active",
       "url": "https://sabai-sabai-kohl.vercel.app",
       "uptime": {
         "h24": 91.67,
-        "d7": 96.08,
-        "d30": 96.08
+        "d7": 96.15,
+        "d30": 96.15
       },
       "historyBuckets": [
         {
@@ -11357,6 +11523,14 @@
           "avgMs": 524,
           "minMs": 524,
           "maxMs": 524
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 480,
+          "minMs": 480,
+          "maxMs": 480
         }
       ]
     },
@@ -11364,7 +11538,7 @@
       "apis": [],
       "addedAt": "2026-03-26",
       "category": "Landing page",
-      "checkedAt": "2026-04-02T03:24:46.542Z",
+      "checkedAt": "2026-04-02T05:48:51.027Z",
       "description": "Axiom — Innovation as a Service. AI consultancy landing page on Vercel.",
       "finalUrl": "https://axiom-mu-six.vercel.app/",
       "featured": false,
@@ -11590,6 +11764,13 @@
           "ok": true,
           "responseTimeMs": 455,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:51.027Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 408,
+          "statusCode": 200
         }
       ],
       "hostname": "axiom-mu-six.vercel.app",
@@ -11599,21 +11780,21 @@
         "cache": null,
         "contentType": "text/html; charset=utf-8",
         "etag": "W/\"10c192d724e2870116d2ef7cb978f91b\"",
-        "lastModified": "Fri, 27 Mar 2026 07:34:56 GMT",
+        "lastModified": "Wed, 01 Apr 2026 14:03:53 GMT",
         "server": "Vercel",
         "title": "Axiom — Innovation as a Service",
         "xPoweredBy": null
       },
       "platform": "Web",
       "repo": null,
-      "responseTimeMs": 455,
+      "responseTimeMs": 408,
       "statusCode": 200,
       "surface": "active",
       "url": "https://axiom-mu-six.vercel.app",
       "uptime": {
         "h24": 91.67,
-        "d7": 96.08,
-        "d30": 96.08
+        "d7": 96.15,
+        "d30": 96.15
       },
       "historyBuckets": [
         {
@@ -11855,6 +12036,14 @@
           "avgMs": 455,
           "minMs": 455,
           "maxMs": 455
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 408,
+          "minMs": 408,
+          "maxMs": 408
         }
       ]
     },
@@ -11862,7 +12051,7 @@
       "apis": [],
       "addedAt": "2026-03-26",
       "category": "Monitoring",
-      "checkedAt": "2026-04-02T03:24:46.603Z",
+      "checkedAt": "2026-04-02T05:48:51.340Z",
       "description": "Vercel backup of the Geopolitics Dashboard.",
       "finalUrl": "https://geopolitics-dashboard-sage.vercel.app/",
       "featured": false,
@@ -12088,6 +12277,13 @@
           "ok": true,
           "responseTimeMs": 515,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:51.340Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 720,
+          "statusCode": 200
         }
       ],
       "hostname": "geopolitics-dashboard-sage.vercel.app",
@@ -12104,14 +12300,14 @@
       },
       "platform": "Web",
       "repo": null,
-      "responseTimeMs": 515,
+      "responseTimeMs": 720,
       "statusCode": 200,
       "surface": "active",
       "url": "https://geopolitics-dashboard-sage.vercel.app",
       "uptime": {
         "h24": 91.67,
-        "d7": 96.08,
-        "d30": 96.08
+        "d7": 96.15,
+        "d30": 96.15
       },
       "historyBuckets": [
         {
@@ -12353,6 +12549,14 @@
           "avgMs": 515,
           "minMs": 515,
           "maxMs": 515
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 720,
+          "minMs": 720,
+          "maxMs": 720
         }
       ]
     },
@@ -12360,7 +12564,7 @@
       "apis": [],
       "addedAt": "2026-03-26",
       "category": "Monitoring",
-      "checkedAt": "2026-04-02T03:24:46.547Z",
+      "checkedAt": "2026-04-02T05:48:51.084Z",
       "description": "Vercel backup of the Middle East Monitor (Dr Non's GlobeWatch System).",
       "finalUrl": "https://dngws-monitor.vercel.app/",
       "featured": false,
@@ -12586,6 +12790,13 @@
           "ok": true,
           "responseTimeMs": 459,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:51.084Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 464,
+          "statusCode": 200
         }
       ],
       "hostname": "dngws-monitor.vercel.app",
@@ -12594,22 +12805,22 @@
       "metadata": {
         "cache": null,
         "contentType": "text/html; charset=utf-8",
-        "etag": "\"f9277bf9e92126b2e240aeca2d5b11fd\"",
-        "lastModified": "Mon, 30 Mar 2026 03:38:26 GMT",
+        "etag": "W/\"a076f7bbea1dd248ee5ba8e29dca0f6e\"",
+        "lastModified": "Thu, 02 Apr 2026 05:48:51 GMT",
         "server": "Vercel",
-        "title": "Dr Non's GlobeWatch System (DNGWS)",
+        "title": "Global Political Dashboard — GlobeWatch",
         "xPoweredBy": null
       },
       "platform": "Web",
       "repo": null,
-      "responseTimeMs": 459,
+      "responseTimeMs": 464,
       "statusCode": 200,
       "surface": "active",
       "url": "https://dngws-monitor.vercel.app/",
       "uptime": {
         "h24": 91.67,
-        "d7": 96.08,
-        "d30": 96.08
+        "d7": 96.15,
+        "d30": 96.15
       },
       "historyBuckets": [
         {
@@ -12851,6 +13062,14 @@
           "avgMs": 459,
           "minMs": 459,
           "maxMs": 459
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 464,
+          "minMs": 464,
+          "maxMs": 464
         }
       ]
     },
@@ -12858,7 +13077,7 @@
       "apis": [],
       "addedAt": "2026-03-26",
       "category": "Monitoring",
-      "checkedAt": "2026-04-02T03:24:46.645Z",
+      "checkedAt": "2026-04-02T05:48:51.103Z",
       "description": "Vercel backup of the Phuket coastal operations dashboard.",
       "finalUrl": "https://phuket-dashboard.vercel.app/",
       "featured": false,
@@ -13084,6 +13303,13 @@
           "ok": true,
           "responseTimeMs": 556,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-02T05:48:51.103Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 482,
+          "statusCode": 200
         }
       ],
       "hostname": "phuket-dashboard.vercel.app",
@@ -13100,14 +13326,14 @@
       },
       "platform": "Web",
       "repo": null,
-      "responseTimeMs": 556,
+      "responseTimeMs": 482,
       "statusCode": 200,
       "surface": "active",
       "url": "https://phuket-dashboard.vercel.app",
       "uptime": {
         "h24": 91.67,
-        "d7": 94.12,
-        "d30": 94.12
+        "d7": 94.23,
+        "d30": 94.23
       },
       "historyBuckets": [
         {
@@ -13349,6 +13575,14 @@
           "avgMs": 556,
           "minMs": 556,
           "maxMs": 556
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 482,
+          "minMs": 482,
+          "maxMs": 482
         }
       ]
     },
@@ -13356,7 +13590,7 @@
       "apis": [],
       "addedAt": "2026-04-02",
       "category": "Index",
-      "checkedAt": "2026-04-02T03:24:46.673Z",
+      "checkedAt": "2026-04-02T05:48:51.112Z",
       "description": "Smart City Thailand Index — city ranking and benchmarking platform on Vercel.",
       "finalUrl": "https://smart-city-thailand-index-mq0oj23o5-nonarkaras-projects.vercel.app/",
       "featured": false,
@@ -13371,6 +13605,13 @@
           "health": "degraded",
           "ok": false,
           "responseTimeMs": 584,
+          "statusCode": 401
+        },
+        {
+          "at": "2026-04-02T05:48:51.112Z",
+          "health": "degraded",
+          "ok": false,
+          "responseTimeMs": 491,
           "statusCode": 401
         }
       ],
@@ -13388,7 +13629,7 @@
       },
       "platform": "Web",
       "repo": null,
-      "responseTimeMs": 584,
+      "responseTimeMs": 491,
       "statusCode": 401,
       "surface": "active",
       "url": "https://smart-city-thailand-index-mq0oj23o5-nonarkaras-projects.vercel.app",
@@ -13405,6 +13646,14 @@
           "avgMs": 584,
           "minMs": 584,
           "maxMs": 584
+        },
+        {
+          "hour": "2026-04-02T05",
+          "checks": 1,
+          "ups": 0,
+          "avgMs": 491,
+          "minMs": 491,
+          "maxMs": 491
         }
       ]
     }
