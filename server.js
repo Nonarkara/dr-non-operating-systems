@@ -198,10 +198,11 @@ const TARGETS = [
   {
     id: "slic-index-v2",
     label: "SLIC Index Version 2",
-    url: "https://slic-index-v2.onrender.com",
+    url: "https://nonarkara.github.io/slic-index-V2/",
     description: "Second-generation Smart and Liveable Cities Index experience.",
+    repo: "Nonarkara/slic-index-V2",
     category: "Index",
-    surface: "active",
+    surface: "static",
     addedAt: "2026-03-14"
   },
   {
@@ -251,15 +252,6 @@ const TARGETS = [
     featured: true,
     surface: "active",
     addedAt: "2026-03-13"
-  },
-  {
-    id: "slic-index-v2-vercel",
-    label: "SLIC Index V2 (Vercel)",
-    url: "https://slic-index-v2.vercel.app",
-    description: "Vercel backup of the SLIC Index Version 2.",
-    category: "Index",
-    surface: "active",
-    addedAt: "2026-03-26"
   },
   {
     id: "sabai-sabai",
