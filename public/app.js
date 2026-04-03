@@ -30,7 +30,7 @@ const SVG = {
     const label = opts.label || "";
     const displayValue = opts.displayValue || String(Math.round(value));
 
-    return `<svg class="svg-gauge" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}">
+    return `<svg class="svg-gauge" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="${escapeHtml(label || 'gauge')}: ${escapeHtml(displayValue)}"
       <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--line)" stroke-width="6" opacity="0.3"/>
       <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="6"
         stroke-dasharray="${dash} ${gap}" stroke-linecap="round"
@@ -82,7 +82,7 @@ const SVG = {
     const color = opts.color || "var(--accent)";
     const fillCoords = `0,${height} ${coords} ${width},${height}`;
 
-    return `<svg class="svg-sparkline" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" preserveAspectRatio="none">
+    return `<svg class="svg-sparkline" viewBox="0 0 ${width} ${height}" width="${width}" height="${height}" preserveAspectRatio="none" role="img" aria-label="Response time trend">
       <polygon points="${fillCoords}" fill="${color}" opacity="0.1"/>
       <polyline points="${coords}" fill="none" stroke="${color}" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"/>
     </svg>`;
@@ -98,7 +98,7 @@ const SVG = {
     const gap = circ - dash;
     const color = opts.color || (pct >= 99 ? "var(--success)" : pct >= 90 ? "var(--accent-green)" : pct >= 50 ? "var(--warning)" : "var(--danger)");
 
-    return `<svg class="svg-ring" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" title="${Math.round(pct)}%">
+    return `<svg class="svg-ring" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="${Math.round(pct)}% uptime" title="${Math.round(pct)}%">
       <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--line)" stroke-width="2.5" opacity="0.25"/>
       <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="2.5"
         stroke-dasharray="${dash} ${gap}" stroke-linecap="round"
@@ -1985,6 +1985,14 @@ function uptimeColor(ups, checks) {
   return "rgba(255, 45, 94, 0.7)";
 }
 
+function uptimeShape(ups, checks) {
+  if (!checks) return "";
+  const pct = ups / checks;
+  if (pct >= 1) return "";
+  if (pct >= 0.5) return "heatmap-cell--warn";
+  return "heatmap-cell--down";
+}
+
 function uptimePctClass(pct) {
   if (pct === null || pct === undefined) return "uptime-pct--none";
   if (pct >= 99) return "uptime-pct--great";
@@ -2014,7 +2022,8 @@ function renderUptimeHeatmap(buckets, hours = 168) {
       ? `${key}:00 — ${pct}% up, ${avg ?? "?"}ms avg (${b.checks} checks)`
       : `${key}:00 — no data`;
 
-    cells.push(`<span class="heatmap-cell" style="background:${bg}" title="${escapeHtml(title)}"></span>`);
+    const shape = b ? uptimeShape(b.ups, b.checks) : "";
+    cells.push(`<span class="heatmap-cell ${shape}" style="background:${bg}" title="${escapeHtml(title)}"></span>`);
   }
 
   const cols = Math.min(hours, 168);

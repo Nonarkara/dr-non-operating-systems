@@ -13,6 +13,7 @@
     </script>
   </head>
   <body>
+    <a href="#metricsGrid" class="skip-link">Skip to dashboard</a>
     <div class="bg-orbit orbit-a"></div>
     <div class="bg-orbit orbit-b"></div>
     <div class="grid-glow"></div>
@@ -106,7 +107,7 @@
         </div>
 
         <div class="status-bar">
-          <div class="status-pill status-pill-neutral" id="dashboardState">
+          <div class="status-pill status-pill-neutral" id="dashboardState" aria-live="polite">
             Waiting for first scan
           </div>
           <div class="minor-meta">
@@ -117,7 +118,7 @@
       </header>
 
       <!-- Alert banner (Phase 4) -->
-      <section id="alertBanner" class="alert-banner" hidden></section>
+      <section id="alertBanner" class="alert-banner" hidden aria-live="polite"></section>
 
       <section class="metrics-grid" id="metricsGrid"></section>
 
