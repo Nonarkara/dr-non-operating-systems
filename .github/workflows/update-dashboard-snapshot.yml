@@ -25,22 +25,41 @@ jobs:
         with:
           node-version: 22
 
-      - name: Generate dashboard snapshot
+      - name: Run tests
+        run: npm test
+
+      - name: Start local admin service
         env:
+          ADMIN_BEARER_TOKEN: ${{ secrets.ADMIN_BEARER_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: |
-          npm run snapshot
+          node server.js > /tmp/non-ops.log 2>&1 &
+          echo $! > /tmp/non-ops.pid
+          sleep 2
+
+      - name: Generate dashboard snapshot through admin API
+        env:
+          ADMIN_BEARER_TOKEN: ${{ secrets.ADMIN_BEARER_TOKEN }}
+        run: |
+          curl -sf -X POST http://127.0.0.1:4178/api/admin/scans/run \
+            -H "Authorization: Bearer $ADMIN_BEARER_TOKEN" \
+            -H 'Content-Type: application/json' \
+            -d '{"force":true,"publish":true,"reason":"github-actions-snapshot"}' | jq .
 
       - name: Commit snapshot and data files if changed
         run: |
           git add \
             public/data/dashboard-snapshot.json \
+            public/data/last-scan-result.json \
+            public/data/job-status.json \
             public/data/health-history.json \
             public/data/analytics.json \
             public/data/alerts.json \
-            public/data/triggers.json
+            public/data/triggers.json \
+            public/data/snapshot-history.json \
+            public/data/history
 
           if git diff --cached --quiet; then
             echo "No data changes detected."
@@ -51,3 +70,15 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "Update dashboard snapshot and monitoring data"
           git push
+
+      - name: Show local service log on failure
+        if: failure()
+        run: |
+          cat /tmp/non-ops.log || true
+
+      - name: Stop local admin service
+        if: always()
+        run: |
+          if [ -f /tmp/non-ops.pid ]; then
+            kill "$(cat /tmp/non-ops.pid)" || true
+          fi

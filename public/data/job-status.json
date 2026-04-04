@@ -1,0 +1,102 @@
+{
+  "version": 1,
+  "lastSuccessfulScanAt": "2026-04-04T10:07:38.413Z",
+  "lastFailedScanAt": null,
+  "lastPublishedSnapshotAt": "2026-04-04T10:07:38.412Z",
+  "lastObservedHealthByTarget": {
+    "scl-landing-page": "live",
+    "middle-east-monitor": "live",
+    "geopolitics-dashboard": "missing",
+    "city-reporter-bot": "error",
+    "city-reporter-bot-v2": "missing",
+    "smart-city-monitor": "error",
+    "mtt-smart-city-monitor": "error",
+    "phuket-smart-bus": "missing",
+    "raat": "live",
+    "tech-monitor": "missing",
+    "city-tech-atlas": "live",
+    "slic-index-rankings": "live",
+    "slic-index-v2": "missing",
+    "techhuntthailand-viabus": "live",
+    "ascn-smart-cities-network": "live",
+    "asean-csco-app": "live",
+    "airdnd-platform": "live",
+    "phuket-dashboard": "live",
+    "sabai-sabai": "live",
+    "axiom": "live",
+    "geopolitics-dashboard-vercel": "live",
+    "dngws-monitor": "live",
+    "phuket-dashboard-vercel": "live",
+    "smart-city-thailand-index": "degraded"
+  },
+  "latestRuns": [
+    {
+      "id": "3c8ee004-3c9e-4fe6-8df6-87cbbac4f455",
+      "type": "scan",
+      "source": "cli",
+      "actor": "local-cli",
+      "requestId": null,
+      "status": "succeeded",
+      "startedAt": "2026-04-04T10:07:36.182Z",
+      "finishedAt": "2026-04-04T10:07:38.413Z",
+      "errorMessage": null,
+      "meta": {
+        "force": true,
+        "publish": true,
+        "reason": "snapshot-script",
+        "targetCount": 24,
+        "published": true,
+        "preservedPreviousSnapshot": false
+      }
+    },
+    {
+      "id": "21928ce3-4a6d-4623-ba80-44a716d59f40",
+      "type": "publish",
+      "source": "cli",
+      "actor": "local-cli",
+      "requestId": null,
+      "status": "succeeded",
+      "startedAt": "2026-04-04T10:07:38.406Z",
+      "finishedAt": "2026-04-04T10:07:38.412Z",
+      "errorMessage": null,
+      "meta": {
+        "jobId": "3c8ee004-3c9e-4fe6-8df6-87cbbac4f455",
+        "reason": "snapshot-script"
+      }
+    },
+    {
+      "id": "e2019ebf-1410-49d6-8b70-e14e011a8dd9",
+      "type": "scan",
+      "source": "cli",
+      "actor": "local-cli",
+      "requestId": null,
+      "status": "succeeded",
+      "startedAt": "2026-04-04T10:01:47.582Z",
+      "finishedAt": "2026-04-04T10:01:49.969Z",
+      "errorMessage": null,
+      "meta": {
+        "force": true,
+        "publish": true,
+        "reason": "snapshot-script",
+        "targetCount": 24,
+        "published": true,
+        "preservedPreviousSnapshot": false
+      }
+    },
+    {
+      "id": "0d5d0780-c1ac-44fc-a6b6-f7443b12fc5b",
+      "type": "publish",
+      "source": "cli",
+      "actor": "local-cli",
+      "requestId": null,
+      "status": "succeeded",
+      "startedAt": "2026-04-04T10:01:49.957Z",
+      "finishedAt": "2026-04-04T10:01:49.968Z",
+      "errorMessage": null,
+      "meta": {
+        "jobId": "e2019ebf-1410-49d6-8b70-e14e011a8dd9",
+        "reason": "snapshot-script"
+      }
+    }
+  ]
+}

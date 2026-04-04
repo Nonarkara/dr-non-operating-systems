@@ -3,17 +3,54 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dr. Non's Operating Systems v4</title>
-    <script>
-      window.__assetVersion = String(Date.parse(document.lastModified) || Date.now());
-      const stylesheet = document.createElement("link");
-      stylesheet.rel = "stylesheet";
-      stylesheet.href = `./styles.css?v=${encodeURIComponent(window.__assetVersion)}`;
-      document.head.append(stylesheet);
+    <title>Dr. Non's Operating Systems</title>
+    <meta
+      name="description"
+      content="Technical portfolio and operations console for Dr. Non Arkaraprasertkul, built from published snapshots, health telemetry, alert logs, trigger state, and visitor analytics."
+    />
+    <meta name="theme-color" content="#050b12" />
+    <link rel="canonical" href="https://dr-non-os.vercel.app/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Dr. Non's Operating Systems" />
+    <meta
+      property="og:description"
+      content="A published control surface for live systems, research output, and operational evidence built from real monitoring data."
+    />
+    <meta property="og:url" content="https://dr-non-os.vercel.app/" />
+    <meta property="og:image" content="https://dr-non-os.vercel.app/media/gallery/sctcdp-dashboard.png" />
+    <meta property="og:image:alt" content="Operational dashboard view from Dr. Non's Operating Systems" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Dr. Non's Operating Systems" />
+    <meta
+      name="twitter:description"
+      content="Published control surface for public systems, current work, and operating record."
+    />
+    <meta name="twitter:image" content="https://dr-non-os.vercel.app/media/gallery/sctcdp-dashboard.png" />
+    <link rel="preload" href="./styles.css" as="style" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Dr. Non's Operating Systems",
+        "url": "https://dr-non-os.vercel.app/",
+        "description": "Technical portfolio and operations console for Dr. Non Arkaraprasertkul, built from published snapshots, health telemetry, alert logs, trigger state, and visitor analytics.",
+        "creator": {
+          "@type": "Person",
+          "name": "Dr. Non Arkaraprasertkul"
+        },
+        "inLanguage": "en"
+      }
     </script>
   </head>
   <body>
     <a href="#metricsGrid" class="skip-link">Skip to dashboard</a>
+    <noscript class="noscript-banner">
+      JavaScript is required for the interactive dashboard. Published snapshot artifacts remain available at
+      <a href="./data/dashboard-snapshot.json">dashboard-snapshot.json</a>,
+      <a href="./data/alerts.json">alerts.json</a>, and
+      <a href="./data/triggers.json">triggers.json</a>.
+    </noscript>
     <div class="bg-orbit orbit-a"></div>
     <div class="bg-orbit orbit-b"></div>
     <div class="grid-glow"></div>
@@ -23,7 +60,15 @@
       <div class="time-travel-inner">
         <span class="time-travel-icon">&#9202;</span>
         <span class="time-travel-label" id="timeTravelLabel">Select a snapshot</span>
-        <input type="range" id="timeTravelSlider" class="time-travel-slider" min="0" max="0" value="0" />
+        <input
+          type="range"
+          id="timeTravelSlider"
+          class="time-travel-slider"
+          min="0"
+          max="0"
+          value="0"
+          aria-label="Snapshot history timeline"
+        />
         <span class="time-travel-date" id="timeTravelDate">—</span>
         <button id="timeTravelReturn" class="button button-primary time-travel-return" type="button">Return to live</button>
       </div>
@@ -69,14 +114,14 @@
           <p class="eyebrow">Non Project Summary v4</p>
           <h1>Dr. Non's Operating Systems</h1>
           <p class="lede">
-            Public systems, current work, and operating record in one live wall.
-            Public mode stays snapshot-backed. Local mode runs the real scan.
+            Published control surface for public systems, current work, and operating record.
+            Every metric on this page is derived from committed snapshots, health telemetry, alert logs, trigger state, and visitor analytics.
           </p>
         </div>
 
         <div class="hero-controls">
           <button id="refreshButton" class="button button-primary utility-button" type="button">
-            Run live scan
+            Reload published snapshot
           </button>
           <a
             id="manualScanLink"
@@ -116,6 +161,8 @@
           </div>
         </div>
       </header>
+
+      <section id="analysisConsole" class="analysis-console"></section>
 
       <!-- Alert banner (Phase 4) -->
       <section id="alertBanner" class="alert-banner" hidden aria-live="polite"></section>
@@ -460,12 +507,6 @@
         <div id="copyrightNote" class="footer-fineprint"></div>
       </footer>
     </main>
-
-    <script>
-      const appScript = document.createElement("script");
-      appScript.type = "module";
-      appScript.src = `./app.js?v=${encodeURIComponent(window.__assetVersion)}`;
-      document.body.append(appScript);
-    </script>
+    <script type="module" src="./app.js"></script>
   </body>
 </html>

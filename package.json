@@ -6,6 +6,10 @@
   "scripts": {
     "smoke": "node scripts/smoke-check.mjs",
     "snapshot": "node scripts/write-dashboard-snapshot.mjs",
+    "job:scan": "node scripts/run-scan-job.mjs",
+    "job:publish": "node scripts/publish-staged-snapshot.mjs",
+    "job:backfill": "node scripts/backfill-supabase.mjs",
+    "test": "node --test",
     "start": "node server.js"
   }
 }

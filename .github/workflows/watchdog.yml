@@ -16,6 +16,8 @@ jobs:
     steps:
       - name: Poll triggers and health
         id: check
+        env:
+          ADMIN_BEARER_TOKEN: ${{ secrets.ADMIN_BEARER_TOKEN }}
         run: |
           OPS_URL="https://dr-non-operating-systems.onrender.com"
 
@@ -25,9 +27,11 @@ jobs:
           STATUS=$(echo "$HEALTH" | jq -r '.status // "unreachable"')
           ATTENTION=$(echo "$HEALTH" | jq -r '.summary.attentionCount // 0')
           INCIDENTS=$(echo "$HEALTH" | jq -r '.activeIncidents // 0')
+          LAST_SCAN=$(curl -sf "$OPS_URL/api/admin/scheduler" -H "Authorization: Bearer $ADMIN_BEARER_TOKEN" | jq -r '.lastSuccessfulScanAt // "unknown"' || echo "unknown")
           echo "status=$STATUS" >> "$GITHUB_OUTPUT"
           echo "attention=$ATTENTION" >> "$GITHUB_OUTPUT"
           echo "incidents=$INCIDENTS" >> "$GITHUB_OUTPUT"
+          echo "last_scan=$LAST_SCAN" >> "$GITHUB_OUTPUT"
 
           echo "=== Checking triggers ==="
           TRIGGERS=$(curl -sf "$OPS_URL/api/triggers?status=open" || echo '{"triggers":[]}')
@@ -43,6 +47,7 @@ jobs:
       - name: Restart Render services with open triggers
         if: steps.check.outputs.trigger_count != '0' && env.RENDER_API_KEY != ''
         env:
+          ADMIN_BEARER_TOKEN: ${{ secrets.ADMIN_BEARER_TOKEN }}
           RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
           OPS_URL: https://dr-non-operating-systems.onrender.com
         run: |
@@ -74,14 +79,16 @@ jobs:
             echo "--- Processing trigger for: $TARGET_LABEL ($TARGET_ID) ---"
 
             # Claim the trigger
-            curl -sf -X POST "$OPS_URL/api/triggers/$TRIGGER_ID/claim" \
+            curl -sf -X POST "$OPS_URL/api/admin/triggers/$TRIGGER_ID/claim" \
+              -H "Authorization: Bearer $ADMIN_BEARER_TOKEN" \
               -H 'Content-Type: application/json' \
               -d '{"claimedBy":"github-actions-watchdog"}' > /dev/null 2>&1 || true
 
             # Only attempt restart for Render services
             if [ "$PLATFORM" != "Render" ]; then
               echo "  Skipping: $TARGET_LABEL is on $PLATFORM (not Render)"
-              curl -sf -X POST "$OPS_URL/api/triggers/$TRIGGER_ID/resolve" \
+              curl -sf -X POST "$OPS_URL/api/admin/triggers/$TRIGGER_ID/resolve" \
+                -H "Authorization: Bearer $ADMIN_BEARER_TOKEN" \
                 -H 'Content-Type: application/json' \
                 -d "{\"resolution\":\"Skipped auto-restart: $PLATFORM platform not supported for automated restarts\"}" > /dev/null 2>&1 || true
               continue
@@ -90,7 +97,8 @@ jobs:
             SERVICE_NAME="${RENDER_SERVICES[$TARGET_ID]}"
             if [ -z "$SERVICE_NAME" ]; then
               echo "  Skipping: No Render service mapping for $TARGET_ID"
-              curl -sf -X POST "$OPS_URL/api/triggers/$TRIGGER_ID/resolve" \
+              curl -sf -X POST "$OPS_URL/api/admin/triggers/$TRIGGER_ID/resolve" \
+                -H "Authorization: Bearer $ADMIN_BEARER_TOKEN" \
                 -H 'Content-Type: application/json' \
                 -d '{"resolution":"No Render service mapping found for automated restart"}' > /dev/null 2>&1 || true
               continue
@@ -104,7 +112,8 @@ jobs:
 
             if [ -z "$SERVICE_ID" ]; then
               echo "  Could not find Render service ID for $SERVICE_NAME"
-              curl -sf -X POST "$OPS_URL/api/triggers/$TRIGGER_ID/resolve" \
+              curl -sf -X POST "$OPS_URL/api/admin/triggers/$TRIGGER_ID/resolve" \
+                -H "Authorization: Bearer $ADMIN_BEARER_TOKEN" \
                 -H 'Content-Type: application/json' \
                 -d "{\"resolution\":\"Could not find Render service ID for $SERVICE_NAME\"}" > /dev/null 2>&1 || true
               continue
@@ -130,7 +139,8 @@ jobs:
             fi
 
             # Resolve the trigger
-            curl -sf -X POST "$OPS_URL/api/triggers/$TRIGGER_ID/resolve" \
+            curl -sf -X POST "$OPS_URL/api/admin/triggers/$TRIGGER_ID/resolve" \
+              -H "Authorization: Bearer $ADMIN_BEARER_TOKEN" \
               -H 'Content-Type: application/json' \
               -d "{\"resolution\":\"$RESOLUTION\"}" > /dev/null 2>&1 || true
 
@@ -186,4 +196,5 @@ jobs:
           echo "| Status | ${{ steps.check.outputs.status }} |" >> "$GITHUB_STEP_SUMMARY"
           echo "| Attention items | ${{ steps.check.outputs.attention }} |" >> "$GITHUB_STEP_SUMMARY"
           echo "| Active incidents | ${{ steps.check.outputs.incidents }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Last successful scan | ${{ steps.check.outputs.last_scan }} |" >> "$GITHUB_STEP_SUMMARY"
           echo "| Open triggers | ${{ steps.check.outputs.trigger_count }} |" >> "$GITHUB_STEP_SUMMARY"

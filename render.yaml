@@ -11,6 +11,8 @@ services:
         sync: false
       - key: SUPABASE_SERVICE_KEY
         sync: false
+      - key: ADMIN_BEARER_TOKEN
+        sync: false
       - key: ALERT_WEBHOOK_URL
         sync: false
     pullRequestPreviewsEnabled: false

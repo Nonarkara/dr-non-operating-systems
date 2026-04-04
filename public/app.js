@@ -8,8 +8,8 @@ const PREVIEW_VIEWPORT = {
   height: 900
 };
 
-const GITHUB_REPO = "Nonarkara/dr-non-operating-systems";
-const SNAPSHOT_COMMITS_PATH = "public/data/dashboard-snapshot.json";
+const SNAPSHOT_HISTORY_PATH = "./data/snapshot-history.json";
+const STALE_SNAPSHOT_MS = 24 * 60 * 60_000;
 
 /* ============================================================
    SVG Primitive Library — all inline, zero dependencies
@@ -30,7 +30,7 @@ const SVG = {
     const label = opts.label || "";
     const displayValue = opts.displayValue || String(Math.round(value));
 
-    return `<svg class="svg-gauge" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="${escapeHtml(label || 'gauge')}: ${escapeHtml(displayValue)}"
+    return `<svg class="svg-gauge" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="${escapeHtml(label || "gauge")}: ${escapeHtml(displayValue)}">
       <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--line)" stroke-width="6" opacity="0.3"/>
       <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="6"
         stroke-dasharray="${dash} ${gap}" stroke-linecap="round"
@@ -745,6 +745,7 @@ const DATA_MODE = resolveDataMode();
 const state = {
   autoRefreshMs: DATA_MODE === "live" ? 30_000 : 0,
   dashboard: null,
+  health: null,
   lastLoadSource: null,
   localPreviewHistory: new Map(),
   localTargets: loadLocalTargets(),
@@ -769,6 +770,7 @@ const elements = {
   clock: document.querySelector("#clock"),
   copyrightNote: document.querySelector("#copyrightNote"),
   dashboardState: document.querySelector("#dashboardState"),
+  analysisConsole: document.querySelector("#analysisConsole"),
   footerTerminal: document.querySelector("#footerTerminal"),
   featuredGrid: document.querySelector("#featuredGrid"),
   githubPanel: document.querySelector("#githubPanel"),
@@ -864,6 +866,22 @@ function shortTime(value) {
   });
 }
 
+function formatAge(ms) {
+  if (ms == null || !Number.isFinite(ms)) {
+    return "n/a";
+  }
+
+  const minutes = Math.max(0, Math.round(ms / 60000));
+  const hours = Math.floor(minutes / 60);
+  const remainingMinutes = minutes % 60;
+
+  if (hours > 0) {
+    return `${hours}h ${remainingMinutes}m`;
+  }
+
+  return `${minutes}m`;
+}
+
 function formatRelativeTime(value) {
   if (!value) {
     return "n/a";
@@ -944,23 +962,41 @@ function getSnapshotUrl(force = false) {
   return force ? `${SNAPSHOT_PATH}?t=${Date.now()}` : SNAPSHOT_PATH;
 }
 
+function withCacheBust(path, force = false) {
+  if (!force) {
+    return path;
+  }
+
+  return `${path}${path.includes("?") ? "&" : "?"}t=${Date.now()}`;
+}
+
+function parseDateMs(value) {
+  const parsed = Date.parse(value || "");
+  return Number.isFinite(parsed) ? parsed : null;
+}
+
 function applyModeUI() {
   const liveMode = state.mode === "live";
   const fallbackMode = state.lastLoadSource === "snapshot-fallback";
+  const artifactMode = state.lastLoadSource === "snapshot-artifact";
 
-  elements.refreshButton.textContent = liveMode ? "Run live scan" : "Reload snapshot";
-  elements.mentionsRefreshButton.textContent = liveMode ? "Refresh mentions" : "Reload mention snapshot";
+  elements.refreshButton.textContent = "Reload published snapshot";
+  elements.mentionsRefreshButton.textContent = "Reload mention snapshot";
   elements.manualScanLink.href = MANUAL_SCAN_WORKFLOW_URL;
-  elements.manualScanLink.textContent = liveMode ? "Open snapshot workflow" : "Run manual scan";
+  elements.manualScanLink.textContent = "Open authenticated scan workflow";
   elements.refreshSelect.disabled = !liveMode;
   elements.refreshSelect.value = String(state.autoRefreshMs);
 
   let note = liveMode
-    ? "Local live mode scans all targets from this machine. Auto refresh is local-only."
-    : "Snapshot mode is active on the public web. A fresh server scan only happens when you run the GitHub workflow.";
+    ? "Workstation mode keeps local target previews visible, but system analysis still comes from the published snapshot and admin job outputs."
+    : "Public mode is snapshot-backed. Fresh scans now run through authenticated admin jobs or the GitHub snapshot workflow.";
 
   if (fallbackMode) {
-    note = "Live API unavailable on this machine, so the page is showing the last committed snapshot instead.";
+    note = "The workstation could not load a fresher control-plane response, so the page is showing the last committed snapshot.";
+  }
+
+  if (artifactMode) {
+    note = "This deployment is static. Health and operational analysis are derived from published snapshot artifacts instead of same-origin API routes.";
   }
 
   elements.modeNote.textContent = note;
@@ -969,7 +1005,7 @@ function applyModeUI() {
 
   const navStatus = document.querySelector("#navStatus");
   if (navStatus) {
-    navStatus.innerHTML = makeStatusPill(liveMode ? "live" : "snapshot", liveMode ? "live" : "neutral");
+    navStatus.innerHTML = makeStatusPill(liveMode ? "workstation" : "snapshot", liveMode ? "neutral" : "neutral");
   }
 
   const navOpsLink = document.querySelector("#navOpsLink");
@@ -1244,7 +1280,9 @@ function renderFooter() {
 }
 
 function renderMentions(mentions = state.mentions) {
-  const snapshotBacked = state.lastLoadSource === "snapshot" || state.lastLoadSource === "snapshot-fallback";
+  const snapshotBacked = state.lastLoadSource === "snapshot"
+    || state.lastLoadSource === "snapshot-fallback"
+    || state.lastLoadSource === "snapshot-artifact";
   const statusView = mentionStatusView(mentions);
   const meta = [];
 
@@ -2283,11 +2321,134 @@ function renderTriggerPanel(triggers) {
         </div>
       ` : ""}
       <div class="trigger-api-ref">
-        <code>POST /api/triggers/${escapeHtml(t.id)}/claim</code>
-        <code>POST /api/triggers/${escapeHtml(t.id)}/resolve</code>
+        <code>POST /api/admin/triggers/${escapeHtml(t.id)}/claim</code>
+        <code>POST /api/admin/triggers/${escapeHtml(t.id)}/resolve</code>
       </div>
     </article>
   `).join("");
+}
+
+function renderTechnicalConsole(summary, github, mentions, analytics, alerts, triggers, health) {
+  const container = elements.analysisConsole;
+  if (!container || !summary) return;
+
+  const activeIncidents = alerts?.active || [];
+  const recentAlerts = alerts?.recent || [];
+  const criticalCount = recentAlerts.filter((alert) => alert.severity === "critical").length;
+  const warningCount = recentAlerts.filter((alert) => alert.severity === "warning").length;
+  const topPlatform = summary.platformBreakdown?.[0] || null;
+  const topCountry = analytics?.fleet?.countries?.[0] || null;
+  const totalTargets = summary.monitoredPages || 0;
+  const platformPct = topPlatform && totalTargets
+    ? Math.round((topPlatform.count / totalTargets) * 100)
+    : null;
+  const snapshotSource = state.timeTravel
+    ? "historical commit"
+    : state.lastLoadSource === "snapshot-artifact"
+      ? "published artifact"
+      : state.lastLoadSource === "snapshot"
+        ? "same-origin API"
+        : "snapshot";
+  const dependencyEntries = Object.entries(health?.dependencies || {
+    github: github?.status || "unknown",
+    mentions: mentions?.status || state.mentions?.status || "unknown"
+  });
+
+  const analysisFeed = [
+    summary.fastest && summary.slowest
+      ? `Latency spread is ${summary.fastest.responseTimeMs}ms on ${summary.fastest.label} to ${summary.slowest.responseTimeMs}ms on ${summary.slowest.label}.`
+      : "Latency spread is unavailable in the current snapshot.",
+    topPlatform && platformPct != null
+      ? `${topPlatform.platform} carries ${platformPct}% of monitored surfaces, making it the main concentration risk in the fleet.`
+      : "Platform concentration cannot be computed from the current snapshot.",
+    activeIncidents.length
+      ? `${activeIncidents.length} active incident${activeIncidents.length > 1 ? "s are" : " is"} currently suppressing overall health.`
+      : "No active incidents are open in the current alert ledger.",
+    topCountry
+      ? `${topCountry.country} leads visitor signal over the last 7 days with ${topCountry.count} observed hits.`
+      : "Visitor geography has not accumulated enough data to rank countries yet.",
+    github?.stats?.activeLast30d != null
+      ? `GitHub metadata shows ${github.stats.activeLast30d} repositories updated in the last 30 days and ${github.stats.githubPagesRepos} Pages deployments.`
+      : "GitHub activity metadata is unavailable."
+  ];
+
+  container.innerHTML = `
+    <article class="analysis-card analysis-card--control">
+      <div class="analysis-head">
+        <p class="panel-kicker">Control plane</p>
+        <h2>Operational analysis</h2>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-kv"><span>Health</span><strong>${escapeHtml(health?.status || "unknown")}</strong></div>
+        <div class="analysis-kv"><span>Snapshot age</span><strong>${escapeHtml(formatAge(health?.snapshotAgeMs))}</strong></div>
+        <div class="analysis-kv"><span>Last successful scan</span><strong>${escapeHtml(health?.lastSuccessfulScanAt ? shortTime(health.lastSuccessfulScanAt) : "n/a")}</strong></div>
+        <div class="analysis-kv"><span>Last failed scan</span><strong>${escapeHtml(health?.lastFailedScanAt ? shortTime(health.lastFailedScanAt) : "none")}</strong></div>
+        <div class="analysis-kv"><span>Published snapshot</span><strong>${escapeHtml(health?.lastPublishedSnapshotAt ? shortTime(health.lastPublishedSnapshotAt) : "n/a")}</strong></div>
+        <div class="analysis-kv"><span>Active incidents</span><strong>${escapeHtml(String(health?.activeIncidents ?? activeIncidents.length))}</strong></div>
+      </div>
+    </article>
+    <article class="analysis-card">
+      <div class="analysis-head">
+        <p class="panel-kicker">Fleet posture</p>
+        <h2>Current system state</h2>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-kv"><span>Healthy surfaces</span><strong>${escapeHtml(`${summary.liveCount}/${summary.monitoredPages}`)}</strong></div>
+        <div class="analysis-kv"><span>24h fleet uptime</span><strong>${escapeHtml(summary.fleetUptime24h != null ? `${summary.fleetUptime24h}%` : "n/a")}</strong></div>
+        <div class="analysis-kv"><span>Median latency</span><strong>${escapeHtml(summary.medianResponseMs != null ? `${summary.medianResponseMs}ms` : "n/a")}</strong></div>
+        <div class="analysis-kv"><span>Registered APIs</span><strong>${escapeHtml(String(summary.apiCount || 0))}</strong></div>
+        <div class="analysis-kv"><span>Attention queue</span><strong>${escapeHtml(String(summary.attentionCount || 0))}</strong></div>
+        <div class="analysis-kv"><span>Open triggers</span><strong>${escapeHtml(String((triggers || []).length))}</strong></div>
+      </div>
+    </article>
+    <article class="analysis-card">
+      <div class="analysis-head">
+        <p class="panel-kicker">Evidence chain</p>
+        <h2>Published data provenance</h2>
+      </div>
+      <div class="analysis-grid">
+        <div class="analysis-kv"><span>Snapshot source</span><strong>${escapeHtml(snapshotSource)}</strong></div>
+        <div class="analysis-kv"><span>Observed surfaces</span><strong>${escapeHtml(String(summary.monitoredPages || 0))}</strong></div>
+        <div class="analysis-kv"><span>Mention records</span><strong>${escapeHtml(String(mentions?.items?.length || 0))}</strong></div>
+        <div class="analysis-kv"><span>Recent alert events</span><strong>${escapeHtml(String(recentAlerts.length))}</strong></div>
+        <div class="analysis-kv"><span>Visitor beacons today</span><strong>${escapeHtml(String(analytics?.fleet?.todayVisitors || 0))}</strong></div>
+        <div class="analysis-kv"><span>GitHub repos</span><strong>${escapeHtml(String(github?.profile?.publicRepos || 0))}</strong></div>
+      </div>
+    </article>
+    <article class="analysis-card">
+      <div class="analysis-head">
+        <p class="panel-kicker">Dependencies</p>
+        <h2>Upstream state</h2>
+      </div>
+      <div class="analysis-deps">
+        ${dependencyEntries.map(([name, value]) => `
+          <div class="analysis-dep">
+            <span>${escapeHtml(name)}</span>
+            <span>${makeStatusPill(String(value), String(value))}</span>
+          </div>
+        `).join("")}
+      </div>
+      <div class="analysis-footnote">
+        ${topPlatform
+          ? `<span>Primary platform: <strong>${escapeHtml(topPlatform.platform)}</strong> (${escapeHtml(String(topPlatform.count))} surfaces)</span>`
+          : `<span>Primary platform: n/a</span>`}
+      </div>
+    </article>
+    <article class="analysis-card analysis-card--feed">
+      <div class="analysis-head">
+        <p class="panel-kicker">Machine notes</p>
+        <h2>Derived findings</h2>
+      </div>
+      <div class="analysis-feed">
+        ${analysisFeed.map((line) => `<div class="analysis-feed-item">${escapeHtml(line)}</div>`).join("")}
+      </div>
+      <div class="analysis-alert-mix">
+        <span>Critical: ${criticalCount}</span>
+        <span>Warning: ${warningCount}</span>
+        <span>Visitors today: ${analytics?.fleet?.todayVisitors || 0}</span>
+      </div>
+    </article>
+  `;
 }
 
 const API_REGISTRY_GROUPS = [
@@ -2632,6 +2793,7 @@ function renderDashboard() {
   renderFooter();
   renderMetrics(summary, github);
   renderDistributionCharts(summary, github);
+  renderTechnicalConsole(summary, github, state.mentions, analytics, alerts, triggers, state.health);
   renderFleetUptime(targets);
   renderVisitorIntel(analytics);
   renderAlertBanner(alerts);
@@ -2695,6 +2857,92 @@ async function fetchLiveDashboard(force = false) {
   return response.json();
 }
 
+function buildPublishedHealthFallback(snapshot, jobStatus = null) {
+  const generatedAtMs = parseDateMs(snapshot?.generatedAt);
+  const snapshotAgeMs = generatedAtMs == null ? null : Date.now() - generatedAtMs;
+  const snapshotFreshness = snapshotAgeMs != null && snapshotAgeMs <= STALE_SNAPSHOT_MS ? "fresh" : "stale";
+  const lastSuccessfulScanAt = jobStatus?.lastSuccessfulScanAt ?? snapshot?.generatedAt ?? null;
+  const lastFailedScanAt = jobStatus?.lastFailedScanAt ?? null;
+  const lastSuccessfulScanMs = parseDateMs(lastSuccessfulScanAt);
+  const lastFailedScanMs = parseDateMs(lastFailedScanAt);
+  const activeIncidents = Array.isArray(snapshot?.alerts?.active) ? snapshot.alerts.active.length : 0;
+  const issues = Array.isArray(snapshot?.summary?.issues) ? snapshot.summary.issues.slice(0, 5) : [];
+  const scanRecentlyFailed = Boolean(
+    lastFailedScanMs != null &&
+    (lastSuccessfulScanMs == null || lastFailedScanMs > lastSuccessfulScanMs)
+  );
+  const status = snapshotFreshness === "stale" || scanRecentlyFailed || activeIncidents > 0 || issues.length
+    ? "degraded"
+    : "ok";
+
+  return {
+    service: "non-operations-radar",
+    status,
+    mode: "snapshot",
+    time: new Date().toISOString(),
+    generatedAt: snapshot?.generatedAt ?? null,
+    snapshotAgeMs,
+    snapshotFreshness,
+    lastSuccessfulScanAt,
+    lastFailedScanAt,
+    lastPublishedSnapshotAt: jobStatus?.lastPublishedSnapshotAt ?? snapshot?.generatedAt ?? null,
+    activeIncidents,
+    summary: snapshot?.summary
+      ? {
+          attentionCount: snapshot.summary.attentionCount,
+          liveCount: snapshot.summary.liveCount,
+          monitoredPages: snapshot.summary.monitoredPages,
+          fleetUptime24h: snapshot.summary.fleetUptime24h ?? null
+        }
+      : null,
+    dependencies: {
+      github: snapshot?.github?.status ?? "unknown",
+      mentions: snapshot?.mentions?.status ?? "unknown",
+      supabase: jobStatus ? "published" : "unknown"
+    },
+    issues
+  };
+}
+
+async function fetchOptionalJson(path, force = false) {
+  try {
+    const response = await fetch(withCacheBust(path, force), { cache: "no-store" });
+
+    if (!response.ok) {
+      return null;
+    }
+
+    return response.json();
+  } catch {
+    return null;
+  }
+}
+
+async function fetchHealthStatus(snapshot, force = false) {
+  try {
+    const response = await fetch(withCacheBust("./api/health", force), { cache: "no-store" });
+
+    if (!response.ok) {
+      const jobStatus = await fetchOptionalJson("./data/job-status.json", force);
+      return {
+        payload: buildPublishedHealthFallback(snapshot, jobStatus),
+        source: "artifact"
+      };
+    }
+
+    return {
+      payload: await response.json(),
+      source: "api"
+    };
+  } catch {
+    const jobStatus = await fetchOptionalJson("./data/job-status.json", force);
+    return {
+      payload: buildPublishedHealthFallback(snapshot, jobStatus),
+      source: "artifact"
+    };
+  }
+}
+
 async function fetchSnapshotMentions(force = false) {
   const snapshot = await fetchSnapshotDashboard(force);
 
@@ -2727,24 +2975,14 @@ async function fetchMentions(force = false) {
 
 async function refreshDashboard(force = false) {
   elements.dashboardState.className = "status-pill status-pill-loading";
-  elements.dashboardState.textContent =
-    state.mode === "live" ? "Running live scan" : "Loading snapshot";
+  elements.dashboardState.textContent = "Loading published control surface";
 
   try {
-    if (state.mode === "live") {
-      try {
-        state.dashboard = await fetchLiveDashboard(force);
-        state.lastLoadSource = "live";
-      } catch (error) {
-        state.dashboard = await fetchSnapshotDashboard(true);
-        state.lastLoadSource = "snapshot-fallback";
-        renderDashboard();
-        return;
-      }
-    } else {
-      state.dashboard = await fetchSnapshotDashboard(force);
-      state.lastLoadSource = "snapshot";
-    }
+    const dashboard = await fetchSnapshotDashboard(force);
+    const health = await fetchHealthStatus(dashboard, force);
+    state.dashboard = dashboard;
+    state.health = health.payload;
+    state.lastLoadSource = health.source === "api" ? "snapshot" : "snapshot-artifact";
     renderDashboard();
   } catch (error) {
     elements.dashboardState.className = "status-pill status-pill-error";
@@ -2755,8 +2993,7 @@ async function refreshDashboard(force = false) {
 
 async function refreshMentions(force = false) {
   elements.mentionsStatus.innerHTML = makeStatusPill("Refreshing", "loading");
-  elements.mentionsMeta.textContent =
-    state.mode === "live" ? "Running a fresh mention sweep." : "Reloading snapshot mentions.";
+  elements.mentionsMeta.textContent = "Reloading snapshot mentions.";
 
   try {
     const mentions = await fetchMentions(force);
@@ -2986,7 +3223,9 @@ async function openTimeTravel() {
       const resp = await fetch("./api/snapshots", { cache: "no-store" });
       commits = resp.ok ? await resp.json() : [];
     } else {
-      commits = [];
+      const resp = await fetch(withCacheBust(SNAPSHOT_HISTORY_PATH), { cache: "no-store" });
+      const history = resp.ok ? await resp.json() : null;
+      commits = Array.isArray(history?.snapshots) ? history.snapshots : [];
     }
 
     if (!commits.length) {
@@ -3014,12 +3253,14 @@ function updateTimeTravelDate(index) {
 async function loadHistoricalSnapshot(index) {
   const commit = state.timeTravelCommits[index];
   if (!commit) return;
+  const snapshotKey = commit.id || commit.sha;
 
   state.timeTravelIndex = index;
   updateTimeTravelDate(index);
 
-  if (state.timeTravelCache.has(commit.sha)) {
-    state.dashboard = state.timeTravelCache.get(commit.sha);
+  if (state.timeTravelCache.has(snapshotKey)) {
+    state.dashboard = state.timeTravelCache.get(snapshotKey);
+    state.health = buildPublishedHealthFallback(state.dashboard);
     state.timeTravel = true;
     state.lastLoadSource = "time-travel";
     renderDashboard();
@@ -3034,7 +3275,7 @@ async function loadHistoricalSnapshot(index) {
       const resp = await fetch(`./api/snapshots/${commit.sha}`, { cache: "no-store" });
       data = resp.ok ? await resp.json() : null;
     } else {
-      const resp = await fetch(`https://raw.githubusercontent.com/${GITHUB_REPO}/${commit.sha}/${SNAPSHOT_COMMITS_PATH}`);
+      const resp = await fetch(`./data/history/${encodeURIComponent(commit.id)}.json`, { cache: "no-store" });
       data = resp.ok ? await resp.json() : null;
     }
 
@@ -3043,8 +3284,9 @@ async function loadHistoricalSnapshot(index) {
       return;
     }
 
-    state.timeTravelCache.set(commit.sha, data);
+    state.timeTravelCache.set(snapshotKey, data);
     state.dashboard = data;
+    state.health = buildPublishedHealthFallback(data);
     state.timeTravel = true;
     state.lastLoadSource = "time-travel";
     elements.timeTravelLabel.textContent = `Viewing: ${formatDate(commit.date)}`;
