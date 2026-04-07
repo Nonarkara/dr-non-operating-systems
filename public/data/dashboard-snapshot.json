@@ -1,30 +1,48 @@
 {
-  "generatedAt": "2026-04-07T05:55:37.847Z",
+  "generatedAt": "2026-04-07T07:48:35.776Z",
   "github": {
-    "checkedAt": "2026-04-07T05:55:37.391Z",
+    "checkedAt": "2026-04-07T07:48:35.600Z",
     "profile": {
       "createdAt": "2024-10-18T14:36:57Z",
       "followers": 0,
       "location": "Bangkok",
       "login": "Nonarkara",
       "name": "Dr Non Arkara",
-      "publicRepos": 19,
+      "publicRepos": 21,
       "updatedAt": "2026-03-24T15:20:27Z",
       "url": "https://github.com/Nonarkara"
     },
     "recentRepos": [
       {
+        "description": "Dr Non's Digital Economy Dashboard by depa",
+        "hasPages": true,
+        "language": "JavaScript",
+        "name": "tech-monitor",
+        "pushedAt": "2026-04-07T07:14:07Z",
+        "updatedAt": "2026-04-07T07:14:15Z",
+        "url": "https://github.com/Nonarkara/tech-monitor"
+      },
+      {
+        "description": "Middle East War Monitor — real-time conflict tracker with PMUA, depa, Axiom",
+        "hasPages": false,
+        "language": "HTML",
+        "name": "middleeast-monitor",
+        "pushedAt": "2026-04-07T07:07:16Z",
+        "updatedAt": "2026-04-07T07:07:19Z",
+        "url": "https://github.com/Nonarkara/middleeast-monitor"
+      },
+      {
         "description": "SLIC Index V3 — The city ranking that disagrees. 157 cities, 5 pillars, 35 signals, every score traceable. Not a ranking — a reality check. Launched at SCSE 2026 Taipei to 3,000 professionals. Open source, free, no paywall, no black box.",
         "hasPages": true,
         "language": "TypeScript",
         "name": "SLIC-Index",
-        "pushedAt": "2026-04-07T02:23:11Z",
+        "pushedAt": "2026-04-07T07:19:29Z",
         "updatedAt": "2026-04-05T18:20:25Z",
         "url": "https://github.com/Nonarkara/SLIC-Index"
       },
       {
         "description": "SLIC Index V2 — Launched at Smart City Summit & Expo 2026, Taipei. 174 cities, 53 countries. Interactive spider diagram for custom pillar weights. The version European mayors asked to use instead of The Economist's index. [Archive — see V3 for latest]",
-        "hasPages": false,
+        "hasPages": true,
         "language": "TypeScript",
         "name": "slic-index-V2",
         "pushedAt": "2026-04-05T18:16:57Z",
@@ -39,42 +57,24 @@
         "pushedAt": "2026-04-05T18:16:14Z",
         "updatedAt": "2026-04-05T18:16:19Z",
         "url": "https://github.com/Nonarkara/slic-landing-page"
-      },
-      {
-        "description": "Axiom — Innovation as a Service. AI consultancy landing page.",
-        "hasPages": false,
-        "language": "CSS",
-        "name": "Axiom",
-        "pushedAt": "2026-04-05T06:18:56Z",
-        "updatedAt": "2026-04-05T06:18:59Z",
-        "url": "https://github.com/Nonarkara/Axiom"
-      },
-      {
-        "description": null,
-        "hasPages": true,
-        "language": "Python",
-        "name": "scl-landing-page",
-        "pushedAt": "2026-04-03T16:12:04Z",
-        "updatedAt": "2026-04-03T16:12:07Z",
-        "url": "https://github.com/Nonarkara/scl-landing-page"
       }
     ],
     "stats": {
-      "activeLast30d": 11,
-      "githubPagesRepos": 13,
-      "latestPushAt": "2026-04-07T02:23:11Z",
+      "activeLast30d": 13,
+      "githubPagesRepos": 15,
+      "latestPushAt": "2026-04-07T07:14:07Z",
       "topLanguages": [
         {
-          "count": 9,
+          "count": 10,
           "name": "JavaScript"
+        },
+        {
+          "count": 5,
+          "name": "HTML"
         },
         {
           "count": 4,
           "name": "TypeScript"
-        },
-        {
-          "count": 4,
-          "name": "HTML"
         },
         {
           "count": 1,
@@ -89,7 +89,7 @@
     "status": "live"
   },
   "mentions": {
-    "checkedAt": "2026-04-07T05:55:37.385Z",
+    "checkedAt": "2026-04-07T07:48:35.706Z",
     "error": null,
     "items": [
       {
@@ -159,92 +159,47 @@
     "status": "live"
   },
   "summary": {
-    "activeCount": 8,
-    "attentionCount": 8,
-    "apiCount": 41,
-    "appsWithApis": 3,
+    "activeCount": 4,
+    "attentionCount": 0,
+    "apiCount": 0,
+    "appsWithApis": 0,
     "fastest": {
       "label": "ASEAN CSCO App",
-      "responseTimeMs": 183
+      "responseTimeMs": 126
     },
-    "issues": [
-      {
-        "id": "city-reporter-bot-v2",
-        "label": "City Reporter Bot Version 2",
-        "reason": "The deployment returned 404."
-      },
-      {
-        "id": "slic-index-v2",
-        "label": "SLIC Index Version 2",
-        "reason": "Repository exists, but GitHub Pages is disabled."
-      },
-      {
-        "id": "sabai-sabai",
-        "label": "Sabai Sabai",
-        "reason": "The deployment returned HTTP 402."
-      },
-      {
-        "id": "axiom",
-        "label": "Axiom AI",
-        "reason": "The deployment returned HTTP 402."
-      },
-      {
-        "id": "geopolitics-dashboard",
-        "label": "Geopolitics Dashboard",
-        "reason": "The deployment returned HTTP 402."
-      },
-      {
-        "id": "middle-east-monitor",
-        "label": "Middle East Monitor",
-        "reason": "The deployment returned HTTP 402."
-      },
-      {
-        "id": "phuket-dashboard",
-        "label": "Phuket Dashboard",
-        "reason": "The deployment returned HTTP 402."
-      },
-      {
-        "id": "smart-city-thailand-index",
-        "label": "Smart City Thailand Index",
-        "reason": "The deployment returned HTTP 402."
-      }
-    ],
-    "liveCount": 6,
-    "medianResponseMs": 423,
-    "monitoredPages": 14,
+    "issues": [],
+    "liveCount": 9,
+    "medianResponseMs": 290,
+    "monitoredPages": 9,
     "platformBreakdown": [
       {
-        "count": 6,
+        "count": 5,
         "platform": "GitHub Pages"
       },
       {
-        "count": 6,
+        "count": 3,
         "platform": "Web"
-      },
-      {
-        "count": 1,
-        "platform": "Render"
       },
       {
         "count": 1,
         "platform": "Lovable"
       }
     ],
-    "platformsInUse": 4,
-    "publicRepos": 19,
+    "platformsInUse": 3,
+    "publicRepos": 21,
     "slowest": {
       "label": "City Tech Atlas",
-      "responseTimeMs": 864
+      "responseTimeMs": 519
     },
-    "staticCount": 6,
-    "fleetUptime24h": 58.33
+    "staticCount": 5,
+    "fleetUptime24h": 79.63
   },
   "targets": [
     {
       "apis": [],
       "addedAt": "2024-11-15",
       "category": "Landing page",
-      "checkedAt": "2026-04-07T05:55:37.386Z",
+      "checkedAt": "2026-04-07T07:48:35.544Z",
       "description": "depa Smart City Leadership launch page.",
       "finalUrl": "https://nonarkara.github.io/scl-landing-page/",
       "featured": false,
@@ -254,13 +209,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-03T22:52:31.580Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 486,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-04T03:14:57.382Z",
           "health": "live",
@@ -505,6 +453,13 @@
           "ok": true,
           "responseTimeMs": 425,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-07T07:48:35.544Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 349,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -530,7 +485,7 @@
         "updatedAt": "2026-04-03T16:12:07Z",
         "url": "https://github.com/Nonarkara/scl-landing-page"
       },
-      "responseTimeMs": 425,
+      "responseTimeMs": 349,
       "statusCode": 200,
       "surface": "static",
       "url": "https://nonarkara.github.io/scl-landing-page/",
@@ -540,14 +495,6 @@
         "d30": 99.07
       },
       "historyBuckets": [
-        {
-          "hour": "2026-03-31T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 430,
-          "minMs": 430,
-          "maxMs": 430
-        },
         {
           "hour": "2026-03-31T07",
           "checks": 1,
@@ -1163,979 +1110,14 @@
           "avgMs": 425,
           "minMs": 425,
           "maxMs": 425
-        }
-      ]
-    },
-    {
-      "apis": [
-        {
-          "kind": "internal",
-          "label": "Reports",
-          "url": "https://city-reporter-line-bot.onrender.com/api/reports"
-        },
-        {
-          "kind": "internal",
-          "label": "Report GeoJSON",
-          "url": "https://city-reporter-line-bot.onrender.com/api/reports/geojson"
-        },
-        {
-          "kind": "internal",
-          "label": "Early warnings",
-          "url": "https://city-reporter-line-bot.onrender.com/api/early-warnings"
-        },
-        {
-          "kind": "internal",
-          "label": "Upload",
-          "url": "https://city-reporter-line-bot.onrender.com/api/upload"
-        },
-        {
-          "kind": "internal",
-          "label": "Social analytics",
-          "url": "https://city-reporter-line-bot.onrender.com/api/analytics/social"
-        },
-        {
-          "kind": "internal",
-          "label": "Latest intelligence",
-          "url": "https://city-reporter-line-bot.onrender.com/api/intelligence/latest"
-        },
-        {
-          "kind": "internal",
-          "label": "Generate intelligence",
-          "url": "https://city-reporter-line-bot.onrender.com/api/intelligence/generate"
-        },
-        {
-          "kind": "internal",
-          "label": "News",
-          "url": "https://city-reporter-line-bot.onrender.com/api/news"
-        },
-        {
-          "kind": "internal",
-          "label": "Flood map WMS",
-          "url": "https://city-reporter-line-bot.onrender.com/api/2.0/resources/maps/flood/7days/wms"
-        },
-        {
-          "kind": "internal",
-          "label": "Phuket ports",
-          "url": "https://city-reporter-line-bot.onrender.com/api/marine/phuket-ports"
-        },
-        {
-          "kind": "internal",
-          "label": "Bangkok datastore proxy",
-          "url": "https://city-reporter-line-bot.onrender.com/api/3/action/datastore_search?resource_id=8f1102d5-52a2-4494-9131-403e4f87a242&limit=100"
-        }
-      ],
-      "addedAt": "2026-03-14",
-      "category": "Bot",
-      "checkedAt": "2026-04-07T05:55:37.091Z",
-      "description": "Version 2 of the command center and reporting bot interface. Only active Render service.",
-      "finalUrl": "https://city-reporter-line-bot.onrender.com/",
-      "featured": false,
-      "health": {
-        "code": "missing",
-        "label": "Missing",
-        "reason": "The deployment returned 404."
-      },
-      "history": [
-        {
-          "at": "2026-04-03T22:52:31.271Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 143,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T03:14:56.973Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 249,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T05:34:44.580Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 333,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T07:16:00.177Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 214,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T08:58:16.514Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 253,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T10:52:34.789Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 280,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T13:19:35.615Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 247,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T14:51:04.423Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 298,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T16:51:53.901Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 261,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T19:01:06.370Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 352,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T20:49:24.971Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 128,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T22:48:51.502Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 176,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T03:36:01.796Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 224,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T05:52:04.504Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 246,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T07:21:48.878Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 268,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T08:59:31.666Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 356,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T10:54:22.427Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 121,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T13:20:50.245Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 233,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T14:52:57.157Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 143,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T16:53:09.524Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 214,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T19:03:19.230Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 282,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T20:50:01.513Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 322,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T22:50:38.494Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 163,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T03:38:59.649Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 439,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T06:06:28.209Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 301,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T08:00:46.281Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 237,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T09:40:35.322Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 344,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T11:11:34.355Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 332,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T13:45:08.214Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 234,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T15:05:36.808Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 209,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T17:05:27.950Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 274,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T19:18:51.039Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 189,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T20:54:48.577Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 263,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T22:55:21.769Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 151,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-07T03:29:25.202Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 321,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-07T05:55:37.091Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 116,
-          "statusCode": 404
-        }
-      ],
-      "hostname": "city-reporter-line-bot.onrender.com",
-      "id": "city-reporter-bot-v2",
-      "label": "City Reporter Bot Version 2",
-      "metadata": {
-        "cache": "DYNAMIC",
-        "contentType": "text/plain; charset=utf-8",
-        "etag": null,
-        "lastModified": null,
-        "server": "cloudflare",
-        "title": null,
-        "xPoweredBy": null
-      },
-      "platform": "Render",
-      "repo": null,
-      "responseTimeMs": 116,
-      "statusCode": 404,
-      "surface": "active",
-      "url": "https://city-reporter-line-bot.onrender.com",
-      "uptime": {
-        "h24": 0,
-        "d7": 0,
-        "d30": 0
-      },
-      "historyBuckets": [
-        {
-          "hour": "2026-03-31T05",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 203,
-          "minMs": 203,
-          "maxMs": 203
-        },
-        {
-          "hour": "2026-03-31T07",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 308,
-          "minMs": 308,
-          "maxMs": 308
-        },
-        {
-          "hour": "2026-03-31T09",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 123,
-          "minMs": 123,
-          "maxMs": 123
-        },
-        {
-          "hour": "2026-03-31T11",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 160,
-          "minMs": 160,
-          "maxMs": 160
-        },
-        {
-          "hour": "2026-03-31T14",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 236,
-          "minMs": 236,
-          "maxMs": 236
-        },
-        {
-          "hour": "2026-03-31T15",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 174,
-          "minMs": 174,
-          "maxMs": 174
-        },
-        {
-          "hour": "2026-03-31T17",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 530,
-          "minMs": 530,
-          "maxMs": 530
-        },
-        {
-          "hour": "2026-03-31T19",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 245,
-          "minMs": 245,
-          "maxMs": 245
-        },
-        {
-          "hour": "2026-03-31T20",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 278,
-          "minMs": 278,
-          "maxMs": 278
-        },
-        {
-          "hour": "2026-03-31T22",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 337,
-          "minMs": 337,
-          "maxMs": 337
-        },
-        {
-          "hour": "2026-04-01T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 342,
-          "minMs": 342,
-          "maxMs": 342
-        },
-        {
-          "hour": "2026-04-01T06",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 197,
-          "minMs": 197,
-          "maxMs": 197
-        },
-        {
-          "hour": "2026-04-01T07",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 203,
-          "minMs": 203,
-          "maxMs": 203
-        },
-        {
-          "hour": "2026-04-01T09",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 201,
-          "minMs": 201,
-          "maxMs": 201
-        },
-        {
-          "hour": "2026-04-01T11",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 205,
-          "minMs": 205,
-          "maxMs": 205
-        },
-        {
-          "hour": "2026-04-01T14",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 149,
-          "minMs": 149,
-          "maxMs": 149
-        },
-        {
-          "hour": "2026-04-01T15",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 279,
-          "minMs": 279,
-          "maxMs": 279
-        },
-        {
-          "hour": "2026-04-01T17",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 333,
-          "minMs": 333,
-          "maxMs": 333
-        },
-        {
-          "hour": "2026-04-01T19",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 209,
-          "minMs": 209,
-          "maxMs": 209
-        },
-        {
-          "hour": "2026-04-01T21",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 432,
-          "minMs": 432,
-          "maxMs": 432
-        },
-        {
-          "hour": "2026-04-01T22",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 234,
-          "minMs": 234,
-          "maxMs": 234
-        },
-        {
-          "hour": "2026-04-02T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 307,
-          "minMs": 307,
-          "maxMs": 307
-        },
-        {
-          "hour": "2026-04-02T05",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 189,
-          "minMs": 189,
-          "maxMs": 189
-        },
-        {
-          "hour": "2026-04-02T07",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 184,
-          "minMs": 184,
-          "maxMs": 184
-        },
-        {
-          "hour": "2026-04-02T09",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 343,
-          "minMs": 343,
-          "maxMs": 343
-        },
-        {
-          "hour": "2026-04-02T11",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 254,
-          "minMs": 254,
-          "maxMs": 254
-        },
-        {
-          "hour": "2026-04-02T13",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 225,
-          "minMs": 225,
-          "maxMs": 225
-        },
-        {
-          "hour": "2026-04-02T15",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 211,
-          "minMs": 211,
-          "maxMs": 211
-        },
-        {
-          "hour": "2026-04-02T17",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 188,
-          "minMs": 188,
-          "maxMs": 188
-        },
-        {
-          "hour": "2026-04-02T19",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 237,
-          "minMs": 237,
-          "maxMs": 237
-        },
-        {
-          "hour": "2026-04-02T20",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 197,
-          "minMs": 197,
-          "maxMs": 197
-        },
-        {
-          "hour": "2026-04-02T22",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 212,
-          "minMs": 212,
-          "maxMs": 212
-        },
-        {
-          "hour": "2026-04-03T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 444,
-          "minMs": 444,
-          "maxMs": 444
-        },
-        {
-          "hour": "2026-04-03T05",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 299,
-          "minMs": 299,
-          "maxMs": 299
-        },
-        {
-          "hour": "2026-04-03T07",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 117,
-          "minMs": 117,
-          "maxMs": 117
-        },
-        {
-          "hour": "2026-04-03T09",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 180,
-          "minMs": 180,
-          "maxMs": 180
-        },
-        {
-          "hour": "2026-04-03T11",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 305,
-          "minMs": 305,
-          "maxMs": 305
-        },
-        {
-          "hour": "2026-04-03T13",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 300,
-          "minMs": 300,
-          "maxMs": 300
-        },
-        {
-          "hour": "2026-04-03T15",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 262,
-          "minMs": 262,
-          "maxMs": 262
-        },
-        {
-          "hour": "2026-04-03T16",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 387,
-          "minMs": 387,
-          "maxMs": 387
-        },
-        {
-          "hour": "2026-04-03T19",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 213,
-          "minMs": 213,
-          "maxMs": 213
-        },
-        {
-          "hour": "2026-04-03T20",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 370,
-          "minMs": 370,
-          "maxMs": 370
-        },
-        {
-          "hour": "2026-04-03T22",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 143,
-          "minMs": 143,
-          "maxMs": 143
-        },
-        {
-          "hour": "2026-04-04T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 249,
-          "minMs": 249,
-          "maxMs": 249
-        },
-        {
-          "hour": "2026-04-04T05",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 333,
-          "minMs": 333,
-          "maxMs": 333
-        },
-        {
-          "hour": "2026-04-04T07",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 214,
-          "minMs": 214,
-          "maxMs": 214
-        },
-        {
-          "hour": "2026-04-04T08",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 253,
-          "minMs": 253,
-          "maxMs": 253
-        },
-        {
-          "hour": "2026-04-04T10",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 280,
-          "minMs": 280,
-          "maxMs": 280
-        },
-        {
-          "hour": "2026-04-04T13",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 247,
-          "minMs": 247,
-          "maxMs": 247
-        },
-        {
-          "hour": "2026-04-04T14",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 298,
-          "minMs": 298,
-          "maxMs": 298
-        },
-        {
-          "hour": "2026-04-04T16",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 261,
-          "minMs": 261,
-          "maxMs": 261
-        },
-        {
-          "hour": "2026-04-04T19",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 352,
-          "minMs": 352,
-          "maxMs": 352
-        },
-        {
-          "hour": "2026-04-04T20",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 128,
-          "minMs": 128,
-          "maxMs": 128
-        },
-        {
-          "hour": "2026-04-04T22",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 176,
-          "minMs": 176,
-          "maxMs": 176
-        },
-        {
-          "hour": "2026-04-05T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 224,
-          "minMs": 224,
-          "maxMs": 224
-        },
-        {
-          "hour": "2026-04-05T05",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 246,
-          "minMs": 246,
-          "maxMs": 246
-        },
-        {
-          "hour": "2026-04-05T07",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 268,
-          "minMs": 268,
-          "maxMs": 268
-        },
-        {
-          "hour": "2026-04-05T08",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 356,
-          "minMs": 356,
-          "maxMs": 356
-        },
-        {
-          "hour": "2026-04-05T10",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 121,
-          "minMs": 121,
-          "maxMs": 121
-        },
-        {
-          "hour": "2026-04-05T13",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 233,
-          "minMs": 233,
-          "maxMs": 233
-        },
-        {
-          "hour": "2026-04-05T14",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 143,
-          "minMs": 143,
-          "maxMs": 143
-        },
-        {
-          "hour": "2026-04-05T16",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 214,
-          "minMs": 214,
-          "maxMs": 214
-        },
-        {
-          "hour": "2026-04-05T19",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 282,
-          "minMs": 282,
-          "maxMs": 282
-        },
-        {
-          "hour": "2026-04-05T20",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 322,
-          "minMs": 322,
-          "maxMs": 322
-        },
-        {
-          "hour": "2026-04-05T22",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 163,
-          "minMs": 163,
-          "maxMs": 163
-        },
-        {
-          "hour": "2026-04-06T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 439,
-          "minMs": 439,
-          "maxMs": 439
-        },
-        {
-          "hour": "2026-04-06T06",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 301,
-          "minMs": 301,
-          "maxMs": 301
-        },
-        {
-          "hour": "2026-04-06T08",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 237,
-          "minMs": 237,
-          "maxMs": 237
-        },
-        {
-          "hour": "2026-04-06T09",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 344,
-          "minMs": 344,
-          "maxMs": 344
-        },
-        {
-          "hour": "2026-04-06T11",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 332,
-          "minMs": 332,
-          "maxMs": 332
-        },
-        {
-          "hour": "2026-04-06T13",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 234,
-          "minMs": 234,
-          "maxMs": 234
-        },
-        {
-          "hour": "2026-04-06T15",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 209,
-          "minMs": 209,
-          "maxMs": 209
-        },
-        {
-          "hour": "2026-04-06T17",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 274,
-          "minMs": 274,
-          "maxMs": 274
-        },
-        {
-          "hour": "2026-04-06T19",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 189,
-          "minMs": 189,
-          "maxMs": 189
-        },
-        {
-          "hour": "2026-04-06T20",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 263,
-          "minMs": 263,
-          "maxMs": 263
-        },
-        {
-          "hour": "2026-04-06T22",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 151,
-          "minMs": 151,
-          "maxMs": 151
-        },
-        {
-          "hour": "2026-04-07T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 321,
-          "minMs": 321,
-          "maxMs": 321
         },
         {
-          "hour": "2026-04-07T05",
+          "hour": "2026-04-07T07",
           "checks": 1,
-          "ups": 0,
-          "avgMs": 116,
-          "minMs": 116,
-          "maxMs": 116
+          "ups": 1,
+          "avgMs": 349,
+          "minMs": 349,
+          "maxMs": 349
         }
       ]
     },
@@ -2143,7 +1125,7 @@
       "apis": [],
       "addedAt": "2025-03-11",
       "category": "Website",
-      "checkedAt": "2026-04-07T05:55:37.402Z",
+      "checkedAt": "2026-04-07T07:48:35.540Z",
       "description": "Royal Automobile Association of Thailand public site.",
       "finalUrl": "https://nonarkara.github.io/RAAT/index.html?lang=en",
       "featured": false,
@@ -2153,13 +1135,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-03T22:52:31.638Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 504,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-04T03:14:57.376Z",
           "health": "live",
@@ -2404,6 +1379,13 @@
           "ok": true,
           "responseTimeMs": 425,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-07T07:48:35.540Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 290,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -2429,7 +1411,7 @@
         "updatedAt": "2026-03-11T19:26:28Z",
         "url": "https://github.com/Nonarkara/RAAT"
       },
-      "responseTimeMs": 425,
+      "responseTimeMs": 290,
       "statusCode": 200,
       "surface": "static",
       "url": "https://nonarkara.github.io/RAAT/index.html?lang=en",
@@ -2439,14 +1421,6 @@
         "d30": 99.07
       },
       "historyBuckets": [
-        {
-          "hour": "2026-03-31T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 281,
-          "minMs": 281,
-          "maxMs": 281
-        },
         {
           "hour": "2026-03-31T07",
           "checks": 1,
@@ -3062,6 +2036,14 @@
           "avgMs": 425,
           "minMs": 425,
           "maxMs": 425
+        },
+        {
+          "hour": "2026-04-07T07",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 290,
+          "minMs": 290,
+          "maxMs": 290
         }
       ]
     },
@@ -3069,23 +2051,16 @@
       "apis": [],
       "addedAt": "2025-03-12",
       "category": "Directory",
-      "checkedAt": "2026-04-07T05:55:37.842Z",
+      "checkedAt": "2026-04-07T07:48:35.772Z",
       "description": "Lovable-hosted smart city solution atlas.",
       "finalUrl": "https://citytechatlas.lovable.app/",
-      "featured": false,
+      "featured": true,
       "health": {
         "code": "live",
         "label": "Live",
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-03T22:52:32.124Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 986,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-04T03:14:57.864Z",
           "health": "live",
@@ -3330,6 +2305,13 @@
           "ok": true,
           "responseTimeMs": 864,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-07T07:48:35.772Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 519,
+          "statusCode": 200
         }
       ],
       "hostname": "citytechatlas.lovable.app",
@@ -3346,7 +2328,7 @@
       },
       "platform": "Lovable",
       "repo": null,
-      "responseTimeMs": 864,
+      "responseTimeMs": 519,
       "statusCode": 200,
       "surface": "active",
       "url": "https://citytechatlas.lovable.app",
@@ -3356,14 +2338,6 @@
         "d30": 99.07
       },
       "historyBuckets": [
-        {
-          "hour": "2026-03-31T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 671,
-          "minMs": 671,
-          "maxMs": 671
-        },
         {
           "hour": "2026-03-31T07",
           "checks": 1,
@@ -3979,932 +2953,14 @@
           "avgMs": 864,
           "minMs": 864,
           "maxMs": 864
-        }
-      ]
-    },
-    {
-      "apis": [],
-      "addedAt": "2026-03-14",
-      "category": "Index",
-      "checkedAt": "2026-04-07T05:55:37.373Z",
-      "description": "Second-generation Smart and Liveable Cities Index experience.",
-      "finalUrl": "https://nonarkara.github.io/slic-index-V2/",
-      "featured": false,
-      "health": {
-        "code": "pages-off",
-        "label": "Pages Off",
-        "reason": "Repository exists, but GitHub Pages is disabled."
-      },
-      "history": [
-        {
-          "at": "2026-04-03T22:52:31.569Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 429,
-          "statusCode": 404
         },
         {
-          "at": "2026-04-04T03:14:57.348Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 612,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T05:34:44.559Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 303,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T07:16:00.441Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 470,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T08:58:16.616Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 346,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T10:52:34.869Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 351,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T13:19:35.876Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 500,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T14:51:04.570Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 436,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T16:51:54.085Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 432,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T19:01:06.455Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 428,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T20:49:25.218Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 366,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-04T22:48:51.823Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 489,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T03:36:01.881Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 296,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T05:52:04.570Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 302,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T07:21:49.187Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 567,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T08:59:31.776Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 457,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T10:54:22.710Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 389,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T13:20:50.528Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 502,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T14:52:57.467Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 444,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T16:53:09.877Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 560,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T19:03:19.300Z",
-          "health": "pages-off",
-          "ok": false,
-          "responseTimeMs": 344,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T20:50:01.758Z",
-          "health": "pages-off",
-          "ok": false,
-          "responseTimeMs": 558,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-05T22:50:38.710Z",
-          "health": "pages-off",
-          "ok": false,
-          "responseTimeMs": 363,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T03:38:59.723Z",
-          "health": "pages-off",
-          "ok": false,
-          "responseTimeMs": 504,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T06:06:28.406Z",
-          "health": "pages-off",
-          "ok": false,
-          "responseTimeMs": 489,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T08:00:46.397Z",
-          "health": "pages-off",
-          "ok": false,
-          "responseTimeMs": 344,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T09:40:35.639Z",
-          "health": "pages-off",
-          "ok": false,
-          "responseTimeMs": 654,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T11:11:34.541Z",
-          "health": "pages-off",
-          "ok": false,
-          "responseTimeMs": 509,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T13:45:08.356Z",
-          "health": "pages-off",
-          "ok": false,
-          "responseTimeMs": 367,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T15:05:37.147Z",
-          "health": "pages-off",
-          "ok": false,
-          "responseTimeMs": 539,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T17:05:28.194Z",
-          "health": "pages-off",
-          "ok": false,
-          "responseTimeMs": 509,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T19:18:51.245Z",
-          "health": "pages-off",
-          "ok": false,
-          "responseTimeMs": 384,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T20:54:48.700Z",
-          "health": "pages-off",
-          "ok": false,
-          "responseTimeMs": 377,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-06T22:55:22.090Z",
-          "health": "pages-off",
-          "ok": false,
-          "responseTimeMs": 463,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-07T03:29:25.232Z",
-          "health": "pages-off",
-          "ok": false,
-          "responseTimeMs": 342,
-          "statusCode": 404
-        },
-        {
-          "at": "2026-04-07T05:55:37.373Z",
-          "health": "pages-off",
-          "ok": false,
-          "responseTimeMs": 394,
-          "statusCode": 404
-        }
-      ],
-      "hostname": "nonarkara.github.io",
-      "id": "slic-index-v2",
-      "label": "SLIC Index Version 2",
-      "metadata": {
-        "cache": "MISS",
-        "contentType": "text/html; charset=utf-8",
-        "etag": "W/\"69c463e4-239b\"",
-        "lastModified": null,
-        "server": "GitHub.com",
-        "title": "Site not found · GitHub Pages",
-        "xPoweredBy": null
-      },
-      "platform": "GitHub Pages",
-      "repo": {
-        "defaultBranch": "main",
-        "description": "SLIC Index V2 — Launched at Smart City Summit & Expo 2026, Taipei. 174 cities, 53 countries. Interactive spider diagram for custom pillar weights. The version European mayors asked to use instead of The Economist's index. [Archive — see V3 for latest]",
-        "fullName": "Nonarkara/slic-index-V2",
-        "hasPages": false,
-        "language": "TypeScript",
-        "pushedAt": "2026-04-05T18:16:57Z",
-        "updatedAt": "2026-04-05T18:17:02Z",
-        "url": "https://github.com/Nonarkara/slic-index-V2"
-      },
-      "responseTimeMs": 394,
-      "statusCode": 404,
-      "surface": "static",
-      "url": "https://nonarkara.github.io/slic-index-V2/",
-      "uptime": {
-        "h24": 0,
-        "d7": 46.15,
-        "d30": 59.81
-      },
-      "historyBuckets": [
-        {
-          "hour": "2026-03-31T05",
+          "hour": "2026-04-07T07",
           "checks": 1,
           "ups": 1,
-          "avgMs": 295,
-          "minMs": 295,
-          "maxMs": 295
-        },
-        {
-          "hour": "2026-03-31T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 547,
-          "minMs": 547,
-          "maxMs": 547
-        },
-        {
-          "hour": "2026-03-31T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 168,
-          "minMs": 168,
-          "maxMs": 168
-        },
-        {
-          "hour": "2026-03-31T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 240,
-          "minMs": 240,
-          "maxMs": 240
-        },
-        {
-          "hour": "2026-03-31T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 456,
-          "minMs": 456,
-          "maxMs": 456
-        },
-        {
-          "hour": "2026-03-31T15",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 271,
-          "minMs": 271,
-          "maxMs": 271
-        },
-        {
-          "hour": "2026-03-31T17",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 719,
-          "minMs": 719,
-          "maxMs": 719
-        },
-        {
-          "hour": "2026-03-31T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 471,
-          "minMs": 471,
-          "maxMs": 471
-        },
-        {
-          "hour": "2026-03-31T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 469,
-          "minMs": 469,
-          "maxMs": 469
-        },
-        {
-          "hour": "2026-03-31T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 573,
-          "minMs": 573,
-          "maxMs": 573
-        },
-        {
-          "hour": "2026-04-01T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 580,
-          "minMs": 580,
-          "maxMs": 580
-        },
-        {
-          "hour": "2026-04-01T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 413,
-          "minMs": 413,
-          "maxMs": 413
-        },
-        {
-          "hour": "2026-04-01T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 404,
-          "minMs": 404,
-          "maxMs": 404
-        },
-        {
-          "hour": "2026-04-01T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 291,
-          "minMs": 291,
-          "maxMs": 291
-        },
-        {
-          "hour": "2026-04-01T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 361,
-          "minMs": 361,
-          "maxMs": 361
-        },
-        {
-          "hour": "2026-04-01T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 282,
-          "minMs": 282,
-          "maxMs": 282
-        },
-        {
-          "hour": "2026-04-01T15",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 286,
-          "minMs": 286,
-          "maxMs": 286
-        },
-        {
-          "hour": "2026-04-01T17",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 434,
-          "minMs": 434,
-          "maxMs": 434
-        },
-        {
-          "hour": "2026-04-01T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 420,
-          "minMs": 420,
-          "maxMs": 420
-        },
-        {
-          "hour": "2026-04-01T21",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 505,
-          "minMs": 505,
-          "maxMs": 505
-        },
-        {
-          "hour": "2026-04-01T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 244,
-          "minMs": 244,
-          "maxMs": 244
-        },
-        {
-          "hour": "2026-04-02T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 431,
-          "minMs": 431,
-          "maxMs": 431
-        },
-        {
-          "hour": "2026-04-02T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 311,
-          "minMs": 311,
-          "maxMs": 311
-        },
-        {
-          "hour": "2026-04-02T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 491,
-          "minMs": 491,
-          "maxMs": 491
-        },
-        {
-          "hour": "2026-04-02T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 466,
-          "minMs": 466,
-          "maxMs": 466
-        },
-        {
-          "hour": "2026-04-02T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 406,
-          "minMs": 406,
-          "maxMs": 406
-        },
-        {
-          "hour": "2026-04-02T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 373,
-          "minMs": 373,
-          "maxMs": 373
-        },
-        {
-          "hour": "2026-04-02T15",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 293,
-          "minMs": 293,
-          "maxMs": 293
-        },
-        {
-          "hour": "2026-04-02T17",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 546,
-          "minMs": 546,
-          "maxMs": 546
-        },
-        {
-          "hour": "2026-04-02T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 376,
-          "minMs": 376,
-          "maxMs": 376
-        },
-        {
-          "hour": "2026-04-02T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 314,
-          "minMs": 314,
-          "maxMs": 314
-        },
-        {
-          "hour": "2026-04-02T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 447,
-          "minMs": 447,
-          "maxMs": 447
-        },
-        {
-          "hour": "2026-04-03T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 594,
-          "minMs": 594,
-          "maxMs": 594
-        },
-        {
-          "hour": "2026-04-03T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 291,
-          "minMs": 291,
-          "maxMs": 291
-        },
-        {
-          "hour": "2026-04-03T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 162,
-          "minMs": 162,
-          "maxMs": 162
-        },
-        {
-          "hour": "2026-04-03T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 245,
-          "minMs": 245,
-          "maxMs": 245
-        },
-        {
-          "hour": "2026-04-03T11",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 389,
-          "minMs": 389,
-          "maxMs": 389
-        },
-        {
-          "hour": "2026-04-03T13",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 295,
-          "minMs": 295,
-          "maxMs": 295
-        },
-        {
-          "hour": "2026-04-03T15",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 478,
-          "minMs": 478,
-          "maxMs": 478
-        },
-        {
-          "hour": "2026-04-03T16",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 409,
-          "minMs": 409,
-          "maxMs": 409
-        },
-        {
-          "hour": "2026-04-03T19",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 344,
-          "minMs": 344,
-          "maxMs": 344
-        },
-        {
-          "hour": "2026-04-03T20",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 433,
-          "minMs": 433,
-          "maxMs": 433
-        },
-        {
-          "hour": "2026-04-03T22",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 429,
-          "minMs": 429,
-          "maxMs": 429
-        },
-        {
-          "hour": "2026-04-04T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 612,
-          "minMs": 612,
-          "maxMs": 612
-        },
-        {
-          "hour": "2026-04-04T05",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 303,
-          "minMs": 303,
-          "maxMs": 303
-        },
-        {
-          "hour": "2026-04-04T07",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 470,
-          "minMs": 470,
-          "maxMs": 470
-        },
-        {
-          "hour": "2026-04-04T08",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 346,
-          "minMs": 346,
-          "maxMs": 346
-        },
-        {
-          "hour": "2026-04-04T10",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 351,
-          "minMs": 351,
-          "maxMs": 351
-        },
-        {
-          "hour": "2026-04-04T13",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 500,
-          "minMs": 500,
-          "maxMs": 500
-        },
-        {
-          "hour": "2026-04-04T14",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 436,
-          "minMs": 436,
-          "maxMs": 436
-        },
-        {
-          "hour": "2026-04-04T16",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 432,
-          "minMs": 432,
-          "maxMs": 432
-        },
-        {
-          "hour": "2026-04-04T19",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 428,
-          "minMs": 428,
-          "maxMs": 428
-        },
-        {
-          "hour": "2026-04-04T20",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 366,
-          "minMs": 366,
-          "maxMs": 366
-        },
-        {
-          "hour": "2026-04-04T22",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 489,
-          "minMs": 489,
-          "maxMs": 489
-        },
-        {
-          "hour": "2026-04-05T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 296,
-          "minMs": 296,
-          "maxMs": 296
-        },
-        {
-          "hour": "2026-04-05T05",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 302,
-          "minMs": 302,
-          "maxMs": 302
-        },
-        {
-          "hour": "2026-04-05T07",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 567,
-          "minMs": 567,
-          "maxMs": 567
-        },
-        {
-          "hour": "2026-04-05T08",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 457,
-          "minMs": 457,
-          "maxMs": 457
-        },
-        {
-          "hour": "2026-04-05T10",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 389,
-          "minMs": 389,
-          "maxMs": 389
-        },
-        {
-          "hour": "2026-04-05T13",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 502,
-          "minMs": 502,
-          "maxMs": 502
-        },
-        {
-          "hour": "2026-04-05T14",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 444,
-          "minMs": 444,
-          "maxMs": 444
-        },
-        {
-          "hour": "2026-04-05T16",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 560,
-          "minMs": 560,
-          "maxMs": 560
-        },
-        {
-          "hour": "2026-04-05T19",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 344,
-          "minMs": 344,
-          "maxMs": 344
-        },
-        {
-          "hour": "2026-04-05T20",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 558,
-          "minMs": 558,
-          "maxMs": 558
-        },
-        {
-          "hour": "2026-04-05T22",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 363,
-          "minMs": 363,
-          "maxMs": 363
-        },
-        {
-          "hour": "2026-04-06T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 504,
-          "minMs": 504,
-          "maxMs": 504
-        },
-        {
-          "hour": "2026-04-06T06",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 489,
-          "minMs": 489,
-          "maxMs": 489
-        },
-        {
-          "hour": "2026-04-06T08",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 344,
-          "minMs": 344,
-          "maxMs": 344
-        },
-        {
-          "hour": "2026-04-06T09",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 654,
-          "minMs": 654,
-          "maxMs": 654
-        },
-        {
-          "hour": "2026-04-06T11",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 509,
-          "minMs": 509,
-          "maxMs": 509
-        },
-        {
-          "hour": "2026-04-06T13",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 367,
-          "minMs": 367,
-          "maxMs": 367
-        },
-        {
-          "hour": "2026-04-06T15",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 539,
-          "minMs": 539,
-          "maxMs": 539
-        },
-        {
-          "hour": "2026-04-06T17",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 509,
-          "minMs": 509,
-          "maxMs": 509
-        },
-        {
-          "hour": "2026-04-06T19",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 384,
-          "minMs": 384,
-          "maxMs": 384
-        },
-        {
-          "hour": "2026-04-06T20",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 377,
-          "minMs": 377,
-          "maxMs": 377
-        },
-        {
-          "hour": "2026-04-06T22",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 463,
-          "minMs": 463,
-          "maxMs": 463
-        },
-        {
-          "hour": "2026-04-07T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 342,
-          "minMs": 342,
-          "maxMs": 342
-        },
-        {
-          "hour": "2026-04-07T05",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 394,
-          "minMs": 394,
-          "maxMs": 394
+          "avgMs": 519,
+          "minMs": 519,
+          "maxMs": 519
         }
       ]
     },
@@ -4912,7 +2968,7 @@
       "apis": [],
       "addedAt": "2025-03-13",
       "category": "Directory",
-      "checkedAt": "2026-04-07T05:55:37.361Z",
+      "checkedAt": "2026-04-07T07:48:35.544Z",
       "description": "Tech Hunt Thailand mobility solution detail page for Viabus.",
       "finalUrl": "https://nonarkara.github.io/techhuntthailand/?id=mobility-cohort-001-viabus",
       "featured": false,
@@ -4922,13 +2978,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-03T22:52:31.684Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 543,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-04T03:14:57.376Z",
           "health": "live",
@@ -5173,6 +3222,13 @@
           "ok": true,
           "responseTimeMs": 380,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-07T07:48:35.544Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 290,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -5198,7 +3254,7 @@
         "updatedAt": "2026-03-12T08:16:21Z",
         "url": "https://github.com/Nonarkara/techhuntthailand"
       },
-      "responseTimeMs": 380,
+      "responseTimeMs": 290,
       "statusCode": 200,
       "surface": "static",
       "url": "https://nonarkara.github.io/techhuntthailand/?id=mobility-cohort-001-viabus",
@@ -5208,14 +3264,6 @@
         "d30": 99.07
       },
       "historyBuckets": [
-        {
-          "hour": "2026-03-31T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 344,
-          "minMs": 344,
-          "maxMs": 344
-        },
         {
           "hour": "2026-03-31T07",
           "checks": 1,
@@ -5831,6 +3879,14 @@
           "avgMs": 380,
           "minMs": 380,
           "maxMs": 380
+        },
+        {
+          "hour": "2026-04-07T07",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 290,
+          "minMs": 290,
+          "maxMs": 290
         }
       ]
     },
@@ -5838,7 +3894,7 @@
       "apis": [],
       "addedAt": "2025-03-13",
       "category": "Network",
-      "checkedAt": "2026-04-07T05:55:37.403Z",
+      "checkedAt": "2026-04-07T07:48:35.527Z",
       "description": "ASEAN Smart Cities Network public-facing site and resource surface.",
       "finalUrl": "https://nonarkara.github.io/ascn-smart-cities-network/",
       "featured": false,
@@ -5848,13 +3904,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-03T22:52:31.642Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 500,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-04T03:14:57.376Z",
           "health": "live",
@@ -6099,6 +4148,13 @@
           "ok": true,
           "responseTimeMs": 421,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-07T07:48:35.527Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 272,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -6124,7 +4180,7 @@
         "updatedAt": "2026-04-01T08:14:20Z",
         "url": "https://github.com/Nonarkara/ascn-smart-cities-network"
       },
-      "responseTimeMs": 421,
+      "responseTimeMs": 272,
       "statusCode": 200,
       "surface": "static",
       "url": "https://nonarkara.github.io/ascn-smart-cities-network/",
@@ -6134,14 +4190,6 @@
         "d30": 99.07
       },
       "historyBuckets": [
-        {
-          "hour": "2026-03-31T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 397,
-          "minMs": 397,
-          "maxMs": 397
-        },
         {
           "hour": "2026-03-31T07",
           "checks": 1,
@@ -6757,6 +4805,14 @@
           "avgMs": 421,
           "minMs": 421,
           "maxMs": 421
+        },
+        {
+          "hour": "2026-04-07T07",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 272,
+          "minMs": 272,
+          "maxMs": 272
         }
       ]
     },
@@ -6764,7 +4820,7 @@
       "apis": [],
       "addedAt": "2025-03-13",
       "category": "Manifesto",
-      "checkedAt": "2026-04-07T05:55:37.166Z",
+      "checkedAt": "2026-04-07T07:48:35.383Z",
       "description": "ASEAN CSCO App manifesto page on GitHub Pages.",
       "finalUrl": "https://nonarkara.github.io/asean-csco-app/",
       "featured": false,
@@ -6774,13 +4830,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-03T22:52:31.424Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 281,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-04T03:14:57.220Z",
           "health": "live",
@@ -7025,6 +5074,13 @@
           "ok": true,
           "responseTimeMs": 183,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-07T07:48:35.383Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 126,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -7041,7 +5097,7 @@
       },
       "platform": "GitHub Pages",
       "repo": null,
-      "responseTimeMs": 183,
+      "responseTimeMs": 126,
       "statusCode": 200,
       "surface": "static",
       "url": "https://nonarkara.github.io/asean-csco-app/#manifesto",
@@ -7051,14 +5107,6 @@
         "d30": 99.07
       },
       "historyBuckets": [
-        {
-          "hour": "2026-03-31T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 230,
-          "minMs": 230,
-          "maxMs": 230
-        },
         {
           "hour": "2026-03-31T07",
           "checks": 1,
@@ -7674,6 +5722,14 @@
           "avgMs": 183,
           "minMs": 183,
           "maxMs": 183
+        },
+        {
+          "hour": "2026-04-07T07",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 126,
+          "minMs": 126,
+          "maxMs": 126
         }
       ]
     },
@@ -7681,23 +5737,16 @@
       "apis": [],
       "addedAt": "2026-03-26",
       "category": "Platform",
-      "checkedAt": "2026-04-07T05:55:37.227Z",
-      "description": "Sabai Sabai platform on Vercel.",
-      "finalUrl": "https://sabai-sabai-kohl.vercel.app/",
+      "checkedAt": "2026-04-07T07:48:35.415Z",
+      "description": "Sabai Sabai platform on Cloudflare Pages.",
+      "finalUrl": "https://sabai-sabai-4uh.pages.dev/",
       "featured": false,
       "health": {
-        "code": "degraded",
-        "label": "Degraded",
-        "reason": "The deployment returned HTTP 402."
+        "code": "live",
+        "label": "Live",
+        "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-03T22:52:31.533Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 386,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-04T03:14:57.185Z",
           "health": "live",
@@ -7942,40 +5991,39 @@
           "ok": false,
           "responseTimeMs": 243,
           "statusCode": 402
+        },
+        {
+          "at": "2026-04-07T07:48:35.415Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 155,
+          "statusCode": 200
         }
       ],
-      "hostname": "sabai-sabai-kohl.vercel.app",
+      "hostname": "sabai-sabai-4uh.pages.dev",
       "id": "sabai-sabai",
       "label": "Sabai Sabai",
       "metadata": {
         "cache": null,
         "contentType": "text/html; charset=utf-8",
-        "etag": null,
+        "etag": "W/\"853fe5045fd0783996056192aa9bc979\"",
         "lastModified": null,
-        "server": "Vercel",
-        "title": "Deployment Paused",
+        "server": "cloudflare",
+        "title": "Sabai Sabai | Thailand Massage & Spa Directory",
         "xPoweredBy": null
       },
       "platform": "Web",
       "repo": null,
-      "responseTimeMs": 243,
-      "statusCode": 402,
+      "responseTimeMs": 155,
+      "statusCode": 200,
       "surface": "active",
-      "url": "https://sabai-sabai-kohl.vercel.app",
+      "url": "https://sabai-sabai-4uh.pages.dev",
       "uptime": {
         "h24": 83.33,
         "d7": 96.15,
-        "d30": 96.26
+        "d30": 96.3
       },
       "historyBuckets": [
-        {
-          "hour": "2026-03-31T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 351,
-          "minMs": 351,
-          "maxMs": 351
-        },
         {
           "hour": "2026-03-31T07",
           "checks": 1,
@@ -8591,923 +6639,14 @@
           "avgMs": 243,
           "minMs": 243,
           "maxMs": 243
-        }
-      ]
-    },
-    {
-      "apis": [],
-      "addedAt": "2026-03-26",
-      "category": "Landing page",
-      "checkedAt": "2026-04-07T05:55:37.233Z",
-      "description": "Axiom — Innovation as a Service. AI consultancy landing page on Vercel.",
-      "finalUrl": "https://axiom-mu-six.vercel.app/",
-      "featured": false,
-      "health": {
-        "code": "degraded",
-        "label": "Degraded",
-        "reason": "The deployment returned HTTP 402."
-      },
-      "history": [
-        {
-          "at": "2026-04-03T22:52:31.740Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 592,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T03:14:57.277Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 536,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T05:34:44.623Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 362,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T07:16:00.396Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 419,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T08:58:16.735Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 460,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T10:52:34.899Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 375,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T13:19:35.840Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 459,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T14:51:04.637Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 497,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T16:51:54.071Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 410,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T19:01:06.453Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 420,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T20:49:25.023Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 165,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T22:48:51.663Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 324,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T03:36:02.059Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 466,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T05:52:04.730Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 456,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T07:21:49.241Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 616,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T08:59:31.785Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 461,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T10:54:22.520Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 193,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T13:20:50.440Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 407,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T14:52:57.248Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 220,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T16:53:09.985Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 662,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T19:03:19.350Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 389,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T20:50:01.753Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 547,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T22:50:38.841Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 484,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-06T03:38:59.728Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 504,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-06T06:06:28.373Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 450,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-06T08:00:46.382Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 323,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-06T09:40:35.474Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 484,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-06T11:11:34.562Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 526,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-06T13:45:08.343Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 350,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-06T15:05:37.247Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 635,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-06T17:05:28.223Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 534,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-06T19:18:51.231Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 365,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-06T20:54:48.705Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 377,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-06T22:55:21.987Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 356,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-07T03:29:25.240Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 346,
-          "statusCode": 402
-        },
-        {
-          "at": "2026-04-07T05:55:37.233Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 246,
-          "statusCode": 402
-        }
-      ],
-      "hostname": "axiom-mu-six.vercel.app",
-      "id": "axiom",
-      "label": "Axiom AI",
-      "metadata": {
-        "cache": null,
-        "contentType": "text/html; charset=utf-8",
-        "etag": null,
-        "lastModified": null,
-        "server": "Vercel",
-        "title": "Deployment Paused",
-        "xPoweredBy": null
-      },
-      "platform": "Web",
-      "repo": null,
-      "responseTimeMs": 246,
-      "statusCode": 402,
-      "surface": "active",
-      "url": "https://axiom-mu-six.vercel.app",
-      "uptime": {
-        "h24": 83.33,
-        "d7": 96.15,
-        "d30": 96.26
-      },
-      "historyBuckets": [
-        {
-          "hour": "2026-03-31T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 364,
-          "minMs": 364,
-          "maxMs": 364
-        },
-        {
-          "hour": "2026-03-31T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 651,
-          "minMs": 651,
-          "maxMs": 651
-        },
-        {
-          "hour": "2026-03-31T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 159,
-          "minMs": 159,
-          "maxMs": 159
-        },
-        {
-          "hour": "2026-03-31T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 273,
-          "minMs": 273,
-          "maxMs": 273
-        },
-        {
-          "hour": "2026-03-31T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 443,
-          "minMs": 443,
-          "maxMs": 443
-        },
-        {
-          "hour": "2026-03-31T15",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 879,
-          "minMs": 879,
-          "maxMs": 879
-        },
-        {
-          "hour": "2026-03-31T17",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 776,
-          "minMs": 776,
-          "maxMs": 776
-        },
-        {
-          "hour": "2026-03-31T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 596,
-          "minMs": 596,
-          "maxMs": 596
-        },
-        {
-          "hour": "2026-03-31T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 454,
-          "minMs": 454,
-          "maxMs": 454
-        },
-        {
-          "hour": "2026-03-31T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 539,
-          "minMs": 539,
-          "maxMs": 539
-        },
-        {
-          "hour": "2026-04-01T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 435,
-          "minMs": 435,
-          "maxMs": 435
-        },
-        {
-          "hour": "2026-04-01T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 437,
-          "minMs": 437,
-          "maxMs": 437
-        },
-        {
-          "hour": "2026-04-01T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 383,
-          "minMs": 383,
-          "maxMs": 383
-        },
-        {
-          "hour": "2026-04-01T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 303,
-          "minMs": 303,
-          "maxMs": 303
-        },
-        {
-          "hour": "2026-04-01T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 335,
-          "minMs": 335,
-          "maxMs": 335
-        },
-        {
-          "hour": "2026-04-01T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 615,
-          "minMs": 615,
-          "maxMs": 615
-        },
-        {
-          "hour": "2026-04-01T15",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 636,
-          "minMs": 636,
-          "maxMs": 636
-        },
-        {
-          "hour": "2026-04-01T17",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 455,
-          "minMs": 455,
-          "maxMs": 455
-        },
-        {
-          "hour": "2026-04-01T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 297,
-          "minMs": 297,
-          "maxMs": 297
-        },
-        {
-          "hour": "2026-04-01T21",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 485,
-          "minMs": 485,
-          "maxMs": 485
-        },
-        {
-          "hour": "2026-04-01T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 391,
-          "minMs": 391,
-          "maxMs": 391
-        },
-        {
-          "hour": "2026-04-02T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 455,
-          "minMs": 455,
-          "maxMs": 455
-        },
-        {
-          "hour": "2026-04-02T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 408,
-          "minMs": 408,
-          "maxMs": 408
-        },
-        {
-          "hour": "2026-04-02T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 611,
-          "minMs": 611,
-          "maxMs": 611
-        },
-        {
-          "hour": "2026-04-02T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 515,
-          "minMs": 515,
-          "maxMs": 515
-        },
-        {
-          "hour": "2026-04-02T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 381,
-          "minMs": 381,
-          "maxMs": 381
-        },
-        {
-          "hour": "2026-04-02T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 367,
-          "minMs": 367,
-          "maxMs": 367
-        },
-        {
-          "hour": "2026-04-02T15",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 887,
-          "minMs": 887,
-          "maxMs": 887
-        },
-        {
-          "hour": "2026-04-02T17",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 373,
-          "minMs": 373,
-          "maxMs": 373
-        },
-        {
-          "hour": "2026-04-02T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 408,
-          "minMs": 408,
-          "maxMs": 408
-        },
-        {
-          "hour": "2026-04-02T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 376,
-          "minMs": 376,
-          "maxMs": 376
-        },
-        {
-          "hour": "2026-04-02T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 364,
-          "minMs": 364,
-          "maxMs": 364
-        },
-        {
-          "hour": "2026-04-03T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 588,
-          "minMs": 588,
-          "maxMs": 588
-        },
-        {
-          "hour": "2026-04-03T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 318,
-          "minMs": 318,
-          "maxMs": 318
-        },
-        {
-          "hour": "2026-04-03T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 240,
-          "minMs": 240,
-          "maxMs": 240
-        },
-        {
-          "hour": "2026-04-03T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 443,
-          "minMs": 443,
-          "maxMs": 443
-        },
-        {
-          "hour": "2026-04-03T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 425,
-          "minMs": 425,
-          "maxMs": 425
-        },
-        {
-          "hour": "2026-04-03T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 389,
-          "minMs": 389,
-          "maxMs": 389
-        },
-        {
-          "hour": "2026-04-03T15",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 540,
-          "minMs": 540,
-          "maxMs": 540
-        },
-        {
-          "hour": "2026-04-03T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 486,
-          "minMs": 486,
-          "maxMs": 486
-        },
-        {
-          "hour": "2026-04-03T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 396,
-          "minMs": 396,
-          "maxMs": 396
-        },
-        {
-          "hour": "2026-04-03T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 351,
-          "minMs": 351,
-          "maxMs": 351
-        },
-        {
-          "hour": "2026-04-03T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 592,
-          "minMs": 592,
-          "maxMs": 592
-        },
-        {
-          "hour": "2026-04-04T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 536,
-          "minMs": 536,
-          "maxMs": 536
-        },
-        {
-          "hour": "2026-04-04T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 362,
-          "minMs": 362,
-          "maxMs": 362
-        },
-        {
-          "hour": "2026-04-04T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 419,
-          "minMs": 419,
-          "maxMs": 419
-        },
-        {
-          "hour": "2026-04-04T08",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 460,
-          "minMs": 460,
-          "maxMs": 460
-        },
-        {
-          "hour": "2026-04-04T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 375,
-          "minMs": 375,
-          "maxMs": 375
-        },
-        {
-          "hour": "2026-04-04T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 459,
-          "minMs": 459,
-          "maxMs": 459
-        },
-        {
-          "hour": "2026-04-04T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 497,
-          "minMs": 497,
-          "maxMs": 497
-        },
-        {
-          "hour": "2026-04-04T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 410,
-          "minMs": 410,
-          "maxMs": 410
-        },
-        {
-          "hour": "2026-04-04T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 420,
-          "minMs": 420,
-          "maxMs": 420
-        },
-        {
-          "hour": "2026-04-04T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 165,
-          "minMs": 165,
-          "maxMs": 165
         },
         {
-          "hour": "2026-04-04T22",
+          "hour": "2026-04-07T07",
           "checks": 1,
           "ups": 1,
-          "avgMs": 324,
-          "minMs": 324,
-          "maxMs": 324
-        },
-        {
-          "hour": "2026-04-05T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 466,
-          "minMs": 466,
-          "maxMs": 466
-        },
-        {
-          "hour": "2026-04-05T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 456,
-          "minMs": 456,
-          "maxMs": 456
-        },
-        {
-          "hour": "2026-04-05T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 616,
-          "minMs": 616,
-          "maxMs": 616
-        },
-        {
-          "hour": "2026-04-05T08",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 461,
-          "minMs": 461,
-          "maxMs": 461
-        },
-        {
-          "hour": "2026-04-05T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 193,
-          "minMs": 193,
-          "maxMs": 193
-        },
-        {
-          "hour": "2026-04-05T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 407,
-          "minMs": 407,
-          "maxMs": 407
-        },
-        {
-          "hour": "2026-04-05T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 220,
-          "minMs": 220,
-          "maxMs": 220
-        },
-        {
-          "hour": "2026-04-05T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 662,
-          "minMs": 662,
-          "maxMs": 662
-        },
-        {
-          "hour": "2026-04-05T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 389,
-          "minMs": 389,
-          "maxMs": 389
-        },
-        {
-          "hour": "2026-04-05T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 547,
-          "minMs": 547,
-          "maxMs": 547
-        },
-        {
-          "hour": "2026-04-05T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 484,
-          "minMs": 484,
-          "maxMs": 484
-        },
-        {
-          "hour": "2026-04-06T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 504,
-          "minMs": 504,
-          "maxMs": 504
-        },
-        {
-          "hour": "2026-04-06T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 450,
-          "minMs": 450,
-          "maxMs": 450
-        },
-        {
-          "hour": "2026-04-06T08",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 323,
-          "minMs": 323,
-          "maxMs": 323
-        },
-        {
-          "hour": "2026-04-06T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 484,
-          "minMs": 484,
-          "maxMs": 484
-        },
-        {
-          "hour": "2026-04-06T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 526,
-          "minMs": 526,
-          "maxMs": 526
-        },
-        {
-          "hour": "2026-04-06T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 350,
-          "minMs": 350,
-          "maxMs": 350
-        },
-        {
-          "hour": "2026-04-06T15",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 635,
-          "minMs": 635,
-          "maxMs": 635
-        },
-        {
-          "hour": "2026-04-06T17",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 534,
-          "minMs": 534,
-          "maxMs": 534
-        },
-        {
-          "hour": "2026-04-06T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 365,
-          "minMs": 365,
-          "maxMs": 365
-        },
-        {
-          "hour": "2026-04-06T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 377,
-          "minMs": 377,
-          "maxMs": 377
-        },
-        {
-          "hour": "2026-04-06T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 356,
-          "minMs": 356,
-          "maxMs": 356
-        },
-        {
-          "hour": "2026-04-07T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 346,
-          "minMs": 346,
-          "maxMs": 346
-        },
-        {
-          "hour": "2026-04-07T05",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 246,
-          "minMs": 246,
-          "maxMs": 246
+          "avgMs": 155,
+          "minMs": 155,
+          "maxMs": 155
         }
       ]
     },
@@ -9515,23 +6654,16 @@
       "apis": [],
       "addedAt": "2025-02-15",
       "category": "Monitoring",
-      "checkedAt": "2026-04-07T05:55:37.281Z",
-      "description": "Geopolitical intelligence dashboard on Vercel.",
-      "finalUrl": "https://geopolitics-dashboard-sage.vercel.app/",
+      "checkedAt": "2026-04-07T07:48:35.587Z",
+      "description": "Geopolitical intelligence dashboard on Netlify.",
+      "finalUrl": "https://global-political-dashboard.netlify.app/",
       "featured": false,
       "health": {
-        "code": "degraded",
-        "label": "Degraded",
-        "reason": "The deployment returned HTTP 402."
+        "code": "live",
+        "label": "Live",
+        "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-03T22:52:31.264Z",
-          "health": "missing",
-          "ok": false,
-          "responseTimeMs": 140,
-          "statusCode": 404
-        },
         {
           "at": "2026-04-04T03:14:56.964Z",
           "health": "missing",
@@ -9776,40 +6908,39 @@
           "ok": false,
           "responseTimeMs": 293,
           "statusCode": 402
+        },
+        {
+          "at": "2026-04-07T07:48:35.587Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 325,
+          "statusCode": 200
         }
       ],
-      "hostname": "geopolitics-dashboard-sage.vercel.app",
+      "hostname": "global-political-dashboard.netlify.app",
       "id": "geopolitics-dashboard",
-      "label": "Geopolitics Dashboard",
+      "label": "Global Geopolitics Dashboard",
       "metadata": {
         "cache": null,
-        "contentType": "text/html; charset=utf-8",
-        "etag": null,
+        "contentType": "text/html; charset=UTF-8",
+        "etag": "\"a85b8ac49eae7a565eb4df2da165faf8-ssl-df\"",
         "lastModified": null,
-        "server": "Vercel",
-        "title": "Deployment Paused",
+        "server": "Netlify",
+        "title": "Global Political Dashboard — GlobeWatch",
         "xPoweredBy": null
       },
       "platform": "Web",
       "repo": null,
-      "responseTimeMs": 293,
-      "statusCode": 402,
+      "responseTimeMs": 325,
+      "statusCode": 200,
       "surface": "active",
-      "url": "https://geopolitics-dashboard-sage.vercel.app",
+      "url": "https://global-political-dashboard.netlify.app",
       "uptime": {
-        "h24": 0,
-        "d7": 0,
-        "d30": 0
+        "h24": 8.33,
+        "d7": 1.28,
+        "d30": 0.93
       },
       "historyBuckets": [
-        {
-          "hour": "2026-03-31T05",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 175,
-          "minMs": 175,
-          "maxMs": 175
-        },
         {
           "hour": "2026-03-31T07",
           "checks": 1,
@@ -10425,61 +7556,31 @@
           "avgMs": 293,
           "minMs": 293,
           "maxMs": 293
+        },
+        {
+          "hour": "2026-04-07T07",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 325,
+          "minMs": 325,
+          "maxMs": 325
         }
       ]
     },
     {
-      "apis": [
-        {
-          "kind": "internal",
-          "label": "Regional briefing",
-          "url": "https://dngws-monitor.vercel.app/api/briefings/iran"
-        },
-        {
-          "kind": "internal",
-          "label": "Markets snapshot",
-          "url": "https://dngws-monitor.vercel.app/api/markets"
-        },
-        {
-          "kind": "internal",
-          "label": "Ticker feed",
-          "url": "https://dngws-monitor.vercel.app/api/ticker"
-        },
-        {
-          "kind": "internal",
-          "label": "Copernicus preview",
-          "url": "https://dngws-monitor.vercel.app/api/copernicus/preview"
-        },
-        {
-          "kind": "external",
-          "label": "GDACS event feed",
-          "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
-        },
-        {
-          "kind": "external",
-          "label": "Open-Meteo forecast",
-          "url": "https://api.open-meteo.com/v1/forecast"
-        }
-      ],
+      "apis": [],
       "addedAt": "2025-01-10",
       "category": "Monitoring",
-      "checkedAt": "2026-04-07T05:55:37.268Z",
-      "description": "Regional monitoring dashboard — Dr Non's GlobeWatch System on Vercel.",
-      "finalUrl": "https://dngws-monitor.vercel.app/",
+      "checkedAt": "2026-04-07T07:48:35.565Z",
+      "description": "Regional conflict monitoring dashboard — Dr Non's GlobeWatch System on Netlify.",
+      "finalUrl": "https://middleeast-war-monitor.netlify.app/",
       "featured": true,
       "health": {
-        "code": "degraded",
-        "label": "Degraded",
-        "reason": "The deployment returned HTTP 402."
+        "code": "live",
+        "label": "Live",
+        "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-03T22:52:31.331Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 208,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-04T03:14:56.908Z",
           "health": "live",
@@ -10724,40 +7825,39 @@
           "ok": false,
           "responseTimeMs": 279,
           "statusCode": 402
+        },
+        {
+          "at": "2026-04-07T07:48:35.565Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 301,
+          "statusCode": 200
         }
       ],
-      "hostname": "dngws-monitor.vercel.app",
+      "hostname": "middleeast-war-monitor.netlify.app",
       "id": "middle-east-monitor",
-      "label": "Middle East Monitor",
+      "label": "Middle East War Monitor",
       "metadata": {
         "cache": null,
-        "contentType": "text/html; charset=utf-8",
-        "etag": null,
+        "contentType": "text/html; charset=UTF-8",
+        "etag": "\"9c19b64db63844ee6e5475f4e1b2f30f-ssl-df\"",
         "lastModified": null,
-        "server": "Vercel",
-        "title": "Deployment Paused",
+        "server": "Netlify",
+        "title": "Middle East // War Monitor",
         "xPoweredBy": null
       },
       "platform": "Web",
       "repo": null,
-      "responseTimeMs": 279,
-      "statusCode": 402,
+      "responseTimeMs": 301,
+      "statusCode": 200,
       "surface": "active",
-      "url": "https://dngws-monitor.vercel.app/",
+      "url": "https://middleeast-war-monitor.netlify.app",
       "uptime": {
         "h24": 25,
         "d7": 88.46,
-        "d30": 90.65
+        "d30": 90.74
       },
       "historyBuckets": [
-        {
-          "hour": "2026-03-31T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 192,
-          "minMs": 192,
-          "maxMs": 192
-        },
         {
           "hour": "2026-03-31T07",
           "checks": 1,
@@ -11373,1793 +8473,14 @@
           "avgMs": 279,
           "minMs": 279,
           "maxMs": 279
-        }
-      ]
-    },
-    {
-      "apis": [
-        {
-          "kind": "internal",
-          "label": "News Aggregator",
-          "url": "https://phuket-dashboard.vercel.app/api/news"
-        },
-        {
-          "kind": "internal",
-          "label": "Environment Status",
-          "url": "https://phuket-dashboard.vercel.app/api/environment"
-        },
-        {
-          "kind": "internal",
-          "label": "Intelligence Convergence",
-          "url": "https://phuket-dashboard.vercel.app/api/intelligence/convergence"
-        },
-        {
-          "kind": "internal",
-          "label": "ASEAN Profile",
-          "url": "https://phuket-dashboard.vercel.app/api/asean/profile?country=THA"
-        },
-        {
-          "kind": "internal",
-          "label": "Incident Feed",
-          "url": "https://phuket-dashboard.vercel.app/api/incidents"
-        },
-        {
-          "kind": "internal",
-          "label": "Fire Alerts",
-          "url": "https://phuket-dashboard.vercel.app/api/fires"
-        },
-        {
-          "kind": "internal",
-          "label": "Movement Data",
-          "url": "https://phuket-dashboard.vercel.app/api/movements"
-        },
-        {
-          "kind": "internal",
-          "label": "Rainfall Status",
-          "url": "https://phuket-dashboard.vercel.app/api/rainfall"
-        },
-        {
-          "kind": "internal",
-          "label": "Air Quality Info",
-          "url": "https://phuket-dashboard.vercel.app/api/air-quality"
-        },
-        {
-          "kind": "internal",
-          "label": "Live Flight Data",
-          "url": "https://phuket-dashboard.vercel.app/api/flights"
-        },
-        {
-          "kind": "internal",
-          "label": "Market Radar",
-          "url": "https://phuket-dashboard.vercel.app/api/markets"
-        },
-        {
-          "kind": "internal",
-          "label": "Conflict Trends",
-          "url": "https://phuket-dashboard.vercel.app/api/conflict-trends"
-        },
-        {
-          "kind": "internal",
-          "label": "Ticker Feed",
-          "url": "https://phuket-dashboard.vercel.app/api/ticker"
-        },
-        {
-          "kind": "internal",
-          "label": "Intelligence Packages",
-          "url": "https://phuket-dashboard.vercel.app/api/intelligence/packages"
-        },
-        {
-          "kind": "internal",
-          "label": "Trending Keywords",
-          "url": "https://phuket-dashboard.vercel.app/api/trends"
-        },
-        {
-          "kind": "internal",
-          "label": "Data Source Inventory",
-          "url": "https://phuket-dashboard.vercel.app/api/sources"
-        },
-        {
-          "kind": "internal",
-          "label": "Map Layer Config",
-          "url": "https://phuket-dashboard.vercel.app/api/map/overlays"
-        },
-        {
-          "kind": "external",
-          "label": "NASA EONET",
-          "url": "https://eonet.gsfc.nasa.gov/api/v3/events?status=open&days=30"
-        },
-        {
-          "kind": "external",
-          "label": "ReliefWeb disasters",
-          "url": "https://api.reliefweb.int/v1/disasters?appname=techmonitor"
-        },
-        {
-          "kind": "external",
-          "label": "Open-Meteo forecast",
-          "url": "https://api.open-meteo.com/v1/forecast"
-        },
-        {
-          "kind": "external",
-          "label": "Open-Meteo air quality",
-          "url": "https://air-quality-api.open-meteo.com/v1/air-quality"
-        },
-        {
-          "kind": "external",
-          "label": "GDACS event feed",
-          "url": "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH"
-        },
-        {
-          "kind": "external",
-          "label": "FX rates",
-          "url": "https://open.er-api.com/v6/latest/USD"
-        },
-        {
-          "kind": "external",
-          "label": "Binance ticker",
-          "url": "https://api.binance.com/api/v3/ticker/24hr"
-        }
-      ],
-      "addedAt": "2026-03-13",
-      "category": "Monitoring",
-      "checkedAt": "2026-04-07T05:55:37.250Z",
-      "description": "Coastal operations dashboard for Phuket and surrounding provinces on Vercel.",
-      "finalUrl": "https://phuket-dashboard.vercel.app/",
-      "featured": true,
-      "health": {
-        "code": "degraded",
-        "label": "Degraded",
-        "reason": "The deployment returned HTTP 402."
-      },
-      "history": [
-        {
-          "at": "2026-04-03T22:52:31.449Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 303,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T03:14:57.165Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 425,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T05:34:44.673Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 413,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T07:16:00.384Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 408,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T08:58:16.619Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 345,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T10:52:34.935Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 412,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T13:19:35.900Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 520,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T14:51:04.519Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 381,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T16:51:53.894Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 234,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T19:01:06.419Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 388,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T20:49:25.040Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 183,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-04T22:48:51.741Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 403,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T03:36:01.856Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 265,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T05:52:04.566Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 293,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T07:21:49.091Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 467,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T08:59:31.750Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 427,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T10:54:22.604Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 278,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T13:20:50.466Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 435,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T14:52:57.269Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 242,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T16:53:09.842Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 520,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T19:03:19.279Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 319,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T20:50:01.757Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 552,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-05T22:50:38.636Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 281,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-06T03:38:59.885Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 662,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-06T06:06:28.349Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 427,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-06T08:00:46.307Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 249,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-06T09:40:35.523Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 534,
-          "statusCode": 200
-        },
-        {
-          "at": "2026-04-06T11:11:34.552Z",
-          "health": "error",
-          "ok": false,
-          "responseTimeMs": 517,
-          "statusCode": 503
-        },
-        {
-          "at": "2026-04-06T13:45:08.518Z",
-          "health": "error",
-          "ok": false,
-          "responseTimeMs": 526,
-          "statusCode": 503
-        },
-        {
-          "at": "2026-04-06T15:05:37.008Z",
-          "health": "error",
-          "ok": false,
-          "responseTimeMs": 397,
-          "statusCode": 503
-        },
-        {
-          "at": "2026-04-06T17:05:28.216Z",
-          "health": "error",
-          "ok": false,
-          "responseTimeMs": 528,
-          "statusCode": 503
-        },
-        {
-          "at": "2026-04-06T19:18:51.308Z",
-          "health": "error",
-          "ok": false,
-          "responseTimeMs": 444,
-          "statusCode": 503
-        },
-        {
-          "at": "2026-04-06T20:54:48.737Z",
-          "health": "error",
-          "ok": false,
-          "responseTimeMs": 410,
-          "statusCode": 503
-        },
-        {
-          "at": "2026-04-06T22:55:21.805Z",
-          "health": "error",
-          "ok": false,
-          "responseTimeMs": 175,
-          "statusCode": 503
-        },
-        {
-          "at": "2026-04-07T03:29:25.410Z",
-          "health": "error",
-          "ok": false,
-          "responseTimeMs": 517,
-          "statusCode": 503
-        },
-        {
-          "at": "2026-04-07T05:55:37.250Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 261,
-          "statusCode": 402
-        }
-      ],
-      "hostname": "phuket-dashboard.vercel.app",
-      "id": "phuket-dashboard",
-      "label": "Phuket Dashboard",
-      "metadata": {
-        "cache": null,
-        "contentType": "text/html; charset=utf-8",
-        "etag": null,
-        "lastModified": null,
-        "server": "Vercel",
-        "title": "Deployment Paused",
-        "xPoweredBy": null
-      },
-      "platform": "Web",
-      "repo": null,
-      "responseTimeMs": 261,
-      "statusCode": 402,
-      "surface": "active",
-      "url": "https://phuket-dashboard.vercel.app",
-      "uptime": {
-        "h24": 25,
-        "d7": 88.46,
-        "d30": 90.65
-      },
-      "historyBuckets": [
-        {
-          "hour": "2026-03-31T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 567,
-          "minMs": 567,
-          "maxMs": 567
-        },
-        {
-          "hour": "2026-03-31T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 868,
-          "minMs": 868,
-          "maxMs": 868
-        },
-        {
-          "hour": "2026-03-31T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 212,
-          "minMs": 212,
-          "maxMs": 212
-        },
-        {
-          "hour": "2026-03-31T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 318,
-          "minMs": 318,
-          "maxMs": 318
-        },
-        {
-          "hour": "2026-03-31T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 484,
-          "minMs": 484,
-          "maxMs": 484
-        },
-        {
-          "hour": "2026-03-31T15",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 324,
-          "minMs": 324,
-          "maxMs": 324
-        },
-        {
-          "hour": "2026-03-31T17",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 635,
-          "minMs": 635,
-          "maxMs": 635
-        },
-        {
-          "hour": "2026-03-31T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 668,
-          "minMs": 668,
-          "maxMs": 668
-        },
-        {
-          "hour": "2026-03-31T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 511,
-          "minMs": 511,
-          "maxMs": 511
-        },
-        {
-          "hour": "2026-03-31T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 475,
-          "minMs": 475,
-          "maxMs": 475
-        },
-        {
-          "hour": "2026-04-01T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 618,
-          "minMs": 618,
-          "maxMs": 618
-        },
-        {
-          "hour": "2026-04-01T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 441,
-          "minMs": 441,
-          "maxMs": 441
-        },
-        {
-          "hour": "2026-04-01T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 483,
-          "minMs": 483,
-          "maxMs": 483
-        },
-        {
-          "hour": "2026-04-01T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 329,
-          "minMs": 329,
-          "maxMs": 329
-        },
-        {
-          "hour": "2026-04-01T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 379,
-          "minMs": 379,
-          "maxMs": 379
-        },
-        {
-          "hour": "2026-04-01T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 429,
-          "minMs": 429,
-          "maxMs": 429
-        },
-        {
-          "hour": "2026-04-01T15",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 314,
-          "minMs": 314,
-          "maxMs": 314
-        },
-        {
-          "hour": "2026-04-01T17",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 597,
-          "minMs": 597,
-          "maxMs": 597
-        },
-        {
-          "hour": "2026-04-01T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 233,
-          "minMs": 233,
-          "maxMs": 233
-        },
-        {
-          "hour": "2026-04-01T21",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 683,
-          "minMs": 683,
-          "maxMs": 683
-        },
-        {
-          "hour": "2026-04-01T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 411,
-          "minMs": 411,
-          "maxMs": 411
-        },
-        {
-          "hour": "2026-04-02T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 455,
-          "minMs": 455,
-          "maxMs": 455
-        },
-        {
-          "hour": "2026-04-02T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 443,
-          "minMs": 443,
-          "maxMs": 443
-        },
-        {
-          "hour": "2026-04-02T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 512,
-          "minMs": 512,
-          "maxMs": 512
-        },
-        {
-          "hour": "2026-04-02T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 480,
-          "minMs": 480,
-          "maxMs": 480
-        },
-        {
-          "hour": "2026-04-02T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 551,
-          "minMs": 551,
-          "maxMs": 551
-        },
-        {
-          "hour": "2026-04-02T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 384,
-          "minMs": 384,
-          "maxMs": 384
-        },
-        {
-          "hour": "2026-04-02T15",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 315,
-          "minMs": 315,
-          "maxMs": 315
-        },
-        {
-          "hour": "2026-04-02T17",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 372,
-          "minMs": 372,
-          "maxMs": 372
-        },
-        {
-          "hour": "2026-04-02T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 447,
-          "minMs": 447,
-          "maxMs": 447
-        },
-        {
-          "hour": "2026-04-02T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 414,
-          "minMs": 414,
-          "maxMs": 414
-        },
-        {
-          "hour": "2026-04-02T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 443,
-          "minMs": 443,
-          "maxMs": 443
-        },
-        {
-          "hour": "2026-04-03T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 427,
-          "minMs": 427,
-          "maxMs": 427
-        },
-        {
-          "hour": "2026-04-03T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 458,
-          "minMs": 458,
-          "maxMs": 458
-        },
-        {
-          "hour": "2026-04-03T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 191,
-          "minMs": 191,
-          "maxMs": 191
         },
         {
-          "hour": "2026-04-03T09",
+          "hour": "2026-04-07T07",
           "checks": 1,
           "ups": 1,
-          "avgMs": 282,
-          "minMs": 282,
-          "maxMs": 282
-        },
-        {
-          "hour": "2026-04-03T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 440,
-          "minMs": 440,
-          "maxMs": 440
-        },
-        {
-          "hour": "2026-04-03T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 380,
-          "minMs": 380,
-          "maxMs": 380
-        },
-        {
-          "hour": "2026-04-03T15",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 580,
-          "minMs": 580,
-          "maxMs": 580
-        },
-        {
-          "hour": "2026-04-03T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 488,
-          "minMs": 488,
-          "maxMs": 488
-        },
-        {
-          "hour": "2026-04-03T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 430,
-          "minMs": 430,
-          "maxMs": 430
-        },
-        {
-          "hour": "2026-04-03T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 566,
-          "minMs": 566,
-          "maxMs": 566
-        },
-        {
-          "hour": "2026-04-03T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 303,
-          "minMs": 303,
-          "maxMs": 303
-        },
-        {
-          "hour": "2026-04-04T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 425,
-          "minMs": 425,
-          "maxMs": 425
-        },
-        {
-          "hour": "2026-04-04T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 413,
-          "minMs": 413,
-          "maxMs": 413
-        },
-        {
-          "hour": "2026-04-04T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 408,
-          "minMs": 408,
-          "maxMs": 408
-        },
-        {
-          "hour": "2026-04-04T08",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 345,
-          "minMs": 345,
-          "maxMs": 345
-        },
-        {
-          "hour": "2026-04-04T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 412,
-          "minMs": 412,
-          "maxMs": 412
-        },
-        {
-          "hour": "2026-04-04T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 520,
-          "minMs": 520,
-          "maxMs": 520
-        },
-        {
-          "hour": "2026-04-04T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 381,
-          "minMs": 381,
-          "maxMs": 381
-        },
-        {
-          "hour": "2026-04-04T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 234,
-          "minMs": 234,
-          "maxMs": 234
-        },
-        {
-          "hour": "2026-04-04T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 388,
-          "minMs": 388,
-          "maxMs": 388
-        },
-        {
-          "hour": "2026-04-04T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 183,
-          "minMs": 183,
-          "maxMs": 183
-        },
-        {
-          "hour": "2026-04-04T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 403,
-          "minMs": 403,
-          "maxMs": 403
-        },
-        {
-          "hour": "2026-04-05T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 265,
-          "minMs": 265,
-          "maxMs": 265
-        },
-        {
-          "hour": "2026-04-05T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 293,
-          "minMs": 293,
-          "maxMs": 293
-        },
-        {
-          "hour": "2026-04-05T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 467,
-          "minMs": 467,
-          "maxMs": 467
-        },
-        {
-          "hour": "2026-04-05T08",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 427,
-          "minMs": 427,
-          "maxMs": 427
-        },
-        {
-          "hour": "2026-04-05T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 278,
-          "minMs": 278,
-          "maxMs": 278
-        },
-        {
-          "hour": "2026-04-05T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 435,
-          "minMs": 435,
-          "maxMs": 435
-        },
-        {
-          "hour": "2026-04-05T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 242,
-          "minMs": 242,
-          "maxMs": 242
-        },
-        {
-          "hour": "2026-04-05T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 520,
-          "minMs": 520,
-          "maxMs": 520
-        },
-        {
-          "hour": "2026-04-05T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 319,
-          "minMs": 319,
-          "maxMs": 319
-        },
-        {
-          "hour": "2026-04-05T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 552,
-          "minMs": 552,
-          "maxMs": 552
-        },
-        {
-          "hour": "2026-04-05T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 281,
-          "minMs": 281,
-          "maxMs": 281
-        },
-        {
-          "hour": "2026-04-06T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 662,
-          "minMs": 662,
-          "maxMs": 662
-        },
-        {
-          "hour": "2026-04-06T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 427,
-          "minMs": 427,
-          "maxMs": 427
-        },
-        {
-          "hour": "2026-04-06T08",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 249,
-          "minMs": 249,
-          "maxMs": 249
-        },
-        {
-          "hour": "2026-04-06T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 534,
-          "minMs": 534,
-          "maxMs": 534
-        },
-        {
-          "hour": "2026-04-06T11",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 517,
-          "minMs": 517,
-          "maxMs": 517
-        },
-        {
-          "hour": "2026-04-06T13",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 526,
-          "minMs": 526,
-          "maxMs": 526
-        },
-        {
-          "hour": "2026-04-06T15",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 397,
-          "minMs": 397,
-          "maxMs": 397
-        },
-        {
-          "hour": "2026-04-06T17",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 528,
-          "minMs": 528,
-          "maxMs": 528
-        },
-        {
-          "hour": "2026-04-06T19",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 444,
-          "minMs": 444,
-          "maxMs": 444
-        },
-        {
-          "hour": "2026-04-06T20",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 410,
-          "minMs": 410,
-          "maxMs": 410
-        },
-        {
-          "hour": "2026-04-06T22",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 175,
-          "minMs": 175,
-          "maxMs": 175
-        },
-        {
-          "hour": "2026-04-07T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 517,
-          "minMs": 517,
-          "maxMs": 517
-        },
-        {
-          "hour": "2026-04-07T05",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 261,
-          "minMs": 261,
-          "maxMs": 261
-        }
-      ]
-    },
-    {
-      "apis": [],
-      "addedAt": "2026-04-02",
-      "category": "Index",
-      "checkedAt": "2026-04-07T05:55:37.234Z",
-      "description": "Smart City Thailand Index — city ranking and benchmarking platform on Vercel.",
-      "finalUrl": "https://smart-city-thailand-index-mq0oj23o5-nonarkaras-projects.vercel.app/",
-      "featured": false,
-      "health": {
-        "code": "degraded",
-        "label": "Degraded",
-        "reason": "The deployment returned HTTP 402."
-      },
-      "history": [
-        {
-          "at": "2026-04-03T22:52:31.602Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 450,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-04T03:14:57.397Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 654,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-04T05:34:44.764Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 501,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-04T07:16:00.429Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 450,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-04T08:58:16.725Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 448,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-04T10:52:35.034Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 508,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-04T13:19:35.710Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 327,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-04T14:51:04.649Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 507,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-04T16:51:54.151Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 485,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-04T19:01:06.449Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 414,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-04T20:49:25.005Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 145,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-04T22:48:51.812Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 471,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-05T03:36:01.853Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 257,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-05T05:52:04.634Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 357,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-05T07:21:49.184Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 557,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-05T08:59:31.787Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 461,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-05T10:54:22.534Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 205,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-05T13:20:50.572Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 537,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-05T14:52:57.264Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 234,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-05T16:53:09.894Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 569,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-05T19:03:19.295Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 331,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-05T20:50:01.788Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 580,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-05T22:50:38.681Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 320,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-06T03:38:59.801Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 575,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-06T06:06:28.515Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 589,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-06T08:00:46.314Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 253,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-06T09:40:35.670Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 678,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-06T11:11:34.669Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 630,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-06T13:45:08.406Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 410,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-06T15:05:37.135Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 521,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-06T17:05:28.192Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 500,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-06T19:18:51.242Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 372,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-06T20:54:48.798Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 466,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-06T22:55:21.915Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 280,
-          "statusCode": 401
-        },
-        {
-          "at": "2026-04-07T03:29:25.377Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 478,
-          "statusCode": 402
-        },
-        {
-          "at": "2026-04-07T05:55:37.234Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 244,
-          "statusCode": 402
-        }
-      ],
-      "hostname": "smart-city-thailand-index-mq0oj23o5-nonarkaras-projects.vercel.app",
-      "id": "smart-city-thailand-index",
-      "label": "Smart City Thailand Index",
-      "metadata": {
-        "cache": null,
-        "contentType": "text/html; charset=utf-8",
-        "etag": null,
-        "lastModified": null,
-        "server": "Vercel",
-        "title": "Deployment Paused",
-        "xPoweredBy": null
-      },
-      "platform": "Web",
-      "repo": null,
-      "responseTimeMs": 244,
-      "statusCode": 402,
-      "surface": "active",
-      "url": "https://smart-city-thailand-index-mq0oj23o5-nonarkaras-projects.vercel.app",
-      "uptime": {
-        "h24": 0,
-        "d7": 0,
-        "d30": 0
-      },
-      "historyBuckets": [
-        {
-          "hour": "2026-04-02T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 584,
-          "minMs": 584,
-          "maxMs": 584
-        },
-        {
-          "hour": "2026-04-02T05",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 491,
-          "minMs": 491,
-          "maxMs": 491
-        },
-        {
-          "hour": "2026-04-02T07",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 516,
-          "minMs": 516,
-          "maxMs": 516
-        },
-        {
-          "hour": "2026-04-02T09",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 626,
-          "minMs": 626,
-          "maxMs": 626
-        },
-        {
-          "hour": "2026-04-02T11",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 519,
-          "minMs": 519,
-          "maxMs": 519
-        },
-        {
-          "hour": "2026-04-02T13",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 477,
-          "minMs": 477,
-          "maxMs": 477
-        },
-        {
-          "hour": "2026-04-02T15",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 400,
-          "minMs": 400,
-          "maxMs": 400
-        },
-        {
-          "hour": "2026-04-02T17",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 543,
-          "minMs": 543,
-          "maxMs": 543
-        },
-        {
-          "hour": "2026-04-02T19",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 498,
-          "minMs": 498,
-          "maxMs": 498
-        },
-        {
-          "hour": "2026-04-02T20",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 503,
-          "minMs": 503,
-          "maxMs": 503
-        },
-        {
-          "hour": "2026-04-02T22",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 468,
-          "minMs": 468,
-          "maxMs": 468
-        },
-        {
-          "hour": "2026-04-03T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 486,
-          "minMs": 486,
-          "maxMs": 486
-        },
-        {
-          "hour": "2026-04-03T05",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 410,
-          "minMs": 410,
-          "maxMs": 410
-        },
-        {
-          "hour": "2026-04-03T07",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 332,
-          "minMs": 332,
-          "maxMs": 332
-        },
-        {
-          "hour": "2026-04-03T09",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 473,
-          "minMs": 473,
-          "maxMs": 473
-        },
-        {
-          "hour": "2026-04-03T11",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 424,
-          "minMs": 424,
-          "maxMs": 424
-        },
-        {
-          "hour": "2026-04-03T13",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 448,
-          "minMs": 448,
-          "maxMs": 448
-        },
-        {
-          "hour": "2026-04-03T15",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 556,
-          "minMs": 556,
-          "maxMs": 556
-        },
-        {
-          "hour": "2026-04-03T16",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 607,
-          "minMs": 607,
-          "maxMs": 607
-        },
-        {
-          "hour": "2026-04-03T19",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 502,
-          "minMs": 502,
-          "maxMs": 502
-        },
-        {
-          "hour": "2026-04-03T20",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 451,
-          "minMs": 451,
-          "maxMs": 451
-        },
-        {
-          "hour": "2026-04-03T22",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 450,
-          "minMs": 450,
-          "maxMs": 450
-        },
-        {
-          "hour": "2026-04-04T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 654,
-          "minMs": 654,
-          "maxMs": 654
-        },
-        {
-          "hour": "2026-04-04T05",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 501,
-          "minMs": 501,
-          "maxMs": 501
-        },
-        {
-          "hour": "2026-04-04T07",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 450,
-          "minMs": 450,
-          "maxMs": 450
-        },
-        {
-          "hour": "2026-04-04T08",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 448,
-          "minMs": 448,
-          "maxMs": 448
-        },
-        {
-          "hour": "2026-04-04T10",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 508,
-          "minMs": 508,
-          "maxMs": 508
-        },
-        {
-          "hour": "2026-04-04T13",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 327,
-          "minMs": 327,
-          "maxMs": 327
-        },
-        {
-          "hour": "2026-04-04T14",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 507,
-          "minMs": 507,
-          "maxMs": 507
-        },
-        {
-          "hour": "2026-04-04T16",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 485,
-          "minMs": 485,
-          "maxMs": 485
-        },
-        {
-          "hour": "2026-04-04T19",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 414,
-          "minMs": 414,
-          "maxMs": 414
-        },
-        {
-          "hour": "2026-04-04T20",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 145,
-          "minMs": 145,
-          "maxMs": 145
-        },
-        {
-          "hour": "2026-04-04T22",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 471,
-          "minMs": 471,
-          "maxMs": 471
-        },
-        {
-          "hour": "2026-04-05T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 257,
-          "minMs": 257,
-          "maxMs": 257
-        },
-        {
-          "hour": "2026-04-05T05",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 357,
-          "minMs": 357,
-          "maxMs": 357
-        },
-        {
-          "hour": "2026-04-05T07",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 557,
-          "minMs": 557,
-          "maxMs": 557
-        },
-        {
-          "hour": "2026-04-05T08",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 461,
-          "minMs": 461,
-          "maxMs": 461
-        },
-        {
-          "hour": "2026-04-05T10",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 205,
-          "minMs": 205,
-          "maxMs": 205
-        },
-        {
-          "hour": "2026-04-05T13",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 537,
-          "minMs": 537,
-          "maxMs": 537
-        },
-        {
-          "hour": "2026-04-05T14",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 234,
-          "minMs": 234,
-          "maxMs": 234
-        },
-        {
-          "hour": "2026-04-05T16",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 569,
-          "minMs": 569,
-          "maxMs": 569
-        },
-        {
-          "hour": "2026-04-05T19",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 331,
-          "minMs": 331,
-          "maxMs": 331
-        },
-        {
-          "hour": "2026-04-05T20",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 580,
-          "minMs": 580,
-          "maxMs": 580
-        },
-        {
-          "hour": "2026-04-05T22",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 320,
-          "minMs": 320,
-          "maxMs": 320
-        },
-        {
-          "hour": "2026-04-06T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 575,
-          "minMs": 575,
-          "maxMs": 575
-        },
-        {
-          "hour": "2026-04-06T06",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 589,
-          "minMs": 589,
-          "maxMs": 589
-        },
-        {
-          "hour": "2026-04-06T08",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 253,
-          "minMs": 253,
-          "maxMs": 253
-        },
-        {
-          "hour": "2026-04-06T09",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 678,
-          "minMs": 678,
-          "maxMs": 678
-        },
-        {
-          "hour": "2026-04-06T11",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 630,
-          "minMs": 630,
-          "maxMs": 630
-        },
-        {
-          "hour": "2026-04-06T13",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 410,
-          "minMs": 410,
-          "maxMs": 410
-        },
-        {
-          "hour": "2026-04-06T15",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 521,
-          "minMs": 521,
-          "maxMs": 521
-        },
-        {
-          "hour": "2026-04-06T17",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 500,
-          "minMs": 500,
-          "maxMs": 500
-        },
-        {
-          "hour": "2026-04-06T19",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 372,
-          "minMs": 372,
-          "maxMs": 372
-        },
-        {
-          "hour": "2026-04-06T20",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 466,
-          "minMs": 466,
-          "maxMs": 466
-        },
-        {
-          "hour": "2026-04-06T22",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 280,
-          "minMs": 280,
-          "maxMs": 280
-        },
-        {
-          "hour": "2026-04-07T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 478,
-          "minMs": 478,
-          "maxMs": 478
-        },
-        {
-          "hour": "2026-04-07T05",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 244,
-          "minMs": 244,
-          "maxMs": 244
+          "avgMs": 301,
+          "minMs": 301,
+          "maxMs": 301
         }
       ]
     }
