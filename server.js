@@ -95,68 +95,13 @@ const TARGETS = [
     addedAt: "2024-11-15"
   },
   {
-    id: "middle-east-monitor",
-    label: "Middle East Monitor",
-    url: "https://middle-east-monitor.onrender.com",
-    description: "Regional monitoring dashboard deployed on Render.",
-    category: "Monitoring",
-    featured: true,
-    surface: "active",
-    addedAt: "2025-01-10"
-  },
-  {
-    id: "geopolitics-dashboard",
-    label: "Geopolitics Dashboard",
-    url: "https://geopolitics-dashboard.onrender.com",
-    description: "Geopolitical dashboard deployed on Render.",
-    category: "Monitoring",
-    surface: "active",
-    addedAt: "2025-02-15"
-  },
-  {
-    id: "city-reporter-bot",
-    label: "City Reporter Bot",
-    url: "https://city-reporter-bot.onrender.com",
-    description: "Command center and reporting bot interface.",
-    category: "Bot",
-    surface: "active",
-    addedAt: "2025-03-01"
-  },
-  {
     id: "city-reporter-bot-v2",
     label: "City Reporter Bot Version 2",
     url: "https://city-reporter-line-bot.onrender.com",
-    description: "Version 2 of the command center and reporting bot interface.",
+    description: "Version 2 of the command center and reporting bot interface. Only active Render service.",
     category: "Bot",
     surface: "active",
     addedAt: "2026-03-14"
-  },
-  {
-    id: "smart-city-monitor",
-    label: "Smart City Monitor",
-    url: "https://smart-city-monitor-web.onrender.com/?lang=en&view=city&timeRange=7d&city=bangkok&layers=smart-city-thailand%2Cbangkok-passages%2Cprojects%2Cnews%2Cresilience%2Ceconomy%2Cweather%2Cpollution",
-    description: "Bangkok-focused smart city monitor with layered geospatial filters.",
-    category: "Monitoring",
-    surface: "active",
-    addedAt: "2025-03-05"
-  },
-  {
-    id: "mtt-smart-city-monitor",
-    label: "MTT Smart City Monitor",
-    url: "https://mtt-smart-city-monitor-web.onrender.com",
-    description: "IMPACT Muang Thong Thani super dashboard with live city signals, domains, media, and assistant tooling.",
-    category: "Monitoring",
-    surface: "active",
-    addedAt: "2025-03-08"
-  },
-  {
-    id: "phuket-smart-bus",
-    label: "Phuket Smart Bus",
-    url: "https://phuket-smart-bus-y6tj.onrender.com",
-    description: "Phone-first rider prototype with live tracking, advisories, and leave-now guidance.",
-    category: "Transit",
-    surface: "active",
-    addedAt: "2025-03-10"
   },
   {
     id: "raat",
@@ -169,15 +114,6 @@ const TARGETS = [
     addedAt: "2025-03-11"
   },
   {
-    id: "tech-monitor",
-    label: "Tech Monitor",
-    url: "https://tech-monitor.onrender.com",
-    description: "Technology monitoring deployment on Render.",
-    category: "Monitoring",
-    surface: "active",
-    addedAt: "2025-03-12"
-  },
-  {
     id: "city-tech-atlas",
     label: "City Tech Atlas",
     url: "https://citytechatlas.lovable.app",
@@ -185,15 +121,6 @@ const TARGETS = [
     category: "Directory",
     surface: "active",
     addedAt: "2025-03-12"
-  },
-  {
-    id: "slic-index-rankings",
-    label: "SLIC Index Rankings",
-    url: "https://slic-index.onrender.com/rankings",
-    description: "Render-hosted SLIC index rankings surface.",
-    category: "Index",
-    surface: "active",
-    addedAt: "2025-03-13"
   },
   {
     id: "slic-index-v2",
@@ -235,25 +162,6 @@ const TARGETS = [
     addedAt: "2025-03-13"
   },
   {
-    id: "airdnd-platform",
-    label: "AirDnD Platform",
-    url: "https://airdnd-platform.onrender.com",
-    description: "AirDnD public platform deployment.",
-    category: "Platform",
-    surface: "active",
-    addedAt: "2025-03-13"
-  },
-  {
-    id: "phuket-dashboard",
-    label: "Phuket Dashboard",
-    url: "https://phuket-dashboard.onrender.com",
-    description: "Coastal operations dashboard for Phuket and surrounding provinces.",
-    category: "Monitoring",
-    featured: true,
-    surface: "active",
-    addedAt: "2026-03-13"
-  },
-  {
     id: "sabai-sabai",
     label: "Sabai Sabai",
     url: "https://sabai-sabai-kohl.vercel.app",
@@ -272,31 +180,33 @@ const TARGETS = [
     addedAt: "2026-03-26"
   },
   {
-    id: "geopolitics-dashboard-vercel",
-    label: "Geopolitics Dashboard (Vercel)",
+    id: "geopolitics-dashboard",
+    label: "Geopolitics Dashboard",
     url: "https://geopolitics-dashboard-sage.vercel.app",
-    description: "Vercel backup of the Geopolitics Dashboard.",
+    description: "Geopolitical intelligence dashboard on Vercel.",
     category: "Monitoring",
     surface: "active",
-    addedAt: "2026-03-26"
+    addedAt: "2025-02-15"
   },
   {
-    id: "dngws-monitor",
-    label: "DNGWS Monitor",
+    id: "middle-east-monitor",
+    label: "Middle East Monitor",
     url: "https://dngws-monitor.vercel.app/",
-    description: "Vercel backup of the Middle East Monitor (Dr Non's GlobeWatch System).",
+    description: "Regional monitoring dashboard — Dr Non's GlobeWatch System on Vercel.",
     category: "Monitoring",
+    featured: true,
     surface: "active",
-    addedAt: "2026-03-26"
+    addedAt: "2025-01-10"
   },
   {
-    id: "phuket-dashboard-vercel",
-    label: "Phuket Dashboard (Vercel)",
+    id: "phuket-dashboard",
+    label: "Phuket Dashboard",
     url: "https://phuket-dashboard.vercel.app",
-    description: "Vercel backup of the Phuket coastal operations dashboard.",
+    description: "Coastal operations dashboard for Phuket and surrounding provinces on Vercel.",
     category: "Monitoring",
+    featured: true,
     surface: "active",
-    addedAt: "2026-03-26"
+    addedAt: "2026-03-13"
   },
   {
     id: "smart-city-thailand-index",
@@ -319,64 +229,6 @@ const API_INVENTORY = {
     { label: "GDACS event feed", url: "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH", kind: "external" },
     { label: "Open-Meteo forecast", url: "https://api.open-meteo.com/v1/forecast", kind: "external" }
   ],
-  "smart-city-monitor": [
-    { label: "Overview", url: "/api/overview", kind: "internal" },
-    { label: "Pulse", url: "/api/pulse", kind: "internal" },
-    { label: "Projects", url: "/api/projects", kind: "internal" },
-    { label: "News", url: "/api/news", kind: "internal" },
-    { label: "Map layers", url: "/api/map/layers", kind: "internal" },
-    { label: "Map features", url: "/api/map/features", kind: "internal" },
-    { label: "Resilience", url: "/api/resilience", kind: "internal" },
-    { label: "Impact", url: "/api/impact", kind: "internal" },
-    { label: "Markets", url: "/api/markets", kind: "internal" },
-    { label: "Sources", url: "/api/sources", kind: "internal" },
-    { label: "Activity", url: "/api/activity", kind: "internal" },
-    { label: "Social listening", url: "/api/social-listening", kind: "internal" },
-    { label: "Media feeds", url: "/api/media/feeds", kind: "internal" },
-    { label: "Assistant status", url: "/api/assistant/status", kind: "internal" }
-  ],
-  "mtt-smart-city-monitor": [
-    { label: "Overview", url: "/api/overview", kind: "internal" },
-    { label: "Pulse", url: "/api/pulse", kind: "internal" },
-    { label: "Projects", url: "/api/projects", kind: "internal" },
-    { label: "News", url: "/api/news", kind: "internal" },
-    { label: "Map layers", url: "/api/map/layers", kind: "internal" },
-    { label: "Map features", url: "/api/map/features", kind: "internal" },
-    { label: "Cities", url: "/api/cities", kind: "internal" },
-    { label: "Domains", url: "/api/domains", kind: "internal" },
-    { label: "Indicators", url: "/api/indicators", kind: "internal" },
-    { label: "Resilience", url: "/api/resilience", kind: "internal" },
-    { label: "Changes", url: "/api/changes", kind: "internal" },
-    { label: "Activity", url: "/api/activity", kind: "internal" },
-    { label: "Social listening", url: "/api/social-listening", kind: "internal" },
-    { label: "Impact", url: "/api/impact", kind: "internal" },
-    { label: "Markets", url: "/api/markets", kind: "internal" },
-    { label: "Sources", url: "/api/sources", kind: "internal" },
-    { label: "Latest briefing", url: "/api/briefings/latest", kind: "internal" },
-    { label: "Media feeds", url: "/api/media/feeds", kind: "internal" },
-    { label: "Media channels", url: "/api/media/channels", kind: "internal" },
-    { label: "Assistant status", url: "/api/assistant/status", kind: "internal" },
-    { label: "Assistant query", url: "/api/assistant/query", kind: "internal" }
-  ],
-  "phuket-smart-bus": [
-    { label: "Health", url: "/api/health", kind: "internal" },
-    { label: "Routes", url: "/api/routes", kind: "internal" },
-    { label: "Route stops", url: "/api/routes/:routeId/stops", kind: "internal" },
-    { label: "Service advisories", url: "/api/routes/:routeId/advisories", kind: "internal" },
-    { label: "Leave-now summary", url: "/api/decision-summary?routeId=:routeId&stopId=:stopId", kind: "internal" }
-  ],
-  "city-reporter-bot": [
-    { label: "Reports", url: "/api/reports", kind: "internal" },
-    { label: "Report GeoJSON", url: "/api/reports/geojson", kind: "internal" },
-    { label: "Early warnings", url: "/api/early-warnings", kind: "internal" },
-    { label: "Upload", url: "/api/upload", kind: "internal" },
-    { label: "Social analytics", url: "/api/analytics/social", kind: "internal" },
-    { label: "Latest intelligence", url: "/api/intelligence/latest", kind: "internal" },
-    { label: "Generate intelligence", url: "/api/intelligence/generate", kind: "internal" },
-    { label: "News", url: "/api/news", kind: "internal" },
-    { label: "Open-Meteo forecast", url: "https://api.open-meteo.com/v1/forecast", kind: "external" },
-    { label: "Bangkok open data", url: "https://data.bangkok.go.th/api/3/action/datastore_search", kind: "external" }
-  ],
   "city-reporter-bot-v2": [
     { label: "Reports", url: "/api/reports", kind: "internal" },
     { label: "Report GeoJSON", url: "/api/reports/geojson", kind: "internal" },
@@ -394,20 +246,7 @@ const API_INVENTORY = {
       kind: "internal"
     }
   ],
-  "tech-monitor": [
-    { label: "NASA EONET", url: "https://eonet.gsfc.nasa.gov/api/v3/events?status=open&days=30", kind: "external" },
-    { label: "ReliefWeb disasters", url: "https://api.reliefweb.int/v1/disasters?appname=techmonitor", kind: "external" },
-    { label: "Open-Meteo forecast", url: "https://api.open-meteo.com/v1/forecast", kind: "external" },
-    { label: "Open-Meteo air quality", url: "https://air-quality-api.open-meteo.com/v1/air-quality", kind: "external" },
-    { label: "FX rates", url: "https://open.er-api.com/v6/latest/USD", kind: "external" },
-    { label: "Binance ticker", url: "https://api.binance.com/api/v3/ticker/24hr", kind: "external" }
-  ],
   "city-tech-atlas": [],
-  "airdnd-platform": [
-    { label: "Broadcast feed", url: "/api/broadcast", kind: "internal" },
-    { label: "Supabase backend", url: "https://fehdtfncbutesgadjsxp.supabase.co", kind: "external" },
-    { label: "Open-Meteo air quality", url: "https://air-quality-api.open-meteo.com/v1/air-quality", kind: "external" }
-  ],
   "phuket-dashboard": [
     { label: "News Aggregator", url: "/api/news", kind: "internal" },
     { label: "Environment Status", url: "/api/environment", kind: "internal" },
