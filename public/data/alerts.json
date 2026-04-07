@@ -399,6 +399,26 @@
       "message": "City Tech Atlas recovered",
       "timestamp": "2026-03-30T07:47:12.395Z",
       "resolvedAt": "2026-03-30T07:47:12.395Z"
+    },
+    {
+      "id": "d72ba196-089e-4f15-a15f-a127fc6d6d13",
+      "targetId": "middle-east-monitor",
+      "targetLabel": "War Monitor",
+      "type": "recovery",
+      "severity": "info",
+      "message": "War Monitor recovered",
+      "timestamp": "2026-04-07T14:00:20.089Z",
+      "resolvedAt": "2026-04-07T14:00:20.089Z"
+    },
+    {
+      "id": "7ad8524a-7dc5-4ce3-a969-e58d3a67a68d",
+      "targetId": "geopolitics-dashboard",
+      "targetLabel": "GPD",
+      "type": "recovery",
+      "severity": "info",
+      "message": "GPD recovered",
+      "timestamp": "2026-04-07T14:00:20.140Z",
+      "resolvedAt": "2026-04-07T14:00:20.140Z"
     }
   ]
 }
