@@ -95,15 +95,6 @@ const TARGETS = [
     addedAt: "2024-11-15"
   },
   {
-    id: "city-reporter-bot-v2",
-    label: "City Reporter Bot Version 2",
-    url: "https://city-reporter-line-bot.onrender.com",
-    description: "Version 2 of the command center and reporting bot interface. Only active Render service.",
-    category: "Bot",
-    surface: "active",
-    addedAt: "2026-03-14"
-  },
-  {
     id: "raat",
     label: "RAAT",
     url: "https://nonarkara.github.io/RAAT/index.html?lang=en",
@@ -119,18 +110,9 @@ const TARGETS = [
     url: "https://citytechatlas.lovable.app",
     description: "Lovable-hosted smart city solution atlas.",
     category: "Directory",
+    featured: true,
     surface: "active",
     addedAt: "2025-03-12"
-  },
-  {
-    id: "slic-index-v2",
-    label: "SLIC Index Version 2",
-    url: "https://nonarkara.github.io/slic-index-V2/",
-    description: "Second-generation Smart and Liveable Cities Index experience.",
-    repo: "Nonarkara/slic-index-V2",
-    category: "Index",
-    surface: "static",
-    addedAt: "2026-03-14"
   },
   {
     id: "techhuntthailand-viabus",
@@ -160,122 +142,16 @@ const TARGETS = [
     category: "Manifesto",
     surface: "static",
     addedAt: "2025-03-13"
-  },
-  {
-    id: "sabai-sabai",
-    label: "Sabai Sabai",
-    url: "https://sabai-sabai-kohl.vercel.app",
-    description: "Sabai Sabai platform on Vercel.",
-    category: "Platform",
-    surface: "active",
-    addedAt: "2026-03-26"
-  },
-  {
-    id: "axiom",
-    label: "Axiom AI",
-    url: "https://axiom-mu-six.vercel.app",
-    description: "Axiom — Innovation as a Service. AI consultancy landing page on Vercel.",
-    category: "Landing page",
-    surface: "active",
-    addedAt: "2026-03-26"
-  },
-  {
-    id: "geopolitics-dashboard",
-    label: "Geopolitics Dashboard",
-    url: "https://geopolitics-dashboard-sage.vercel.app",
-    description: "Geopolitical intelligence dashboard on Vercel.",
-    category: "Monitoring",
-    surface: "active",
-    addedAt: "2025-02-15"
-  },
-  {
-    id: "middle-east-monitor",
-    label: "Middle East Monitor",
-    url: "https://dngws-monitor.vercel.app/",
-    description: "Regional monitoring dashboard — Dr Non's GlobeWatch System on Vercel.",
-    category: "Monitoring",
-    featured: true,
-    surface: "active",
-    addedAt: "2025-01-10"
-  },
-  {
-    id: "phuket-dashboard",
-    label: "Phuket Dashboard",
-    url: "https://phuket-dashboard.vercel.app",
-    description: "Coastal operations dashboard for Phuket and surrounding provinces on Vercel.",
-    category: "Monitoring",
-    featured: true,
-    surface: "active",
-    addedAt: "2026-03-13"
-  },
-  {
-    id: "smart-city-thailand-index",
-    label: "Smart City Thailand Index",
-    url: "https://smart-city-thailand-index-mq0oj23o5-nonarkaras-projects.vercel.app",
-    description: "Smart City Thailand Index — city ranking and benchmarking platform on Vercel.",
-    category: "Index",
-    surface: "active",
-    addedAt: "2026-04-02"
   }
 ];
 
 const API_INVENTORY = {
-  "geopolitics-dashboard": [],
-  "middle-east-monitor": [
-    { label: "Regional briefing", url: "/api/briefings/iran", kind: "internal" },
-    { label: "Markets snapshot", url: "/api/markets", kind: "internal" },
-    { label: "Ticker feed", url: "/api/ticker", kind: "internal" },
-    { label: "Copernicus preview", url: "/api/copernicus/preview", kind: "internal" },
-    { label: "GDACS event feed", url: "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH", kind: "external" },
-    { label: "Open-Meteo forecast", url: "https://api.open-meteo.com/v1/forecast", kind: "external" }
-  ],
-  "city-reporter-bot-v2": [
-    { label: "Reports", url: "/api/reports", kind: "internal" },
-    { label: "Report GeoJSON", url: "/api/reports/geojson", kind: "internal" },
-    { label: "Early warnings", url: "/api/early-warnings", kind: "internal" },
-    { label: "Upload", url: "/api/upload", kind: "internal" },
-    { label: "Social analytics", url: "/api/analytics/social", kind: "internal" },
-    { label: "Latest intelligence", url: "/api/intelligence/latest", kind: "internal" },
-    { label: "Generate intelligence", url: "/api/intelligence/generate", kind: "internal" },
-    { label: "News", url: "/api/news", kind: "internal" },
-    { label: "Flood map WMS", url: "/api/2.0/resources/maps/flood/7days/wms", kind: "internal" },
-    { label: "Phuket ports", url: "/api/marine/phuket-ports", kind: "internal" },
-    {
-      label: "Bangkok datastore proxy",
-      url: "/api/3/action/datastore_search?resource_id=8f1102d5-52a2-4494-9131-403e4f87a242&limit=100",
-      kind: "internal"
-    }
-  ],
-  "city-tech-atlas": [],
-  "phuket-dashboard": [
-    { label: "News Aggregator", url: "/api/news", kind: "internal" },
-    { label: "Environment Status", url: "/api/environment", kind: "internal" },
-    { label: "Intelligence Convergence", url: "/api/intelligence/convergence", kind: "internal" },
-    { label: "ASEAN Profile", url: "/api/asean/profile?country=THA", kind: "internal" },
-    { label: "Incident Feed", url: "/api/incidents", kind: "internal" },
-    { label: "Fire Alerts", url: "/api/fires", kind: "internal" },
-    { label: "Movement Data", url: "/api/movements", kind: "internal" },
-    { label: "Rainfall Status", url: "/api/rainfall", kind: "internal" },
-    { label: "Air Quality Info", url: "/api/air-quality", kind: "internal" },
-    { label: "Live Flight Data", url: "/api/flights", kind: "internal" },
-    { label: "Market Radar", url: "/api/markets", kind: "internal" },
-    { label: "Conflict Trends", url: "/api/conflict-trends", kind: "internal" },
-    { label: "Ticker Feed", url: "/api/ticker", kind: "internal" },
-    { label: "Intelligence Packages", url: "/api/intelligence/packages", kind: "internal" },
-    { label: "Trending Keywords", url: "/api/trends", kind: "internal" },
-    { label: "Data Source Inventory", url: "/api/sources", kind: "internal" },
-    { label: "Map Layer Config", url: "/api/map/overlays", kind: "internal" },
-    { label: "NASA EONET", url: "https://eonet.gsfc.nasa.gov/api/v3/events?status=open&days=30", kind: "external" },
-    { label: "ReliefWeb disasters", url: "https://api.reliefweb.int/v1/disasters?appname=techmonitor", kind: "external" },
-    { label: "Open-Meteo forecast", url: "https://api.open-meteo.com/v1/forecast", kind: "external" },
-    { label: "Open-Meteo air quality", url: "https://air-quality-api.open-meteo.com/v1/air-quality", kind: "external" },
-    { label: "GDACS event feed", url: "https://www.gdacs.org/gdacsapi/api/events/geteventlist/SEARCH", kind: "external" },
-    { label: "FX rates", url: "https://open.er-api.com/v6/latest/USD", kind: "external" },
-    { label: "Binance ticker", url: "https://api.binance.com/api/v3/ticker/24hr", kind: "external" }
-  ],
   "scl-landing-page": [],
   raat: [],
-  "techhuntthailand-viabus": []
+  "city-tech-atlas": [],
+  "techhuntthailand-viabus": [],
+  "ascn-smart-cities-network": [],
+  "asean-csco-app": []
 };
 
 const historyByTarget = new Map();
