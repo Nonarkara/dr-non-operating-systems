@@ -142,6 +142,15 @@ const TARGETS = [
     category: "Manifesto",
     surface: "static",
     addedAt: "2025-03-13"
+  },
+  {
+    id: "sabai-sabai",
+    label: "Sabai Sabai",
+    url: "https://sabai-sabai-4uh.pages.dev",
+    description: "Sabai Sabai platform on Cloudflare Pages.",
+    category: "Platform",
+    surface: "active",
+    addedAt: "2026-03-26"
   }
 ];
 
