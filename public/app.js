@@ -30,7 +30,7 @@ const SVG = {
     const label = opts.label || "";
     const displayValue = opts.displayValue || String(Math.round(value));
 
-    return `<svg class="svg-gauge" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="${escapeHtml(label || 'gauge')}: ${escapeHtml(displayValue)}"
+    return `<svg class="svg-gauge" viewBox="0 0 ${size} ${size}" width="${size}" height="${size}" role="img" aria-label="${escapeHtml(label || 'gauge')}: ${escapeHtml(displayValue)}">
       <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="var(--line)" stroke-width="6" opacity="0.3"/>
       <circle cx="${cx}" cy="${cy}" r="${r}" fill="none" stroke="${color}" stroke-width="6"
         stroke-dasharray="${dash} ${gap}" stroke-linecap="round"
@@ -824,8 +824,46 @@ const elements = {
 };
 
 /* ============================================================
-   v5 — Tab Switching
+   v5 — Tab Switching with Lazy Rendering
    ============================================================ */
+
+const tabRendered = { systems: true, intel: false, profile: false, registry: false, archives: false };
+
+function renderTabContent(tabId) {
+  if (!state.dashboard && tabId !== "archives") return;
+  const d = state.dashboard || {};
+  const { summary, github, mentions, analytics, alerts, triggers } = d;
+
+  if (tabId === "intel") {
+    renderMentions(mentions);
+    if (github) renderGitHub(github);
+    if (summary) renderIssues(summary);
+    if (analytics) renderVisitorIntel(analytics);
+    if (alerts) { renderAlertTimeline(alerts); renderAlertBanner(alerts); }
+    if (triggers) renderTriggerPanel(triggers);
+    if (d.targets) { renderRecentProjects(d.targets); renderPublishingSpeed(d.targets); }
+  }
+
+  if (tabId === "profile") {
+    renderLabLogos();
+    renderProfile(summary || { monitoredPages: 0 });
+    if (d.targets) renderBrandStrip(d.targets);
+  }
+
+  if (tabId === "registry") {
+    renderApiRegistry();
+    renderUniversalBlueprint();
+    renderLocalTargets();
+  }
+
+  if (tabId === "archives") {
+    renderVersionHistory();
+    renderOriginStory();
+    renderNovelSection();
+    renderFieldRecord();
+    renderHistoryGallery();
+  }
+}
 
 function switchTab(tabId) {
   document.querySelectorAll(".tab-panel").forEach((p) => { p.hidden = p.id !== "tab-" + tabId; });
@@ -833,6 +871,11 @@ function switchTab(tabId) {
     t.classList.toggle("tab--active", t.dataset.tab === tabId);
   });
   window.history.replaceState(null, "", "#" + tabId);
+
+  if (!tabRendered[tabId]) {
+    renderTabContent(tabId);
+    tabRendered[tabId] = true;
+  }
 }
 
 function initTabs() {
@@ -1668,7 +1711,7 @@ function buildRemoteCard(target, options = {}) {
   }
 
   return `
-    <article class="${classes.join(" ")}" data-health="${escapeHtml(target.health.code)}" data-preview-id="${escapeHtml(target.id)}">
+    <article class="${classes.join(" ")}" data-health="${escapeHtml(target.health.code)}" data-preview-id="${escapeHtml(target.id)}" data-featured="${featured}">
       <div class="card-top">
         <div class="card-title">
           <p class="eyebrow">${escapeHtml(target.category)}</p>
@@ -2804,26 +2847,35 @@ function renderDashboard() {
     source: "Mention sweep",
     status: "offline"
   };
-  renderLabLogos();
-  renderBrandStrip(targets);
-  renderProfile(summary);
+  /* Systems tab — always rendered */
   renderFooter();
   renderMetrics(summary, github);
   renderDistributionCharts(summary, github);
   renderBandwidth(bandwidth, targets);
   renderFleetUptime(targets);
-  renderVisitorIntel(analytics);
   renderAlertBanner(alerts);
-  renderAlertTimeline(alerts);
-  renderTriggerPanel(triggers);
-  renderMentions(state.mentions);
-  renderGitHub(github);
-  renderIssues(summary);
-  renderApiInventory(targets, summary);
-  renderRecentProjects(targets);
-  renderPublishingSpeed(targets);
-  renderApiRegistry();
   renderRemoteSections(targets);
+
+  /* Re-render any already-visible tabs with fresh data */
+  if (tabRendered.intel) {
+    renderMentions(state.mentions);
+    renderGitHub(github);
+    renderIssues(summary);
+    renderVisitorIntel(analytics);
+    renderAlertTimeline(alerts);
+    renderTriggerPanel(triggers);
+    renderRecentProjects(targets);
+    renderPublishingSpeed(targets);
+  }
+  if (tabRendered.profile) {
+    renderLabLogos();
+    renderBrandStrip(targets);
+    renderProfile(summary);
+  }
+  if (tabRendered.registry) {
+    renderApiRegistry();
+    renderUniversalBlueprint();
+  }
 
   if (state.timeTravel) {
     elements.lastChecked.textContent = `Historical snapshot from ${formatDate(generatedAt)}`;
@@ -3348,19 +3400,8 @@ function renderNovelSection() {
 initTabs();
 initLightbox();
 bindEvents();
-renderLabLogos();
-renderProfile({ monitoredPages: 0 });
 renderFooter();
-renderMentions();
-renderApiRegistry();
-renderFieldRecord();
-renderHistoryGallery();
-renderOriginStory();
-renderUniversalBlueprint();
-renderNovelSection();
-renderVersionHistory();
 startClock();
-renderLocalTargets();
 applyModeUI();
 scheduleRefresh();
 refreshDashboard(true);

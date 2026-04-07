@@ -127,7 +127,9 @@ select:focus, input:focus { border-color: var(--accent); }
 
 /* ── Cards ── */
 .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1px; background: var(--border); }
-.site-card { background: var(--surface); display: grid; gap: 0; }
+.site-card { background: var(--surface); display: grid; gap: 0; transition: border-color var(--t); }
+.site-card[data-featured="true"] { border-left: 3px solid var(--accent); }
+.site-card:hover { border-color: var(--border-strong); }
 .card-top { padding: var(--space-3) var(--space-4); display: grid; gap: var(--space-1); border-bottom: 1px solid var(--border); }
 .card-title h3 { font-size: var(--text-base); font-weight: 700; color: var(--bright); margin: 0; }
 .card-title p { margin: 0; }
@@ -474,11 +476,22 @@ summary { cursor: pointer; color: var(--muted); font-size: var(--text-xs); text-
 
 @media (max-width: 640px) {
   .tab-brand { padding: 0 var(--space-2); font-size: var(--text-xs); }
-  .tab { padding: var(--space-2) var(--space-3); }
-  .metrics-row { grid-template-columns: 1fr; }
+  .tab { padding: var(--space-2) var(--space-2); font-size: 0.6rem; }
+  .metrics-row { grid-template-columns: 1fr 1fr; }
+  .metric-card { flex-direction: column; text-align: center; padding: var(--space-3); }
+  .metric-card .svg-gauge { width: 80px; height: 80px; }
   .card-grid { grid-template-columns: 1fr; }
   .fleet-row { grid-template-columns: 1fr; }
   .fleet-row-heatmap { display: none; }
-  .page-title { font-size: var(--text-lg); }
+  .page-header { flex-direction: column; gap: var(--space-3); }
+  .page-title { font-size: var(--text-xl); }
+  .page-controls { flex-wrap: wrap; }
+  .distribution-row { grid-template-columns: 1fr; }
+  .bandwidth-grid { grid-template-columns: 1fr; }
   .local-form { grid-template-columns: 1fr; }
+  .intel-grid { grid-template-columns: 1fr; }
+  .profile-layout { grid-template-columns: 1fr; }
+  .deploy-grid { grid-template-columns: 1fr; }
+  .version-entry { grid-template-columns: 50px 1fr; }
+  .version-meta { display: none; }
 }

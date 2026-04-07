@@ -219,25 +219,6 @@ const TARGETS = [
     surface: "static",
     addedAt: "2025-03-13"
   },
-  {
-    id: "geopolitics-dashboard",
-    label: "Global Geopolitics Dashboard",
-    url: "https://global-political-dashboard.netlify.app",
-    description: "Geopolitical intelligence dashboard on Netlify.",
-    category: "Monitoring",
-    surface: "active",
-    addedAt: "2025-02-15"
-  },
-  {
-    id: "middle-east-monitor",
-    label: "Middle East War Monitor",
-    url: "https://middleeast-war-monitor.netlify.app",
-    description: "Regional conflict monitoring dashboard — Dr Non's GlobeWatch System on Netlify.",
-    category: "Monitoring",
-    featured: true,
-    surface: "active",
-    addedAt: "2025-01-10"
-  }
 ];
 
 const API_INVENTORY = {
