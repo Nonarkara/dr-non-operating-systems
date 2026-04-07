@@ -852,6 +852,62 @@ function initTabs() {
    v5 — Version History
    ============================================================ */
 
+function formatBytes(bytes) {
+  if (!bytes) return "0 B";
+  if (bytes < 1024) return bytes + " B";
+  if (bytes < 1048576) return (bytes / 1024).toFixed(1) + " KB";
+  return (bytes / 1048576).toFixed(2) + " MB";
+}
+
+function renderBandwidth(bandwidth, targets) {
+  const container = document.getElementById("bandwidthSummary");
+  if (!container || !bandwidth) return;
+
+  const byPlatform = bandwidth.byPlatform || [];
+  const platformRows = byPlatform.map((p) => `
+    <div class="bandwidth-platform-row">
+      <span class="bandwidth-platform-name">${escapeHtml(p.platform)}</span>
+      <span>${p.count} targets</span>
+      <span>${formatBytes(p.bytes)}</span>
+      <span>${p.avgMs}ms avg</span>
+      <span>${p.errors ? '<span style="color:var(--danger)">' + p.errors + ' errors</span>' : '<span style="color:var(--success)">0 errors</span>'}</span>
+    </div>
+  `).join("");
+
+  const targetRows = [...targets]
+    .sort((a, b) => (b.bodyBytes || 0) - (a.bodyBytes || 0))
+    .slice(0, 10)
+    .map((t) => `
+      <div class="bandwidth-target-row">
+        <span>${escapeHtml(t.label)}</span>
+        <span>${formatBytes(t.bodyBytes)}</span>
+        <span>${t.responseTimeMs ?? "—"}ms</span>
+        <span>${escapeHtml(t.contentEncoding || "none")}</span>
+        <span>${escapeHtml(t.cacheStatus || "none")}</span>
+      </div>
+    `).join("");
+
+  container.innerHTML = `
+    <div class="bandwidth-stats">
+      <div class="fleet-stat"><span class="fleet-stat-label">Total transferred</span><span class="fleet-stat-value">${formatBytes(bandwidth.totalBytes)}</span></div>
+      <div class="fleet-stat"><span class="fleet-stat-label">Avg per target</span><span class="fleet-stat-value">${formatBytes(bandwidth.avgBytes)}</span></div>
+      <div class="fleet-stat"><span class="fleet-stat-label">Cache hits</span><span class="fleet-stat-value">${bandwidth.cacheHits}/${bandwidth.cacheTotal}</span></div>
+    </div>
+    <div class="bandwidth-grid">
+      <div class="bandwidth-section">
+        <div class="section-label">By Platform</div>
+        <div class="bandwidth-platform-header"><span>Platform</span><span>Targets</span><span>Bytes</span><span>Speed</span><span>Errors</span></div>
+        ${platformRows}
+      </div>
+      <div class="bandwidth-section">
+        <div class="section-label">By Target (top 10)</div>
+        <div class="bandwidth-target-header"><span>Target</span><span>Size</span><span>Speed</span><span>Encoding</span><span>Cache</span></div>
+        ${targetRows}
+      </div>
+    </div>
+  `;
+}
+
 const VERSION_HISTORY = [
   {
     version: "v1",
@@ -2736,7 +2792,7 @@ function renderDashboard() {
     return;
   }
 
-  const { generatedAt, github, mentions, summary, targets, analytics, alerts, triggers } = state.dashboard;
+  const { generatedAt, github, mentions, summary, targets, analytics, alerts, triggers, bandwidth } = state.dashboard;
   const snapshotBacked = state.lastLoadSource === "snapshot" || state.lastLoadSource === "snapshot-fallback";
   state.mentions = mentions || state.mentions || {
     checkedAt: generatedAt || null,
@@ -2754,6 +2810,7 @@ function renderDashboard() {
   renderFooter();
   renderMetrics(summary, github);
   renderDistributionCharts(summary, github);
+  renderBandwidth(bandwidth, targets);
   renderFleetUptime(targets);
   renderVisitorIntel(analytics);
   renderAlertBanner(alerts);

@@ -18,6 +18,7 @@ const PORT = Number(process.env.PORT || 4178);
 const ALERT_WEBHOOK_URL = process.env.ALERT_WEBHOOK_URL || "";
 const SUPABASE_URL = process.env.SUPABASE_URL || "";
 const SUPABASE_KEY = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_ANON_KEY || "";
+const SHEETS_WEBHOOK_URL = process.env.SHEETS_WEBHOOK_URL || "";
 
 const GITHUB_USERNAME = "Nonarkara";
 const GITHUB_REPO = "Nonarkara/dr-non-operating-systems";
@@ -711,6 +712,9 @@ function recordHistoryBucket(targetId, ok, responseTimeMs) {
     }
   }
 
+  if (!current.totalBytes) current.totalBytes = 0;
+  if (!current.responseTimes) current.responseTimes = [];
+
   while (buckets.length > HISTORY_BUCKET_LIMIT) {
     buckets.shift();
   }
@@ -858,6 +862,8 @@ async function runScheduledCheck() {
     if (data?.targets) {
       supabaseFlushAllDailyUptime(data.targets).catch(() => {});
       supabaseFlushVisitorDaily().catch(() => {});
+      supabaseInsertBandwidthChecks(data.targets).catch(() => {});
+      logToSheets(data.targets).catch(() => {});
     }
   } catch (error) {
     console.error(`[scheduler] Check failed: ${error.message}`);
@@ -1366,6 +1372,16 @@ function postCheckHook(target) {
 
   recordHistoryBucket(target.id, ok, target.responseTimeMs);
 
+  const entry = healthHistory.targets[target.id];
+  if (entry) {
+    const bucket = entry.buckets[entry.buckets.length - 1];
+    if (bucket) {
+      bucket.totalBytes = (bucket.totalBytes || 0) + (target.bodyBytes || 0);
+      if (!bucket.responseTimes) bucket.responseTimes = [];
+      if (target.responseTimeMs != null) bucket.responseTimes.push(target.responseTimeMs);
+    }
+  }
+
   const transition = detectHealthTransition(
     target.id,
     target.label,
@@ -1444,6 +1460,11 @@ async function supabaseUpsertDailyUptime(target) {
   const minMs = todayBuckets.reduce((m, b) => b.minMs != null && (m === null || b.minMs < m) ? b.minMs : m, null);
   const maxMs = todayBuckets.reduce((m, b) => b.maxMs != null && (m === null || b.maxMs > m) ? b.maxMs : m, null);
 
+  const allResponseTimes = todayBuckets.flatMap((b) => b.responseTimes || []);
+  const totalBytes = todayBuckets.reduce((s, b) => s + (b.totalBytes || 0), 0);
+  const cacheHits = todayBuckets.reduce((s, b) => s + (b.cacheHits || 0), 0);
+  const errorCount = checks - ups;
+
   await supabaseRequest("daily_uptime", "POST", {
     target_id: target.id,
     target_label: target.label,
@@ -1453,6 +1474,12 @@ async function supabaseUpsertDailyUptime(target) {
     avg_response_ms: checks > 0 ? Math.round(totalMs / checks) : null,
     min_response_ms: minMs,
     max_response_ms: maxMs,
+    p50_ms: computePercentile(allResponseTimes, 50),
+    p95_ms: computePercentile(allResponseTimes, 95),
+    avg_bytes: checks > 0 ? Math.round(totalBytes / checks) : null,
+    total_bytes: totalBytes || null,
+    cache_hit_pct: checks > 0 ? Math.round((cacheHits / checks) * 10000) / 100 : null,
+    error_count: errorCount,
     platform: target.platform || null,
     surface: target.surface || null,
     category: target.category || null
@@ -1521,6 +1548,66 @@ async function supabaseFlushVisitorDaily() {
   for (const projectId of Object.keys(analyticsData.projects)) {
     await supabaseUpsertVisitorDaily(projectId);
   }
+}
+
+/* ============================================================
+   Bandwidth Telemetry — Google Sheets + Supabase
+   ============================================================ */
+
+async function logToSheets(targets) {
+  if (!SHEETS_WEBHOOK_URL) return;
+
+  const checks = targets.map((t) => ({
+    timestamp: t.checkedAt,
+    target_id: t.id,
+    target_label: t.label,
+    platform: t.platform || "",
+    status_code: t.statusCode ?? "",
+    health: t.health?.code || "offline",
+    response_ms: t.responseTimeMs ?? "",
+    body_bytes: t.bodyBytes ?? 0,
+    content_encoding: t.contentEncoding || "none",
+    cache_status: t.cacheStatus || "none",
+    error_type: t.errorType || ""
+  }));
+
+  try {
+    await fetch(SHEETS_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ checks }),
+      signal: AbortSignal.timeout(10000)
+    });
+  } catch (error) {
+    console.error(`[sheets] Webhook failed: ${error.message}`);
+  }
+}
+
+async function supabaseInsertBandwidthChecks(targets) {
+  if (!supabaseEnabled()) return;
+
+  const rows = targets.map((t) => ({
+    target_id: t.id,
+    target_label: t.label,
+    platform: t.platform || null,
+    checked_at: t.checkedAt,
+    status_code: t.statusCode ?? null,
+    health: t.health?.code || "offline",
+    response_ms: t.responseTimeMs ?? null,
+    body_bytes: t.bodyBytes ?? null,
+    content_encoding: t.contentEncoding || "none",
+    cache_status: t.cacheStatus || "none",
+    error_type: t.errorType || null
+  }));
+
+  await supabaseRequest("bandwidth_checks", "POST", rows);
+}
+
+function computePercentile(arr, pct) {
+  if (!arr.length) return null;
+  const sorted = [...arr].sort((a, b) => a - b);
+  const idx = Math.ceil(sorted.length * (pct / 100)) - 1;
+  return sorted[Math.max(0, idx)];
 }
 
 async function fetchJson(url) {
@@ -1697,6 +1784,10 @@ async function checkTarget(target) {
     });
     const responseTimeMs = Date.now() - startedAt;
     const checkedAt = new Date().toISOString();
+    const bodyBytes = Number(headers["content-length"]) || body.length || 0;
+    const contentEncoding = headers["content-encoding"] || "none";
+    const cacheStatus = headers["cf-cache-status"] || headers["x-cache"] || headers["x-vercel-cache"] || "none";
+    const errorType = response.ok ? null : response.status >= 500 ? "http_5xx" : "http_4xx";
 
     recordHistory(target.id, {
       at: checkedAt,
@@ -1709,9 +1800,13 @@ async function checkTarget(target) {
     const result = {
       apis: buildApiInventory(target, finalUrl),
       addedAt: target.addedAt,
+      bodyBytes,
       category: target.category,
+      cacheStatus,
       checkedAt,
+      contentEncoding,
       description: target.description,
+      errorType,
       finalUrl,
       featured: Boolean(target.featured),
       health,
@@ -1751,12 +1846,18 @@ async function checkTarget(target) {
       statusCode: null
     });
 
+    const errType = error.name === "TimeoutError" ? "timeout" : /dns|enotfound|eai_again/i.test(error.message) ? "dns" : /tls|certificate/i.test(error.message) ? "tls" : "network";
+
     const result = {
       apis: buildApiInventory(target, target.url),
       addedAt: target.addedAt,
+      bodyBytes: 0,
       category: target.category,
+      cacheStatus: "none",
       checkedAt,
+      contentEncoding: "none",
       description: target.description,
+      errorType: errType,
       finalUrl: target.url,
       featured: Boolean(target.featured),
       health: {
@@ -2071,6 +2172,23 @@ async function getDashboardData(force = false) {
       mentions,
       summary,
       targets,
+      bandwidth: {
+        totalBytes: targets.reduce((s, t) => s + (t.bodyBytes || 0), 0),
+        avgBytes: targets.length ? Math.round(targets.reduce((s, t) => s + (t.bodyBytes || 0), 0) / targets.length) : 0,
+        cacheHits: targets.filter((t) => t.cacheStatus && t.cacheStatus !== "none" && t.cacheStatus !== "MISS").length,
+        cacheTotal: targets.filter((t) => t.cacheStatus && t.cacheStatus !== "none").length,
+        byPlatform: Object.entries(
+          targets.reduce((acc, t) => {
+            const p = t.platform || "Unknown";
+            if (!acc[p]) acc[p] = { bytes: 0, avgMs: 0, count: 0, errors: 0 };
+            acc[p].bytes += t.bodyBytes || 0;
+            acc[p].avgMs += t.responseTimeMs || 0;
+            acc[p].count++;
+            if (t.errorType) acc[p].errors++;
+            return acc;
+          }, {})
+        ).map(([platform, d]) => ({ platform, bytes: d.bytes, avgMs: Math.round(d.avgMs / d.count), count: d.count, errors: d.errors }))
+      },
       analytics: getAnalyticsSummary(),
       alerts: {
         active: getActiveIncidents(),
