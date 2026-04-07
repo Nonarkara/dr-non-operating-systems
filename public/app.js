@@ -1444,6 +1444,40 @@ function buildStarterJson(target) {
   };
 }
 
+function buildPreviewShell(target) {
+  const httpLabel = target.statusCode ? "HTTP " + target.statusCode : "No HTTP code";
+
+  if (target.screenshot) {
+    return '<div class="preview-shell preview-shell--screenshot"'
+      + ' aria-label="Open ' + escapeHtml(target.label) + ' live site"'
+      + ' data-open-url="' + escapeHtml(target.url) + '"'
+      + ' role="link" tabindex="0">'
+      + '<div class="preview-bar">'
+      + '<div class="preview-signal">' + makeStatusPill(target.health.label, target.health.code) + '</div>'
+      + '<div class="preview-http">' + makeStatusPill(httpLabel, target.health.code) + '</div>'
+      + '</div>'
+      + '<img class="preview-screenshot" src="' + escapeHtml(target.screenshot)
+      + '" alt="' + escapeHtml(target.label) + ' dashboard screenshot" loading="lazy" />'
+      + '<div class="preview-fade"></div>'
+      + '</div>';
+  }
+
+  return '<div class="preview-shell"'
+    + ' aria-label="Open ' + escapeHtml(target.label) + ' live site"'
+    + ' data-open-url="' + escapeHtml(target.url) + '"'
+    + ' role="link"'
+    + ' style="--preview-width: ' + PREVIEW_VIEWPORT.width + '; --preview-height: ' + PREVIEW_VIEWPORT.height + ';"'
+    + ' tabindex="0">'
+    + '<div class="preview-bar">'
+    + '<div class="preview-signal">' + makeStatusPill("Preview loading", "loading") + '</div>'
+    + '<div class="preview-http">' + makeStatusPill(httpLabel, target.health.code) + '</div>'
+    + '</div>'
+    + '<iframe loading="lazy" referrerpolicy="no-referrer" src="' + escapeHtml(target.url)
+    + '" title="' + escapeHtml(target.label) + ' preview"></iframe>'
+    + '<div class="preview-fade"></div>'
+    + '</div>';
+}
+
 function buildRemoteCard(target, options = {}) {
   const featured = options.featured === true;
   const classes = ["site-card"];
@@ -1501,21 +1535,7 @@ function buildRemoteCard(target, options = {}) {
         </div>
       </div>
 
-      <div
-        class="preview-shell"
-        aria-label="Open ${escapeHtml(target.label)} live site"
-        data-open-url="${escapeHtml(target.url)}"
-        role="link"
-        style="--preview-width: ${PREVIEW_VIEWPORT.width}; --preview-height: ${PREVIEW_VIEWPORT.height};"
-        tabindex="0"
-      >
-        <div class="preview-bar">
-          <div class="preview-signal">${makeStatusPill("Preview loading", "loading")}</div>
-          <div class="preview-http">${makeStatusPill(target.statusCode ? `HTTP ${target.statusCode}` : "No HTTP code", target.health.code)}</div>
-        </div>
-        <iframe loading="lazy" referrerpolicy="no-referrer" src="${escapeHtml(target.url)}" title="${escapeHtml(target.label)} preview"></iframe>
-        <div class="preview-fade"></div>
-      </div>
+      ${buildPreviewShell(target)}
 
       <div class="history">
         <div class="history-visual">

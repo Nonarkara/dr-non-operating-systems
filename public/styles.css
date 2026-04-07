@@ -1434,6 +1434,20 @@ select:disabled {
   pointer-events: none;
 }
 
+/* Screenshot preview mode */
+.preview-screenshot {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top left;
+  transition: transform var(--t-slow);
+}
+
+.preview-shell--screenshot:hover .preview-screenshot {
+  transform: scale(1.03);
+}
+
 .preview-bar {
   position: absolute;
   inset: 0 auto auto 0;

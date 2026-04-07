@@ -85,6 +85,78 @@ const MENTION_FEEDS = [
 
 const TARGETS = [
   {
+    id: "middle-east-monitor",
+    label: "Middle East War Monitor",
+    url: "https://middleeast-war-monitor.netlify.app",
+    description: "Regional conflict monitoring — Dr Non's GlobeWatch System. Real-time fire detection, market radar, diplomacy tracker.",
+    screenshot: "./screenshots/middle-east-monitor.jpg",
+    category: "Monitoring",
+    featured: true,
+    surface: "active",
+    addedAt: "2025-01-10"
+  },
+  {
+    id: "geopolitics-dashboard",
+    label: "Global Geopolitics Dashboard",
+    url: "https://global-political-dashboard.netlify.app",
+    description: "Thailand Tri-Border Command — geopolitical intelligence with satellite imagery, conflict data, and cross-border analysis.",
+    screenshot: "./screenshots/geopolitics-dashboard.jpg",
+    category: "Monitoring",
+    featured: true,
+    surface: "active",
+    addedAt: "2025-02-15"
+  },
+  {
+    id: "phuket-dashboard",
+    label: "Phuket Island Command",
+    url: "https://phuket-dashboard.vercel.app",
+    description: "Coastal operations dashboard — island chokepoints, flights, marine traffic, and environmental monitoring.",
+    screenshot: "./screenshots/phuket-dashboard.jpg",
+    category: "Monitoring",
+    surface: "active",
+    addedAt: "2026-03-13"
+  },
+  {
+    id: "mtt-smart-city-monitor",
+    label: "Muang Thong Thani Monitor",
+    url: "https://mtt-smart-city-monitor-web.onrender.com",
+    description: "IMPACT Muang Thong Thani smart city dashboard — PM2.5 guidance, city signals, and resilience monitoring.",
+    screenshot: "./screenshots/mtt-smart-city-monitor.jpg",
+    category: "Monitoring",
+    surface: "active",
+    addedAt: "2025-03-08"
+  },
+  {
+    id: "slic-index-v2",
+    label: "SLIC Index 2026",
+    url: "https://nonarkara.github.io/slic-index-V2/",
+    description: "Smart Liveable Cities Index — 157 cities ranked across 5 dimensions with interactive spider diagrams.",
+    screenshot: "./screenshots/slic-index-v2.jpg",
+    repo: "Nonarkara/slic-index-V2",
+    category: "Index",
+    featured: true,
+    surface: "static",
+    addedAt: "2026-03-14"
+  },
+  {
+    id: "sabai-sabai",
+    label: "Sabai Sabai",
+    url: "https://sabai-sabai-4uh.pages.dev",
+    description: "Sabai Sabai platform on Cloudflare Pages.",
+    category: "Platform",
+    surface: "active",
+    addedAt: "2026-03-26"
+  },
+  {
+    id: "city-tech-atlas",
+    label: "City Tech Atlas",
+    url: "https://citytechatlas.lovable.app",
+    description: "Lovable-hosted smart city solution atlas.",
+    category: "Directory",
+    surface: "active",
+    addedAt: "2025-03-12"
+  },
+  {
     id: "scl-landing-page",
     label: "SCL Landing Page",
     url: "https://nonarkara.github.io/scl-landing-page/",
@@ -103,16 +175,6 @@ const TARGETS = [
     category: "Website",
     surface: "static",
     addedAt: "2025-03-11"
-  },
-  {
-    id: "city-tech-atlas",
-    label: "City Tech Atlas",
-    url: "https://citytechatlas.lovable.app",
-    description: "Lovable-hosted smart city solution atlas.",
-    category: "Directory",
-    featured: true,
-    surface: "active",
-    addedAt: "2025-03-12"
   },
   {
     id: "techhuntthailand-viabus",
@@ -144,15 +206,6 @@ const TARGETS = [
     addedAt: "2025-03-13"
   },
   {
-    id: "sabai-sabai",
-    label: "Sabai Sabai",
-    url: "https://sabai-sabai-4uh.pages.dev",
-    description: "Sabai Sabai platform on Cloudflare Pages.",
-    category: "Platform",
-    surface: "active",
-    addedAt: "2026-03-26"
-  },
-  {
     id: "geopolitics-dashboard",
     label: "Global Geopolitics Dashboard",
     url: "https://global-political-dashboard.netlify.app",
@@ -174,9 +227,15 @@ const TARGETS = [
 ];
 
 const API_INVENTORY = {
+  "middle-east-monitor": [],
+  "geopolitics-dashboard": [],
+  "phuket-dashboard": [],
+  "mtt-smart-city-monitor": [],
+  "slic-index-v2": [],
+  "sabai-sabai": [],
+  "city-tech-atlas": [],
   "scl-landing-page": [],
   raat: [],
-  "city-tech-atlas": [],
   "techhuntthailand-viabus": [],
   "ascn-smart-cities-network": [],
   "asean-csco-app": []
@@ -1659,6 +1718,7 @@ async function checkTarget(target) {
       repo,
       responseTimeMs,
       statusCode: response.status,
+      screenshot: target.screenshot || null,
       surface: target.surface,
       url: target.url
     };
@@ -1707,6 +1767,7 @@ async function checkTarget(target) {
       repo,
       responseTimeMs,
       statusCode: null,
+      screenshot: target.screenshot || null,
       surface: target.surface,
       url: target.url
     };
