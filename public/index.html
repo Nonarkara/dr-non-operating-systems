@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dr. Non's Operating Systems v4</title>
+    <title>Dr. Non's Operating Systems v5</title>
     <script>
       window.__assetVersion = String(Date.parse(document.lastModified) || Date.now());
       const stylesheet = document.createElement("link");
@@ -13,453 +13,251 @@
     </script>
   </head>
   <body>
-    <a href="#metricsGrid" class="skip-link">Skip to dashboard</a>
-    <div class="bg-orbit orbit-a"></div>
-    <div class="bg-orbit orbit-b"></div>
-    <div class="grid-glow"></div>
+    <a href="#tab-systems" class="skip-link">Skip to dashboard</a>
 
-    <!-- Time Travel Bar (v4) -->
-    <div id="timeTravelBar" class="time-travel-bar" hidden>
-      <div class="time-travel-inner">
-        <span class="time-travel-icon">&#9202;</span>
-        <span class="time-travel-label" id="timeTravelLabel">Select a snapshot</span>
-        <input type="range" id="timeTravelSlider" class="time-travel-slider" min="0" max="0" value="0" />
-        <span class="time-travel-date" id="timeTravelDate">—</span>
-        <button id="timeTravelReturn" class="button button-primary time-travel-return" type="button">Return to live</button>
-      </div>
-    </div>
-
-    <nav class="top-nav" aria-label="Section navigation">
-      <div class="top-nav-inner">
-        <span class="top-nav-brand">NON.OS <span class="top-nav-version">v4</span></span>
-        <div class="top-nav-links">
-          <a href="#profileDossier" class="top-nav-link">Profile</a>
-          <a href="#originStoryHead" class="top-nav-link">Origin</a>
-          <a href="#novelSection" class="top-nav-link">Novel</a>
-          <a href="#fieldRecordHead" class="top-nav-link">Field</a>
-          <a href="#historySectionHead" class="top-nav-link">Archive</a>
-          <a href="#apiRegistryHead" class="top-nav-link">APIs</a>
-          <a href="#ops-inventory" class="top-nav-link top-nav-link-live" id="navOpsLink">Ops</a>
-        </div>
-        <div class="top-nav-clock" id="navClock"></div>
-        <div class="top-nav-status" id="navStatus"></div>
-      </div>
+    <nav class="tab-bar" aria-label="Main navigation">
+      <span class="tab-brand">NON.OS<span class="tab-version">v5</span></span>
+      <a href="#systems" class="tab tab--active" data-tab="systems">Systems</a>
+      <a href="#intel" class="tab" data-tab="intel">Intelligence</a>
+      <a href="#profile" class="tab" data-tab="profile">Profile</a>
+      <a href="#registry" class="tab" data-tab="registry">Registry</a>
+      <a href="#archives" class="tab" data-tab="archives">Archives</a>
+      <span class="tab-spacer"></span>
+      <span class="tab-clock" id="navClock">--:--:--</span>
+      <span class="tab-status" id="navStatus"></span>
     </nav>
 
-    <main class="shell">
-      <header class="hero">
-        <div class="brand-rack">
-          <div class="brand-rack-head">
-            <p class="eyebrow">Institutional marks</p>
-            <p class="brand-rack-copy">
-              Parent organizations, programs, and partner identities behind the work.
-            </p>
+    <main class="main">
+
+      <!-- ════════ SYSTEMS TAB ════════ -->
+      <section id="tab-systems" class="tab-panel">
+
+        <header class="page-header">
+          <div class="page-header-left">
+            <h1 class="page-title">Dr. Non's Operating Systems</h1>
+            <p class="page-subtitle">Public systems, current work, and operating record.</p>
           </div>
+          <div class="page-header-right">
+            <div class="status-bar">
+              <div class="status-pill" id="dashboardState" aria-live="polite">Waiting for first scan</div>
+              <div class="status-meta">
+                <span id="lastChecked">No checks yet</span>
+                <span id="clock">--:--:--</span>
+              </div>
+            </div>
+            <div class="page-controls">
+              <button id="refreshButton" class="btn" type="button">Run live scan</button>
+              <button id="timeTravelToggle" class="btn btn--muted" type="button">History</button>
+              <label class="select-wrap">
+                <span>Auto</span>
+                <select id="refreshSelect">
+                  <option value="15000">15s</option>
+                  <option value="30000">30s</option>
+                  <option value="60000">1m</option>
+                  <option value="0">Off</option>
+                </select>
+              </label>
+            </div>
+          </div>
+        </header>
+
+        <div id="timeTravelBar" class="time-travel-bar" hidden>
+          <span class="time-travel-label" id="timeTravelLabel">Select a snapshot</span>
+          <input type="range" id="timeTravelSlider" class="time-travel-slider" min="0" max="0" value="0" />
+          <span class="time-travel-date" id="timeTravelDate">&mdash;</span>
+          <button id="timeTravelReturn" class="btn" type="button">Return to live</button>
+        </div>
+
+        <section id="alertBanner" class="alert-banner" hidden aria-live="polite"></section>
+
+        <section class="metrics-row" id="metricsGrid"></section>
+
+        <section id="distributionCharts" class="distribution-row"></section>
+
+        <section class="section-block">
+          <div class="section-label">Fleet Uptime</div>
+          <div id="fleetUptime" class="fleet-uptime"></div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-label">Featured</div>
+          <div id="featuredGrid" class="card-grid"></div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-label">Active Apps</div>
+          <div id="activeGrid" class="card-grid"></div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-label">Static Pages</div>
+          <div id="staticGrid" class="card-grid"></div>
+        </section>
+
+        <p id="modeNote" class="mode-note"></p>
+      </section>
+
+      <!-- ════════ INTELLIGENCE TAB ════════ -->
+      <section id="tab-intel" class="tab-panel" hidden>
+
+        <section class="section-block">
+          <div class="section-label">Visitor Intelligence</div>
+          <div id="visitorIntel" class="visitor-intel"></div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-label">Alert Timeline</div>
+          <div id="alertTimeline" class="alert-timeline"></div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-label">Debug Triggers</div>
+          <div id="triggerPanel" class="trigger-panel"></div>
+        </section>
+
+        <div class="intel-grid">
+          <section class="panel" id="mentionsPanel">
+            <div class="panel-head">
+              <div class="section-label">Latest Mentions</div>
+              <div class="panel-actions">
+                <div id="mentionsStatus"></div>
+                <button id="mentionsRefreshButton" class="btn btn--muted" type="button">Refresh</button>
+              </div>
+            </div>
+            <p id="mentionsMeta" class="meta-note">Sweeping recent public mentions across English and Thai name variants.</p>
+            <a id="mentionsSearchLink" class="meta-link" href="https://news.google.com/" rel="noreferrer" target="_blank">Open search</a>
+            <div id="mentionsList" class="mention-list"></div>
+          </section>
+
+          <section class="panel" id="githubPanel">
+            <div class="section-label">GitHub</div>
+            <div id="githubSummary" class="github-summary"></div>
+          </section>
+
+          <section class="panel" id="issuePanel">
+            <div class="section-label">Current Issues</div>
+            <div id="issueList" class="issue-list"></div>
+          </section>
+        </div>
+
+        <section class="section-block">
+          <div class="section-label">Recent Deployments</div>
+          <div class="deploy-grid">
+            <div id="recentProjectsList" class="document-list"></div>
+            <div id="publishingGraph" class="publishing-graph"></div>
+          </div>
+        </section>
+
+      </section>
+
+      <!-- ════════ PROFILE TAB ════════ -->
+      <section id="tab-profile" class="tab-panel" hidden>
+
+        <div class="profile-layout">
+          <section class="panel">
+            <div class="section-label">Principal</div>
+            <h2 class="profile-name">Dr. Non Arkaraprasertkul</h2>
+            <div id="profileSummary" class="profile-summary"></div>
+            <div id="profileCredentialTags" class="tag-cluster"></div>
+            <div id="profileMetricStrip" class="profile-metric-strip"></div>
+          </section>
+
+          <section class="panel">
+            <div class="section-label">Channels</div>
+            <div id="profileLinks" class="document-list"></div>
+          </section>
+
+          <section class="panel">
+            <div class="section-label">Resume</div>
+            <div id="profileDocs" class="document-list"></div>
+          </section>
+
+          <section class="panel panel--wide">
+            <div class="section-label">Research Highlights</div>
+            <div id="profilePublications" class="publication-list"></div>
+          </section>
+        </div>
+
+        <section class="section-block">
+          <div class="section-label">Institutional Partners</div>
           <div id="labLogoStrip" class="logo-strip"></div>
-          <div class="surface-rack-head">
-            <p class="eyebrow">Monitored surfaces</p>
-            <p class="brand-rack-copy">
-              Live apps, static pages, and deployments tracked from this dashboard.
-            </p>
-          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-label">Monitored Surfaces</div>
           <div id="brandStrip" class="surface-strip"></div>
-        </div>
+        </section>
 
-        <div class="hero-copy">
-          <p class="eyebrow">Non Project Summary v4</p>
-          <h1>Dr. Non's Operating Systems</h1>
-          <p class="lede">
-            Public systems, current work, and operating record in one live wall.
-            Public mode stays snapshot-backed. Local mode runs the real scan.
-          </p>
-        </div>
-
-        <div class="hero-controls">
-          <button id="refreshButton" class="button button-primary utility-button" type="button">
-            Run live scan
-          </button>
-          <a
-            id="manualScanLink"
-            class="button button-secondary utility-button"
-            href="https://github.com/Nonarkara/dr-non-operating-systems/actions/workflows/update-dashboard-snapshot.yml"
-            rel="noreferrer"
-            target="_blank"
-          >
-            Open snapshot workflow
-          </a>
-          <button id="openAllButton" class="button button-secondary utility-button" type="button">
-            Open all live pages
-          </button>
-          <button id="timeTravelToggle" class="button button-secondary utility-button" type="button">
-            History
-          </button>
-          <label class="select-wrap">
-            <span>Auto refresh</span>
-            <select id="refreshSelect">
-              <option value="15000">15 sec</option>
-              <option value="30000">30 sec</option>
-              <option value="60000">1 min</option>
-              <option value="120000">2 min</option>
-              <option value="0">Off</option>
-            </select>
-          </label>
-          <p id="modeNote" class="panel-note control-note"></p>
-        </div>
-
-        <div class="status-bar">
-          <div class="status-pill status-pill-neutral" id="dashboardState" aria-live="polite">
-            Waiting for first scan
-          </div>
-          <div class="minor-meta">
-            <span id="lastChecked">No checks yet</span>
-            <span id="clock">--:--:--</span>
-          </div>
-        </div>
-      </header>
-
-      <!-- Alert banner (Phase 4) -->
-      <section id="alertBanner" class="alert-banner" hidden aria-live="polite"></section>
-
-      <section class="metrics-grid" id="metricsGrid"></section>
-
-      <!-- Distribution Charts (v4) -->
-      <section id="distributionCharts" class="distribution-grid"></section>
-
-      <!-- Fleet Uptime Overview (Phase 1) -->
-      <section id="fleetUptimeHead" class="section-head">
-        <div>
-          <p class="eyebrow">System health</p>
-          <h2>Fleet Uptime</h2>
-        </div>
-        <p class="section-copy">
-          Hourly health heatmap across all monitored targets. Green means healthy, amber means degraded, red means down.
-        </p>
-      </section>
-      <section id="fleetUptime" class="fleet-uptime"></section>
-
-      <!-- Visitor Intelligence (Phase 3) -->
-      <section id="visitorIntelHead" class="section-head">
-        <div>
-          <p class="eyebrow">Traffic signal</p>
-          <h2>Visitor Intelligence</h2>
-        </div>
-        <p class="section-copy">
-          Who is using the systems, where they are from, and how systems respond.
-        </p>
-      </section>
-      <section id="visitorIntel" class="visitor-intel"></section>
-
-      <!-- Alert Timeline (Phase 4) -->
-      <section id="alertTimelineHead" class="section-head">
-        <div>
-          <p class="eyebrow">Incident log</p>
-          <h2>Alert Timeline</h2>
-        </div>
-        <p class="section-copy">
-          Health state transitions, downtime events, and recovery records.
-        </p>
-      </section>
-      <section id="alertTimeline" class="alert-timeline"></section>
-
-      <!-- Debug Triggers (Phase 5) -->
-      <section id="triggerPanelHead" class="section-head">
-        <div>
-          <p class="eyebrow">Auto-debug</p>
-          <h2>Debug Triggers</h2>
-        </div>
-        <p class="section-copy">
-          Open triggers for external tools (Claude Code, VS Code, Ollama) to claim and auto-fix.
-        </p>
-      </section>
-      <section id="triggerPanel" class="trigger-panel"></section>
-
-      <section class="insight-grid">
-        <article class="panel" id="recentProjectsPanel">
-          <div class="panel-head">
-            <p class="panel-kicker">Rollout record</p>
-            <h2>Recent Projects</h2>
-          </div>
-          <div id="recentProjectsList" class="document-list"></div>
-          <p class="panel-note">The last three target additions to this dashboard.</p>
-        </article>
-
-        <article class="panel" id="publishingSpeedPanel">
-          <div class="panel-head">
-            <p class="panel-kicker">Throughput</p>
-            <h2>Publishing Speed</h2>
-          </div>
-          <div id="publishingGraph" class="publishing-graph"></div>
-          <p class="panel-note">Frequency of app deployments and dashboard registrations.</p>
-        </article>
       </section>
 
-      <section id="profileDossier" class="section-head">
-        <div>
-          <p class="eyebrow">Profile dossier</p>
-          <h2>CV, research, and operating profile</h2>
-        </div>
-        <p class="section-copy">
-          Current resume, direct channels, and selected research. Nothing extra.
-        </p>
-      </section>
+      <!-- ════════ REGISTRY TAB ════════ -->
+      <section id="tab-registry" class="tab-panel" hidden>
 
-      <section class="profile-layout">
-        <article class="panel profile-panel profile-panel-primary">
-          <div class="panel-head">
-            <p class="panel-kicker">Principal</p>
-            <h2>Dr. Non Arkaraprasertkul</h2>
-          </div>
-          <div id="profileSummary" class="profile-summary"></div>
-          <div id="profileCredentialTags" class="tag-cluster"></div>
-          <div id="profileMetricStrip" class="profile-metric-strip"></div>
-        </article>
+        <section id="apiRegistry" class="api-registry"></section>
 
-        <article class="panel profile-panel">
-          <div class="panel-head">
-            <p class="panel-kicker">Public profiles</p>
-            <h2>Channels and contact</h2>
-          </div>
-          <div id="profileLinks" class="document-list"></div>
-        </article>
-
-        <article class="panel profile-panel">
-          <div class="panel-head">
-            <p class="panel-kicker">Resume</p>
-            <h2>March 2026</h2>
-          </div>
-          <div id="profileDocs" class="document-list"></div>
-        </article>
-
-        <article class="panel profile-panel profile-panel-wide">
-          <div class="panel-head">
-            <p class="panel-kicker">Selected publications</p>
-            <h2>Research highlights</h2>
-          </div>
-          <div id="profilePublications" class="publication-list"></div>
-        </article>
-      </section>
-      
-      <section id="originStoryHead" class="section-head">
-        <div>
-          <p class="eyebrow">Declassified</p>
-          <h2>The Origin Story</h2>
-        </div>
-        <p class="section-copy">
-          How one person mass-produced the future by talking to machines.
-          No team. No funding round. No permission.
-        </p>
-      </section>
-      <section id="originStory" class="origin-story"></section>
-
-      <section id="novelSection" class="novel-section">
-        <article class="panel novel-panel">
-          <div class="panel-head">
-            <p class="panel-kicker">Terminal archive: Lit-01</p>
-            <h2>Designated Survivor: Bangkok</h2>
-          </div>
-          <div id="novelContent" class="novel-content">
-            <!-- Rendered via app.js -->
-          </div>
-        </article>
-      </section>
-
-      <section class="mention-zone">
-
-        <article class="panel mention-panel" id="mentionsPanel">
-          <div class="panel-head mention-panel-head">
-            <div>
-              <p class="panel-kicker">Public signal</p>
-              <h2>Latest mentions</h2>
-            </div>
-            <div class="mention-actions">
-              <div id="mentionsStatus" class="mention-status"></div>
-              <button
-                id="mentionsRefreshButton"
-                class="button button-secondary utility-button"
-                type="button"
-              >
-                Refresh mentions
-              </button>
-            </div>
-          </div>
-          <div class="mention-toolbar">
-            <p id="mentionsMeta" class="panel-note">
-              Sweeping recent public mentions across English and Thai name variants.
-            </p>
-            <a
-              id="mentionsSearchLink"
-              class="action-link"
-              href="https://news.google.com/"
-              rel="noreferrer"
-              target="_blank"
-            >
-              Open search
-            </a>
-          </div>
-          <div id="mentionsList" class="mention-list"></div>
-        </article>
-      </section>
-
-      <section class="insight-grid" id="signalGrid">
-        <article class="panel" id="githubPanel">
-          <div class="panel-head">
-            <p class="panel-kicker">Repository signal</p>
-            <h2>GitHub</h2>
-          </div>
-          <div id="githubSummary" class="github-summary"></div>
-        </article>
-
-        <article class="panel" id="issuePanel">
-          <div class="panel-head">
-            <p class="panel-kicker">Attention</p>
-            <h2>Current Issues</h2>
-          </div>
-          <div id="issueList" class="issue-list"></div>
-          <p class="panel-note">Non-live targets stay visible here for quick triage.</p>
-        </article>
-      </section>
-
-      <section id="apiRegistryHead" class="section-head">
-        <div>
-          <p class="eyebrow">Full inventory</p>
-          <h2>API Registry</h2>
-        </div>
-        <p class="section-copy">
-          Every external and internal API powering the fleet, grouped by function.
-        </p>
-      </section>
-      <section id="apiRegistry" class="api-registry"></section>
-
-      <section id="fieldRecordHead" class="section-head">
-        <div>
-          <p class="eyebrow">Field Intelligence</p>
-          <h2>The Human Record</h2>
-        </div>
-        <p class="section-copy">
-          200+ stakeholder workshops. 77 provinces. Years before the dashboards existed.
-          This is where the data comes from.
-        </p>
-      </section>
-      <section id="fieldRecord" class="field-record"></section>
-
-      <section id="historySectionHead" class="section-head">
-        <div>
-          <p class="eyebrow">Operating record</p>
-          <h2>History of Development</h2>
-        </div>
-        <p class="section-copy">
-          Archive of project snapshots and evolutionary steps before current upgrades.
-        </p>
-      </section>
-      <section id="historyGallery" class="history-gallery"></section>
-
-      <section class="section-head">
-        <div>
-          <p class="eyebrow">Primary surface</p>
-          <h2>Middle East Monitor</h2>
-        </div>
-        <p class="section-copy">
-          Promoted as the main wall tile, with the rest of the fleet grouped below by
-          active apps and static pages.
-        </p>
-      </section>
-      <section id="featuredGrid" class="featured-grid"></section>
-
-      <section class="section-head">
-        <div>
-          <p class="eyebrow">Live systems</p>
-          <h2>Active Apps &amp; APIs</h2>
-        </div>
-        <p class="section-copy">
-          Server-checked live apps, monitors, bots, and interactive tools.
-        </p>
-      </section>
-      <section id="activeGrid" class="card-grid active-grid"></section>
-
-      <section class="section-head">
-        <div>
-          <p class="eyebrow">Static surfaces</p>
-          <h2>Static Pages</h2>
-        </div>
-        <p class="section-copy">
-          Lightweight brochure, landing, and GitHub Pages style deployments.
-        </p>
-      </section>
-      <section id="staticGrid" class="card-grid static-grid"></section>
-
-      <section id="ops-inventory" class="section-head">
-        <div>
-          <p class="eyebrow">Per machine</p>
-          <h2>Local Targets</h2>
-        </div>
-        <p class="section-copy">
-          Save localhost or LAN URLs in this browser. They are useful when the
-          dashboard runs on the same machine, or when those services are exposed
-          over HTTPS.
-        </p>
-      </section>
-
-      <section id="localLayout" class="local-layout">
-        <form id="localForm" class="panel local-form">
-          <div class="panel-head">
-            <p class="panel-kicker">Add local page</p>
-            <h2>Machine-specific feed</h2>
-          </div>
-          <label>
-            <span>Label</span>
-            <input id="localLabel" name="label" placeholder="Bangkok API" required />
-          </label>
-          <label>
-            <span>URL</span>
-            <input
-              id="localUrl"
-              name="url"
-              placeholder="http://127.0.0.1:4000"
-              required
-              type="url"
-            />
-          </label>
-          <button class="button button-primary" type="submit">Add local target</button>
-          <p class="panel-note">
-            Browser-only preview mode is used here. HTTP status is not available for
-            cross-origin local pages unless you run the dashboard on the same machine
-            and protocol combination that the browser allows.
-          </p>
-        </form>
-
-        <div class="local-stack">
-          <article class="panel api-panel">
-            <div class="panel-head">
-              <p class="panel-kicker">Runtime inventory</p>
-              <h2>App APIs</h2>
-            </div>
-            <div id="apiSummary" class="panel-note"></div>
-            <div id="apiGrid" class="api-grid"></div>
-          </article>
-
-          <section id="localGrid" class="card-grid local-grid"></section>
-
-          <article class="panel blueprint-panel" id="universalBlueprintPanel">
-            <div class="panel-head">
-              <p class="panel-kicker">Machine-to-machine reference</p>
-              <h2>Universal API Blueprint</h2>
-            </div>
-            <p class="panel-note">
-              Comprehensive JSON manifest of all system endpoints, including quality scoring and operational constraints.
-            </p>
+        <section id="localLayout" class="local-layout">
+          <div class="section-label">Local Targets</div>
+          <form id="localForm" class="local-form panel">
+            <label><span>Label</span><input id="localLabel" name="label" placeholder="Bangkok API" required /></label>
+            <label><span>URL</span><input id="localUrl" name="url" placeholder="http://127.0.0.1:4000" required type="url" /></label>
+            <button class="btn" type="submit">Add</button>
+          </form>
+          <div id="localGrid" class="card-grid"></div>
+          <section class="panel" id="universalBlueprintPanel">
+            <div class="section-label">Universal API Blueprint</div>
             <div class="blueprint-actions">
-              <button id="copyBlueprintButton" class="button button-primary">Copy Master Blueprint JSON</button>
+              <button id="copyBlueprintButton" class="btn">Copy JSON</button>
             </div>
             <pre id="blueprintCode" class="blueprint-code"></pre>
-          </article>
-        </div>
+          </section>
+        </section>
+
+        <div id="apiSummary" class="meta-note"></div>
+        <div id="apiGrid" class="api-grid"></div>
+
       </section>
 
-      <footer class="site-footer">
-        <div id="footerTerminal" class="footer-terminal"></div>
-        <div id="copyrightNote" class="footer-fineprint"></div>
-      </footer>
+      <!-- ════════ ARCHIVES TAB ════════ -->
+      <section id="tab-archives" class="tab-panel" hidden>
+
+        <section class="section-block">
+          <div class="section-label">Version History</div>
+          <div id="versionHistory" class="version-history"></div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-label">The Origin Story</div>
+          <div id="originStory" class="origin-story"></div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-label">Designated Survivor: Bangkok</div>
+          <div id="novelContent" class="novel-content"></div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-label">Field Intelligence &mdash; The Human Record</div>
+          <div id="fieldRecord" class="field-record"></div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-label">Development Gallery</div>
+          <div id="historyGallery" class="history-gallery"></div>
+        </section>
+
+      </section>
+
     </main>
+
+    <footer class="site-footer">
+      <div id="footerTerminal" class="footer-terminal"></div>
+      <div id="copyrightNote" class="footer-fineprint"></div>
+    </footer>
+
+    <!-- Hidden refs for legacy compat -->
+    <div hidden id="ops-inventory"></div>
+    <div hidden id="openAllButton"></div>
+    <div hidden id="manualScanLink" data-href="https://github.com/Nonarkara/dr-non-operating-systems/actions/workflows/update-dashboard-snapshot.yml"></div>
 
     <script>
       const appScript = document.createElement("script");

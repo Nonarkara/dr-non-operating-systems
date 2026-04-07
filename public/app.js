@@ -819,8 +819,110 @@ const elements = {
   fleetUptime: document.querySelector("#fleetUptime"),
   visitorIntel: document.querySelector("#visitorIntel"),
   alertTimeline: document.querySelector("#alertTimeline"),
-  triggerPanel: document.querySelector("#triggerPanel")
+  triggerPanel: document.querySelector("#triggerPanel"),
+  versionHistory: document.querySelector("#versionHistory")
 };
+
+/* ============================================================
+   v5 — Tab Switching
+   ============================================================ */
+
+function switchTab(tabId) {
+  document.querySelectorAll(".tab-panel").forEach((p) => { p.hidden = p.id !== "tab-" + tabId; });
+  document.querySelectorAll(".tab[data-tab]").forEach((t) => {
+    t.classList.toggle("tab--active", t.dataset.tab === tabId);
+  });
+  window.history.replaceState(null, "", "#" + tabId);
+}
+
+function initTabs() {
+  for (const tab of document.querySelectorAll(".tab[data-tab]")) {
+    tab.addEventListener("click", (e) => {
+      e.preventDefault();
+      switchTab(tab.dataset.tab);
+    });
+  }
+  const hash = window.location.hash.replace("#", "");
+  if (hash && document.getElementById("tab-" + hash)) {
+    switchTab(hash);
+  }
+}
+
+/* ============================================================
+   v5 — Version History
+   ============================================================ */
+
+const VERSION_HISTORY = [
+  {
+    version: "v1",
+    date: "2025-03",
+    title: "Genesis",
+    description: "The first dashboard. A static HTML page listing every project Dr. Non had deployed. Targets added one by one. No server, no API, no monitoring. Just a list and a link.",
+    commits: ["Add Dr. Non operating systems dashboard", "Add ASCN smart cities network target", "Soften dashboard card geometry"],
+    aesthetic: "Raw HTML"
+  },
+  {
+    version: "v1.5",
+    date: "2025-03",
+    title: "Terminal Era",
+    description: "Shifted to a monospace terminal aesthetic. Tightened the density three times in two days. Removed photos. Added cache busting. The page started to feel like a command line.",
+    commits: ["Shift UI to terminal aesthetic", "Refine terminal layout density", "Tighten terminal layout further", "Remove photo sections"],
+    aesthetic: "Terminal / Monospace"
+  },
+  {
+    version: "v2",
+    date: "2025-03",
+    title: "The Matrix",
+    description: "Full sci-fi overhaul. Named after the Nebuchadnezzar. Added the Origin Story with five acts and two portraits. Integrated 'Designated Survivor: Bangkok' — a novel written in parallel. Photo archives of every prototype ever built.",
+    commits: ["Implement Nebuchadnezzar/Matrix aesthetic", "Integrate Designated Survivor: Bangkok novel", "Add Origin Story section with five-act narrative"],
+    aesthetic: "Matrix / Cyberpunk"
+  },
+  {
+    version: "v3",
+    date: "2025-03",
+    title: "Operations Command",
+    description: "Architecture shift: snapshot-first static deployment. The dashboard could now run on Vercel or GitHub Pages without a server. Added Google News mention sweeps, publishing speed graphs, and GitHub integration. The page became an operations center.",
+    commits: ["Ship operating systems v3", "Convert to snapshot-first static architecture", "Add mentions signal"],
+    aesthetic: "Dark Operations"
+  },
+  {
+    version: "v4",
+    date: "2026-03",
+    title: "Cyber Modernism",
+    description: "Complete visual redesign. Glass-morphism, CRT scanlines, orbital animations. Built a monitoring platform from scratch: persistent health history, scheduled checks, visitor analytics, Supabase long-term database. Added SVG gauge library (arc gauges, donut charts, sparklines). Time travel through historical snapshots. Auto-debug triggers for Claude Code and VS Code. Red Dot Design Award polish: typography scale, spacing grid, accessibility. Tools fighting each other — Claude Code, Codex, Antigravity, VS Code — but the machines obeyed.",
+    commits: ["Ship Operating Systems v4 — Cyber Modernism redesign", "Add monitoring platform: uptime graphs, analytics, alerting, auto-debug triggers, Supabase", "V4 visual overhaul: SVG gauges, donut charts, sparklines, time travel", "Red Dot polish: design system tokens, accessibility, visual noise reduction", "Add static screenshot previews for dashboard showcase cards"],
+    aesthetic: "Cyber Modernism / Glass"
+  },
+  {
+    version: "v5",
+    date: "2026-04",
+    title: "The Vignelli Edition",
+    description: "Paradigm shift. Threw out every rounded corner, every shadow, every gradient. Tab-based navigation replaced the infinite scroll. Dieter Rams meets the 1972 NYC subway map. IBM Plex Mono as the primary typeface. Color means information — nothing else. The structure IS the design. Built to survive a Red Dot jury.",
+    commits: ["V5 — The Vignelli Edition"],
+    aesthetic: "Vignelli / Swiss Industrial"
+  }
+];
+
+function renderVersionHistory() {
+  if (!elements.versionHistory) return;
+
+  elements.versionHistory.innerHTML = VERSION_HISTORY.map((v) => `
+    <div class="version-entry">
+      <div class="version-number">${escapeHtml(v.version)}</div>
+      <div class="version-meta">
+        <span class="version-date">${escapeHtml(v.date)}</span>
+        <span class="version-aesthetic">${escapeHtml(v.aesthetic)}</span>
+      </div>
+      <div class="version-body">
+        <h3 class="version-title">${escapeHtml(v.title)}</h3>
+        <p class="version-description">${escapeHtml(v.description)}</p>
+        <div class="version-commits">
+          ${v.commits.map((c) => '<span class="version-commit">' + escapeHtml(c) + '</span>').join("")}
+        </div>
+      </div>
+    </div>
+  `).join("");
+}
 
 
 
@@ -964,8 +1066,8 @@ function applyModeUI() {
   }
 
   elements.modeNote.textContent = note;
-  elements.opsInventory.hidden = !liveMode;
-  elements.localLayout.hidden = !liveMode;
+  if (elements.opsInventory) elements.opsInventory.hidden = !liveMode;
+  if (elements.localLayout) elements.localLayout.hidden = !liveMode;
 
   const navStatus = document.querySelector("#navStatus");
   if (navStatus) {
@@ -1275,7 +1377,7 @@ function renderMentions(mentions = state.mentions) {
 
   elements.mentionsMeta.textContent = meta.join(" • ");
   elements.mentionsSearchLink.href = mentions?.searchUrl || "https://news.google.com/";
-  elements.mentionsSearchLink.hidden = !mentions?.searchUrl;
+  if (elements.mentionsSearchLink) elements.mentionsSearchLink.hidden = !mentions?.searchUrl;
 
   if (!mentions) {
     elements.mentionsList.innerHTML = `<div class="empty-state">Loading mention sweep.</div>`;
@@ -1351,12 +1453,12 @@ function renderGitHub(github) {
 function renderIssues(summary) {
   if (!summary.issues.length) {
     elements.issuePanel.hidden = true;
-    elements.signalGrid.hidden = elements.githubPanel.hidden;
+    if (elements.signalGrid) elements.signalGrid.hidden = elements.githubPanel.hidden;
     return;
   }
 
   elements.issuePanel.hidden = false;
-  elements.signalGrid.hidden = false;
+  if (elements.signalGrid) elements.signalGrid.hidden = false;
   elements.issueList.innerHTML = summary.issues
     .map(
       (issue) => `
@@ -3186,6 +3288,7 @@ function renderNovelSection() {
   `;
 }
 
+initTabs();
 initLightbox();
 bindEvents();
 renderLabLogos();
@@ -3198,12 +3301,12 @@ renderHistoryGallery();
 renderOriginStory();
 renderUniversalBlueprint();
 renderNovelSection();
+renderVersionHistory();
 startClock();
 renderLocalTargets();
 applyModeUI();
 scheduleRefresh();
 refreshDashboard(true);
-
 
 if (elements.copyBlueprintButton) {
   elements.copyBlueprintButton.addEventListener("click", handleBlueprintCopy);
