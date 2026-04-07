@@ -86,25 +86,38 @@ const MENTION_FEEDS = [
 const TARGETS = [
   {
     id: "middle-east-monitor",
-    label: "Middle East War Monitor",
-    url: "https://middleeast-war-monitor.netlify.app",
+    label: "War Monitor",
+    url: "https://nonarkara.github.io/middleeast-monitor/",
     description: "Regional conflict monitoring — Dr Non's GlobeWatch System. Real-time fire detection, market radar, diplomacy tracker.",
     screenshot: "./screenshots/middle-east-monitor.jpg",
+    repo: "Nonarkara/middleeast-monitor",
     category: "Monitoring",
     featured: true,
-    surface: "active",
+    surface: "static",
     addedAt: "2025-01-10"
   },
   {
     id: "geopolitics-dashboard",
-    label: "Global Geopolitics Dashboard",
-    url: "https://global-political-dashboard.netlify.app",
-    description: "Thailand Tri-Border Command — geopolitical intelligence with satellite imagery, conflict data, and cross-border analysis.",
+    label: "GPD",
+    url: "https://nonarkara.github.io/tech-monitor/",
+    description: "Global Political Dashboard — geopolitical intelligence with satellite imagery, conflict data, and cross-border analysis.",
     screenshot: "./screenshots/geopolitics-dashboard.jpg",
+    repo: "Nonarkara/tech-monitor",
     category: "Monitoring",
     featured: true,
-    surface: "active",
+    surface: "static",
     addedAt: "2025-02-15"
+  },
+  {
+    id: "mem-by-non",
+    label: "MEM by NON",
+    url: "https://nonarkara.github.io/mem-by-non/",
+    description: "Middle East Monitor — regional intelligence dashboard by Dr Non.",
+    repo: "Nonarkara/mem-by-non",
+    category: "Monitoring",
+    featured: true,
+    surface: "static",
+    addedAt: "2026-04-07"
   },
   {
     id: "phuket-dashboard",
@@ -229,6 +242,7 @@ const TARGETS = [
 const API_INVENTORY = {
   "middle-east-monitor": [],
   "geopolitics-dashboard": [],
+  "mem-by-non": [],
   "phuket-dashboard": [],
   "mtt-smart-city-monitor": [],
   "slic-index-v2": [],
