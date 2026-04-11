@@ -123,6 +123,102 @@ const SVG = {
   }
 };
 
+/* ============================================================
+   Portfolio Showcase — current fleet first, archive never lies
+   ============================================================ */
+
+const SHOWCASE_PRIORITY = [
+  "middle-east-monitor",
+  "mem-by-non",
+  "slic-index-v2",
+  "sabai-sabai",
+  "city-tech-atlas",
+  "scl-landing-page",
+  "ascn-smart-cities-network",
+  "techhuntthailand-viabus",
+  "raat",
+  "asean-csco-app"
+];
+
+function selectShowcaseTargets(targets = []) {
+  const priority = new Map(SHOWCASE_PRIORITY.map((id, index) => [id, index]));
+
+  return [...targets]
+    .sort((left, right) => {
+      const leftRank = priority.has(left.id) ? priority.get(left.id) : Number.MAX_SAFE_INTEGER;
+      const rightRank = priority.has(right.id) ? priority.get(right.id) : Number.MAX_SAFE_INTEGER;
+
+      if (leftRank !== rightRank) {
+        return leftRank - rightRank;
+      }
+
+      if (Boolean(left.featured) !== Boolean(right.featured)) {
+        return Number(Boolean(right.featured)) - Number(Boolean(left.featured));
+      }
+
+      if (Boolean(left.screenshot) !== Boolean(right.screenshot)) {
+        return Number(Boolean(right.screenshot)) - Number(Boolean(left.screenshot));
+      }
+
+      return new Date(right.addedAt || 0) - new Date(left.addedAt || 0);
+    })
+    .slice(0, 6);
+}
+
+function showcaseSurfaceLabel(target) {
+  return target.surface === "active" ? "Live service" : "Public site";
+}
+
+function renderPortfolioShowcase(targets = []) {
+  const container = document.getElementById("portfolioShowcase");
+  if (!container) return;
+
+  const showcaseTargets = selectShowcaseTargets(targets);
+
+  if (!showcaseTargets.length) {
+    container.innerHTML = '<div class="empty-state">No portfolio surfaces are available yet.</div>';
+    return;
+  }
+
+  container.innerHTML = showcaseTargets
+    .map((target) => {
+      const branding = getBranding(target);
+      const status = target.health?.label || "Unknown";
+      const platform = target.platform || "Web";
+      const description = target.description || "Public-facing system surface.";
+      const kicker = target.category || showcaseSurfaceLabel(target);
+
+      if (target.screenshot) {
+        return '<a class="portfolio-card" href="' + escapeHtml(target.url) + '" rel="noreferrer" target="_blank">'
+          + '<div class="portfolio-card-badges">'
+          + '<span class="portfolio-card-badge">' + escapeHtml(status) + '</span>'
+          + '<span class="portfolio-card-badge portfolio-card-badge--muted">' + escapeHtml(platform) + '</span>'
+          + '</div>'
+          + '<img src="' + escapeHtml(target.screenshot) + '" alt="' + escapeHtml(target.label) + '" loading="lazy" />'
+          + '<div class="portfolio-placard">'
+          + '<span class="portfolio-placard-name">' + escapeHtml(target.label) + '</span>'
+          + '<span class="portfolio-placard-desc">' + escapeHtml(description) + '</span>'
+          + '</div></a>';
+      }
+
+      return '<a class="portfolio-card portfolio-card--text" href="' + escapeHtml(target.url) + '" rel="noreferrer" target="_blank">'
+        + '<div class="portfolio-card-badges">'
+        + '<span class="portfolio-card-badge">' + escapeHtml(status) + '</span>'
+        + '<span class="portfolio-card-badge portfolio-card-badge--muted">' + escapeHtml(platform) + '</span>'
+        + '</div>'
+        + '<div class="portfolio-card-copy">'
+        + '<span class="portfolio-card-kicker">' + escapeHtml(kicker) + '</span>'
+        + '<span class="portfolio-card-title">' + escapeHtml(target.label) + '</span>'
+        + '<span class="portfolio-card-desc">' + escapeHtml(description) + '</span>'
+        + '</div>'
+        + '<div class="portfolio-card-meta">'
+        + '<span class="portfolio-card-monogram">' + escapeHtml(branding.monogram) + '</span>'
+        + '<span>' + escapeHtml(showcaseSurfaceLabel(target)) + '</span>'
+        + '</div></a>';
+    })
+    .join("");
+}
+
 const LAB_LOGOS = [
   {
     id: "smart-city-thailand-office",
@@ -1236,40 +1332,39 @@ function renderHistory(history = []) {
 }
 
 function renderMetrics(summary, github) {
-  const healthPct = summary.monitoredPages > 0 ? (summary.liveCount / summary.monitoredPages) * 100 : 0;
   const uptimePct = summary.fleetUptime24h ?? 0;
-  const responseCapped = Math.min(summary.medianResponseMs || 0, 2000);
+  const repoCount = github?.profile?.publicRepos ?? null;
 
   elements.metricsGrid.innerHTML = `
-    <article class="metric-card metric-card--gauge">
-      ${SVG.arcGauge(summary.liveCount, summary.monitoredPages, 110, { label: "Health", displayValue: `${summary.liveCount}/${summary.monitoredPages}`, color: healthPct >= 90 ? "var(--success)" : healthPct >= 50 ? "var(--warning)" : "var(--danger)" })}
-      <div class="metric-detail">
-        <p class="metric-label">System Health</p>
-        <div class="metric-subtext">${escapeHtml(formatNumber(summary.attentionCount))} need attention</div>
-      </div>
-    </article>
-    <article class="metric-card metric-card--gauge">
-      ${SVG.arcGauge(uptimePct, 100, 110, { label: "24h", displayValue: uptimePct ? uptimePct.toFixed(1) + "%" : "—", color: uptimePct >= 95 ? "var(--success)" : uptimePct >= 80 ? "var(--warning)" : "var(--danger)" })}
-      <div class="metric-detail">
-        <p class="metric-label">Fleet Uptime</p>
-        <div class="metric-subtext">Average across all targets</div>
-      </div>
-    </article>
-    <article class="metric-card metric-card--gauge">
-      ${SVG.arcGauge(summary.apiCount, 200, 110, { label: "APIs", displayValue: String(summary.apiCount), color: "var(--accent)" })}
-      <div class="metric-detail">
-        <p class="metric-label">Mapped APIs</p>
-        <div class="metric-subtext">${escapeHtml(formatNumber(summary.appsWithApis))} apps with endpoints</div>
-      </div>
-    </article>
-    <article class="metric-card metric-card--gauge">
-      ${SVG.arcGauge(2000 - responseCapped, 2000, 110, { label: "Speed", displayValue: (summary.medianResponseMs || 0) + "ms", color: responseCapped < 500 ? "var(--success)" : responseCapped < 1000 ? "var(--warning)" : "var(--danger)" })}
-      <div class="metric-detail">
-        <p class="metric-label">Median Response</p>
-        <div class="metric-subtext">${summary.fastest ? `Fastest: ${escapeHtml(summary.fastest.label)}` : "No data"}</div>
-      </div>
-    </article>
+    <div class="metric-cell">
+      <span class="metric-cell-value">${summary.liveCount}/${summary.monitoredPages}</span>
+      <span class="metric-cell-label">Health</span>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-cell-value">${uptimePct ? uptimePct.toFixed(1) + "%" : "—"}</span>
+      <span class="metric-cell-label">Uptime 24h</span>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-cell-value">${summary.platformsInUse}</span>
+      <span class="metric-cell-label">Platforms</span>
+    </div>
+    <div class="metric-cell">
+      <span class="metric-cell-value">${repoCount != null ? repoCount : "—"}</span>
+      <span class="metric-cell-label">Public Repos</span>
+    </div>
   `;
+
+  /* Update telemetry ribbon */
+  const ribbonUptime = document.getElementById("ribbonUptime");
+  const ribbonSpeed = document.getElementById("ribbonSpeed");
+  if (ribbonUptime) ribbonUptime.textContent = (uptimePct ? uptimePct.toFixed(1) : "--") + "% uptime";
+  if (ribbonSpeed) ribbonSpeed.textContent = (summary.medianResponseMs || "--") + "ms median";
+}
+
+function setDashboardState(label, tone = "neutral") {
+  if (!elements.dashboardState) return;
+  elements.dashboardState.className = `ribbon-stat status-pill status-pill-${tone}`;
+  elements.dashboardState.textContent = label;
 }
 
 const PLATFORM_COLORS = { Render: "var(--accent)", Web: "var(--accent-warm)", "GitHub Pages": "var(--accent-green)", Lovable: "var(--warning)", Local: "var(--muted-strong)" };
@@ -1514,11 +1609,18 @@ function renderMentions(mentions = state.mentions) {
 
 function renderGitHub(github) {
   if (github.status !== "live" || !github.profile) {
+    const rateLimited = /rate limit/i.test(github.error || "");
+    const label = rateLimited ? "GitHub rate-limited" : "GitHub unavailable";
+    const code = rateLimited ? "degraded" : "error";
+    const detail = rateLimited
+      ? "Public GitHub API quota is exhausted on this IP. Repo stats will recover automatically, or immediately with a token."
+      : (github.error || "Metadata could not be loaded.");
+
     elements.githubPanel.hidden = false;
     elements.githubSummary.innerHTML = `
       <div class="github-strip">
-        ${makeStatusPill("GitHub unavailable", "error")}
-        <span class="terminal-inline">${escapeHtml(github.error || "Metadata could not be loaded.")}</span>
+        ${makeStatusPill(label, code)}
+        <span class="terminal-inline">${escapeHtml(detail)}</span>
       </div>
     `;
     return;
@@ -1645,6 +1747,39 @@ function buildStarterJson(target) {
   };
 }
 
+function buildRemotePosterShell(target) {
+  const branding = getBranding(target);
+  const platform = target.platform || "Web";
+  const host = target.hostname || new URL(target.url).hostname;
+
+  return `
+    <div class="preview-shell preview-shell--poster"
+      aria-label="Open ${escapeHtml(target.label)} live site"
+      data-open-url="${escapeHtml(target.url)}"
+      role="link" tabindex="0">
+      <div class="preview-bar">
+        <div class="preview-signal">${makeStatusPill(target.health.label, target.health.code)}</div>
+        <div class="preview-http">${makeStatusPill(platform, "neutral")}</div>
+      </div>
+      <div class="preview-poster">
+        <div class="preview-poster-header">
+          <span class="preview-poster-kicker">${escapeHtml(target.category || "Public surface")}</span>
+          <span class="preview-poster-monogram">${escapeHtml(branding.monogram)}</span>
+        </div>
+        <div class="preview-poster-body">
+          <strong class="preview-poster-title">${escapeHtml(target.label)}</strong>
+          <p class="preview-poster-desc">${escapeHtml(target.description || "Open the live site to inspect the full surface.")}</p>
+        </div>
+        <div class="preview-poster-meta">
+          <span class="preview-poster-host">${escapeHtml(host)}</span>
+          <span>${escapeHtml(target.surface === "active" ? "Live service" : "Public page")}</span>
+        </div>
+      </div>
+      <div class="preview-fade"></div>
+    </div>
+  `;
+}
+
 function buildPreviewShell(target) {
   const httpLabel = target.statusCode ? "HTTP " + target.statusCode : "No HTTP code";
 
@@ -1663,20 +1798,7 @@ function buildPreviewShell(target) {
       + '</div>';
   }
 
-  return '<div class="preview-shell"'
-    + ' aria-label="Open ' + escapeHtml(target.label) + ' live site"'
-    + ' data-open-url="' + escapeHtml(target.url) + '"'
-    + ' role="link"'
-    + ' style="--preview-width: ' + PREVIEW_VIEWPORT.width + '; --preview-height: ' + PREVIEW_VIEWPORT.height + ';"'
-    + ' tabindex="0">'
-    + '<div class="preview-bar">'
-    + '<div class="preview-signal">' + makeStatusPill("Preview loading", "loading") + '</div>'
-    + '<div class="preview-http">' + makeStatusPill(httpLabel, target.health.code) + '</div>'
-    + '</div>'
-    + '<iframe loading="lazy" referrerpolicy="no-referrer" src="' + escapeHtml(target.url)
-    + '" title="' + escapeHtml(target.label) + ' preview"></iframe>'
-    + '<div class="preview-fade"></div>'
-    + '</div>';
+  return buildRemotePosterShell(target);
 }
 
 function buildRemoteCard(target, options = {}) {
@@ -1769,9 +1891,6 @@ function buildRemoteCard(target, options = {}) {
       </details>
 
       <div class="card-actions">
-        <button class="button button-secondary utility-button" data-refresh-preview="remote" type="button">
-          Refresh page
-        </button>
         <a class="action-link" href="${escapeHtml(target.url)}" rel="noreferrer" target="_blank">Open live</a>
         ${
           target.repo?.url
@@ -2811,11 +2930,6 @@ function renderRemoteSections(targets) {
     staticTargets.map((target) => buildRemoteCard(target)),
     "No static pages are configured."
   );
-
-  wirePreviewSignals(elements.featuredGrid, false);
-  wirePreviewSignals(elements.activeGrid, false);
-  wirePreviewSignals(elements.staticGrid, false);
-  requestPreviewFrameSync();
 }
 
 function renderLocalTargets() {
@@ -2848,6 +2962,7 @@ function renderDashboard() {
     status: "offline"
   };
   /* Systems tab — always rendered */
+  renderPortfolioShowcase(targets);
   renderFooter();
   renderMetrics(summary, github);
   renderDistributionCharts(summary, github);
@@ -2879,18 +2994,17 @@ function renderDashboard() {
 
   if (state.timeTravel) {
     elements.lastChecked.textContent = `Historical snapshot from ${formatDate(generatedAt)}`;
-    elements.dashboardState.className = "status-pill status-pill-degraded";
-    elements.dashboardState.textContent = `Time travel • ${summary.liveCount}/${summary.monitoredPages} were healthy`;
+    setDashboardState(`Time travel • ${summary.liveCount}/${summary.monitoredPages} were healthy`, "degraded");
   } else {
     elements.lastChecked.textContent = snapshotBacked
       ? `Snapshot updated ${formatDate(generatedAt)}`
       : `Last live scan ${formatDate(generatedAt)}`;
-    elements.dashboardState.className = snapshotBacked
-      ? "status-pill status-pill-neutral"
-      : "status-pill status-pill-live";
-    elements.dashboardState.textContent = snapshotBacked
-      ? `Snapshot • ${summary.liveCount}/${summary.monitoredPages} public pages healthy`
-      : `${summary.liveCount}/${summary.monitoredPages} public pages healthy`;
+    setDashboardState(
+      snapshotBacked
+        ? `Snapshot • ${summary.liveCount}/${summary.monitoredPages} public pages healthy`
+        : `${summary.liveCount}/${summary.monitoredPages} public pages healthy`,
+      snapshotBacked ? "neutral" : "live"
+    );
   }
   applyModeUI();
 
@@ -2957,9 +3071,7 @@ async function fetchMentions(force = false) {
 }
 
 async function refreshDashboard(force = false) {
-  elements.dashboardState.className = "status-pill status-pill-loading";
-  elements.dashboardState.textContent =
-    state.mode === "live" ? "Running live scan" : "Loading snapshot";
+  setDashboardState(state.mode === "live" ? "Running live scan" : "Loading snapshot", "loading");
 
   try {
     if (state.mode === "live") {
@@ -2978,8 +3090,7 @@ async function refreshDashboard(force = false) {
     }
     renderDashboard();
   } catch (error) {
-    elements.dashboardState.className = "status-pill status-pill-error";
-    elements.dashboardState.textContent = `Dashboard error: ${error.message}`;
+    setDashboardState(`Dashboard error: ${error.message}`, "error");
     applyModeUI();
   }
 }
@@ -3036,8 +3147,7 @@ function handleLocalSubmit(event) {
       url: normalized.toString()
     });
   } catch {
-    elements.dashboardState.className = "status-pill status-pill-error";
-    elements.dashboardState.textContent = "Invalid local target URL";
+    setDashboardState("Invalid local target URL", "error");
     return;
   }
 

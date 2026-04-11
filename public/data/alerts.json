@@ -51,46 +51,6 @@
       "resolvedAt": "2026-03-30T07:47:11.342Z"
     },
     {
-      "id": "4a554067-7ed0-48e1-87fd-dbae333c91ec",
-      "targetId": "phuket-dashboard-vercel",
-      "targetLabel": "Phuket Dashboard (Vercel)",
-      "type": "down",
-      "severity": "warning",
-      "message": "Phuket Dashboard (Vercel) went down (offline)",
-      "timestamp": "2026-03-30T07:46:38.287Z",
-      "resolvedAt": "2026-03-30T07:47:11.446Z"
-    },
-    {
-      "id": "6992b47c-3f02-4b86-8516-f03d59355ad6",
-      "targetId": "dngws-monitor",
-      "targetLabel": "DNGWS Monitor",
-      "type": "down",
-      "severity": "warning",
-      "message": "DNGWS Monitor went down (offline)",
-      "timestamp": "2026-03-30T07:46:38.287Z",
-      "resolvedAt": "2026-03-30T07:47:11.409Z"
-    },
-    {
-      "id": "a2606875-c368-4ac2-8cbc-797731c405bf",
-      "targetId": "geopolitics-dashboard-vercel",
-      "targetLabel": "Geopolitics Dashboard (Vercel)",
-      "type": "down",
-      "severity": "warning",
-      "message": "Geopolitics Dashboard (Vercel) went down (offline)",
-      "timestamp": "2026-03-30T07:46:38.287Z",
-      "resolvedAt": "2026-03-30T07:47:11.441Z"
-    },
-    {
-      "id": "d839cbd9-3ec1-46a2-9df4-e66bcc206a3c",
-      "targetId": "axiom",
-      "targetLabel": "Axiom AI",
-      "type": "down",
-      "severity": "warning",
-      "message": "Axiom AI went down (offline)",
-      "timestamp": "2026-03-30T07:46:38.288Z",
-      "resolvedAt": "2026-03-30T07:47:11.450Z"
-    },
-    {
       "id": "3a9a8c61-ae79-4ea1-b1ea-7c3c9718c92c",
       "targetId": "sabai-sabai",
       "targetLabel": "Sabai Sabai",
@@ -99,36 +59,6 @@
       "message": "Sabai Sabai went down (offline)",
       "timestamp": "2026-03-30T07:46:38.288Z",
       "resolvedAt": "2026-03-30T07:47:11.438Z"
-    },
-    {
-      "id": "06f64e1b-2745-47ab-84f0-2bcb2b3d9911",
-      "targetId": "slic-index-v2-vercel",
-      "targetLabel": "SLIC Index V2 (Vercel)",
-      "type": "down",
-      "severity": "warning",
-      "message": "SLIC Index V2 (Vercel) went down (offline)",
-      "timestamp": "2026-03-30T07:46:38.288Z",
-      "resolvedAt": "2026-03-30T07:47:11.423Z"
-    },
-    {
-      "id": "8f896823-8c74-486f-8060-2f4838f42adb",
-      "targetId": "phuket-dashboard",
-      "targetLabel": "Phuket Dashboard",
-      "type": "down",
-      "severity": "critical",
-      "message": "Phuket Dashboard went down (offline)",
-      "timestamp": "2026-03-30T07:46:38.288Z",
-      "resolvedAt": "2026-03-30T07:47:10.481Z"
-    },
-    {
-      "id": "4326d648-a0e9-4848-a0bd-afc4eb5520ae",
-      "targetId": "airdnd-platform",
-      "targetLabel": "AirDnD Platform",
-      "type": "down",
-      "severity": "warning",
-      "message": "AirDnD Platform went down (offline)",
-      "timestamp": "2026-03-30T07:46:38.288Z",
-      "resolvedAt": "2026-03-30T07:47:10.508Z"
     },
     {
       "id": "a7e86e4b-7d51-4658-aa24-07560256446f",
@@ -151,16 +81,6 @@
       "resolvedAt": "2026-03-30T07:47:10.480Z"
     },
     {
-      "id": "956a1d7a-d276-4f0f-ab95-bd7a39a3bcc2",
-      "targetId": "slic-index-rankings",
-      "targetLabel": "SLIC Index Rankings",
-      "type": "down",
-      "severity": "warning",
-      "message": "SLIC Index Rankings went down (offline)",
-      "timestamp": "2026-03-30T07:46:38.288Z",
-      "resolvedAt": "2026-03-30T07:47:10.097Z"
-    },
-    {
       "id": "775a773d-f106-4068-a9a1-9ded4818dff2",
       "targetId": "city-tech-atlas",
       "targetLabel": "City Tech Atlas",
@@ -169,66 +89,6 @@
       "message": "City Tech Atlas went down (offline)",
       "timestamp": "2026-03-30T07:46:38.288Z",
       "resolvedAt": "2026-03-30T07:47:12.395Z"
-    },
-    {
-      "id": "6c7a50fb-011e-4974-ab64-bdc5270def90",
-      "targetId": "mtt-smart-city-monitor",
-      "targetLabel": "MTT Smart City Monitor",
-      "type": "down",
-      "severity": "warning",
-      "message": "MTT Smart City Monitor went down (offline)",
-      "timestamp": "2026-03-30T07:46:38.289Z",
-      "resolvedAt": "2026-03-30T07:47:10.087Z"
-    },
-    {
-      "id": "54566e4e-8d9f-433d-a5f3-0a668892e3fe",
-      "targetId": "smart-city-monitor",
-      "targetLabel": "Smart City Monitor",
-      "type": "down",
-      "severity": "warning",
-      "message": "Smart City Monitor went down (offline)",
-      "timestamp": "2026-03-30T07:46:38.289Z",
-      "resolvedAt": "2026-03-30T07:47:10.088Z"
-    },
-    {
-      "id": "cf921ec8-e860-4c41-bb7c-cc4d3c97feb1",
-      "targetId": "city-reporter-bot",
-      "targetLabel": "City Reporter Bot",
-      "type": "down",
-      "severity": "warning",
-      "message": "City Reporter Bot went down (offline)",
-      "timestamp": "2026-03-30T07:46:38.289Z",
-      "resolvedAt": "2026-03-30T07:47:10.485Z"
-    },
-    {
-      "id": "73275af7-0f52-422e-bddf-894dffb55bd3",
-      "targetId": "mtt-smart-city-monitor",
-      "targetLabel": "MTT Smart City Monitor",
-      "type": "recovery",
-      "severity": "info",
-      "message": "MTT Smart City Monitor recovered",
-      "timestamp": "2026-03-30T07:47:10.087Z",
-      "resolvedAt": "2026-03-30T07:47:10.087Z"
-    },
-    {
-      "id": "e8fa6ad7-0942-48fd-92b9-b84a743d301e",
-      "targetId": "smart-city-monitor",
-      "targetLabel": "Smart City Monitor",
-      "type": "recovery",
-      "severity": "info",
-      "message": "Smart City Monitor recovered",
-      "timestamp": "2026-03-30T07:47:10.088Z",
-      "resolvedAt": "2026-03-30T07:47:10.088Z"
-    },
-    {
-      "id": "28e4bd78-c766-455b-938b-60941397d5dd",
-      "targetId": "slic-index-rankings",
-      "targetLabel": "SLIC Index Rankings",
-      "type": "recovery",
-      "severity": "info",
-      "message": "SLIC Index Rankings recovered",
-      "timestamp": "2026-03-30T07:47:10.097Z",
-      "resolvedAt": "2026-03-30T07:47:10.097Z"
     },
     {
       "id": "de0f7284-fcc0-47ad-968e-66a5c64eb2c2",
@@ -249,36 +109,6 @@
       "message": "SLIC Index Version 2 recovered",
       "timestamp": "2026-03-30T07:47:10.480Z",
       "resolvedAt": "2026-03-30T07:47:10.480Z"
-    },
-    {
-      "id": "dce03535-84c4-4477-955f-e8fc1d5bbcea",
-      "targetId": "phuket-dashboard",
-      "targetLabel": "Phuket Dashboard",
-      "type": "recovery",
-      "severity": "info",
-      "message": "Phuket Dashboard recovered",
-      "timestamp": "2026-03-30T07:47:10.481Z",
-      "resolvedAt": "2026-03-30T07:47:10.481Z"
-    },
-    {
-      "id": "6ab1ad9d-ebb4-4f72-83ac-fe03eb1b8c81",
-      "targetId": "city-reporter-bot",
-      "targetLabel": "City Reporter Bot",
-      "type": "recovery",
-      "severity": "info",
-      "message": "City Reporter Bot recovered",
-      "timestamp": "2026-03-30T07:47:10.485Z",
-      "resolvedAt": "2026-03-30T07:47:10.485Z"
-    },
-    {
-      "id": "75e3687b-928d-457f-b273-3db437e1a1eb",
-      "targetId": "airdnd-platform",
-      "targetLabel": "AirDnD Platform",
-      "type": "recovery",
-      "severity": "info",
-      "message": "AirDnD Platform recovered",
-      "timestamp": "2026-03-30T07:47:10.508Z",
-      "resolvedAt": "2026-03-30T07:47:10.508Z"
     },
     {
       "id": "c152914b-9152-48ae-8bb2-7a32ac507b2e",
@@ -311,26 +141,6 @@
       "resolvedAt": "2026-03-30T07:47:11.396Z"
     },
     {
-      "id": "9eb04c8c-8787-494d-a1ca-8bfeeb2dd414",
-      "targetId": "dngws-monitor",
-      "targetLabel": "DNGWS Monitor",
-      "type": "recovery",
-      "severity": "info",
-      "message": "DNGWS Monitor recovered",
-      "timestamp": "2026-03-30T07:47:11.409Z",
-      "resolvedAt": "2026-03-30T07:47:11.409Z"
-    },
-    {
-      "id": "8e19fee9-9fbe-4805-87d4-62963d224c59",
-      "targetId": "slic-index-v2-vercel",
-      "targetLabel": "SLIC Index V2 (Vercel)",
-      "type": "recovery",
-      "severity": "info",
-      "message": "SLIC Index V2 (Vercel) recovered",
-      "timestamp": "2026-03-30T07:47:11.423Z",
-      "resolvedAt": "2026-03-30T07:47:11.423Z"
-    },
-    {
       "id": "17ad4b43-b738-4ef5-8d4f-c9d46a525ec3",
       "targetId": "ascn-smart-cities-network",
       "targetLabel": "ASCN Smart Cities Network",
@@ -349,36 +159,6 @@
       "message": "Sabai Sabai recovered",
       "timestamp": "2026-03-30T07:47:11.438Z",
       "resolvedAt": "2026-03-30T07:47:11.438Z"
-    },
-    {
-      "id": "37532f9e-bd84-4af7-b253-8a677f817a93",
-      "targetId": "geopolitics-dashboard-vercel",
-      "targetLabel": "Geopolitics Dashboard (Vercel)",
-      "type": "recovery",
-      "severity": "info",
-      "message": "Geopolitics Dashboard (Vercel) recovered",
-      "timestamp": "2026-03-30T07:47:11.441Z",
-      "resolvedAt": "2026-03-30T07:47:11.441Z"
-    },
-    {
-      "id": "6ee8372f-dc5c-44c7-994e-563737e8d773",
-      "targetId": "phuket-dashboard-vercel",
-      "targetLabel": "Phuket Dashboard (Vercel)",
-      "type": "recovery",
-      "severity": "info",
-      "message": "Phuket Dashboard (Vercel) recovered",
-      "timestamp": "2026-03-30T07:47:11.446Z",
-      "resolvedAt": "2026-03-30T07:47:11.446Z"
-    },
-    {
-      "id": "b2afa3c2-3b1d-4782-9497-9156e6930e93",
-      "targetId": "axiom",
-      "targetLabel": "Axiom AI",
-      "type": "recovery",
-      "severity": "info",
-      "message": "Axiom AI recovered",
-      "timestamp": "2026-03-30T07:47:11.450Z",
-      "resolvedAt": "2026-03-30T07:47:11.450Z"
     },
     {
       "id": "914906cc-8d85-400c-bbcb-cc8b21b5054d",
@@ -409,16 +189,6 @@
       "message": "War Monitor recovered",
       "timestamp": "2026-04-07T14:00:20.089Z",
       "resolvedAt": "2026-04-07T14:00:20.089Z"
-    },
-    {
-      "id": "7ad8524a-7dc5-4ce3-a969-e58d3a67a68d",
-      "targetId": "geopolitics-dashboard",
-      "targetLabel": "GPD",
-      "type": "recovery",
-      "severity": "info",
-      "message": "GPD recovered",
-      "timestamp": "2026-04-07T14:00:20.140Z",
-      "resolvedAt": "2026-04-07T14:00:20.140Z"
     }
   ]
 }

@@ -98,18 +98,6 @@ const TARGETS = [
     addedAt: "2025-01-10"
   },
   {
-    id: "geopolitics-dashboard",
-    label: "GPD",
-    url: "https://nonarkara.github.io/tech-monitor/",
-    description: "Global Political Dashboard — geopolitical intelligence with satellite imagery, conflict data, and cross-border analysis.",
-    screenshot: "./screenshots/geopolitics-dashboard.jpg",
-    repo: "Nonarkara/tech-monitor",
-    category: "Monitoring",
-    featured: true,
-    surface: "static",
-    addedAt: "2025-02-15"
-  },
-  {
     id: "mem-by-non",
     label: "MEM by NON",
     url: "https://nonarkara.github.io/mem-by-non/",
@@ -119,26 +107,6 @@ const TARGETS = [
     featured: true,
     surface: "static",
     addedAt: "2026-04-07"
-  },
-  {
-    id: "phuket-dashboard",
-    label: "Phuket Island Command",
-    url: "https://phuket-dashboard.vercel.app",
-    description: "Coastal operations dashboard — island chokepoints, flights, marine traffic, and environmental monitoring.",
-    screenshot: "./screenshots/phuket-dashboard.jpg",
-    category: "Monitoring",
-    surface: "active",
-    addedAt: "2026-03-13"
-  },
-  {
-    id: "mtt-smart-city-monitor",
-    label: "Muang Thong Thani Monitor",
-    url: "https://mtt-smart-city-monitor-web.onrender.com",
-    description: "IMPACT Muang Thong Thani smart city dashboard — PM2.5 guidance, city signals, and resilience monitoring.",
-    screenshot: "./screenshots/mtt-smart-city-monitor.jpg",
-    category: "Monitoring",
-    surface: "active",
-    addedAt: "2025-03-08"
   },
   {
     id: "slic-index-v2",
@@ -223,10 +191,7 @@ const TARGETS = [
 
 const API_INVENTORY = {
   "middle-east-monitor": [],
-  "geopolitics-dashboard": [],
   "mem-by-non": [],
-  "phuket-dashboard": [],
-  "mtt-smart-city-monitor": [],
   "slic-index-v2": [],
   "sabai-sabai": [],
   "city-tech-atlas": [],
@@ -236,6 +201,7 @@ const API_INVENTORY = {
   "ascn-smart-cities-network": [],
   "asean-csco-app": []
 };
+const CURRENT_TARGET_IDS = new Set(TARGETS.map((target) => target.id));
 
 const historyByTarget = new Map();
 const repoCache = new Map();
@@ -438,8 +404,10 @@ function buildHealthPayload(payload, mode) {
   const snapshotAgeMs = Number.isFinite(generatedAtMs) ? Date.now() - generatedAtMs : null;
   const snapshotStale = mode === "snapshot" && (snapshotAgeMs === null || snapshotAgeMs > STALE_SNAPSHOT_MS);
   const githubStatus = payload?.github?.status ?? "unknown";
+  const githubRateLimited =
+    githubStatus === "offline" && /rate limit/i.test(payload?.github?.error || "");
   const mentionsStatus = payload?.mentions?.status ?? "unknown";
-  const status = snapshotStale || issues.length || githubStatus === "offline" || mentionsStatus === "offline"
+  const status = snapshotStale || issues.length || (githubStatus === "offline" && !githubRateLimited) || mentionsStatus === "offline"
     ? "degraded"
     : "ok";
 
@@ -460,7 +428,7 @@ function buildHealthPayload(payload, mode) {
       : null,
     activeIncidents: getActiveIncidents().length,
     dependencies: {
-      github: githubStatus,
+      github: githubRateLimited ? "rate-limited" : githubStatus,
       mentions: mentionsStatus
     },
     issues: issues.slice(0, 5)
@@ -630,6 +598,59 @@ function recordHistory(targetId, point) {
   historyByTarget.set(targetId, points);
 }
 
+function isCurrentTargetId(targetId) {
+  return CURRENT_TARGET_IDS.has(targetId);
+}
+
+function pruneHealthHistoryTargets() {
+  for (const targetId of Object.keys(healthHistory.targets)) {
+    if (!isCurrentTargetId(targetId)) {
+      delete healthHistory.targets[targetId];
+    }
+  }
+}
+
+function pruneAlertsStore() {
+  alertsData.alerts = alertsData.alerts
+    .filter((alert) => isCurrentTargetId(alert.targetId))
+    .slice(-ALERT_LIMIT);
+}
+
+function pruneTriggersStore() {
+  triggersData.triggers = triggersData.triggers
+    .filter((trigger) => isCurrentTargetId(trigger.targetId))
+    .slice(-TRIGGER_LIMIT);
+}
+
+function pruneTransientMaps() {
+  for (const targetId of Array.from(previousHealthByTarget.keys())) {
+    if (!isCurrentTargetId(targetId)) {
+      previousHealthByTarget.delete(targetId);
+    }
+  }
+
+  for (const key of Array.from(alertCooldowns.keys())) {
+    const targetId = String(key).split(":")[0];
+
+    if (!isCurrentTargetId(targetId)) {
+      alertCooldowns.delete(key);
+    }
+  }
+
+  for (const targetId of Array.from(downSince.keys())) {
+    if (!isCurrentTargetId(targetId)) {
+      downSince.delete(targetId);
+    }
+  }
+}
+
+function normalizePersistentState() {
+  pruneHealthHistoryTargets();
+  pruneAlertsStore();
+  pruneTriggersStore();
+  pruneTransientMaps();
+}
+
 function median(numbers) {
   if (!numbers.length) {
     return null;
@@ -773,9 +794,12 @@ async function loadHealthHistory() {
       healthHistory.updatedAt = raw.updatedAt || null;
     }
   } catch {}
+
+  pruneHealthHistoryTargets();
 }
 
 async function flushHealthHistory() {
+  pruneHealthHistoryTargets();
   healthHistory.updatedAt = new Date().toISOString();
   await atomicWrite(HEALTH_HISTORY_FILE, healthHistory);
 }
@@ -1200,12 +1224,16 @@ async function sendWebhook(alert) {
 
 function getActiveIncidents() {
   return alertsData.alerts.filter(
-    (a) => (a.type === "down" || a.type === "degraded") && !a.resolvedAt
+    (a) => isCurrentTargetId(a.targetId) &&
+    ((a.type === "down" || a.type === "degraded") && !a.resolvedAt)
   );
 }
 
 function getRecentAlerts(limit = 50) {
-  return alertsData.alerts.slice(-limit).reverse();
+  return alertsData.alerts
+    .filter((alert) => isCurrentTargetId(alert.targetId))
+    .slice(-limit)
+    .reverse();
 }
 
 async function loadAlerts() {
@@ -1216,9 +1244,12 @@ async function loadAlerts() {
       alertsData.alerts = raw.alerts.slice(-ALERT_LIMIT);
     }
   } catch {}
+
+  pruneAlertsStore();
 }
 
 async function flushAlerts() {
+  pruneAlertsStore();
   await atomicWrite(ALERTS_FILE, alertsData);
 }
 
@@ -1338,9 +1369,12 @@ async function loadTriggers() {
       triggersData.triggers = raw.triggers.slice(-TRIGGER_LIMIT);
     }
   } catch {}
+
+  pruneTriggersStore();
 }
 
 async function flushTriggers() {
+  pruneTriggersStore();
   await atomicWrite(TRIGGERS_FILE, triggersData);
 }
 
@@ -1608,7 +1642,22 @@ async function fetchJson(url) {
   });
 
   if (!response.ok) {
-    throw new Error(`GitHub API request failed with ${response.status}`);
+    const raw = await response.text().catch(() => "");
+    let detail = "";
+
+    if (raw) {
+      try {
+        detail = JSON.parse(raw).message || raw;
+      } catch {
+        detail = raw;
+      }
+    }
+
+    throw new Error(
+      detail
+        ? `GitHub API request failed with ${response.status}: ${detail}`
+        : `GitHub API request failed with ${response.status}`
+    );
   }
 
   return response.json();
@@ -2102,7 +2151,7 @@ function hydrateHistoryFromSnapshot(snapshot) {
   historyByTarget.clear();
 
   for (const target of snapshot?.targets ?? []) {
-    if (!Array.isArray(target.history) || !target.id) {
+    if (!Array.isArray(target.history) || !target.id || !isCurrentTargetId(target.id)) {
       continue;
     }
 
@@ -2477,6 +2526,7 @@ export {
   flushAnalytics,
   flushAlerts,
   flushTriggers,
+  normalizePersistentState,
   supabaseFlushAllDailyUptime,
   supabaseFlushVisitorDaily,
   server
@@ -2487,6 +2537,7 @@ await loadHealthHistory();
 await loadAnalytics();
 await loadAlerts();
 await loadTriggers();
+normalizePersistentState();
 
 if (process.env.NO_LISTEN !== "1") {
   startHealthHistoryFlush();

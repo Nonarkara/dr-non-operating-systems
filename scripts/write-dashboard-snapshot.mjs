@@ -74,6 +74,37 @@ function buildSnapshotMeta(overrides = {}) {
   };
 }
 
+function shouldReusePreviousGithub(previousSnapshot, payload) {
+  return previousSnapshot?.github?.status === "live" && payload?.github?.status === "offline";
+}
+
+function shouldReusePreviousMentions(previousSnapshot, payload) {
+  return previousSnapshot?.mentions?.status && previousSnapshot.mentions.status !== "offline"
+    && payload?.mentions?.status === "offline";
+}
+
+function mergeDependencyFallbacks(previousSnapshot, payload) {
+  const preserveGithub = shouldReusePreviousGithub(previousSnapshot, payload);
+  const preserveMentions = shouldReusePreviousMentions(previousSnapshot, payload);
+  const github = preserveGithub ? previousSnapshot.github : payload.github;
+  const mentions = preserveMentions ? previousSnapshot.mentions : payload.mentions;
+
+  return {
+    ...payload,
+    github,
+    mentions,
+    summary: {
+      ...payload.summary,
+      publicRepos: github?.profile?.publicRepos ?? payload?.summary?.publicRepos ?? null
+    },
+    snapshotMeta: buildSnapshotMeta({
+      preservedGithub: preserveGithub,
+      preservedMentions: preserveMentions,
+      preservedPreviousData: false
+    })
+  };
+}
+
 await mkdir(dataDir, { recursive: true });
 const previousSnapshot = await loadPreviousSnapshot();
 
@@ -82,12 +113,7 @@ const preservePreviousSnapshot = shouldPreservePreviousSnapshot(previousSnapshot
 if (preservePreviousSnapshot) {
   console.log(`Preserved previous snapshot at ${snapshotPath} because the live scan failed network-wide.`);
 } else {
-  const snapshot = {
-    ...payload,
-    snapshotMeta: buildSnapshotMeta({
-      preservedPreviousData: false
-    })
-  };
+  const snapshot = mergeDependencyFallbacks(previousSnapshot, payload);
 
   await writeFile(snapshotPath, `${JSON.stringify(snapshot, null, 2)}\n`, "utf8");
   console.log(`Wrote snapshot to ${snapshotPath}`);

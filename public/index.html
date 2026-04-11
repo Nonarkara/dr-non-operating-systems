@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dr. Non's Operating Systems v5</title>
+    <title>NON.OS — Dr. Non's Operating Systems</title>
     <script>
       window.__assetVersion = String(Date.parse(document.lastModified) || Date.now());
       const stylesheet = document.createElement("link");
@@ -16,7 +16,7 @@
     <a href="#tab-systems" class="skip-link">Skip to dashboard</a>
 
     <nav class="tab-bar" aria-label="Main navigation">
-      <span class="tab-brand">NON.OS<span class="tab-version">v5</span></span>
+      <span class="tab-brand">NON.OS<span class="tab-version">5.1</span></span>
       <a href="#systems" class="tab tab--active" data-tab="systems">Systems</a>
       <a href="#intel" class="tab" data-tab="intel">Intelligence</a>
       <a href="#profile" class="tab" data-tab="profile">Profile</a>
@@ -32,74 +32,75 @@
       <!-- ════════ SYSTEMS TAB ════════ -->
       <section id="tab-systems" class="tab-panel">
 
-        <header class="page-header">
-          <div class="page-header-left">
-            <h1 class="page-title">Dr. Non's Operating Systems</h1>
-            <p class="page-subtitle">Public systems, current work, and operating record.</p>
-          </div>
-          <div class="page-header-right">
-            <div class="status-bar">
-              <div class="status-pill" id="dashboardState" aria-live="polite">Waiting for first scan</div>
-              <div class="status-meta">
-                <span id="lastChecked">No checks yet</span>
-                <span id="clock">--:--:--</span>
-              </div>
-            </div>
-            <div class="page-controls">
-              <button id="refreshButton" class="btn" type="button">Run live scan</button>
-              <button id="timeTravelToggle" class="btn btn--muted" type="button">History</button>
-              <label class="select-wrap">
-                <span>Auto</span>
-                <select id="refreshSelect">
-                  <option value="15000">15s</option>
-                  <option value="30000">30s</option>
-                  <option value="60000">1m</option>
-                  <option value="0">Off</option>
-                </select>
-              </label>
-            </div>
-          </div>
-        </header>
+        <!-- Telemetry Ribbon — ambient status -->
+        <div class="telemetry-ribbon" id="telemetryRibbon">
+          <div class="ribbon-stat" id="dashboardState" aria-live="polite">--/-- healthy</div>
+          <div class="ribbon-stat" id="ribbonUptime">--% uptime</div>
+          <div class="ribbon-stat" id="ribbonSpeed">--ms median</div>
+          <span class="ribbon-spacer"></span>
+          <span class="ribbon-live" id="ribbonLive">live</span>
+          <span class="ribbon-clock" id="clock">--:--:--</span>
+          <button id="refreshButton" class="ribbon-btn" type="button">scan</button>
+          <button id="timeTravelToggle" class="ribbon-btn" type="button">history</button>
+          <label class="ribbon-select">
+            <select id="refreshSelect">
+              <option value="30000">30s</option>
+              <option value="60000">1m</option>
+              <option value="0">off</option>
+            </select>
+          </label>
+        </div>
 
         <div id="timeTravelBar" class="time-travel-bar" hidden>
           <span class="time-travel-label" id="timeTravelLabel">Select a snapshot</span>
           <input type="range" id="timeTravelSlider" class="time-travel-slider" min="0" max="0" value="0" />
           <span class="time-travel-date" id="timeTravelDate">&mdash;</span>
-          <button id="timeTravelReturn" class="btn" type="button">Return to live</button>
+          <button id="timeTravelReturn" class="ribbon-btn" type="button">Return to live</button>
         </div>
 
         <section id="alertBanner" class="alert-banner" hidden aria-live="polite"></section>
 
-        <section class="metrics-row" id="metricsGrid"></section>
+        <!-- Portfolio Showcase — the work speaks first -->
+        <section id="portfolioShowcase" class="portfolio-showcase"></section>
 
-        <section id="distributionCharts" class="distribution-row"></section>
+        <!-- Metrics Strip — dense numbers, no gauges -->
+        <section class="metrics-strip" id="metricsGrid"></section>
 
+        <!-- Fleet Matrix -->
         <section class="section-block">
-          <div class="section-label">Bandwidth Telemetry</div>
-          <div id="bandwidthSummary" class="bandwidth-summary"></div>
-        </section>
-
-        <section class="section-block">
-          <div class="section-label">Fleet Uptime</div>
+          <div class="section-label">Fleet Status</div>
           <div id="fleetUptime" class="fleet-uptime"></div>
         </section>
 
+        <!-- Distribution + Bandwidth — compact data band -->
+        <section id="distributionCharts" class="distribution-row"></section>
+
+        <section class="section-block">
+          <div class="section-label">Bandwidth</div>
+          <div id="bandwidthSummary" class="bandwidth-summary"></div>
+        </section>
+
+        <!-- Target Cards -->
         <section class="section-block">
           <div class="section-label">Featured</div>
           <div id="featuredGrid" class="card-grid"></div>
         </section>
 
         <section class="section-block">
-          <div class="section-label">Active Apps</div>
+          <div class="section-label">Services</div>
           <div id="activeGrid" class="card-grid"></div>
         </section>
 
         <section class="section-block">
-          <div class="section-label">Static Pages</div>
+          <div class="section-label">Sites</div>
           <div id="staticGrid" class="card-grid"></div>
         </section>
 
         <p id="modeNote" class="mode-note"></p>
+
+        <!-- Hidden legacy refs -->
+        <span hidden id="lastChecked"></span>
+        <span hidden id="navClock"></span>
       </section>
 
       <!-- ════════ INTELLIGENCE TAB ════════ -->
