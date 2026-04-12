@@ -1,4 +1,4 @@
-name: Watchdog — Auto-restart failing services
+name: Watchdog — Direct URL health checks
 
 on:
   workflow_dispatch:
@@ -14,153 +14,57 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Poll triggers and health
+      - name: Check all target URLs
         id: check
         run: |
-          OPS_URL="https://dr-non-operating-systems.onrender.com"
-
-          echo "=== Checking health ==="
-          HEALTH=$(curl -sf "$OPS_URL/api/health" || echo '{"status":"unreachable"}')
-          echo "$HEALTH" | jq .
-          STATUS=$(echo "$HEALTH" | jq -r '.status // "unreachable"')
-          ATTENTION=$(echo "$HEALTH" | jq -r '.summary.attentionCount // 0')
-          INCIDENTS=$(echo "$HEALTH" | jq -r '.activeIncidents // 0')
-          echo "status=$STATUS" >> "$GITHUB_OUTPUT"
-          echo "attention=$ATTENTION" >> "$GITHUB_OUTPUT"
-          echo "incidents=$INCIDENTS" >> "$GITHUB_OUTPUT"
-
-          echo "=== Checking triggers ==="
-          TRIGGERS=$(curl -sf "$OPS_URL/api/triggers?status=open" || echo '{"triggers":[]}')
-          TRIGGER_COUNT=$(echo "$TRIGGERS" | jq '.triggers | length')
-          echo "trigger_count=$TRIGGER_COUNT" >> "$GITHUB_OUTPUT"
-          echo "triggers=$TRIGGERS" >> "$GITHUB_OUTPUT"
-          echo "Found $TRIGGER_COUNT open triggers"
-
-          if [ "$TRIGGER_COUNT" -gt 0 ]; then
-            echo "$TRIGGERS" | jq -r '.triggers[] | "  - \(.targetLabel): \(.context.error // "unknown")"'
-          fi
-
-      - name: Restart Render services with open triggers
-        if: steps.check.outputs.trigger_count != '0' && env.RENDER_API_KEY != ''
-        env:
-          RENDER_API_KEY: ${{ secrets.RENDER_API_KEY }}
-          OPS_URL: https://dr-non-operating-systems.onrender.com
-        run: |
-          # Map target IDs to Render service names for restart
-          # These are the Render-hosted services
-          declare -A RENDER_SERVICES=(
-            ["middle-east-monitor"]="middle-east-monitor"
-            ["geopolitics-dashboard"]="geopolitics-dashboard"
-            ["city-reporter-bot"]="city-reporter-bot"
-            ["city-reporter-bot-v2"]="city-reporter-line-bot"
-            ["smart-city-monitor"]="smart-city-monitor-web"
-            ["mtt-smart-city-monitor"]="mtt-smart-city-monitor-web"
-            ["phuket-smart-bus"]="phuket-smart-bus-y6tj"
-            ["tech-monitor"]="tech-monitor"
-            ["slic-index-rankings"]="slic-index"
-            ["slic-index-v2"]="slic-index-v2"
-            ["airdnd-platform"]="airdnd-platform"
-            ["phuket-dashboard"]="phuket-dashboard"
+          # Direct URL checks — no Render dashboard dependency
+          declare -A TARGETS=(
+            ["War Monitor"]="https://nonarkara.github.io/middleeast-monitor/"
+            ["MEM by NON"]="https://nonarkara.github.io/mem-by-non/"
+            ["SLIC Index 2026"]="https://nonarkara.github.io/slic-index-V2/"
+            ["Sabai Sabai"]="https://sabai-sabai-4uh.pages.dev"
+            ["City Tech Atlas"]="https://citytechatlas.lovable.app"
+            ["SCL Landing Page"]="https://nonarkara.github.io/scl-landing-page/"
+            ["RAAT"]="https://nonarkara.github.io/RAAT/index.html?lang=en"
+            ["Tech Hunt Thailand"]="https://nonarkara.github.io/techhuntthailand/?id=mobility-cohort-001-viabus"
+            ["ASCN Smart Cities"]="https://nonarkara.github.io/ascn-smart-cities-network/"
+            ["ASEAN CSCO App"]="https://nonarkara.github.io/asean-csco-app/#manifesto"
+            ["Kuching IOC"]="https://nonarkara.github.io/kuching-ioc/"
           )
 
-          TRIGGERS='${{ steps.check.outputs.triggers }}'
+          FAILURES=0
+          FAILURE_LIST=""
 
-          echo "$TRIGGERS" | jq -c '.triggers[]' | while read -r trigger; do
-            TARGET_ID=$(echo "$trigger" | jq -r '.targetId')
-            TRIGGER_ID=$(echo "$trigger" | jq -r '.id')
-            TARGET_LABEL=$(echo "$trigger" | jq -r '.targetLabel')
-            PLATFORM=$(echo "$trigger" | jq -r '.context.platform // ""')
-
-            echo "--- Processing trigger for: $TARGET_LABEL ($TARGET_ID) ---"
-
-            # Claim the trigger
-            curl -sf -X POST "$OPS_URL/api/triggers/$TRIGGER_ID/claim" \
-              -H 'Content-Type: application/json' \
-              -d '{"claimedBy":"github-actions-watchdog"}' > /dev/null 2>&1 || true
-
-            # Only attempt restart for Render services
-            if [ "$PLATFORM" != "Render" ]; then
-              echo "  Skipping: $TARGET_LABEL is on $PLATFORM (not Render)"
-              curl -sf -X POST "$OPS_URL/api/triggers/$TRIGGER_ID/resolve" \
-                -H 'Content-Type: application/json' \
-                -d "{\"resolution\":\"Skipped auto-restart: $PLATFORM platform not supported for automated restarts\"}" > /dev/null 2>&1 || true
-              continue
-            fi
-
-            SERVICE_NAME="${RENDER_SERVICES[$TARGET_ID]}"
-            if [ -z "$SERVICE_NAME" ]; then
-              echo "  Skipping: No Render service mapping for $TARGET_ID"
-              curl -sf -X POST "$OPS_URL/api/triggers/$TRIGGER_ID/resolve" \
-                -H 'Content-Type: application/json' \
-                -d '{"resolution":"No Render service mapping found for automated restart"}' > /dev/null 2>&1 || true
-              continue
-            fi
-
-            echo "  Looking up Render service: $SERVICE_NAME"
-
-            # Find the service ID via Render API
-            SERVICE_ID=$(curl -sf "https://api.render.com/v1/services?name=$SERVICE_NAME&limit=1" \
-              -H "Authorization: Bearer $RENDER_API_KEY" | jq -r '.[0].service.id // empty')
-
-            if [ -z "$SERVICE_ID" ]; then
-              echo "  Could not find Render service ID for $SERVICE_NAME"
-              curl -sf -X POST "$OPS_URL/api/triggers/$TRIGGER_ID/resolve" \
-                -H 'Content-Type: application/json' \
-                -d "{\"resolution\":\"Could not find Render service ID for $SERVICE_NAME\"}" > /dev/null 2>&1 || true
-              continue
-            fi
-
-            echo "  Restarting service $SERVICE_NAME ($SERVICE_ID)"
-            RESTART_RESULT=$(curl -sf -X POST "https://api.render.com/v1/services/$SERVICE_ID/restart" \
-              -H "Authorization: Bearer $RENDER_API_KEY" 2>&1) || true
-
-            echo "  Restart issued. Waiting 30s to verify..."
-            sleep 30
-
-            # Verify the service is back
-            SERVICE_URL=$(echo "$trigger" | jq -r '.context.url')
-            HTTP_CODE=$(curl -sf -o /dev/null -w '%{http_code}' --max-time 15 "$SERVICE_URL" 2>/dev/null || echo "000")
+          for LABEL in "${!TARGETS[@]}"; do
+            URL="${TARGETS[$LABEL]}"
+            HTTP_CODE=$(curl -sf -o /dev/null -w '%{http_code}' --max-time 15 "$URL" 2>/dev/null || echo "000")
 
             if [ "$HTTP_CODE" = "200" ]; then
-              RESOLUTION="Auto-restarted Render service $SERVICE_NAME. Service recovered (HTTP $HTTP_CODE)."
-              echo "  SUCCESS: $RESOLUTION"
+              echo "  OK: $LABEL ($HTTP_CODE)"
             else
-              RESOLUTION="Auto-restarted Render service $SERVICE_NAME but service still returning HTTP $HTTP_CODE. Manual investigation needed."
-              echo "  PARTIAL: $RESOLUTION"
+              echo "  FAIL: $LABEL ($HTTP_CODE) — $URL"
+              FAILURES=$((FAILURES + 1))
+              FAILURE_LIST="$FAILURE_LIST\n- **$LABEL**: HTTP $HTTP_CODE ($URL)"
             fi
-
-            # Resolve the trigger
-            curl -sf -X POST "$OPS_URL/api/triggers/$TRIGGER_ID/resolve" \
-              -H 'Content-Type: application/json' \
-              -d "{\"resolution\":\"$RESOLUTION\"}" > /dev/null 2>&1 || true
-
           done
 
-      - name: Create issue for persistent failures
-        if: steps.check.outputs.trigger_count != '0'
+          echo "failures=$FAILURES" >> "$GITHUB_OUTPUT"
+          echo "failure_list=$FAILURE_LIST" >> "$GITHUB_OUTPUT"
+          echo ""
+          echo "Total failures: $FAILURES / ${#TARGETS[@]}"
+
+      - name: Create issue for failures
+        if: steps.check.outputs.failures != '0'
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TRIGGERS='${{ steps.check.outputs.triggers }}'
-          TRIGGER_COUNT='${{ steps.check.outputs.trigger_count }}'
-          ATTENTION='${{ steps.check.outputs.attention }}'
-
-          # Only create an issue if there are actual triggers (not just attention items)
-          if [ "$TRIGGER_COUNT" -eq 0 ]; then
-            echo "No triggers to report"
-            exit 0
-          fi
+          FAILURES='${{ steps.check.outputs.failures }}'
 
           BODY="## Watchdog Alert\n\n"
           BODY+="**Time:** $(date -u +%Y-%m-%dT%H:%M:%SZ)\n"
-          BODY+="**Open triggers:** $TRIGGER_COUNT\n"
-          BODY+="**Targets needing attention:** $ATTENTION\n\n"
-          BODY+="### Triggered Systems\n\n"
-
-          echo "$TRIGGERS" | jq -r '.triggers[] | "- **\(.targetLabel)** (\(.context.platform // "unknown")): \(.context.error // "unknown error")"' | while read -r line; do
-            BODY+="$line\n"
-          done
-
+          BODY+="**Failing targets:** $FAILURES\n\n"
+          BODY+="### Failures\n"
+          BODY+="${{ steps.check.outputs.failure_list }}\n"
           BODY+="\n---\n*Auto-generated by the watchdog workflow*"
 
           # Check if there's already an open watchdog issue
@@ -172,7 +76,7 @@ jobs:
           else
             echo "Creating new watchdog issue"
             printf "$BODY" | gh issue create --repo "$GITHUB_REPOSITORY" \
-              --title "Watchdog: $TRIGGER_COUNT system(s) triggered auto-debug" \
+              --title "Watchdog: $FAILURES target(s) failing health checks" \
               --label "watchdog" \
               --body-file - 2>/dev/null || true
           fi
@@ -183,7 +87,4 @@ jobs:
           echo "" >> "$GITHUB_STEP_SUMMARY"
           echo "| Metric | Value |" >> "$GITHUB_STEP_SUMMARY"
           echo "|--------|-------|" >> "$GITHUB_STEP_SUMMARY"
-          echo "| Status | ${{ steps.check.outputs.status }} |" >> "$GITHUB_STEP_SUMMARY"
-          echo "| Attention items | ${{ steps.check.outputs.attention }} |" >> "$GITHUB_STEP_SUMMARY"
-          echo "| Active incidents | ${{ steps.check.outputs.incidents }} |" >> "$GITHUB_STEP_SUMMARY"
-          echo "| Open triggers | ${{ steps.check.outputs.trigger_count }} |" >> "$GITHUB_STEP_SUMMARY"
+          echo "| Failures | ${{ steps.check.outputs.failures }} |" >> "$GITHUB_STEP_SUMMARY"

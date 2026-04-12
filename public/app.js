@@ -546,21 +546,12 @@ const NOVEL_DATA = {
   tagline: "When the system collapses, build a new one.",
   summary: "A speculative thriller set in 2026. Protagonist Dr. Non discovers a breach in a dormant emergency system via his smart glasses, signaling the beginning of a systemic collapse that only he can decode.",
   url: "https://substack.com/@nonarkara?utm_source=top-search",
-  coverImage: "./Designated Survivor/ChatGPT Image Mar 7, 2026, 10_42_04 AM.png",
+  coverImage: "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7868b669-5217-4207-a393-43d582fc3628_2528x1696.png",
   coverFallback: "https://substackcdn.com/image/fetch/f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7868b669-5217-4207-a393-43d582fc3628_2528x1696.png",
   latestChapter: "Chapter 3: The Bangkok Perimeter",
   latestDate: "Mar 2026",
   chapters: ["Chapter 1: Champagne Supernova", "Chapter 2: Protocols in the Mist", "Chapter 3: The Bangkok Perimeter"],
-  gallery: [
-    "./Designated Survivor/ChatGPT Image Feb 23, 2026, 05_51_48 AM.png",
-    "./Designated Survivor/ChatGPT Image Feb 23, 2026, 05_51_58 AM.png",
-    "./Designated Survivor/ChatGPT Image Feb 23, 2026, 06_06_25 AM.png",
-    "./Designated Survivor/Gemini_Generated_Image_2y478l2y478l2y47.png",
-    "./Designated Survivor/Gemini_Generated_Image_5lfeas5lfeas5lfe.png",
-    "./Designated Survivor/Gemini_Generated_Image_6dse5e6dse5e6dse.png",
-    "./Designated Survivor/Gemini_Generated_Image_hptkqrhptkqrhptk.png",
-    "./Designated Survivor/Gemini_Generated_Image_kofnrnkofnrnkofn.png"
-  ]
+  gallery: []
 };
 
 const BRANDS = {
