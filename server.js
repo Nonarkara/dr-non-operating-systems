@@ -187,11 +187,22 @@ const TARGETS = [
     surface: "static",
     addedAt: "2025-03-13"
   },
+  {
+    id: "kuching-ioc",
+    label: "Kuching IOC",
+    url: "https://nonarkara.github.io/kuching-ioc/",
+    description: "Kuching Integrated Operations Centre — smart city command dashboard.",
+    repo: "Nonarkara/kuching-ioc",
+    category: "Monitoring",
+    surface: "static",
+    addedAt: "2026-04-10"
+  }
 ];
 
 const API_INVENTORY = {
   "middle-east-monitor": [],
   "mem-by-non": [],
+  "kuching-ioc": [],
   "slic-index-v2": [],
   "sabai-sabai": [],
   "city-tech-atlas": [],
