@@ -1133,6 +1133,18 @@
           "responseTimes": [
             666
           ]
+        },
+        {
+          "hour": "2026-04-12T07",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 310,
+          "minMs": 310,
+          "maxMs": 310,
+          "totalBytes": 89501,
+          "responseTimes": [
+            310
+          ]
         }
       ]
     },
@@ -2268,6 +2280,18 @@
           "totalBytes": 17096,
           "responseTimes": [
             270
+          ]
+        },
+        {
+          "hour": "2026-04-12T07",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 234,
+          "minMs": 234,
+          "maxMs": 234,
+          "totalBytes": 17096,
+          "responseTimes": [
+            234
           ]
         }
       ]
@@ -3405,6 +3429,18 @@
           "responseTimes": [
             517
           ]
+        },
+        {
+          "hour": "2026-04-12T07",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 233,
+          "minMs": 233,
+          "maxMs": 233,
+          "totalBytes": 600,
+          "responseTimes": [
+            233
+          ]
         }
       ]
     },
@@ -4540,6 +4576,18 @@
           "totalBytes": 1398,
           "responseTimes": [
             196
+          ]
+        },
+        {
+          "hour": "2026-04-12T07",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 107,
+          "minMs": 107,
+          "maxMs": 107,
+          "totalBytes": 1398,
+          "responseTimes": [
+            107
           ]
         }
       ]
@@ -5677,6 +5725,18 @@
           "responseTimes": [
             486
           ]
+        },
+        {
+          "hour": "2026-04-12T07",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 264,
+          "minMs": 264,
+          "maxMs": 264,
+          "totalBytes": 344,
+          "responseTimes": [
+            264
+          ]
         }
       ]
     },
@@ -6812,6 +6872,18 @@
           "totalBytes": 11350,
           "responseTimes": [
             882
+          ]
+        },
+        {
+          "hour": "2026-04-12T07",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 570,
+          "minMs": 570,
+          "maxMs": 570,
+          "totalBytes": 11350,
+          "responseTimes": [
+            570
           ]
         }
       ]
@@ -7949,6 +8021,18 @@
           "responseTimes": [
             498
           ]
+        },
+        {
+          "hour": "2026-04-12T07",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 255,
+          "minMs": 255,
+          "maxMs": 255,
+          "totalBytes": 346,
+          "responseTimes": [
+            255
+          ]
         }
       ]
     },
@@ -9084,6 +9168,18 @@
           "totalBytes": 3501,
           "responseTimes": [
             508
+          ]
+        },
+        {
+          "hour": "2026-04-12T07",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 254,
+          "minMs": 254,
+          "maxMs": 254,
+          "totalBytes": 3501,
+          "responseTimes": [
+            254
           ]
         }
       ]
@@ -10221,6 +10317,18 @@
           "responseTimes": [
             518
           ]
+        },
+        {
+          "hour": "2026-04-12T07",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 249,
+          "minMs": 249,
+          "maxMs": 249,
+          "totalBytes": 3851,
+          "responseTimes": [
+            249
+          ]
         }
       ]
     },
@@ -10661,9 +10769,37 @@
           "responseTimes": [
             443
           ]
+        },
+        {
+          "hour": "2026-04-12T07",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 268,
+          "minMs": 268,
+          "maxMs": 268,
+          "totalBytes": 4373,
+          "responseTimes": [
+            268
+          ]
+        }
+      ]
+    },
+    "kuching-ioc": {
+      "buckets": [
+        {
+          "hour": "2026-04-12T07",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 257,
+          "minMs": 257,
+          "maxMs": 257,
+          "totalBytes": 1970,
+          "responseTimes": [
+            257
+          ]
         }
       ]
     }
   },
-  "updatedAt": "2026-04-12T06:02:14.168Z"
+  "updatedAt": "2026-04-12T07:43:37.537Z"
 }
