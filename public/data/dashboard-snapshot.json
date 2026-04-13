@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-04-13T03:51:21.173Z",
+  "generatedAt": "2026-04-13T06:25:55.775Z",
   "github": {
-    "checkedAt": "2026-04-13T03:51:21.074Z",
+    "checkedAt": "2026-04-13T06:25:55.475Z",
     "profile": {
       "createdAt": "2024-10-18T14:36:57Z",
       "followers": 7,
@@ -89,7 +89,7 @@
     "status": "live"
   },
   "mentions": {
-    "checkedAt": "2026-04-13T03:51:21.103Z",
+    "checkedAt": "2026-04-13T06:25:55.263Z",
     "error": null,
     "items": [
       {
@@ -165,11 +165,11 @@
     "appsWithApis": 0,
     "fastest": {
       "label": "Sabai Sabai",
-      "responseTimeMs": 138
+      "responseTimeMs": 147
     },
     "issues": [],
     "liveCount": 11,
-    "medianResponseMs": 353,
+    "medianResponseMs": 518,
     "monitoredPages": 11,
     "platformBreakdown": [
       {
@@ -189,7 +189,7 @@
     "publicRepos": 30,
     "slowest": {
       "label": "City Tech Atlas",
-      "responseTimeMs": 553
+      "responseTimeMs": 831
     },
     "staticCount": 9,
     "fleetUptime24h": 100
@@ -201,7 +201,7 @@
       "bodyBytes": 89501,
       "category": "Monitoring",
       "cacheStatus": "MISS",
-      "checkedAt": "2026-04-13T03:51:20.990Z",
+      "checkedAt": "2026-04-13T06:25:55.606Z",
       "contentEncoding": "gzip",
       "description": "Regional conflict monitoring — Dr Non's GlobeWatch System. Real-time fire detection, market radar, diplomacy tracker.",
       "errorType": null,
@@ -213,13 +213,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-07T03:29:25.047Z",
-          "health": "error",
-          "ok": false,
-          "responseTimeMs": 170,
-          "statusCode": 503
-        },
         {
           "at": "2026-04-07T05:55:37.268Z",
           "health": "degraded",
@@ -464,6 +457,13 @@
           "ok": true,
           "responseTimeMs": 391,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T06:25:55.606Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 685,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -489,7 +489,7 @@
         "updatedAt": "2026-04-10T19:13:32Z",
         "url": "https://github.com/Nonarkara/middleeast-monitor"
       },
-      "responseTimeMs": 391,
+      "responseTimeMs": 685,
       "statusCode": 200,
       "screenshot": "./screenshots/middle-east-monitor.jpg",
       "surface": "static",
@@ -497,17 +497,9 @@
       "uptime": {
         "h24": 100,
         "d7": 93.12,
-        "d30": 94.72
+        "d30": 94.74
       },
       "historyBuckets": [
-        {
-          "hour": "2026-04-06T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 429,
-          "minMs": 429,
-          "maxMs": 429
-        },
         {
           "hour": "2026-04-06T06",
           "checks": 1,
@@ -851,6 +843,14 @@
           "avgMs": 391,
           "minMs": 391,
           "maxMs": 391
+        },
+        {
+          "hour": "2026-04-13T06",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 685,
+          "minMs": 685,
+          "maxMs": 685
         }
       ]
     },
@@ -860,7 +860,7 @@
       "bodyBytes": 4373,
       "category": "Monitoring",
       "cacheStatus": "MISS",
-      "checkedAt": "2026-04-13T03:51:20.975Z",
+      "checkedAt": "2026-04-13T06:25:55.435Z",
       "contentEncoding": "gzip",
       "description": "Middle East Monitor — regional intelligence dashboard by Dr Non.",
       "errorType": null,
@@ -1074,6 +1074,13 @@
           "ok": true,
           "responseTimeMs": 361,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T06:25:55.435Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 498,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -1099,7 +1106,7 @@
         "updatedAt": "2026-04-11T02:52:44Z",
         "url": "https://github.com/Nonarkara/mem-by-non"
       },
-      "responseTimeMs": 361,
+      "responseTimeMs": 498,
       "statusCode": 200,
       "screenshot": null,
       "surface": "static",
@@ -1349,6 +1356,14 @@
           "avgMs": 361,
           "minMs": 361,
           "maxMs": 361
+        },
+        {
+          "hour": "2026-04-13T06",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 498,
+          "minMs": 498,
+          "maxMs": 498
         }
       ]
     },
@@ -1358,7 +1373,7 @@
       "bodyBytes": 344,
       "category": "Index",
       "cacheStatus": "MISS",
-      "checkedAt": "2026-04-13T03:51:20.930Z",
+      "checkedAt": "2026-04-13T06:25:55.513Z",
       "contentEncoding": "gzip",
       "description": "Smart Liveable Cities Index — 157 cities ranked across 5 dimensions with interactive spider diagrams.",
       "errorType": null,
@@ -1579,6 +1594,13 @@
           "ok": true,
           "responseTimeMs": 315,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T06:25:55.513Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 575,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -1604,25 +1626,17 @@
         "updatedAt": "2026-04-05T18:17:02Z",
         "url": "https://github.com/Nonarkara/slic-index-V2"
       },
-      "responseTimeMs": 315,
+      "responseTimeMs": 575,
       "statusCode": 200,
       "screenshot": "./screenshots/slic-index-v2.jpg",
       "surface": "static",
       "url": "https://nonarkara.github.io/slic-index-V2/",
       "uptime": {
         "h24": 100,
-        "d7": 94.65,
-        "d30": 87.24
+        "d7": 95.06,
+        "d30": 87.28
       },
       "historyBuckets": [
-        {
-          "hour": "2026-04-06T03",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 504,
-          "minMs": 504,
-          "maxMs": 504
-        },
         {
           "hour": "2026-04-06T06",
           "checks": 1,
@@ -1966,6 +1980,14 @@
           "avgMs": 315,
           "minMs": 315,
           "maxMs": 315
+        },
+        {
+          "hour": "2026-04-13T06",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 575,
+          "minMs": 575,
+          "maxMs": 575
         }
       ]
     },
@@ -1975,7 +1997,7 @@
       "bodyBytes": 1398,
       "category": "Platform",
       "cacheStatus": "none",
-      "checkedAt": "2026-04-13T03:51:20.755Z",
+      "checkedAt": "2026-04-13T06:25:55.086Z",
       "contentEncoding": "br",
       "description": "Sabai Sabai platform on Cloudflare Pages.",
       "errorType": null,
@@ -1987,13 +2009,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-06T20:54:48.699Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 372,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-06T22:55:21.773Z",
           "health": "live",
@@ -2238,6 +2253,13 @@
           "ok": true,
           "responseTimeMs": 138,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T06:25:55.086Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 147,
+          "statusCode": 200
         }
       ],
       "hostname": "sabai-sabai-4uh.pages.dev",
@@ -2254,7 +2276,7 @@
       },
       "platform": "Web",
       "repo": null,
-      "responseTimeMs": 138,
+      "responseTimeMs": 147,
       "statusCode": 200,
       "screenshot": null,
       "surface": "active",
@@ -2262,17 +2284,9 @@
       "uptime": {
         "h24": 100,
         "d7": 99.18,
-        "d30": 98.81
+        "d30": 98.82
       },
       "historyBuckets": [
-        {
-          "hour": "2026-04-06T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 461,
-          "minMs": 461,
-          "maxMs": 461
-        },
         {
           "hour": "2026-04-06T06",
           "checks": 1,
@@ -2616,6 +2630,14 @@
           "avgMs": 138,
           "minMs": 138,
           "maxMs": 138
+        },
+        {
+          "hour": "2026-04-13T06",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 147,
+          "minMs": 147,
+          "maxMs": 147
         }
       ]
     },
@@ -2625,7 +2647,7 @@
       "bodyBytes": 11350,
       "category": "Directory",
       "cacheStatus": "none",
-      "checkedAt": "2026-04-13T03:51:21.171Z",
+      "checkedAt": "2026-04-13T06:25:55.772Z",
       "contentEncoding": "gzip",
       "description": "Lovable-hosted smart city solution atlas.",
       "errorType": null,
@@ -2637,13 +2659,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-06T20:54:49.071Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 749,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-06T22:55:22.999Z",
           "health": "live",
@@ -2888,6 +2903,13 @@
           "ok": true,
           "responseTimeMs": 553,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T06:25:55.772Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 831,
+          "statusCode": 200
         }
       ],
       "hostname": "citytechatlas.lovable.app",
@@ -2904,7 +2926,7 @@
       },
       "platform": "Lovable",
       "repo": null,
-      "responseTimeMs": 553,
+      "responseTimeMs": 831,
       "statusCode": 200,
       "screenshot": null,
       "surface": "active",
@@ -2915,14 +2937,6 @@
         "d30": 99.7
       },
       "historyBuckets": [
-        {
-          "hour": "2026-04-06T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 921,
-          "minMs": 921,
-          "maxMs": 921
-        },
         {
           "hour": "2026-04-06T06",
           "checks": 1,
@@ -3266,6 +3280,14 @@
           "avgMs": 553,
           "minMs": 553,
           "maxMs": 553
+        },
+        {
+          "hour": "2026-04-13T06",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 831,
+          "minMs": 831,
+          "maxMs": 831
         }
       ]
     },
@@ -3275,7 +3297,7 @@
       "bodyBytes": 600,
       "category": "Landing page",
       "cacheStatus": "MISS",
-      "checkedAt": "2026-04-13T03:51:20.986Z",
+      "checkedAt": "2026-04-13T06:25:55.489Z",
       "contentEncoding": "gzip",
       "description": "depa Smart City Leadership launch page.",
       "errorType": null,
@@ -3287,13 +3309,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-06T20:54:48.838Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 543,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-06T22:55:22.030Z",
           "health": "live",
@@ -3538,6 +3553,13 @@
           "ok": true,
           "responseTimeMs": 366,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T06:25:55.489Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 547,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -3563,7 +3585,7 @@
         "updatedAt": "2026-04-07T12:22:01Z",
         "url": "https://github.com/Nonarkara/scl-landing-page"
       },
-      "responseTimeMs": 366,
+      "responseTimeMs": 547,
       "statusCode": 200,
       "screenshot": null,
       "surface": "static",
@@ -3574,14 +3596,6 @@
         "d30": 99.7
       },
       "historyBuckets": [
-        {
-          "hour": "2026-04-06T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 603,
-          "minMs": 603,
-          "maxMs": 603
-        },
         {
           "hour": "2026-04-06T06",
           "checks": 1,
@@ -3925,6 +3939,14 @@
           "avgMs": 366,
           "minMs": 366,
           "maxMs": 366
+        },
+        {
+          "hour": "2026-04-13T06",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 547,
+          "minMs": 547,
+          "maxMs": 547
         }
       ]
     },
@@ -3934,7 +3956,7 @@
       "bodyBytes": 346,
       "category": "Website",
       "cacheStatus": "MISS",
-      "checkedAt": "2026-04-13T03:51:20.967Z",
+      "checkedAt": "2026-04-13T06:25:55.457Z",
       "contentEncoding": "gzip",
       "description": "Royal Automobile Association of Thailand public site.",
       "errorType": null,
@@ -3946,13 +3968,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-06T20:54:48.834Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 516,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-06T22:55:22.089Z",
           "health": "live",
@@ -4197,6 +4212,13 @@
           "ok": true,
           "responseTimeMs": 346,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T06:25:55.457Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 514,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -4222,7 +4244,7 @@
         "updatedAt": "2026-03-11T19:26:28Z",
         "url": "https://github.com/Nonarkara/RAAT"
       },
-      "responseTimeMs": 346,
+      "responseTimeMs": 514,
       "statusCode": 200,
       "screenshot": null,
       "surface": "static",
@@ -4233,14 +4255,6 @@
         "d30": 99.7
       },
       "historyBuckets": [
-        {
-          "hour": "2026-04-06T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 449,
-          "minMs": 449,
-          "maxMs": 449
-        },
         {
           "hour": "2026-04-06T06",
           "checks": 1,
@@ -4584,6 +4598,14 @@
           "avgMs": 346,
           "minMs": 346,
           "maxMs": 346
+        },
+        {
+          "hour": "2026-04-13T06",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 514,
+          "minMs": 514,
+          "maxMs": 514
         }
       ]
     },
@@ -4593,7 +4615,7 @@
       "bodyBytes": 3501,
       "category": "Directory",
       "cacheStatus": "MISS",
-      "checkedAt": "2026-04-13T03:51:20.998Z",
+      "checkedAt": "2026-04-13T06:25:55.580Z",
       "contentEncoding": "gzip",
       "description": "Tech Hunt Thailand mobility solution detail page for Viabus.",
       "errorType": null,
@@ -4605,13 +4627,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-06T20:54:48.830Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 506,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-06T22:55:22.136Z",
           "health": "live",
@@ -4856,6 +4871,13 @@
           "ok": true,
           "responseTimeMs": 376,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T06:25:55.580Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 636,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -4881,7 +4903,7 @@
         "updatedAt": "2026-03-12T08:16:21Z",
         "url": "https://github.com/Nonarkara/techhuntthailand"
       },
-      "responseTimeMs": 376,
+      "responseTimeMs": 636,
       "statusCode": 200,
       "screenshot": null,
       "surface": "static",
@@ -4892,14 +4914,6 @@
         "d30": 99.7
       },
       "historyBuckets": [
-        {
-          "hour": "2026-04-06T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 572,
-          "minMs": 572,
-          "maxMs": 572
-        },
         {
           "hour": "2026-04-06T06",
           "checks": 1,
@@ -5243,6 +5257,14 @@
           "avgMs": 376,
           "minMs": 376,
           "maxMs": 376
+        },
+        {
+          "hour": "2026-04-13T06",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 636,
+          "minMs": 636,
+          "maxMs": 636
         }
       ]
     },
@@ -5252,7 +5274,7 @@
       "bodyBytes": 3851,
       "category": "Network",
       "cacheStatus": "MISS",
-      "checkedAt": "2026-04-13T03:51:20.976Z",
+      "checkedAt": "2026-04-13T06:25:55.463Z",
       "contentEncoding": "gzip",
       "description": "ASEAN Smart Cities Network public-facing site and resource surface.",
       "errorType": null,
@@ -5264,13 +5286,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-06T20:54:48.755Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 430,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-06T22:55:22.130Z",
           "health": "live",
@@ -5515,6 +5530,13 @@
           "ok": true,
           "responseTimeMs": 353,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T06:25:55.463Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 518,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -5540,7 +5562,7 @@
         "updatedAt": "2026-04-01T08:14:20Z",
         "url": "https://github.com/Nonarkara/ascn-smart-cities-network"
       },
-      "responseTimeMs": 353,
+      "responseTimeMs": 518,
       "statusCode": 200,
       "screenshot": null,
       "surface": "static",
@@ -5551,14 +5573,6 @@
         "d30": 99.7
       },
       "historyBuckets": [
-        {
-          "hour": "2026-04-06T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 571,
-          "minMs": 571,
-          "maxMs": 571
-        },
         {
           "hour": "2026-04-06T06",
           "checks": 1,
@@ -5902,6 +5916,14 @@
           "avgMs": 353,
           "minMs": 353,
           "maxMs": 353
+        },
+        {
+          "hour": "2026-04-13T06",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 518,
+          "minMs": 518,
+          "maxMs": 518
         }
       ]
     },
@@ -5911,7 +5933,7 @@
       "bodyBytes": 17096,
       "category": "Manifesto",
       "cacheStatus": "MISS",
-      "checkedAt": "2026-04-13T03:51:20.802Z",
+      "checkedAt": "2026-04-13T06:25:55.163Z",
       "contentEncoding": "gzip",
       "description": "ASEAN CSCO App manifesto page on GitHub Pages.",
       "errorType": null,
@@ -5923,13 +5945,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-06T20:54:48.631Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 306,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-06T22:55:21.844Z",
           "health": "live",
@@ -6174,6 +6189,13 @@
           "ok": true,
           "responseTimeMs": 177,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T06:25:55.163Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 216,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -6190,7 +6212,7 @@
       },
       "platform": "GitHub Pages",
       "repo": null,
-      "responseTimeMs": 177,
+      "responseTimeMs": 216,
       "statusCode": 200,
       "screenshot": null,
       "surface": "static",
@@ -6201,14 +6223,6 @@
         "d30": 99.7
       },
       "historyBuckets": [
-        {
-          "hour": "2026-04-06T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 418,
-          "minMs": 418,
-          "maxMs": 418
-        },
         {
           "hour": "2026-04-06T06",
           "checks": 1,
@@ -6552,6 +6566,14 @@
           "avgMs": 177,
           "minMs": 177,
           "maxMs": 177
+        },
+        {
+          "hour": "2026-04-13T06",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 216,
+          "minMs": 216,
+          "maxMs": 216
         }
       ]
     },
@@ -6561,7 +6583,7 @@
       "bodyBytes": 2203,
       "category": "Monitoring",
       "cacheStatus": "MISS",
-      "checkedAt": "2026-04-13T03:51:20.979Z",
+      "checkedAt": "2026-04-13T06:25:55.458Z",
       "contentEncoding": "gzip",
       "description": "Kuching Integrated Operations Centre — smart city command dashboard.",
       "errorType": null,
@@ -6642,6 +6664,13 @@
           "ok": true,
           "responseTimeMs": 353,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T06:25:55.458Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 510,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -6667,7 +6696,7 @@
         "updatedAt": "2026-04-12T11:49:29Z",
         "url": "https://github.com/Nonarkara/kuching-ioc"
       },
-      "responseTimeMs": 353,
+      "responseTimeMs": 510,
       "statusCode": 200,
       "screenshot": null,
       "surface": "static",
@@ -6757,6 +6786,14 @@
           "avgMs": 353,
           "minMs": 353,
           "maxMs": 353
+        },
+        {
+          "hour": "2026-04-13T06",
+          "checks": 1,
+          "ups": 1,
+          "avgMs": 510,
+          "minMs": 510,
+          "maxMs": 510
         }
       ]
     }
@@ -6770,21 +6807,21 @@
       {
         "platform": "GitHub Pages",
         "bytes": 121815,
-        "avgMs": 338,
+        "avgMs": 522,
         "count": 9,
         "errors": 0
       },
       {
         "platform": "Web",
         "bytes": 1398,
-        "avgMs": 138,
+        "avgMs": 147,
         "count": 1,
         "errors": 0
       },
       {
         "platform": "Lovable",
         "bytes": 11350,
-        "avgMs": 553,
+        "avgMs": 831,
         "count": 1,
         "errors": 0
       }
