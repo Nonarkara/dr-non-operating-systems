@@ -189,6 +189,26 @@
       "message": "War Monitor recovered",
       "timestamp": "2026-04-07T14:00:20.089Z",
       "resolvedAt": "2026-04-07T14:00:20.089Z"
+    },
+    {
+      "id": "71736151-1153-41ff-bd01-15c0430b13ce",
+      "targetId": "asean-csco-app",
+      "targetLabel": "ASEAN CSCO App",
+      "type": "down",
+      "severity": "warning",
+      "message": "ASEAN CSCO App went down (offline)",
+      "timestamp": "2026-04-11T03:07:02.466Z",
+      "resolvedAt": "2026-04-11T03:17:08.036Z"
+    },
+    {
+      "id": "4dbf2da8-5911-4a4f-953a-032d07cd4611",
+      "targetId": "asean-csco-app",
+      "targetLabel": "ASEAN CSCO App",
+      "type": "recovery",
+      "severity": "info",
+      "message": "ASEAN CSCO App recovered",
+      "timestamp": "2026-04-11T03:17:08.036Z",
+      "resolvedAt": "2026-04-11T03:17:08.036Z"
     }
   ]
 }

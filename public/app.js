@@ -181,7 +181,7 @@ function renderPortfolioShowcase(targets = []) {
   }
 
   container.innerHTML = showcaseTargets
-    .map((target) => {
+    .map((target, index) => {
       const branding = getBranding(target);
       const status = target.health?.label || "Unknown";
       const platform = target.platform || "Web";
@@ -189,7 +189,7 @@ function renderPortfolioShowcase(targets = []) {
       const kicker = target.category || showcaseSurfaceLabel(target);
 
       if (target.screenshot) {
-        return '<a class="portfolio-card" href="' + escapeHtml(target.url) + '" rel="noreferrer" target="_blank">'
+        return '<a class="portfolio-card" style="--i:' + index + '" href="' + escapeHtml(target.url) + '" rel="noreferrer" target="_blank">'
           + '<div class="portfolio-card-badges">'
           + '<span class="portfolio-card-badge">' + escapeHtml(status) + '</span>'
           + '<span class="portfolio-card-badge portfolio-card-badge--muted">' + escapeHtml(platform) + '</span>'
@@ -201,7 +201,7 @@ function renderPortfolioShowcase(targets = []) {
           + '</div></a>';
       }
 
-      return '<a class="portfolio-card portfolio-card--text" href="' + escapeHtml(target.url) + '" rel="noreferrer" target="_blank">'
+      return '<a class="portfolio-card portfolio-card--text" style="--i:' + index + '" href="' + escapeHtml(target.url) + '" rel="noreferrer" target="_blank">'
         + '<div class="portfolio-card-badges">'
         + '<span class="portfolio-card-badge">' + escapeHtml(status) + '</span>'
         + '<span class="portfolio-card-badge portfolio-card-badge--muted">' + escapeHtml(platform) + '</span>'
@@ -952,8 +952,59 @@ function renderTabContent(tabId) {
   }
 }
 
+/* ── Count-Up Animation ── */
+function animateCountUp(el, endValue, duration = 800) {
+  if (!el || typeof endValue !== "number" || !isFinite(endValue)) return;
+  const isFloat = endValue !== Math.round(endValue);
+  const startTime = performance.now();
+  const startValue = 0;
+  function tick(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    const current = startValue + (endValue - startValue) * eased;
+    el.textContent = isFloat ? current.toFixed(1) : Math.round(current);
+    if (progress < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+function animateCountUps(container, selector) {
+  if (!container) return;
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reducedMotion) return;
+  container.querySelectorAll(selector).forEach((el) => {
+    const raw = el.textContent.replace(/[,%]/g, "");
+    const num = parseFloat(raw);
+    if (isFinite(num)) {
+      const suffix = el.textContent.replace(/[\d.,\s-]/g, "");
+      const origText = el.textContent;
+      animateCountUp(el, num, 900);
+      if (suffix) {
+        const originalSet = el.textContent;
+        const observer = new MutationObserver(() => { observer.disconnect(); });
+        const endVal = num;
+        const startTime = performance.now();
+        function tickWithSuffix(now) {
+          const elapsed = now - startTime;
+          const progress = Math.min(elapsed / 900, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          const current = endVal * eased;
+          const isFloat = endVal !== Math.round(endVal);
+          el.textContent = (isFloat ? current.toFixed(1) : Math.round(current)) + suffix;
+          if (progress < 1) requestAnimationFrame(tickWithSuffix);
+        }
+        requestAnimationFrame(tickWithSuffix);
+      }
+    }
+  });
+}
+
 function switchTab(tabId) {
-  document.querySelectorAll(".tab-panel").forEach((p) => { p.hidden = p.id !== "tab-" + tabId; });
+  const incoming = document.getElementById("tab-" + tabId);
+  document.querySelectorAll(".tab-panel").forEach((p) => {
+    if (p !== incoming) p.hidden = true;
+  });
   document.querySelectorAll(".tab[data-tab]").forEach((t) => {
     t.classList.toggle("tab--active", t.dataset.tab === tabId);
   });
@@ -962,6 +1013,18 @@ function switchTab(tabId) {
   if (!tabRendered[tabId]) {
     renderTabContent(tabId);
     tabRendered[tabId] = true;
+  }
+
+  if (incoming) {
+    incoming.hidden = false;
+    incoming.classList.add("tab-panel--entering");
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        incoming.classList.remove("tab-panel--entering");
+        incoming.classList.add("tab-panel--visible");
+        incoming.addEventListener("transitionend", () => incoming.classList.remove("tab-panel--visible"), { once: true });
+      });
+    });
   }
 }
 
@@ -1345,6 +1408,8 @@ function renderMetrics(summary, github) {
     </div>
   `;
 
+  animateCountUps(elements.metricsGrid, ".metric-cell-value");
+
   /* Update telemetry ribbon */
   const ribbonUptime = document.getElementById("ribbonUptime");
   const ribbonSpeed = document.getElementById("ribbonSpeed");
@@ -1476,6 +1541,8 @@ function renderProfile(summary) {
       `
     )
     .join("");
+
+  animateCountUps(elements.profileMetricStrip, ".profile-stat-value");
 
   elements.profileLinks.innerHTML = PROFILE.links
     .map(
