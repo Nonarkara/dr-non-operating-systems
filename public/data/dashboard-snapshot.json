@@ -1,18 +1,54 @@
 {
-  "generatedAt": "2026-04-13T11:39:36.299Z",
+  "generatedAt": "2026-04-13T14:05:56.814Z",
   "github": {
-    "checkedAt": "2026-04-13T11:39:36.114Z",
+    "checkedAt": "2026-04-13T14:05:56.469Z",
     "profile": {
       "createdAt": "2024-10-18T14:36:57Z",
       "followers": 7,
       "location": "Bangkok",
       "login": "Nonarkara",
       "name": "Dr Non Arkara",
-      "publicRepos": 30,
+      "publicRepos": 32,
       "updatedAt": "2026-04-10T18:36:40Z",
       "url": "https://github.com/Nonarkara"
     },
     "recentRepos": [
+      {
+        "description": "Thailand smart city index — measuring reality, not paper plans. Built on SLIC methodology.",
+        "hasPages": true,
+        "language": "HTML",
+        "name": "smart-city-thailand-index",
+        "pushedAt": "2026-04-13T13:35:11Z",
+        "updatedAt": "2026-04-13T13:35:22Z",
+        "url": "https://github.com/Nonarkara/smart-city-thailand-index"
+      },
+      {
+        "description": "SLIC Index V2 — 'Every city ranking is a lie. Here's ours.' (archive)",
+        "hasPages": false,
+        "language": null,
+        "name": "SLIC-Index-V2",
+        "pushedAt": "2026-04-13T12:30:24Z",
+        "updatedAt": "2026-04-13T12:30:24Z",
+        "url": "https://github.com/Nonarkara/SLIC-Index-V2"
+      },
+      {
+        "description": "SLIC Index V2 — Launched at Smart City Summit & Expo 2026, Taipei. 174 cities, 53 countries. Interactive spider diagram for custom pillar weights. The version European mayors asked to use instead of The Economist's index. [Archive — see V3 for latest]",
+        "hasPages": true,
+        "language": "TypeScript",
+        "name": "SLIC-Index-V2.5",
+        "pushedAt": "2026-04-13T12:15:16Z",
+        "updatedAt": "2026-04-13T12:30:15Z",
+        "url": "https://github.com/Nonarkara/SLIC-Index-V2.5"
+      },
+      {
+        "description": "SLIC Index V1 — Original 103-city static ranking (archive)",
+        "hasPages": true,
+        "language": "HTML",
+        "name": "SLIC-Index-V1",
+        "pushedAt": "2026-04-13T12:16:20Z",
+        "updatedAt": "2026-04-13T12:16:25Z",
+        "url": "https://github.com/Nonarkara/SLIC-Index-V1"
+      },
       {
         "description": "Phuket Smart Bus rider prototype",
         "hasPages": true,
@@ -21,48 +57,12 @@
         "pushedAt": "2026-04-12T11:55:39Z",
         "updatedAt": "2026-04-12T11:55:44Z",
         "url": "https://github.com/Nonarkara/phuket-smart-bus"
-      },
-      {
-        "description": "Daniel's Goh Greater Kuching Intelligent Operation Center — Smart City Dashboard",
-        "hasPages": true,
-        "language": "JavaScript",
-        "name": "kuching-ioc",
-        "pushedAt": "2026-04-12T11:49:26Z",
-        "updatedAt": "2026-04-12T11:49:29Z",
-        "url": "https://github.com/Nonarkara/kuching-ioc"
-      },
-      {
-        "description": "Axiom — Innovation as a Service. AI consultancy landing page.",
-        "hasPages": true,
-        "language": "CSS",
-        "name": "Axiom",
-        "pushedAt": "2026-04-12T09:15:57Z",
-        "updatedAt": "2026-04-12T09:16:03Z",
-        "url": "https://github.com/Nonarkara/Axiom"
-      },
-      {
-        "description": "Stop paying for tokens. Code with AI offline. One command setup.",
-        "hasPages": false,
-        "language": "Shell",
-        "name": "offline-ai-coding",
-        "pushedAt": "2026-04-11T05:56:21Z",
-        "updatedAt": "2026-04-11T05:56:27Z",
-        "url": "https://github.com/Nonarkara/offline-ai-coding"
-      },
-      {
-        "description": "Middle Eastern Monitor (MEM) — standalone conflict tracker dashboard by Dr Non",
-        "hasPages": true,
-        "language": "JavaScript",
-        "name": "mem-by-non",
-        "pushedAt": "2026-04-11T02:52:41Z",
-        "updatedAt": "2026-04-11T02:52:44Z",
-        "url": "https://github.com/Nonarkara/mem-by-non"
       }
     ],
     "stats": {
-      "activeLast30d": 20,
-      "githubPagesRepos": 24,
-      "latestPushAt": "2026-04-12T11:55:39Z",
+      "activeLast30d": 22,
+      "githubPagesRepos": 25,
+      "latestPushAt": "2026-04-13T13:35:11Z",
       "topLanguages": [
         {
           "count": 11,
@@ -73,7 +73,7 @@
           "name": "TypeScript"
         },
         {
-          "count": 6,
+          "count": 7,
           "name": "HTML"
         },
         {
@@ -89,7 +89,7 @@
     "status": "live"
   },
   "mentions": {
-    "checkedAt": "2026-04-13T11:39:36.170Z",
+    "checkedAt": "2026-04-13T14:05:56.645Z",
     "error": null,
     "items": [
       {
@@ -160,16 +160,22 @@
   },
   "summary": {
     "activeCount": 2,
-    "attentionCount": 0,
+    "attentionCount": 1,
     "apiCount": 0,
     "appsWithApis": 0,
     "fastest": {
-      "label": "ASEAN CSCO App",
-      "responseTimeMs": 102
+      "label": "Sabai Sabai",
+      "responseTimeMs": 121
     },
-    "issues": [],
-    "liveCount": 11,
-    "medianResponseMs": 238,
+    "issues": [
+      {
+        "id": "slic-index-v2",
+        "label": "SLIC Index 2026",
+        "reason": "Repository exists, but GitHub Pages is disabled."
+      }
+    ],
+    "liveCount": 10,
+    "medianResponseMs": 290,
     "monitoredPages": 11,
     "platformBreakdown": [
       {
@@ -186,13 +192,13 @@
       }
     ],
     "platformsInUse": 3,
-    "publicRepos": 30,
+    "publicRepos": 32,
     "slowest": {
       "label": "City Tech Atlas",
-      "responseTimeMs": 485
+      "responseTimeMs": 682
     },
     "staticCount": 9,
-    "fleetUptime24h": 100
+    "fleetUptime24h": 90.91
   },
   "targets": [
     {
@@ -201,7 +207,7 @@
       "bodyBytes": 89501,
       "category": "Monitoring",
       "cacheStatus": "MISS",
-      "checkedAt": "2026-04-13T11:39:36.051Z",
+      "checkedAt": "2026-04-13T14:05:56.394Z",
       "contentEncoding": "gzip",
       "description": "Regional conflict monitoring — Dr Non's GlobeWatch System. Real-time fire detection, market radar, diplomacy tracker.",
       "errorType": null,
@@ -213,13 +219,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-07T09:19:10.279Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 692,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-07T11:13:33.989Z",
           "health": "error",
@@ -464,6 +463,13 @@
           "ok": true,
           "responseTimeMs": 260,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T14:05:56.394Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 290,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -489,33 +495,17 @@
         "updatedAt": "2026-04-10T19:13:32Z",
         "url": "https://github.com/Nonarkara/middleeast-monitor"
       },
-      "responseTimeMs": 260,
+      "responseTimeMs": 290,
       "statusCode": 200,
       "screenshot": "./screenshots/middle-east-monitor.jpg",
       "surface": "static",
       "url": "https://nonarkara.github.io/middleeast-monitor/",
       "uptime": {
         "h24": 100,
-        "d7": 93.09,
-        "d30": 94.77
+        "d7": 93.36,
+        "d30": 94.48
       },
       "historyBuckets": [
-        {
-          "hour": "2026-04-06T11",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 320,
-          "minMs": 320,
-          "maxMs": 320
-        },
-        {
-          "hour": "2026-04-06T13",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 190,
-          "minMs": 190,
-          "maxMs": 190
-        },
         {
           "hour": "2026-04-06T15",
           "checks": 1,
@@ -630,219 +620,27 @@
         },
         {
           "hour": "2026-04-11T02",
-          "checks": 19,
-          "ups": 19,
-          "avgMs": 308,
+          "checks": 24,
+          "ups": 24,
+          "avgMs": 295,
           "minMs": 67,
           "maxMs": 915
         },
         {
           "hour": "2026-04-11T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 417,
-          "minMs": 417,
-          "maxMs": 417
+          "checks": 2,
+          "ups": 2,
+          "avgMs": 11415,
+          "minMs": 1496,
+          "maxMs": 21333
         },
         {
-          "hour": "2026-04-11T05",
+          "hour": "2026-04-13T14",
           "checks": 1,
           "ups": 1,
-          "avgMs": 411,
-          "minMs": 411,
-          "maxMs": 411
-        },
-        {
-          "hour": "2026-04-11T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 429,
-          "minMs": 429,
-          "maxMs": 429
-        },
-        {
-          "hour": "2026-04-11T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 581,
-          "minMs": 581,
-          "maxMs": 581
-        },
-        {
-          "hour": "2026-04-11T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 531,
-          "minMs": 531,
-          "maxMs": 531
-        },
-        {
-          "hour": "2026-04-11T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 205,
-          "minMs": 205,
-          "maxMs": 205
-        },
-        {
-          "hour": "2026-04-11T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 325,
-          "minMs": 325,
-          "maxMs": 325
-        },
-        {
-          "hour": "2026-04-11T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 384,
-          "minMs": 384,
-          "maxMs": 384
-        },
-        {
-          "hour": "2026-04-11T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 261,
-          "minMs": 261,
-          "maxMs": 261
-        },
-        {
-          "hour": "2026-04-11T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 256,
-          "minMs": 256,
-          "maxMs": 256
-        },
-        {
-          "hour": "2026-04-11T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 459,
-          "minMs": 459,
-          "maxMs": 459
-        },
-        {
-          "hour": "2026-04-12T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 336,
-          "minMs": 336,
-          "maxMs": 336
-        },
-        {
-          "hour": "2026-04-12T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 666,
-          "minMs": 666,
-          "maxMs": 666
-        },
-        {
-          "hour": "2026-04-12T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 310,
-          "minMs": 310,
-          "maxMs": 310
-        },
-        {
-          "hour": "2026-04-12T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 246,
-          "minMs": 246,
-          "maxMs": 246
-        },
-        {
-          "hour": "2026-04-12T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 420,
-          "minMs": 420,
-          "maxMs": 420
-        },
-        {
-          "hour": "2026-04-12T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 477,
-          "minMs": 477,
-          "maxMs": 477
-        },
-        {
-          "hour": "2026-04-12T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 265,
-          "minMs": 265,
-          "maxMs": 265
-        },
-        {
-          "hour": "2026-04-12T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 375,
-          "minMs": 375,
-          "maxMs": 375
-        },
-        {
-          "hour": "2026-04-12T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 329,
-          "minMs": 329,
-          "maxMs": 329
-        },
-        {
-          "hour": "2026-04-12T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 444,
-          "minMs": 444,
-          "maxMs": 444
-        },
-        {
-          "hour": "2026-04-12T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 424,
-          "minMs": 424,
-          "maxMs": 424
-        },
-        {
-          "hour": "2026-04-13T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 391,
-          "minMs": 391,
-          "maxMs": 391
-        },
-        {
-          "hour": "2026-04-13T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 685,
-          "minMs": 685,
-          "maxMs": 685
-        },
-        {
-          "hour": "2026-04-13T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 286,
-          "minMs": 286,
-          "maxMs": 286
-        },
-        {
-          "hour": "2026-04-13T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 260,
-          "minMs": 260,
-          "maxMs": 260
+          "avgMs": 290,
+          "minMs": 290,
+          "maxMs": 290
         }
       ]
     },
@@ -852,7 +650,7 @@
       "bodyBytes": 4373,
       "category": "Monitoring",
       "cacheStatus": "MISS",
-      "checkedAt": "2026-04-13T11:39:36.047Z",
+      "checkedAt": "2026-04-13T14:05:56.415Z",
       "contentEncoding": "gzip",
       "description": "Middle East Monitor — regional intelligence dashboard by Dr Non.",
       "errorType": null,
@@ -1087,6 +885,13 @@
           "ok": true,
           "responseTimeMs": 241,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T14:05:56.415Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 289,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -1112,7 +917,7 @@
         "updatedAt": "2026-04-11T02:52:44Z",
         "url": "https://github.com/Nonarkara/mem-by-non"
       },
-      "responseTimeMs": 241,
+      "responseTimeMs": 289,
       "statusCode": 200,
       "screenshot": null,
       "surface": "static",
@@ -1173,238 +978,46 @@
         },
         {
           "hour": "2026-04-11T02",
-          "checks": 19,
-          "ups": 19,
-          "avgMs": 282,
+          "checks": 24,
+          "ups": 24,
+          "avgMs": 263,
           "minMs": 51,
           "maxMs": 807
         },
         {
           "hour": "2026-04-11T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 414,
-          "minMs": 414,
-          "maxMs": 414
+          "checks": 2,
+          "ups": 2,
+          "avgMs": 8075,
+          "minMs": 1166,
+          "maxMs": 14984
         },
         {
-          "hour": "2026-04-11T05",
+          "hour": "2026-04-13T14",
           "checks": 1,
           "ups": 1,
-          "avgMs": 393,
-          "minMs": 393,
-          "maxMs": 393
-        },
-        {
-          "hour": "2026-04-11T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 423,
-          "minMs": 423,
-          "maxMs": 423
-        },
-        {
-          "hour": "2026-04-11T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 470,
-          "minMs": 470,
-          "maxMs": 470
-        },
-        {
-          "hour": "2026-04-11T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 433,
-          "minMs": 433,
-          "maxMs": 433
-        },
-        {
-          "hour": "2026-04-11T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 207,
-          "minMs": 207,
-          "maxMs": 207
-        },
-        {
-          "hour": "2026-04-11T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 346,
-          "minMs": 346,
-          "maxMs": 346
-        },
-        {
-          "hour": "2026-04-11T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 305,
-          "minMs": 305,
-          "maxMs": 305
-        },
-        {
-          "hour": "2026-04-11T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 226,
-          "minMs": 226,
-          "maxMs": 226
-        },
-        {
-          "hour": "2026-04-11T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 212,
-          "minMs": 212,
-          "maxMs": 212
-        },
-        {
-          "hour": "2026-04-11T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 352,
-          "minMs": 352,
-          "maxMs": 352
-        },
-        {
-          "hour": "2026-04-12T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 304,
-          "minMs": 304,
-          "maxMs": 304
-        },
-        {
-          "hour": "2026-04-12T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 443,
-          "minMs": 443,
-          "maxMs": 443
-        },
-        {
-          "hour": "2026-04-12T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 268,
-          "minMs": 268,
-          "maxMs": 268
-        },
-        {
-          "hour": "2026-04-12T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 173,
-          "minMs": 173,
-          "maxMs": 173
-        },
-        {
-          "hour": "2026-04-12T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 332,
-          "minMs": 332,
-          "maxMs": 332
-        },
-        {
-          "hour": "2026-04-12T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 427,
-          "minMs": 427,
-          "maxMs": 427
-        },
-        {
-          "hour": "2026-04-12T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 231,
-          "minMs": 231,
-          "maxMs": 231
-        },
-        {
-          "hour": "2026-04-12T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 296,
-          "minMs": 296,
-          "maxMs": 296
-        },
-        {
-          "hour": "2026-04-12T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 248,
-          "minMs": 248,
-          "maxMs": 248
-        },
-        {
-          "hour": "2026-04-12T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 418,
-          "minMs": 418,
-          "maxMs": 418
-        },
-        {
-          "hour": "2026-04-12T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 387,
-          "minMs": 387,
-          "maxMs": 387
-        },
-        {
-          "hour": "2026-04-13T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 361,
-          "minMs": 361,
-          "maxMs": 361
-        },
-        {
-          "hour": "2026-04-13T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 498,
-          "minMs": 498,
-          "maxMs": 498
-        },
-        {
-          "hour": "2026-04-13T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 200,
-          "minMs": 200,
-          "maxMs": 200
-        },
-        {
-          "hour": "2026-04-13T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 241,
-          "minMs": 241,
-          "maxMs": 241
+          "avgMs": 289,
+          "minMs": 289,
+          "maxMs": 289
         }
       ]
     },
     {
       "apis": [],
       "addedAt": "2026-03-14",
-      "bodyBytes": 344,
+      "bodyBytes": 5142,
       "category": "Index",
       "cacheStatus": "MISS",
-      "checkedAt": "2026-04-13T11:39:36.051Z",
+      "checkedAt": "2026-04-13T14:05:56.417Z",
       "contentEncoding": "gzip",
       "description": "Smart Liveable Cities Index — 157 cities ranked across 5 dimensions with interactive spider diagrams.",
-      "errorType": null,
+      "errorType": "http_4xx",
       "finalUrl": "https://nonarkara.github.io/slic-index-V2/",
       "featured": true,
       "health": {
-        "code": "live",
-        "label": "Live",
-        "reason": "Healthy response."
+        "code": "pages-off",
+        "label": "Pages Off",
+        "reason": "Repository exists, but GitHub Pages is disabled."
       },
       "history": [
         {
@@ -1637,6 +1250,13 @@
           "ok": true,
           "responseTimeMs": 244,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T14:05:56.417Z",
+          "health": "pages-off",
+          "ok": false,
+          "responseTimeMs": 290,
+          "statusCode": 404
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -1645,50 +1265,34 @@
       "metadata": {
         "cache": "MISS",
         "contentType": "text/html; charset=utf-8",
-        "etag": "W/\"69d4aca4-236\"",
-        "lastModified": "Tue, 07 Apr 2026 07:05:08 GMT",
+        "etag": "W/\"69c463e5-239b\"",
+        "lastModified": null,
         "server": "GitHub.com",
-        "title": "Smart and Liveable Cities Index",
+        "title": "Site not found · GitHub Pages",
         "xPoweredBy": null
       },
       "platform": "GitHub Pages",
       "repo": {
         "defaultBranch": "main",
-        "description": "SLIC Index V2 — Launched at Smart City Summit & Expo 2026, Taipei. 174 cities, 53 countries. Interactive spider diagram for custom pillar weights. The version European mayors asked to use instead of The Economist's index. [Archive — see V3 for latest]",
-        "fullName": "Nonarkara/slic-index-V2",
-        "hasPages": true,
-        "language": "TypeScript",
-        "pushedAt": "2026-04-07T10:17:19Z",
-        "updatedAt": "2026-04-05T18:17:02Z",
-        "url": "https://github.com/Nonarkara/slic-index-V2"
+        "description": "SLIC Index V2 — 'Every city ranking is a lie. Here's ours.' (archive)",
+        "fullName": "Nonarkara/SLIC-Index-V2",
+        "hasPages": false,
+        "language": null,
+        "pushedAt": "2026-04-13T12:30:24Z",
+        "updatedAt": "2026-04-13T12:30:24Z",
+        "url": "https://github.com/Nonarkara/SLIC-Index-V2"
       },
-      "responseTimeMs": 244,
-      "statusCode": 200,
+      "responseTimeMs": 290,
+      "statusCode": 404,
       "screenshot": "./screenshots/slic-index-v2.jpg",
       "surface": "static",
       "url": "https://nonarkara.github.io/slic-index-V2/",
       "uptime": {
-        "h24": 100,
-        "d7": 96.28,
-        "d30": 87.35
+        "h24": 0,
+        "d7": 96.4,
+        "d30": 86.34
       },
       "historyBuckets": [
-        {
-          "hour": "2026-04-06T11",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 509,
-          "minMs": 509,
-          "maxMs": 509
-        },
-        {
-          "hour": "2026-04-06T13",
-          "checks": 1,
-          "ups": 0,
-          "avgMs": 367,
-          "minMs": 367,
-          "maxMs": 367
-        },
         {
           "hour": "2026-04-06T15",
           "checks": 1,
@@ -1803,219 +1407,27 @@
         },
         {
           "hour": "2026-04-11T02",
-          "checks": 19,
-          "ups": 19,
-          "avgMs": 283,
+          "checks": 24,
+          "ups": 24,
+          "avgMs": 264,
           "minMs": 56,
           "maxMs": 796
         },
         {
           "hour": "2026-04-11T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 406,
-          "minMs": 406,
-          "maxMs": 406
+          "checks": 2,
+          "ups": 2,
+          "avgMs": 8072,
+          "minMs": 1129,
+          "maxMs": 15014
         },
         {
-          "hour": "2026-04-11T05",
+          "hour": "2026-04-13T14",
           "checks": 1,
-          "ups": 1,
-          "avgMs": 404,
-          "minMs": 404,
-          "maxMs": 404
-        },
-        {
-          "hour": "2026-04-11T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 418,
-          "minMs": 418,
-          "maxMs": 418
-        },
-        {
-          "hour": "2026-04-11T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 422,
-          "minMs": 422,
-          "maxMs": 422
-        },
-        {
-          "hour": "2026-04-11T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 443,
-          "minMs": 443,
-          "maxMs": 443
-        },
-        {
-          "hour": "2026-04-11T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 177,
-          "minMs": 177,
-          "maxMs": 177
-        },
-        {
-          "hour": "2026-04-11T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 337,
-          "minMs": 337,
-          "maxMs": 337
-        },
-        {
-          "hour": "2026-04-11T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 330,
-          "minMs": 330,
-          "maxMs": 330
-        },
-        {
-          "hour": "2026-04-11T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 219,
-          "minMs": 219,
-          "maxMs": 219
-        },
-        {
-          "hour": "2026-04-11T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 246,
-          "minMs": 246,
-          "maxMs": 246
-        },
-        {
-          "hour": "2026-04-11T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 428,
-          "minMs": 428,
-          "maxMs": 428
-        },
-        {
-          "hour": "2026-04-12T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 266,
-          "minMs": 266,
-          "maxMs": 266
-        },
-        {
-          "hour": "2026-04-12T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 486,
-          "minMs": 486,
-          "maxMs": 486
-        },
-        {
-          "hour": "2026-04-12T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 264,
-          "minMs": 264,
-          "maxMs": 264
-        },
-        {
-          "hour": "2026-04-12T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 191,
-          "minMs": 191,
-          "maxMs": 191
-        },
-        {
-          "hour": "2026-04-12T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 329,
-          "minMs": 329,
-          "maxMs": 329
-        },
-        {
-          "hour": "2026-04-12T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 427,
-          "minMs": 427,
-          "maxMs": 427
-        },
-        {
-          "hour": "2026-04-12T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 200,
-          "minMs": 200,
-          "maxMs": 200
-        },
-        {
-          "hour": "2026-04-12T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 331,
-          "minMs": 331,
-          "maxMs": 331
-        },
-        {
-          "hour": "2026-04-12T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 262,
-          "minMs": 262,
-          "maxMs": 262
-        },
-        {
-          "hour": "2026-04-12T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 415,
-          "minMs": 415,
-          "maxMs": 415
-        },
-        {
-          "hour": "2026-04-12T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 381,
-          "minMs": 381,
-          "maxMs": 381
-        },
-        {
-          "hour": "2026-04-13T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 315,
-          "minMs": 315,
-          "maxMs": 315
-        },
-        {
-          "hour": "2026-04-13T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 575,
-          "minMs": 575,
-          "maxMs": 575
-        },
-        {
-          "hour": "2026-04-13T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 207,
-          "minMs": 207,
-          "maxMs": 207
-        },
-        {
-          "hour": "2026-04-13T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 244,
-          "minMs": 244,
-          "maxMs": 244
+          "ups": 0,
+          "avgMs": 290,
+          "minMs": 290,
+          "maxMs": 290
         }
       ]
     },
@@ -2025,7 +1437,7 @@
       "bodyBytes": 1398,
       "category": "Platform",
       "cacheStatus": "none",
-      "checkedAt": "2026-04-13T11:39:35.914Z",
+      "checkedAt": "2026-04-13T14:05:56.249Z",
       "contentEncoding": "br",
       "description": "Sabai Sabai platform on Cloudflare Pages.",
       "errorType": null,
@@ -2037,13 +1449,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-07T05:55:37.227Z",
-          "health": "degraded",
-          "ok": false,
-          "responseTimeMs": 243,
-          "statusCode": 402
-        },
         {
           "at": "2026-04-07T07:48:35.415Z",
           "health": "live",
@@ -2288,6 +1693,13 @@
           "ok": true,
           "responseTimeMs": 106,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T14:05:56.249Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 121,
+          "statusCode": 200
         }
       ],
       "hostname": "sabai-sabai-4uh.pages.dev",
@@ -2304,33 +1716,17 @@
       },
       "platform": "Web",
       "repo": null,
-      "responseTimeMs": 106,
+      "responseTimeMs": 121,
       "statusCode": 200,
       "screenshot": null,
       "surface": "active",
       "url": "https://sabai-sabai-4uh.pages.dev",
       "uptime": {
         "h24": 100,
-        "d7": 99.17,
-        "d30": 98.82
+        "d7": 99.1,
+        "d30": 98.76
       },
       "historyBuckets": [
-        {
-          "hour": "2026-04-06T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 462,
-          "minMs": 462,
-          "maxMs": 462
-        },
-        {
-          "hour": "2026-04-06T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 276,
-          "minMs": 276,
-          "maxMs": 276
-        },
         {
           "hour": "2026-04-06T15",
           "checks": 1,
@@ -2445,219 +1841,27 @@
         },
         {
           "hour": "2026-04-11T02",
-          "checks": 19,
-          "ups": 19,
-          "avgMs": 97,
-          "minMs": 66,
+          "checks": 24,
+          "ups": 24,
+          "avgMs": 92,
+          "minMs": 54,
           "maxMs": 298
         },
         {
           "hour": "2026-04-11T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 103,
-          "minMs": 103,
-          "maxMs": 103
+          "checks": 2,
+          "ups": 2,
+          "avgMs": 6246,
+          "minMs": 127,
+          "maxMs": 12365
         },
         {
-          "hour": "2026-04-11T05",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 179,
-          "minMs": 179,
-          "maxMs": 179
-        },
-        {
-          "hour": "2026-04-11T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 185,
-          "minMs": 185,
-          "maxMs": 185
-        },
-        {
-          "hour": "2026-04-11T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 141,
-          "minMs": 141,
-          "maxMs": 141
-        },
-        {
-          "hour": "2026-04-11T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 170,
-          "minMs": 170,
-          "maxMs": 170
-        },
-        {
-          "hour": "2026-04-11T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 124,
-          "minMs": 124,
-          "maxMs": 124
-        },
-        {
-          "hour": "2026-04-11T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 213,
-          "minMs": 213,
-          "maxMs": 213
-        },
-        {
-          "hour": "2026-04-11T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 139,
-          "minMs": 139,
-          "maxMs": 139
-        },
-        {
-          "hour": "2026-04-11T19",
+          "hour": "2026-04-13T14",
           "checks": 1,
           "ups": 1,
           "avgMs": 121,
           "minMs": 121,
           "maxMs": 121
-        },
-        {
-          "hour": "2026-04-11T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 102,
-          "minMs": 102,
-          "maxMs": 102
-        },
-        {
-          "hour": "2026-04-11T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 266,
-          "minMs": 266,
-          "maxMs": 266
-        },
-        {
-          "hour": "2026-04-12T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 142,
-          "minMs": 142,
-          "maxMs": 142
-        },
-        {
-          "hour": "2026-04-12T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 196,
-          "minMs": 196,
-          "maxMs": 196
-        },
-        {
-          "hour": "2026-04-12T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 107,
-          "minMs": 107,
-          "maxMs": 107
-        },
-        {
-          "hour": "2026-04-12T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 129,
-          "minMs": 129,
-          "maxMs": 129
-        },
-        {
-          "hour": "2026-04-12T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 177,
-          "minMs": 177,
-          "maxMs": 177
-        },
-        {
-          "hour": "2026-04-12T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 247,
-          "minMs": 247,
-          "maxMs": 247
-        },
-        {
-          "hour": "2026-04-12T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 82,
-          "minMs": 82,
-          "maxMs": 82
-        },
-        {
-          "hour": "2026-04-12T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 154,
-          "minMs": 154,
-          "maxMs": 154
-        },
-        {
-          "hour": "2026-04-12T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 151,
-          "minMs": 151,
-          "maxMs": 151
-        },
-        {
-          "hour": "2026-04-12T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 111,
-          "minMs": 111,
-          "maxMs": 111
-        },
-        {
-          "hour": "2026-04-12T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 86,
-          "minMs": 86,
-          "maxMs": 86
-        },
-        {
-          "hour": "2026-04-13T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 138,
-          "minMs": 138,
-          "maxMs": 138
-        },
-        {
-          "hour": "2026-04-13T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 147,
-          "minMs": 147,
-          "maxMs": 147
-        },
-        {
-          "hour": "2026-04-13T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 102,
-          "minMs": 102,
-          "maxMs": 102
-        },
-        {
-          "hour": "2026-04-13T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 106,
-          "minMs": 106,
-          "maxMs": 106
         }
       ]
     },
@@ -2667,7 +1871,7 @@
       "bodyBytes": 11350,
       "category": "Directory",
       "cacheStatus": "none",
-      "checkedAt": "2026-04-13T11:39:36.295Z",
+      "checkedAt": "2026-04-13T14:05:56.812Z",
       "contentEncoding": "gzip",
       "description": "Lovable-hosted smart city solution atlas.",
       "errorType": null,
@@ -2679,13 +1883,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-07T05:55:37.842Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 864,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-07T07:48:35.772Z",
           "health": "live",
@@ -2930,6 +2127,13 @@
           "ok": true,
           "responseTimeMs": 485,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T14:05:56.812Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 682,
+          "statusCode": 200
         }
       ],
       "hostname": "citytechatlas.lovable.app",
@@ -2946,7 +2150,7 @@
       },
       "platform": "Lovable",
       "repo": null,
-      "responseTimeMs": 485,
+      "responseTimeMs": 682,
       "statusCode": 200,
       "screenshot": null,
       "surface": "active",
@@ -2954,25 +2158,9 @@
       "uptime": {
         "h24": 100,
         "d7": 100,
-        "d30": 99.71
+        "d30": 99.69
       },
       "historyBuckets": [
-        {
-          "hour": "2026-04-06T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 953,
-          "minMs": 953,
-          "maxMs": 953
-        },
-        {
-          "hour": "2026-04-06T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 746,
-          "minMs": 746,
-          "maxMs": 746
-        },
         {
           "hour": "2026-04-06T15",
           "checks": 1,
@@ -3087,219 +2275,27 @@
         },
         {
           "hour": "2026-04-11T02",
-          "checks": 19,
-          "ups": 19,
-          "avgMs": 932,
+          "checks": 24,
+          "ups": 24,
+          "avgMs": 974,
           "minMs": 157,
-          "maxMs": 1701
+          "maxMs": 2032
         },
         {
           "hour": "2026-04-11T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 903,
-          "minMs": 903,
-          "maxMs": 903
+          "checks": 2,
+          "ups": 2,
+          "avgMs": 7853,
+          "minMs": 1638,
+          "maxMs": 14068
         },
         {
-          "hour": "2026-04-11T05",
+          "hour": "2026-04-13T14",
           "checks": 1,
           "ups": 1,
-          "avgMs": 695,
-          "minMs": 695,
-          "maxMs": 695
-        },
-        {
-          "hour": "2026-04-11T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 687,
-          "minMs": 687,
-          "maxMs": 687
-        },
-        {
-          "hour": "2026-04-11T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 1068,
-          "minMs": 1068,
-          "maxMs": 1068
-        },
-        {
-          "hour": "2026-04-11T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 869,
-          "minMs": 869,
-          "maxMs": 869
-        },
-        {
-          "hour": "2026-04-11T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 539,
-          "minMs": 539,
-          "maxMs": 539
-        },
-        {
-          "hour": "2026-04-11T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 1030,
-          "minMs": 1030,
-          "maxMs": 1030
-        },
-        {
-          "hour": "2026-04-11T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 961,
-          "minMs": 961,
-          "maxMs": 961
-        },
-        {
-          "hour": "2026-04-11T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 690,
-          "minMs": 690,
-          "maxMs": 690
-        },
-        {
-          "hour": "2026-04-11T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 544,
-          "minMs": 544,
-          "maxMs": 544
-        },
-        {
-          "hour": "2026-04-11T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 745,
-          "minMs": 745,
-          "maxMs": 745
-        },
-        {
-          "hour": "2026-04-12T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 664,
-          "minMs": 664,
-          "maxMs": 664
-        },
-        {
-          "hour": "2026-04-12T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 882,
-          "minMs": 882,
-          "maxMs": 882
-        },
-        {
-          "hour": "2026-04-12T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 570,
-          "minMs": 570,
-          "maxMs": 570
-        },
-        {
-          "hour": "2026-04-12T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 609,
-          "minMs": 609,
-          "maxMs": 609
-        },
-        {
-          "hour": "2026-04-12T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 538,
-          "minMs": 538,
-          "maxMs": 538
-        },
-        {
-          "hour": "2026-04-12T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 1174,
-          "minMs": 1174,
-          "maxMs": 1174
-        },
-        {
-          "hour": "2026-04-12T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 754,
-          "minMs": 754,
-          "maxMs": 754
-        },
-        {
-          "hour": "2026-04-12T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 554,
-          "minMs": 554,
-          "maxMs": 554
-        },
-        {
-          "hour": "2026-04-12T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 764,
-          "minMs": 764,
-          "maxMs": 764
-        },
-        {
-          "hour": "2026-04-12T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 883,
-          "minMs": 883,
-          "maxMs": 883
-        },
-        {
-          "hour": "2026-04-12T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 783,
-          "minMs": 783,
-          "maxMs": 783
-        },
-        {
-          "hour": "2026-04-13T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 553,
-          "minMs": 553,
-          "maxMs": 553
-        },
-        {
-          "hour": "2026-04-13T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 831,
-          "minMs": 831,
-          "maxMs": 831
-        },
-        {
-          "hour": "2026-04-13T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 565,
-          "minMs": 565,
-          "maxMs": 565
-        },
-        {
-          "hour": "2026-04-13T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 485,
-          "minMs": 485,
-          "maxMs": 485
+          "avgMs": 682,
+          "minMs": 682,
+          "maxMs": 682
         }
       ]
     },
@@ -3309,7 +2305,7 @@
       "bodyBytes": 600,
       "category": "Landing page",
       "cacheStatus": "MISS",
-      "checkedAt": "2026-04-13T11:39:36.074Z",
+      "checkedAt": "2026-04-13T14:05:56.415Z",
       "contentEncoding": "gzip",
       "description": "depa Smart City Leadership launch page.",
       "errorType": null,
@@ -3321,13 +2317,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-07T05:55:37.386Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 425,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-07T07:48:35.544Z",
           "health": "live",
@@ -3572,6 +2561,13 @@
           "ok": true,
           "responseTimeMs": 263,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T14:05:56.415Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 284,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -3597,7 +2593,7 @@
         "updatedAt": "2026-04-07T12:22:01Z",
         "url": "https://github.com/Nonarkara/scl-landing-page"
       },
-      "responseTimeMs": 263,
+      "responseTimeMs": 284,
       "statusCode": 200,
       "screenshot": null,
       "surface": "static",
@@ -3605,25 +2601,9 @@
       "uptime": {
         "h24": 100,
         "d7": 100,
-        "d30": 99.71
+        "d30": 99.69
       },
       "historyBuckets": [
-        {
-          "hour": "2026-04-06T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 611,
-          "minMs": 611,
-          "maxMs": 611
-        },
-        {
-          "hour": "2026-04-06T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 477,
-          "minMs": 477,
-          "maxMs": 477
-        },
         {
           "hour": "2026-04-06T15",
           "checks": 1,
@@ -3738,219 +2718,27 @@
         },
         {
           "hour": "2026-04-11T02",
-          "checks": 19,
-          "ups": 19,
-          "avgMs": 287,
+          "checks": 24,
+          "ups": 24,
+          "avgMs": 279,
           "minMs": 51,
-          "maxMs": 816
+          "maxMs": 819
         },
         {
           "hour": "2026-04-11T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 392,
-          "minMs": 392,
-          "maxMs": 392
+          "checks": 2,
+          "ups": 2,
+          "avgMs": 7803,
+          "minMs": 1479,
+          "maxMs": 14127
         },
         {
-          "hour": "2026-04-11T05",
+          "hour": "2026-04-13T14",
           "checks": 1,
           "ups": 1,
-          "avgMs": 458,
-          "minMs": 458,
-          "maxMs": 458
-        },
-        {
-          "hour": "2026-04-11T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 470,
-          "minMs": 470,
-          "maxMs": 470
-        },
-        {
-          "hour": "2026-04-11T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 499,
-          "minMs": 499,
-          "maxMs": 499
-        },
-        {
-          "hour": "2026-04-11T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 515,
-          "minMs": 515,
-          "maxMs": 515
-        },
-        {
-          "hour": "2026-04-11T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 178,
-          "minMs": 178,
-          "maxMs": 178
-        },
-        {
-          "hour": "2026-04-11T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 336,
-          "minMs": 336,
-          "maxMs": 336
-        },
-        {
-          "hour": "2026-04-11T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 345,
-          "minMs": 345,
-          "maxMs": 345
-        },
-        {
-          "hour": "2026-04-11T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 237,
-          "minMs": 237,
-          "maxMs": 237
-        },
-        {
-          "hour": "2026-04-11T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 217,
-          "minMs": 217,
-          "maxMs": 217
-        },
-        {
-          "hour": "2026-04-11T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 451,
-          "minMs": 451,
-          "maxMs": 451
-        },
-        {
-          "hour": "2026-04-12T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 252,
-          "minMs": 252,
-          "maxMs": 252
-        },
-        {
-          "hour": "2026-04-12T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 517,
-          "minMs": 517,
-          "maxMs": 517
-        },
-        {
-          "hour": "2026-04-12T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 233,
-          "minMs": 233,
-          "maxMs": 233
-        },
-        {
-          "hour": "2026-04-12T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 198,
-          "minMs": 198,
-          "maxMs": 198
-        },
-        {
-          "hour": "2026-04-12T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 369,
-          "minMs": 369,
-          "maxMs": 369
-        },
-        {
-          "hour": "2026-04-12T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 385,
-          "minMs": 385,
-          "maxMs": 385
-        },
-        {
-          "hour": "2026-04-12T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 240,
-          "minMs": 240,
-          "maxMs": 240
-        },
-        {
-          "hour": "2026-04-12T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 352,
-          "minMs": 352,
-          "maxMs": 352
-        },
-        {
-          "hour": "2026-04-12T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 315,
-          "minMs": 315,
-          "maxMs": 315
-        },
-        {
-          "hour": "2026-04-12T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 418,
-          "minMs": 418,
-          "maxMs": 418
-        },
-        {
-          "hour": "2026-04-12T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 417,
-          "minMs": 417,
-          "maxMs": 417
-        },
-        {
-          "hour": "2026-04-13T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 366,
-          "minMs": 366,
-          "maxMs": 366
-        },
-        {
-          "hour": "2026-04-13T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 547,
-          "minMs": 547,
-          "maxMs": 547
-        },
-        {
-          "hour": "2026-04-13T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 261,
-          "minMs": 261,
-          "maxMs": 261
-        },
-        {
-          "hour": "2026-04-13T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 263,
-          "minMs": 263,
-          "maxMs": 263
+          "avgMs": 284,
+          "minMs": 284,
+          "maxMs": 284
         }
       ]
     },
@@ -3960,7 +2748,7 @@
       "bodyBytes": 346,
       "category": "Website",
       "cacheStatus": "MISS",
-      "checkedAt": "2026-04-13T11:39:36.006Z",
+      "checkedAt": "2026-04-13T14:05:56.439Z",
       "contentEncoding": "gzip",
       "description": "Royal Automobile Association of Thailand public site.",
       "errorType": null,
@@ -3972,13 +2760,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-07T05:55:37.402Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 425,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-07T07:48:35.540Z",
           "health": "live",
@@ -4223,6 +3004,13 @@
           "ok": true,
           "responseTimeMs": 194,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T14:05:56.439Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 307,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -4248,7 +3036,7 @@
         "updatedAt": "2026-03-11T19:26:28Z",
         "url": "https://github.com/Nonarkara/RAAT"
       },
-      "responseTimeMs": 194,
+      "responseTimeMs": 307,
       "statusCode": 200,
       "screenshot": null,
       "surface": "static",
@@ -4256,25 +3044,9 @@
       "uptime": {
         "h24": 100,
         "d7": 100,
-        "d30": 99.71
+        "d30": 99.69
       },
       "historyBuckets": [
-        {
-          "hour": "2026-04-06T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 609,
-          "minMs": 609,
-          "maxMs": 609
-        },
-        {
-          "hour": "2026-04-06T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 464,
-          "minMs": 464,
-          "maxMs": 464
-        },
         {
           "hour": "2026-04-06T15",
           "checks": 1,
@@ -4389,219 +3161,27 @@
         },
         {
           "hour": "2026-04-11T02",
-          "checks": 19,
-          "ups": 19,
-          "avgMs": 286,
+          "checks": 24,
+          "ups": 24,
+          "avgMs": 277,
           "minMs": 51,
           "maxMs": 825
         },
         {
           "hour": "2026-04-11T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 390,
-          "minMs": 390,
-          "maxMs": 390
+          "checks": 2,
+          "ups": 2,
+          "avgMs": 7798,
+          "minMs": 1471,
+          "maxMs": 14125
         },
         {
-          "hour": "2026-04-11T05",
+          "hour": "2026-04-13T14",
           "checks": 1,
           "ups": 1,
-          "avgMs": 447,
-          "minMs": 447,
-          "maxMs": 447
-        },
-        {
-          "hour": "2026-04-11T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 457,
-          "minMs": 457,
-          "maxMs": 457
-        },
-        {
-          "hour": "2026-04-11T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 455,
-          "minMs": 455,
-          "maxMs": 455
-        },
-        {
-          "hour": "2026-04-11T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 494,
-          "minMs": 494,
-          "maxMs": 494
-        },
-        {
-          "hour": "2026-04-11T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 195,
-          "minMs": 195,
-          "maxMs": 195
-        },
-        {
-          "hour": "2026-04-11T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 339,
-          "minMs": 339,
-          "maxMs": 339
-        },
-        {
-          "hour": "2026-04-11T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 350,
-          "minMs": 350,
-          "maxMs": 350
-        },
-        {
-          "hour": "2026-04-11T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 234,
-          "minMs": 234,
-          "maxMs": 234
-        },
-        {
-          "hour": "2026-04-11T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 214,
-          "minMs": 214,
-          "maxMs": 214
-        },
-        {
-          "hour": "2026-04-11T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 424,
-          "minMs": 424,
-          "maxMs": 424
-        },
-        {
-          "hour": "2026-04-12T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 290,
-          "minMs": 290,
-          "maxMs": 290
-        },
-        {
-          "hour": "2026-04-12T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 498,
-          "minMs": 498,
-          "maxMs": 498
-        },
-        {
-          "hour": "2026-04-12T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 255,
-          "minMs": 255,
-          "maxMs": 255
-        },
-        {
-          "hour": "2026-04-12T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 204,
-          "minMs": 204,
-          "maxMs": 204
-        },
-        {
-          "hour": "2026-04-12T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 375,
-          "minMs": 375,
-          "maxMs": 375
-        },
-        {
-          "hour": "2026-04-12T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 453,
-          "minMs": 453,
-          "maxMs": 453
-        },
-        {
-          "hour": "2026-04-12T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 224,
-          "minMs": 224,
-          "maxMs": 224
-        },
-        {
-          "hour": "2026-04-12T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 377,
-          "minMs": 377,
-          "maxMs": 377
-        },
-        {
-          "hour": "2026-04-12T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 285,
-          "minMs": 285,
-          "maxMs": 285
-        },
-        {
-          "hour": "2026-04-12T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 410,
-          "minMs": 410,
-          "maxMs": 410
-        },
-        {
-          "hour": "2026-04-12T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 405,
-          "minMs": 405,
-          "maxMs": 405
-        },
-        {
-          "hour": "2026-04-13T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 346,
-          "minMs": 346,
-          "maxMs": 346
-        },
-        {
-          "hour": "2026-04-13T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 514,
-          "minMs": 514,
-          "maxMs": 514
-        },
-        {
-          "hour": "2026-04-13T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 267,
-          "minMs": 267,
-          "maxMs": 267
-        },
-        {
-          "hour": "2026-04-13T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 194,
-          "minMs": 194,
-          "maxMs": 194
+          "avgMs": 307,
+          "minMs": 307,
+          "maxMs": 307
         }
       ]
     },
@@ -4611,7 +3191,7 @@
       "bodyBytes": 3501,
       "category": "Directory",
       "cacheStatus": "MISS",
-      "checkedAt": "2026-04-13T11:39:36.051Z",
+      "checkedAt": "2026-04-13T14:05:56.454Z",
       "contentEncoding": "gzip",
       "description": "Tech Hunt Thailand mobility solution detail page for Viabus.",
       "errorType": null,
@@ -4623,13 +3203,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-07T05:55:37.361Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 380,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-07T07:48:35.544Z",
           "health": "live",
@@ -4874,6 +3447,13 @@
           "ok": true,
           "responseTimeMs": 238,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T14:05:56.454Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 321,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -4899,7 +3479,7 @@
         "updatedAt": "2026-03-12T08:16:21Z",
         "url": "https://github.com/Nonarkara/techhuntthailand"
       },
-      "responseTimeMs": 238,
+      "responseTimeMs": 321,
       "statusCode": 200,
       "screenshot": null,
       "surface": "static",
@@ -4907,25 +3487,9 @@
       "uptime": {
         "h24": 100,
         "d7": 100,
-        "d30": 99.71
+        "d30": 99.69
       },
       "historyBuckets": [
-        {
-          "hour": "2026-04-06T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 596,
-          "minMs": 596,
-          "maxMs": 596
-        },
-        {
-          "hour": "2026-04-06T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 460,
-          "minMs": 460,
-          "maxMs": 460
-        },
         {
           "hour": "2026-04-06T15",
           "checks": 1,
@@ -5040,219 +3604,27 @@
         },
         {
           "hour": "2026-04-11T02",
-          "checks": 19,
-          "ups": 19,
-          "avgMs": 289,
+          "checks": 24,
+          "ups": 24,
+          "avgMs": 482,
           "minMs": 52,
-          "maxMs": 814
+          "maxMs": 5418
         },
         {
           "hour": "2026-04-11T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 387,
-          "minMs": 387,
-          "maxMs": 387
+          "checks": 2,
+          "ups": 2,
+          "avgMs": 8195,
+          "minMs": 1474,
+          "maxMs": 14915
         },
         {
-          "hour": "2026-04-11T05",
+          "hour": "2026-04-13T14",
           "checks": 1,
           "ups": 1,
-          "avgMs": 457,
-          "minMs": 457,
-          "maxMs": 457
-        },
-        {
-          "hour": "2026-04-11T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 475,
-          "minMs": 475,
-          "maxMs": 475
-        },
-        {
-          "hour": "2026-04-11T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 518,
-          "minMs": 518,
-          "maxMs": 518
-        },
-        {
-          "hour": "2026-04-11T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 459,
-          "minMs": 459,
-          "maxMs": 459
-        },
-        {
-          "hour": "2026-04-11T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 208,
-          "minMs": 208,
-          "maxMs": 208
-        },
-        {
-          "hour": "2026-04-11T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 356,
-          "minMs": 356,
-          "maxMs": 356
-        },
-        {
-          "hour": "2026-04-11T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 365,
-          "minMs": 365,
-          "maxMs": 365
-        },
-        {
-          "hour": "2026-04-11T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 224,
-          "minMs": 224,
-          "maxMs": 224
-        },
-        {
-          "hour": "2026-04-11T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 235,
-          "minMs": 235,
-          "maxMs": 235
-        },
-        {
-          "hour": "2026-04-11T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 454,
-          "minMs": 454,
-          "maxMs": 454
-        },
-        {
-          "hour": "2026-04-12T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 301,
-          "minMs": 301,
-          "maxMs": 301
-        },
-        {
-          "hour": "2026-04-12T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 508,
-          "minMs": 508,
-          "maxMs": 508
-        },
-        {
-          "hour": "2026-04-12T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 254,
-          "minMs": 254,
-          "maxMs": 254
-        },
-        {
-          "hour": "2026-04-12T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 219,
-          "minMs": 219,
-          "maxMs": 219
-        },
-        {
-          "hour": "2026-04-12T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 383,
-          "minMs": 383,
-          "maxMs": 383
-        },
-        {
-          "hour": "2026-04-12T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 445,
-          "minMs": 445,
-          "maxMs": 445
-        },
-        {
-          "hour": "2026-04-12T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 216,
-          "minMs": 216,
-          "maxMs": 216
-        },
-        {
-          "hour": "2026-04-12T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 366,
-          "minMs": 366,
-          "maxMs": 366
-        },
-        {
-          "hour": "2026-04-12T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 304,
-          "minMs": 304,
-          "maxMs": 304
-        },
-        {
-          "hour": "2026-04-12T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 423,
-          "minMs": 423,
-          "maxMs": 423
-        },
-        {
-          "hour": "2026-04-12T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 453,
-          "minMs": 453,
-          "maxMs": 453
-        },
-        {
-          "hour": "2026-04-13T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 376,
-          "minMs": 376,
-          "maxMs": 376
-        },
-        {
-          "hour": "2026-04-13T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 636,
-          "minMs": 636,
-          "maxMs": 636
-        },
-        {
-          "hour": "2026-04-13T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 292,
-          "minMs": 292,
-          "maxMs": 292
-        },
-        {
-          "hour": "2026-04-13T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 238,
-          "minMs": 238,
-          "maxMs": 238
+          "avgMs": 321,
+          "minMs": 321,
+          "maxMs": 321
         }
       ]
     },
@@ -5262,7 +3634,7 @@
       "bodyBytes": 3851,
       "category": "Network",
       "cacheStatus": "MISS",
-      "checkedAt": "2026-04-13T11:39:36.036Z",
+      "checkedAt": "2026-04-13T14:05:56.437Z",
       "contentEncoding": "gzip",
       "description": "ASEAN Smart Cities Network public-facing site and resource surface.",
       "errorType": null,
@@ -5274,13 +3646,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-07T05:55:37.403Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 421,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-07T07:48:35.527Z",
           "health": "live",
@@ -5525,6 +3890,13 @@
           "ok": true,
           "responseTimeMs": 222,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T14:05:56.437Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 303,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -5550,7 +3922,7 @@
         "updatedAt": "2026-04-01T08:14:20Z",
         "url": "https://github.com/Nonarkara/ascn-smart-cities-network"
       },
-      "responseTimeMs": 222,
+      "responseTimeMs": 303,
       "statusCode": 200,
       "screenshot": null,
       "surface": "static",
@@ -5558,25 +3930,9 @@
       "uptime": {
         "h24": 100,
         "d7": 100,
-        "d30": 99.71
+        "d30": 99.69
       },
       "historyBuckets": [
-        {
-          "hour": "2026-04-06T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 573,
-          "minMs": 573,
-          "maxMs": 573
-        },
-        {
-          "hour": "2026-04-06T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 433,
-          "minMs": 433,
-          "maxMs": 433
-        },
         {
           "hour": "2026-04-06T15",
           "checks": 1,
@@ -5691,219 +4047,27 @@
         },
         {
           "hour": "2026-04-11T02",
-          "checks": 19,
-          "ups": 19,
-          "avgMs": 355,
+          "checks": 24,
+          "ups": 24,
+          "avgMs": 313,
           "minMs": 50,
-          "maxMs": 907
+          "maxMs": 812
         },
         {
           "hour": "2026-04-11T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 431,
-          "minMs": 431,
-          "maxMs": 431
+          "checks": 2,
+          "ups": 2,
+          "avgMs": 8174,
+          "minMs": 1478,
+          "maxMs": 14870
         },
         {
-          "hour": "2026-04-11T05",
+          "hour": "2026-04-13T14",
           "checks": 1,
           "ups": 1,
-          "avgMs": 462,
-          "minMs": 462,
-          "maxMs": 462
-        },
-        {
-          "hour": "2026-04-11T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 475,
-          "minMs": 475,
-          "maxMs": 475
-        },
-        {
-          "hour": "2026-04-11T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 482,
-          "minMs": 482,
-          "maxMs": 482
-        },
-        {
-          "hour": "2026-04-11T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 471,
-          "minMs": 471,
-          "maxMs": 471
-        },
-        {
-          "hour": "2026-04-11T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 203,
-          "minMs": 203,
-          "maxMs": 203
-        },
-        {
-          "hour": "2026-04-11T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 355,
-          "minMs": 355,
-          "maxMs": 355
-        },
-        {
-          "hour": "2026-04-11T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 364,
-          "minMs": 364,
-          "maxMs": 364
-        },
-        {
-          "hour": "2026-04-11T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 245,
-          "minMs": 245,
-          "maxMs": 245
-        },
-        {
-          "hour": "2026-04-11T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 253,
-          "minMs": 253,
-          "maxMs": 253
-        },
-        {
-          "hour": "2026-04-11T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 462,
-          "minMs": 462,
-          "maxMs": 462
-        },
-        {
-          "hour": "2026-04-12T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 294,
-          "minMs": 294,
-          "maxMs": 294
-        },
-        {
-          "hour": "2026-04-12T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 518,
-          "minMs": 518,
-          "maxMs": 518
-        },
-        {
-          "hour": "2026-04-12T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 249,
-          "minMs": 249,
-          "maxMs": 249
-        },
-        {
-          "hour": "2026-04-12T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 210,
-          "minMs": 210,
-          "maxMs": 210
-        },
-        {
-          "hour": "2026-04-12T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 387,
-          "minMs": 387,
-          "maxMs": 387
-        },
-        {
-          "hour": "2026-04-12T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 455,
-          "minMs": 455,
-          "maxMs": 455
-        },
-        {
-          "hour": "2026-04-12T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 205,
-          "minMs": 205,
-          "maxMs": 205
-        },
-        {
-          "hour": "2026-04-12T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 376,
-          "minMs": 376,
-          "maxMs": 376
-        },
-        {
-          "hour": "2026-04-12T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 296,
-          "minMs": 296,
-          "maxMs": 296
-        },
-        {
-          "hour": "2026-04-12T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 524,
-          "minMs": 524,
-          "maxMs": 524
-        },
-        {
-          "hour": "2026-04-12T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 390,
-          "minMs": 390,
-          "maxMs": 390
-        },
-        {
-          "hour": "2026-04-13T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 353,
-          "minMs": 353,
-          "maxMs": 353
-        },
-        {
-          "hour": "2026-04-13T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 518,
-          "minMs": 518,
-          "maxMs": 518
-        },
-        {
-          "hour": "2026-04-13T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 279,
-          "minMs": 279,
-          "maxMs": 279
-        },
-        {
-          "hour": "2026-04-13T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 222,
-          "minMs": 222,
-          "maxMs": 222
+          "avgMs": 303,
+          "minMs": 303,
+          "maxMs": 303
         }
       ]
     },
@@ -5913,7 +4077,7 @@
       "bodyBytes": 17096,
       "category": "Manifesto",
       "cacheStatus": "MISS",
-      "checkedAt": "2026-04-13T11:39:35.918Z",
+      "checkedAt": "2026-04-13T14:05:56.306Z",
       "contentEncoding": "gzip",
       "description": "ASEAN CSCO App manifesto page on GitHub Pages.",
       "errorType": null,
@@ -5925,13 +4089,6 @@
         "reason": "Healthy response."
       },
       "history": [
-        {
-          "at": "2026-04-07T05:55:37.166Z",
-          "health": "live",
-          "ok": true,
-          "responseTimeMs": 183,
-          "statusCode": 200
-        },
         {
           "at": "2026-04-07T07:48:35.383Z",
           "health": "live",
@@ -6176,6 +4333,13 @@
           "ok": true,
           "responseTimeMs": 102,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T14:05:56.306Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 169,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -6192,33 +4356,17 @@
       },
       "platform": "GitHub Pages",
       "repo": null,
-      "responseTimeMs": 102,
+      "responseTimeMs": 169,
       "statusCode": 200,
       "screenshot": null,
       "surface": "static",
       "url": "https://nonarkara.github.io/asean-csco-app/#manifesto",
       "uptime": {
         "h24": 100,
-        "d7": 100,
-        "d30": 99.71
+        "d7": 99.55,
+        "d30": 99.38
       },
       "historyBuckets": [
-        {
-          "hour": "2026-04-06T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 413,
-          "minMs": 413,
-          "maxMs": 413
-        },
-        {
-          "hour": "2026-04-06T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 265,
-          "minMs": 265,
-          "maxMs": 265
-        },
         {
           "hour": "2026-04-06T15",
           "checks": 1,
@@ -6333,219 +4481,27 @@
         },
         {
           "hour": "2026-04-11T02",
-          "checks": 19,
-          "ups": 19,
-          "avgMs": 157,
+          "checks": 24,
+          "ups": 24,
+          "avgMs": 176,
           "minMs": 47,
           "maxMs": 448
         },
         {
           "hour": "2026-04-11T03",
-          "checks": 1,
+          "checks": 2,
           "ups": 1,
-          "avgMs": 178,
-          "minMs": 178,
-          "maxMs": 178
+          "avgMs": 7857,
+          "minMs": 493,
+          "maxMs": 15220
         },
         {
-          "hour": "2026-04-11T05",
+          "hour": "2026-04-13T14",
           "checks": 1,
           "ups": 1,
-          "avgMs": 233,
-          "minMs": 233,
-          "maxMs": 233
-        },
-        {
-          "hour": "2026-04-11T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 220,
-          "minMs": 220,
-          "maxMs": 220
-        },
-        {
-          "hour": "2026-04-11T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 233,
-          "minMs": 233,
-          "maxMs": 233
-        },
-        {
-          "hour": "2026-04-11T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 206,
-          "minMs": 206,
-          "maxMs": 206
-        },
-        {
-          "hour": "2026-04-11T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 81,
-          "minMs": 81,
-          "maxMs": 81
-        },
-        {
-          "hour": "2026-04-11T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 192,
-          "minMs": 192,
-          "maxMs": 192
-        },
-        {
-          "hour": "2026-04-11T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 197,
-          "minMs": 197,
-          "maxMs": 197
-        },
-        {
-          "hour": "2026-04-11T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 118,
-          "minMs": 118,
-          "maxMs": 118
-        },
-        {
-          "hour": "2026-04-11T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 98,
-          "minMs": 98,
-          "maxMs": 98
-        },
-        {
-          "hour": "2026-04-11T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 237,
-          "minMs": 237,
-          "maxMs": 237
-        },
-        {
-          "hour": "2026-04-12T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 145,
-          "minMs": 145,
-          "maxMs": 145
-        },
-        {
-          "hour": "2026-04-12T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 270,
-          "minMs": 270,
-          "maxMs": 270
-        },
-        {
-          "hour": "2026-04-12T07",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 234,
-          "minMs": 234,
-          "maxMs": 234
-        },
-        {
-          "hour": "2026-04-12T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 149,
-          "minMs": 149,
-          "maxMs": 149
-        },
-        {
-          "hour": "2026-04-12T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 325,
-          "minMs": 325,
-          "maxMs": 325
-        },
-        {
-          "hour": "2026-04-12T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 211,
-          "minMs": 211,
-          "maxMs": 211
-        },
-        {
-          "hour": "2026-04-12T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 92,
-          "minMs": 92,
-          "maxMs": 92
-        },
-        {
-          "hour": "2026-04-12T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 214,
-          "minMs": 214,
-          "maxMs": 214
-        },
-        {
-          "hour": "2026-04-12T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 179,
-          "minMs": 179,
-          "maxMs": 179
-        },
-        {
-          "hour": "2026-04-12T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 209,
-          "minMs": 209,
-          "maxMs": 209
-        },
-        {
-          "hour": "2026-04-12T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 151,
-          "minMs": 151,
-          "maxMs": 151
-        },
-        {
-          "hour": "2026-04-13T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 177,
-          "minMs": 177,
-          "maxMs": 177
-        },
-        {
-          "hour": "2026-04-13T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 216,
-          "minMs": 216,
-          "maxMs": 216
-        },
-        {
-          "hour": "2026-04-13T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 105,
-          "minMs": 105,
-          "maxMs": 105
-        },
-        {
-          "hour": "2026-04-13T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 102,
-          "minMs": 102,
-          "maxMs": 102
+          "avgMs": 169,
+          "minMs": 169,
+          "maxMs": 169
         }
       ]
     },
@@ -6555,7 +4511,7 @@
       "bodyBytes": 2203,
       "category": "Monitoring",
       "cacheStatus": "MISS",
-      "checkedAt": "2026-04-13T11:39:36.052Z",
+      "checkedAt": "2026-04-13T14:05:56.411Z",
       "contentEncoding": "gzip",
       "description": "Kuching Integrated Operations Centre — smart city command dashboard.",
       "errorType": null,
@@ -6657,6 +4613,13 @@
           "ok": true,
           "responseTimeMs": 235,
           "statusCode": 200
+        },
+        {
+          "at": "2026-04-13T14:05:56.411Z",
+          "health": "live",
+          "ok": true,
+          "responseTimeMs": 273,
+          "statusCode": 200
         }
       ],
       "hostname": "nonarkara.github.io",
@@ -6682,7 +4645,7 @@
         "updatedAt": "2026-04-12T11:49:29Z",
         "url": "https://github.com/Nonarkara/kuching-ioc"
       },
-      "responseTimeMs": 235,
+      "responseTimeMs": 273,
       "statusCode": 200,
       "screenshot": null,
       "surface": "static",
@@ -6694,136 +4657,40 @@
       },
       "historyBuckets": [
         {
-          "hour": "2026-04-12T07",
+          "hour": "2026-04-13T14",
           "checks": 1,
           "ups": 1,
-          "avgMs": 257,
-          "minMs": 257,
-          "maxMs": 257
-        },
-        {
-          "hour": "2026-04-12T09",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 246,
-          "minMs": 246,
-          "maxMs": 246
-        },
-        {
-          "hour": "2026-04-12T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 391,
-          "minMs": 391,
-          "maxMs": 391
-        },
-        {
-          "hour": "2026-04-12T13",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 466,
-          "minMs": 466,
-          "maxMs": 466
-        },
-        {
-          "hour": "2026-04-12T14",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 219,
-          "minMs": 219,
-          "maxMs": 219
-        },
-        {
-          "hour": "2026-04-12T16",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 367,
-          "minMs": 367,
-          "maxMs": 367
-        },
-        {
-          "hour": "2026-04-12T19",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 309,
-          "minMs": 309,
-          "maxMs": 309
-        },
-        {
-          "hour": "2026-04-12T20",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 384,
-          "minMs": 384,
-          "maxMs": 384
-        },
-        {
-          "hour": "2026-04-12T22",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 424,
-          "minMs": 424,
-          "maxMs": 424
-        },
-        {
-          "hour": "2026-04-13T03",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 353,
-          "minMs": 353,
-          "maxMs": 353
-        },
-        {
-          "hour": "2026-04-13T06",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 510,
-          "minMs": 510,
-          "maxMs": 510
-        },
-        {
-          "hour": "2026-04-13T10",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 287,
-          "minMs": 287,
-          "maxMs": 287
-        },
-        {
-          "hour": "2026-04-13T11",
-          "checks": 1,
-          "ups": 1,
-          "avgMs": 235,
-          "minMs": 235,
-          "maxMs": 235
+          "avgMs": 273,
+          "minMs": 273,
+          "maxMs": 273
         }
       ]
     }
   ],
   "bandwidth": {
-    "totalBytes": 134563,
-    "avgBytes": 12233,
+    "totalBytes": 139361,
+    "avgBytes": 12669,
     "cacheHits": 0,
     "cacheTotal": 9,
     "byPlatform": [
       {
         "platform": "GitHub Pages",
-        "bytes": 121815,
-        "avgMs": 222,
+        "bytes": 126613,
+        "avgMs": 281,
         "count": 9,
-        "errors": 0
+        "errors": 1
       },
       {
         "platform": "Web",
         "bytes": 1398,
-        "avgMs": 106,
+        "avgMs": 121,
         "count": 1,
         "errors": 0
       },
       {
         "platform": "Lovable",
         "bytes": 11350,
-        "avgMs": 485,
+        "avgMs": 682,
         "count": 1,
         "errors": 0
       }
@@ -6832,14 +4699,49 @@
   "analytics": {
     "fleet": {
       "todayVisitors": 0,
-      "weekVisitors": 0,
-      "countries": []
+      "weekVisitors": 9,
+      "countries": [
+        {
+          "country": "Local",
+          "count": 9
+        }
+      ]
     },
-    "projects": {}
+    "projects": {
+      "operations-radar": {
+        "today": 0,
+        "todayUnique": 0,
+        "week": 9,
+        "avgMs": null,
+        "countries": {
+          "Local": 9
+        }
+      }
+    }
   },
   "alerts": {
     "active": [],
     "recent": [
+      {
+        "id": "4dbf2da8-5911-4a4f-953a-032d07cd4611",
+        "targetId": "asean-csco-app",
+        "targetLabel": "ASEAN CSCO App",
+        "type": "recovery",
+        "severity": "info",
+        "message": "ASEAN CSCO App recovered",
+        "timestamp": "2026-04-11T03:17:08.036Z",
+        "resolvedAt": "2026-04-11T03:17:08.036Z"
+      },
+      {
+        "id": "71736151-1153-41ff-bd01-15c0430b13ce",
+        "targetId": "asean-csco-app",
+        "targetLabel": "ASEAN CSCO App",
+        "type": "down",
+        "severity": "warning",
+        "message": "ASEAN CSCO App went down (offline)",
+        "timestamp": "2026-04-11T03:07:02.466Z",
+        "resolvedAt": "2026-04-11T03:17:08.036Z"
+      },
       {
         "id": "d72ba196-089e-4f15-a15f-a127fc6d6d13",
         "targetId": "middle-east-monitor",
@@ -7019,27 +4921,17 @@
         "message": "ASCN Smart Cities Network went down (offline)",
         "timestamp": "2026-03-30T07:46:38.284Z",
         "resolvedAt": "2026-03-30T07:47:11.437Z"
-      },
-      {
-        "id": "619ad204-58e1-48ee-aee5-e78c7a7a4040",
-        "targetId": "middle-east-monitor",
-        "targetLabel": "Middle East Monitor",
-        "type": "down",
-        "severity": "critical",
-        "message": "Middle East Monitor went down (offline)",
-        "timestamp": "2026-03-30T07:46:38.282Z",
-        "resolvedAt": "2026-03-30T07:47:10.153Z"
       }
     ]
   },
   "triggers": [],
   "scheduler": {
     "enabled": true,
-    "intervalMinutes": 10,
+    "intervalMinutes": 60,
     "nextCheckAt": null,
     "lastCheckAt": null,
     "checksToday": 0,
-    "mode": "business"
+    "mode": "quiet"
   },
   "snapshotMeta": {
     "generatedBy": "GitHub Actions",

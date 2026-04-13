@@ -995,6 +995,18 @@
             21333,
             1496
           ]
+        },
+        {
+          "hour": "2026-04-13T14",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 290,
+          "minMs": 290,
+          "maxMs": 290,
+          "totalBytes": 89501,
+          "responseTimes": [
+            290
+          ]
         }
       ]
     },
@@ -1992,6 +2004,18 @@
           "responseTimes": [
             15220,
             493
+          ]
+        },
+        {
+          "hour": "2026-04-13T14",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 169,
+          "minMs": 169,
+          "maxMs": 169,
+          "totalBytes": 17096,
+          "responseTimes": [
+            169
           ]
         }
       ]
@@ -2991,6 +3015,18 @@
             14127,
             1479
           ]
+        },
+        {
+          "hour": "2026-04-13T14",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 284,
+          "minMs": 284,
+          "maxMs": 284,
+          "totalBytes": 600,
+          "responseTimes": [
+            284
+          ]
         }
       ]
     },
@@ -3988,6 +4024,18 @@
           "responseTimes": [
             12365,
             127
+          ]
+        },
+        {
+          "hour": "2026-04-13T14",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 121,
+          "minMs": 121,
+          "maxMs": 121,
+          "totalBytes": 1398,
+          "responseTimes": [
+            121
           ]
         }
       ]
@@ -4987,6 +5035,18 @@
             15014,
             1129
           ]
+        },
+        {
+          "hour": "2026-04-13T14",
+          "checks": 1,
+          "ups": 0,
+          "totalMs": 290,
+          "minMs": 290,
+          "maxMs": 290,
+          "totalBytes": 5142,
+          "responseTimes": [
+            290
+          ]
         }
       ]
     },
@@ -5984,6 +6044,18 @@
           "responseTimes": [
             14068,
             1638
+          ]
+        },
+        {
+          "hour": "2026-04-13T14",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 682,
+          "minMs": 682,
+          "maxMs": 682,
+          "totalBytes": 11350,
+          "responseTimes": [
+            682
           ]
         }
       ]
@@ -6983,6 +7055,18 @@
             14125,
             1471
           ]
+        },
+        {
+          "hour": "2026-04-13T14",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 307,
+          "minMs": 307,
+          "maxMs": 307,
+          "totalBytes": 346,
+          "responseTimes": [
+            307
+          ]
         }
       ]
     },
@@ -7980,6 +8064,18 @@
           "responseTimes": [
             14915,
             1474
+          ]
+        },
+        {
+          "hour": "2026-04-13T14",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 321,
+          "minMs": 321,
+          "maxMs": 321,
+          "totalBytes": 3501,
+          "responseTimes": [
+            321
           ]
         }
       ]
@@ -8979,6 +9075,18 @@
             14870,
             1478
           ]
+        },
+        {
+          "hour": "2026-04-13T14",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 303,
+          "minMs": 303,
+          "maxMs": 303,
+          "totalBytes": 3851,
+          "responseTimes": [
+            303
+          ]
         }
       ]
     },
@@ -9281,9 +9389,37 @@
             14984,
             1166
           ]
+        },
+        {
+          "hour": "2026-04-13T14",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 289,
+          "minMs": 289,
+          "maxMs": 289,
+          "totalBytes": 4373,
+          "responseTimes": [
+            289
+          ]
+        }
+      ]
+    },
+    "kuching-ioc": {
+      "buckets": [
+        {
+          "hour": "2026-04-13T14",
+          "checks": 1,
+          "ups": 1,
+          "totalMs": 273,
+          "minMs": 273,
+          "maxMs": 273,
+          "totalBytes": 2203,
+          "responseTimes": [
+            273
+          ]
         }
       ]
     }
   },
-  "updatedAt": "2026-04-11T03:21:23.452Z"
+  "updatedAt": "2026-04-13T14:05:56.972Z"
 }
