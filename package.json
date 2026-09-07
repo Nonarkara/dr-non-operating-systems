@@ -2,6 +2,7 @@
   "name": "non-operations-radar",
   "version": "3.0.0",
   "private": true,
+  "license": "MIT",
   "type": "module",
   "scripts": {
     "smoke": "node scripts/smoke-check.mjs",
