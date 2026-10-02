@@ -100,7 +100,19 @@ The server listens on `http://127.0.0.1:4178` by default (`HOST` / `PORT` overri
 
 Smoke is what the Pages deploy workflow runs first. Snapshot is what the scheduled workflow runs.
 
-Optional environment variables — **names only**. Put values in a local `.env` or your host’s secret store, never in git:
+Optional environment variables — **names only**. `npm start`, `npm run smoke`
+and `npm run snapshot` read the process environment; they do not automatically
+load a `.env` file. Supply values through your shell/host’s secret store.
+For an intentional local `.env` file, start the server explicitly with:
+
+```bash
+node --env-file=.env server.js
+```
+
+Create that gitignored file yourself only when needed; the normal `npm start`
+path needs no file. Do not commit credentials. Enabling an integration can
+cause external requests or writes (alerts, Supabase, Sheets); review the
+variables and destination before starting the process.
 
 | Variable | Used for |
 | --- | --- |

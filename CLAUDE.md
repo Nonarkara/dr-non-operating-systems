@@ -115,6 +115,11 @@ The frontend (`public/app.js`) reads these files directly. If you change their s
 
 ## Env vars (read by `server.js` and scripts)
 
+The current npm scripts read inherited process variables only; they do not
+autoload `.env`. For deliberate local env-file loading use
+`node --env-file=.env server.js`, or export values in the host/shell.
+A `.env` file being gitignored is not evidence that Node loads it.
+
 Required for live data:
 - `GITHUB_TOKEN` / `GH_TOKEN` / `GITHUB_API_TOKEN` — GitHub API (profile, repos, activity)
 
