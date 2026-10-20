@@ -243,7 +243,7 @@ const LAB_LOGOS = [
   {
     id: "axiom-ai",
     label: "AXIOM AI",
-    src: "./Logos/AXIOM AI logo.png"
+    src: "./Logos/axiom-flat.svg"
   },
   {
     id: "casean",
