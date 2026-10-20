@@ -387,6 +387,11 @@ summary { cursor: pointer; color: var(--muted); font-size: var(--text-xs); text-
 .logo-chip { display: flex; align-items: center; gap: var(--space-2); padding: var(--space-2) var(--space-3); background: var(--surface); border: 1px solid var(--border); font-size: var(--text-xs); }
 .logo-mark { display: flex; align-items: center; justify-content: center; }
 .logo-chip img { width: 28px; height: 28px; object-fit: contain; }
+.logo-chip[data-logo-id="axiom-ai"] img {
+  width: 48px;
+  height: 48px;
+  background: transparent;
+}
 .logo-chip-fallback .logo-image { opacity: 0.35; filter: grayscale(1); }
 .surface-strip { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1px; background: var(--border); }
 .surface-chip { display: grid; gap: var(--space-1); padding: var(--space-2) var(--space-3); background: var(--surface); font-size: var(--text-xs); text-decoration: none; transition: background var(--t); }
